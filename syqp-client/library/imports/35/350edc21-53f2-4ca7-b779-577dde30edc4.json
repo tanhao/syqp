@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bbtz",
+    "texture": "6471badb-3d35-4075-8814-af34b19560b3",
+    "atlas": "",
+    "rect": [
+      11,
+      0,
+      434,
+      171
+    ],
+    "offset": [
+      5.5,
+      1.5
+    ],
+    "originalSize": [
+      445,
+      174
+    ]
+  }
+}

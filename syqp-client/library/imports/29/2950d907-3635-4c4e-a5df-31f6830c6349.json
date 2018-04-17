@@ -1,0 +1,53 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "btn_shop.plist",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_spriteFrames": {
+    "shop_icon": {
+      "__uuid__": "2658c299-e027-460a-8682-44c5586cfd44"
+    },
+    "shop_let1": {
+      "__uuid__": "4ec9d8ab-d5b2-44ca-9359-f3fcb73a7923"
+    },
+    "shop_let10": {
+      "__uuid__": "c60c0a3b-5f07-4210-835b-ad3c6830dbb3"
+    },
+    "shop_let11": {
+      "__uuid__": "534d2ac5-dd7e-4b3a-b247-e715f92c6435"
+    },
+    "shop_let12": {
+      "__uuid__": "8e7fce90-cdf7-4e8d-976f-7a7335ce805f"
+    },
+    "shop_let2": {
+      "__uuid__": "802ea72b-41b0-4bbc-a4ae-a07839567e11"
+    },
+    "shop_let3": {
+      "__uuid__": "18347404-7599-4e8f-8def-acdf5cedf2de"
+    },
+    "shop_let5": {
+      "__uuid__": "b3773cb8-2707-4042-9203-63aefe7ad29a"
+    },
+    "shop_let4": {
+      "__uuid__": "789bf57b-f5a7-436d-986f-53a9235ac510"
+    },
+    "shop_let6": {
+      "__uuid__": "bc41f8d7-c647-4252-a25c-7899b3f6fc80"
+    },
+    "shop_let7": {
+      "__uuid__": "4e835e25-34b4-45b2-bc9e-03fce6b86b68"
+    },
+    "shop_let8": {
+      "__uuid__": "16b531b9-72c4-4839-aa46-5dcd7be38635"
+    },
+    "shop_let9": {
+      "__uuid__": "2f826452-3b9c-4938-859a-3bbc9adcc64d"
+    },
+    "shop_mall": {
+      "__uuid__": "ff8e2e15-0d49-45b0-98c7-60abf42e0bea"
+    },
+    "shop_sale": {
+      "__uuid__": "99107c77-2388-4612-a47d-320a06dbc95a"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "top_bar_bg",
+    "texture": "ed2e02f5-b00d-46f6-a003-b6c4ac5a88d7",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      800,
+      80
+    ],
+    "offset": [
+      -3.5,
+      2
+    ],
+    "originalSize": [
+      807,
+      84
+    ]
+  }
+}

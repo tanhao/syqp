@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "tips_onlypass",
+    "texture": "ee78e3e5-412b-4e4a-84a8-524f062d94a6",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      405,
+      53
+    ],
+    "offset": [
+      -2,
+      1.5
+    ],
+    "originalSize": [
+      409,
+      56
+    ]
+  }
+}

@@ -1,0 +1,1527 @@
+{
+  "f8e6b000-5643-4b86-9080-aa680ce1f599": {
+    "asset": 1521819040243,
+    "meta": 1520937982000,
+    "relativePath": "image"
+  },
+  "fc09f9bd-2cce-4605-b630-8145ef809ed6": {
+    "asset": 1521819021856,
+    "meta": 1520937982000,
+    "relativePath": "misc"
+  },
+  "2be36297-9abb-4fee-8049-9ed5e271da8a": {
+    "asset": 1520937982000,
+    "meta": 1520937982000,
+    "relativePath": "misc\\default_video.mp4"
+  },
+  "f6e6dd15-71d1-4ffe-ace7-24fd39942c05": {
+    "asset": 1521819025987,
+    "meta": 1520937982000,
+    "relativePath": "obsolete"
+  },
+  "b8223619-7e38-47c4-841f-9160c232495a": {
+    "asset": 1520937982000,
+    "meta": 1520937982000,
+    "relativePath": "obsolete\\atom.plist"
+  },
+  "f743d2b6-b7ea-4c14-a55b-547ed4d0a045": {
+    "asset": 1521819021869,
+    "meta": 1520937982000,
+    "relativePath": "particle"
+  },
+  "b2687ac4-099e-403c-a192-ff477686f4f5": {
+    "asset": 1520937982000,
+    "meta": 1520937982000,
+    "relativePath": "particle\\atom.plist"
+  },
+  "ae6c6c98-11e4-452f-8758-75f5c6a56e83": {
+    "asset": 1521819071535,
+    "meta": 1520937982000,
+    "relativePath": "prefab"
+  },
+  "784e42d8-8928-483e-9bc6-c587063026aa": {
+    "asset": 1523495691713,
+    "meta": 1520385293726,
+    "relativePath": "scenes"
+  },
+  "7d472f7c-8124-45f7-bdf8-d49a88ee2845": {
+    "asset": 1523341509920,
+    "meta": 1520385293703,
+    "relativePath": "images"
+  },
+  "90860a5c-1b59-4d0d-ac3f-4539537f07be": {
+    "asset": 1523495691716,
+    "meta": 1520385293730,
+    "relativePath": "scripts"
+  },
+  "2a9e95f3-be12-4b93-9415-c316e1ed5de5": {
+    "asset": 1523341509965,
+    "meta": 1523496274644,
+    "relativePath": "scenes\\login.fire"
+  },
+  "d2c04a79-2cb0-40bf-ad0d-8c8224a7e190": {
+    "asset": 1523499081308,
+    "meta": 1523499081357,
+    "relativePath": "scenes\\hall.fire"
+  },
+  "aae98627-8003-4ce0-9cf7-855401c43fd6": {
+    "asset": 1520385293707,
+    "meta": 1523496273543,
+    "relativePath": "images\\login\\bg.png"
+  },
+  "d0ef7d8d-1354-4065-93ee-ce2addd3d1bb": {
+    "asset": 1520385293715,
+    "meta": 1523496273599,
+    "relativePath": "images\\login\\logo.png"
+  },
+  "59033e72-754c-4260-b96b-2aa874f3ec7b": {
+    "asset": 1521162458311,
+    "meta": 1520385293704,
+    "relativePath": "images\\login"
+  },
+  "0d10b6de-d54c-4eb6-af4b-7536e0d8127e": {
+    "asset": 1521162458311,
+    "meta": 1523496273503,
+    "relativePath": "images\\login\\btn_guest.png"
+  },
+  "ec2c28c9-ea9c-4536-a9d3-9c0a58db0b64": {
+    "asset": 1520385293716,
+    "meta": 1523496273551,
+    "relativePath": "images\\login\\yonghuxieyi.png"
+  },
+  "6d897f6c-ffbd-4841-ad0e-76cbd69d522a": {
+    "asset": 1520385293712,
+    "meta": 1523496273515,
+    "relativePath": "images\\login\\btn_weixin.png"
+  },
+  "b25a7008-2253-4674-8124-c16ab93cf268": {
+    "asset": 1520385293726,
+    "meta": 1523496274039,
+    "relativePath": "images\\splash.jpg"
+  },
+  "431856e3-7512-4f32-ae08-544c625976e5": {
+    "asset": 1520385293713,
+    "meta": 1523496273523,
+    "relativePath": "images\\login\\checkbox1.png"
+  },
+  "7874e91c-c8ea-4fa1-a74f-4df697a39d3f": {
+    "asset": 1520385293714,
+    "meta": 1523496273529,
+    "relativePath": "images\\login\\checkbox2.png"
+  },
+  "70cd73e4-2542-40e1-b827-727d5158c0e1": {
+    "asset": 1523495691726,
+    "meta": 1520385293730,
+    "relativePath": "scripts\\components"
+  },
+  "6ac5955c-a9fb-4635-9f48-10be259a9582": {
+    "asset": 1523341509944,
+    "meta": 1520385293717,
+    "relativePath": "images\\public"
+  },
+  "9ccf5025-6e20-4f05-8944-e96aa198a9fd": {
+    "asset": 1520385293720,
+    "meta": 1523496273892,
+    "relativePath": "images\\public\\jzcycle.png"
+  },
+  "b4bf01e1-95b6-414e-9083-078ae36cd753": {
+    "asset": 1521449046528,
+    "meta": 1520387484259,
+    "relativePath": "images\\hall"
+  },
+  "5d680f25-f647-48d7-bda9-37065d99c2e4": {
+    "asset": 1520389068915,
+    "meta": 1523496273483,
+    "relativePath": "images\\hall\\notice.png"
+  },
+  "05c581c5-3a19-4f84-9b8d-d68d8d14c8c8": {
+    "asset": 1520389269594,
+    "meta": 1523496273228,
+    "relativePath": "images\\hall\\feedback.png"
+  },
+  "dc4a951b-d235-4ada-aeb3-0b5a47bf25a4": {
+    "asset": 1520389269595,
+    "meta": 1523496273304,
+    "relativePath": "images\\hall\\huodong.png"
+  },
+  "2cfad1b9-3b21-4faf-a778-1d581ecac34d": {
+    "asset": 1520389269595,
+    "meta": 1523496273476,
+    "relativePath": "images\\hall\\share.png"
+  },
+  "9665d35f-fe42-407c-b502-6458ef4a9a1c": {
+    "asset": 1520389269595,
+    "meta": 1523496273182,
+    "relativePath": "images\\hall\\dock.png"
+  },
+  "e7153f07-5660-4e0d-b157-04e0e20131f6": {
+    "asset": 1520392091729,
+    "meta": 1523496273468,
+    "relativePath": "images\\hall\\logo_mini.png"
+  },
+  "ed060968-d8ca-4e4d-b778-b0a4af400bc4": {
+    "asset": 1520392317653,
+    "meta": 1523496273493,
+    "relativePath": "images\\hall\\zhanji.png"
+  },
+  "7237c4f3-3676-4884-b9ad-d5094a39a088": {
+    "asset": 1520392805741,
+    "meta": 1523496272999,
+    "relativePath": "images\\hall\\btn_create_room.png"
+  },
+  "00b75047-4d55-4d3b-8fe1-33e0fa69da18": {
+    "asset": 1520392805741,
+    "meta": 1523496272993,
+    "relativePath": "images\\hall\\btn_enter_room.png"
+  },
+  "cff946b8-8838-415c-ac9d-411d36aa759c": {
+    "asset": 1520392805742,
+    "meta": 1523496273016,
+    "relativePath": "images\\hall\\btn_return_room.png"
+  },
+  "caea4ae8-b018-4609-ad38-0e859ec15235": {
+    "asset": 1520393333008,
+    "meta": 1523496273011,
+    "relativePath": "images\\hall\\btn_setting.png"
+  },
+  "43ce462b-886a-428e-9c82-0842b12155f9": {
+    "asset": 1520393333009,
+    "meta": 1523496273033,
+    "relativePath": "images\\hall\\btn_telp.png"
+  },
+  "6e92998a-494b-4cb0-965f-9c30083d0248": {
+    "asset": 1520393333009,
+    "meta": 1523496273029,
+    "relativePath": "images\\hall\\btn_xiaoxi.png"
+  },
+  "17860fbf-4004-4057-8296-57b2ef33f615": {
+    "asset": 1520394822217,
+    "meta": 1523496273831,
+    "relativePath": "images\\public\\card.png"
+  },
+  "83d1fd0e-f534-4cb9-b896-6487c1bcf10e": {
+    "asset": 1520395205641,
+    "meta": 1523496273042,
+    "relativePath": "images\\hall\\buy.png"
+  },
+  "7bb78482-772b-4801-ad3f-b7bad7b97490": {
+    "asset": 1520471158114,
+    "meta": 1523496273717,
+    "relativePath": "images\\public\\bank.png"
+  },
+  "79acb4e5-e673-4ed8-b39f-dacedf375ae3": {
+    "asset": 1520989476536,
+    "meta": 1520471158101,
+    "relativePath": "fonts"
+  },
+  "a5799add-aec0-4b63-9ac8-7b0af857ae9f": {
+    "asset": 1520471158102,
+    "meta": 1523496275484,
+    "relativePath": "fonts\\cion_num.fnt"
+  },
+  "fde18213-e8a6-4599-b954-d3d83c1d523c": {
+    "asset": 1520471158103,
+    "meta": 1523496271535,
+    "relativePath": "fonts\\cion_num.png"
+  },
+  "1313e7b1-ba7b-4f57-988c-786a7fb8adff": {
+    "asset": 1520471158113,
+    "meta": 1523496275497,
+    "relativePath": "fonts\\win_num.fnt"
+  },
+  "b2ea4309-1d6c-40b0-bfce-1e8cb99f925c": {
+    "asset": 1521015688075,
+    "meta": 1520556874881,
+    "relativePath": "images\\hall\\create_room"
+  },
+  "eeead791-8b91-40e5-93b9-43b1d2731cb1": {
+    "asset": 1520556874888,
+    "meta": 1523496273136,
+    "relativePath": "images\\hall\\create_room\\optional.png"
+  },
+  "bc154e05-32e2-4137-ab7e-f1f2a0a10116": {
+    "asset": 1520556874889,
+    "meta": 1523496273141,
+    "relativePath": "images\\hall\\create_room\\peoples.png"
+  },
+  "8ce0c4d9-13ba-4495-9f02-f28bb8d3b38f": {
+    "asset": 1520556874885,
+    "meta": 1523496273098,
+    "relativePath": "images\\hall\\create_room\\end_gift.png"
+  },
+  "9cc44f1e-c3d2-4c51-ae8b-7857b46b3276": {
+    "asset": 1520556874890,
+    "meta": 1523496273169,
+    "relativePath": "images\\hall\\create_room\\radio2.png"
+  },
+  "cdf4eddc-4ada-4e55-8fb9-e08e3ec633c0": {
+    "asset": 1520556874886,
+    "meta": 1523496273107,
+    "relativePath": "images\\hall\\create_room\\fangfei.png"
+  },
+  "fc0c2ead-bbc3-4731-86b0-371fe2aa4735": {
+    "asset": 1520556874891,
+    "meta": 1523496273177,
+    "relativePath": "images\\hall\\create_room\\score_choice.png"
+  },
+  "98ec9d95-a4ca-4d0b-9391-f9e04ab376b8": {
+    "asset": 1520556874889,
+    "meta": 1523496273164,
+    "relativePath": "images\\hall\\create_room\\radio1.png"
+  },
+  "0b9003d2-71ca-4077-934e-d0e214f45195": {
+    "asset": 1520556874887,
+    "meta": 1523496273115,
+    "relativePath": "images\\hall\\create_room\\line.png"
+  },
+  "0bf30023-a707-4e27-82b4-a90bb7a9b115": {
+    "asset": 1520556874895,
+    "meta": 1523496273769,
+    "relativePath": "images\\public\\btn_ready.png"
+  },
+  "39612d5d-34b7-47d1-b55d-ba349f20a5dc": {
+    "asset": 1520556874894,
+    "meta": 1523496273747,
+    "relativePath": "images\\public\\btn_confirm.png"
+  },
+  "81cd72ee-ff0e-4faf-89d5-35724fdfe531": {
+    "asset": 1520556874884,
+    "meta": 1523496273088,
+    "relativePath": "images\\hall\\create_room\\diamond.png"
+  },
+  "62ea702a-601c-4d50-aa18-2ab67b09b187": {
+    "asset": 1520559539443,
+    "meta": 1523496273066,
+    "relativePath": "images\\hall\\create_room\\checkbox1.png"
+  },
+  "4faf3d04-7499-4caf-a3df-4653e36adbb5": {
+    "asset": 1520559539445,
+    "meta": 1523496273080,
+    "relativePath": "images\\hall\\create_room\\checkbox2.png"
+  },
+  "9eb80dc3-8ede-4492-a6ce-3f4623426ffc": {
+    "asset": 1522632746873,
+    "meta": 1520903499970,
+    "relativePath": "images\\game"
+  },
+  "75f10bfe-d684-466c-a752-4aedddd32244": {
+    "asset": 1520903499987,
+    "meta": 1523496272923,
+    "relativePath": "images\\game\\score4ren.png"
+  },
+  "6df7be32-34cb-46a1-b53f-6d2d3f7d436a": {
+    "asset": 1520903499987,
+    "meta": 1523496272902,
+    "relativePath": "images\\game\\score_now.png"
+  },
+  "58ef61e2-1e20-4a0f-a8e0-11e2d4912d44": {
+    "asset": 1520903499999,
+    "meta": 1523496273916,
+    "relativePath": "images\\public\\jzshaizi.png"
+  },
+  "2d153d57-98c8-4419-999f-ad45c2c70597": {
+    "asset": 1520903499978,
+    "meta": 1523496272686,
+    "relativePath": "images\\game\\grayBg.png"
+  },
+  "40cddf9b-0db2-41b1-883d-6e7cd3e76ae2": {
+    "asset": 1520903499986,
+    "meta": 1523496272889,
+    "relativePath": "images\\game\\power2.png"
+  },
+  "2ffcde6d-56bc-4566-ae64-34ba436ac08c": {
+    "asset": 1520903499985,
+    "meta": 1523496272880,
+    "relativePath": "images\\game\\power1.png"
+  },
+  "6db36783-0f1d-4c96-b8c6-daeed302473c": {
+    "asset": 1520903499988,
+    "meta": 1523496272960,
+    "relativePath": "images\\game\\wifi3.png"
+  },
+  "53b02259-efd5-480e-8779-4e3962fe6fe0": {
+    "asset": 1520903499982,
+    "meta": 1523496272780,
+    "relativePath": "images\\game\\net_4.png"
+  },
+  "3c619bd2-d49b-40ae-b6d7-8f5f45021b4b": {
+    "asset": 1520903499982,
+    "meta": 1523496272769,
+    "relativePath": "images\\game\\net_3.png"
+  },
+  "47aae8f4-2832-4cba-b86f-577e4dc2ee0b": {
+    "asset": 1520903499981,
+    "meta": 1523496272771,
+    "relativePath": "images\\game\\net_2.png"
+  },
+  "d51de090-7599-449a-bf53-2006c9c994d1": {
+    "asset": 1520903499981,
+    "meta": 1523496272760,
+    "relativePath": "images\\game\\net_1.png"
+  },
+  "5bf3766e-b26b-466a-9b14-7dc9127ed9c3": {
+    "asset": 1520903499986,
+    "meta": 1523496272918,
+    "relativePath": "images\\game\\score3ren.png"
+  },
+  "52f3f21a-e80f-4b0c-bbcf-0929562e728e": {
+    "asset": 1520903499974,
+    "meta": 1523496272650,
+    "relativePath": "images\\game\\dipai9.png"
+  },
+  "fc70e36c-4e1a-4f02-bc6e-ad4e0381e44b": {
+    "asset": 1520903499974,
+    "meta": 1523496272643,
+    "relativePath": "images\\game\\dipai8.png"
+  },
+  "447ead3f-0c5d-4104-b255-e87ef04ce7a3": {
+    "asset": 1520903499971,
+    "meta": 1523496272542,
+    "relativePath": "images\\game\\btn_leave.png"
+  },
+  "10aeb88f-0cf7-429a-bd51-cf0d53c03d8e": {
+    "asset": 1520903499975,
+    "meta": 1523496272656,
+    "relativePath": "images\\game\\downMenu.png"
+  },
+  "f60e1eae-e4dd-48d6-99f7-93cb48cb7650": {
+    "asset": 1520903499980,
+    "meta": 1523496272742,
+    "relativePath": "images\\game\\imgset.png"
+  },
+  "ccfd5216-8144-4c49-98b2-66eea69d392c": {
+    "asset": 1520903499972,
+    "meta": 1523496272587,
+    "relativePath": "images\\game\\btn_setting.png"
+  },
+  "4cc8d2f8-486f-466d-b6c0-ff276fd9c475": {
+    "asset": 1520903499971,
+    "meta": 1523496272560,
+    "relativePath": "images\\game\\btn_disband.png"
+  },
+  "c7475a61-567f-4032-a530-82cd446d433a": {
+    "asset": 1520903499988,
+    "meta": 1523496272978,
+    "relativePath": "images\\game\\userinfo_bg.png"
+  },
+  "b788984d-21c5-4bd8-b937-de31b497605b": {
+    "asset": 1522632746869,
+    "meta": 1523496272719,
+    "relativePath": "images\\game\\head_default.png"
+  },
+  "7fdc05f0-b32f-473f-a357-2b7b494870da": {
+    "asset": 1520903499979,
+    "meta": 1523496272714,
+    "relativePath": "images\\game\\head_ clip.png"
+  },
+  "caadfbc2-2c09-4c72-a09e-4ab02661f19c": {
+    "asset": 1520903499983,
+    "meta": 1523496272785,
+    "relativePath": "images\\game\\offline.png"
+  },
+  "7b2d827c-860d-4583-90ea-9f10f80680a6": {
+    "asset": 1520903499999,
+    "meta": 1523496273785,
+    "relativePath": "images\\public\\btn_paste.png"
+  },
+  "59e0415f-2252-4d5c-b81b-b331e78f4bf2": {
+    "asset": 1520903499973,
+    "meta": 1523496272621,
+    "relativePath": "images\\game\\chat_right.png"
+  },
+  "5da59a3b-57e3-4b85-bb71-52a54105a2cb": {
+    "asset": 1520903499972,
+    "meta": 1523496272609,
+    "relativePath": "images\\game\\chat_left.png"
+  },
+  "c2ecfe64-a2f7-41fc-9ae6-37d38a2789a8": {
+    "asset": 1520903499970,
+    "meta": 1520903499954,
+    "relativePath": "images\\emoji"
+  },
+  "d9a42d86-e5c0-42f6-8b37-d201561cbaa0": {
+    "asset": 1520903499955,
+    "meta": 1523496271821,
+    "relativePath": "images\\emoji\\emoji10.png"
+  },
+  "f425245a-2635-4a01-980c-f478c5f4566f": {
+    "asset": 1520903499955,
+    "meta": 1523496271689,
+    "relativePath": "images\\emoji\\emoji1.png"
+  },
+  "104d60a8-3123-4ae3-96fd-acf2f50abcd9": {
+    "asset": 1520903499956,
+    "meta": 1523496271845,
+    "relativePath": "images\\emoji\\emoji11.png"
+  },
+  "6b377192-1e6f-4604-bef0-9cbe6d1e70b8": {
+    "asset": 1520903499957,
+    "meta": 1523496271899,
+    "relativePath": "images\\emoji\\emoji12.png"
+  },
+  "b4f7b6d5-a1b3-41cc-a7aa-557a6d389200": {
+    "asset": 1520903499957,
+    "meta": 1523496271924,
+    "relativePath": "images\\emoji\\emoji13.png"
+  },
+  "4d2949c3-d456-4686-a243-7140e943015b": {
+    "asset": 1520903499958,
+    "meta": 1523496271986,
+    "relativePath": "images\\emoji\\emoji14.png"
+  },
+  "bdb20d03-107b-4f93-b7cb-efba4a9821d4": {
+    "asset": 1520903499959,
+    "meta": 1523496272092,
+    "relativePath": "images\\emoji\\emoji16.png"
+  },
+  "00f6625f-5997-437a-8603-a4c47c0f758d": {
+    "asset": 1520903499958,
+    "meta": 1523496272025,
+    "relativePath": "images\\emoji\\emoji15.png"
+  },
+  "39a89741-522f-4541-a011-d8d2b70612ae": {
+    "asset": 1520903499959,
+    "meta": 1523496272095,
+    "relativePath": "images\\emoji\\emoji17.png"
+  },
+  "92312a19-4433-49f7-9788-b9a78e55356b": {
+    "asset": 1520903499960,
+    "meta": 1523496272174,
+    "relativePath": "images\\emoji\\emoji18.png"
+  },
+  "a33b1e5d-169d-4cc2-8c87-2da3fd13bd41": {
+    "asset": 1520903499960,
+    "meta": 1523496272136,
+    "relativePath": "images\\emoji\\emoji19.png"
+  },
+  "bd87e7d6-46e7-4ec4-b2c9-963f19feb7c8": {
+    "asset": 1520903499961,
+    "meta": 1523496272181,
+    "relativePath": "images\\emoji\\emoji2.png"
+  },
+  "8fae4a52-c1d3-4d12-9e93-cd9ea8cb3b49": {
+    "asset": 1520903499962,
+    "meta": 1523496272221,
+    "relativePath": "images\\emoji\\emoji20.png"
+  },
+  "57bdb425-5117-4c37-b3a7-a663cd73b890": {
+    "asset": 1520903499962,
+    "meta": 1523496272218,
+    "relativePath": "images\\emoji\\emoji21.png"
+  },
+  "54394698-3194-4ae5-a3a3-da936c70ddaf": {
+    "asset": 1520903499963,
+    "meta": 1523496272266,
+    "relativePath": "images\\emoji\\emoji22.png"
+  },
+  "c7a7f25c-baa9-4ed3-a0df-d8e02ddf0ecf": {
+    "asset": 1520903499963,
+    "meta": 1523496272296,
+    "relativePath": "images\\emoji\\emoji23.png"
+  },
+  "f215d7f0-0c1d-476e-b2fc-c50092c6a3b6": {
+    "asset": 1520903499964,
+    "meta": 1523496272302,
+    "relativePath": "images\\emoji\\emoji24.png"
+  },
+  "e788142d-4dab-4a93-9780-c501aaebc846": {
+    "asset": 1520903499964,
+    "meta": 1523496272332,
+    "relativePath": "images\\emoji\\emoji25.png"
+  },
+  "17f2e65c-5749-447e-a1f3-8cfee930e876": {
+    "asset": 1520903499965,
+    "meta": 1523496272335,
+    "relativePath": "images\\emoji\\emoji26.png"
+  },
+  "515fedac-d276-48e2-a558-c80d726559d8": {
+    "asset": 1520903499965,
+    "meta": 1523496272361,
+    "relativePath": "images\\emoji\\emoji27.png"
+  },
+  "f4045162-7ac8-42a5-950e-8b93af09f500": {
+    "asset": 1520903499966,
+    "meta": 1523496272366,
+    "relativePath": "images\\emoji\\emoji28.png"
+  },
+  "369314b6-8ff4-42dc-abb3-980b13961c82": {
+    "asset": 1520903499966,
+    "meta": 1523496272392,
+    "relativePath": "images\\emoji\\emoji3.png"
+  },
+  "3e20f9e6-6a66-454d-9da8-990c57d7acaa": {
+    "asset": 1520903499967,
+    "meta": 1523496272397,
+    "relativePath": "images\\emoji\\emoji4.png"
+  },
+  "4233a74a-24ed-4a54-ae65-5c2fdcd20a4c": {
+    "asset": 1520903499967,
+    "meta": 1523496272424,
+    "relativePath": "images\\emoji\\emoji5.png"
+  },
+  "2fc91339-9d01-4c94-8c63-e5e9e5db0f9a": {
+    "asset": 1520903499968,
+    "meta": 1523496272429,
+    "relativePath": "images\\emoji\\emoji6.png"
+  },
+  "be3f06e6-7c10-4985-b825-5a485e517c2b": {
+    "asset": 1520903499968,
+    "meta": 1523496272463,
+    "relativePath": "images\\emoji\\emoji7.png"
+  },
+  "64dc3715-3a78-4dbf-b4e7-cca82128003a": {
+    "asset": 1520903499969,
+    "meta": 1523496272458,
+    "relativePath": "images\\emoji\\emoji8.png"
+  },
+  "1ae6e973-82e0-4479-9e93-70d8510aff3b": {
+    "asset": 1520903499970,
+    "meta": 1523496272490,
+    "relativePath": "images\\emoji\\emoji9.png"
+  },
+  "72d3598b-a615-4fa8-bc35-0cce4547bde5": {
+    "asset": 1520903499998,
+    "meta": 1523496273689,
+    "relativePath": "images\\poker.png"
+  },
+  "97d0d921-0c3f-4e60-9c16-6438fa03d98b": {
+    "asset": 1520471158106,
+    "meta": 1523496275486,
+    "relativePath": "fonts\\lose_num.fnt"
+  },
+  "80c7bef2-e0f2-4641-94ad-80f79c9bb999": {
+    "asset": 1520471158106,
+    "meta": 1523496271528,
+    "relativePath": "fonts\\lose_num.png"
+  },
+  "1b2f1661-1ae5-427b-981e-a35297180ab6": {
+    "asset": 1520903499984,
+    "meta": 1523496272803,
+    "relativePath": "images\\game\\pai_5.png"
+  },
+  "f3c8a4e0-2725-44b3-8a91-99d06f5dea99": {
+    "asset": 1520903499984,
+    "meta": 1523496272811,
+    "relativePath": "images\\game\\pai_k.png"
+  },
+  "fdf7aeec-0628-4b1d-b68e-22db11155236": {
+    "asset": 1520903499983,
+    "meta": 1523496272798,
+    "relativePath": "images\\game\\pai_10.png"
+  },
+  "5f89c4c3-4dd2-49d8-b253-d72d0853e928": {
+    "asset": 1520903499991,
+    "meta": 1523496273256,
+    "relativePath": "images\\hall\\hall_bg.png"
+  },
+  "0c064fb4-d093-4999-bd8b-1a61c0756b55": {
+    "asset": 1520921568399,
+    "meta": 1523496272706,
+    "relativePath": "images\\game\\game_bg.jpg"
+  },
+  "994616df-9f43-47a4-be12-8bd8a162bc9d": {
+    "asset": 1520936415975,
+    "meta": 1523496272677,
+    "relativePath": "images\\game\\fangzhu.png"
+  },
+  "407fda1e-53fd-40e6-a055-f6f8bf8d6be2": {
+    "asset": 1520937193761,
+    "meta": 1523496275989,
+    "relativePath": "images\\poker.plist"
+  },
+  "19e1d485-fb9d-4324-af72-1a737a4b093a": {
+    "asset": 1520989476539,
+    "meta": 1523496272755,
+    "relativePath": "images\\game\\name_bg.png"
+  },
+  "e7932319-5bc8-4584-a82e-2df8bb3acce1": {
+    "asset": 1520989476539,
+    "meta": 1523496272871,
+    "relativePath": "images\\game\\playIcon.png"
+  },
+  "2bee68e7-b485-4d35-877b-1b5c95cd1244": {
+    "asset": 1520989476538,
+    "meta": 1523496272631,
+    "relativePath": "images\\game\\countdown.png"
+  },
+  "bf99fff8-e307-4bd0-bc9d-86bacfcd778c": {
+    "asset": 1520989476540,
+    "meta": 1523496272847,
+    "relativePath": "images\\game\\poker_back.png"
+  },
+  "cbfad2c2-fc5a-404f-981b-1a83ff8028ae": {
+    "asset": 1520989476534,
+    "meta": 1523496275491,
+    "relativePath": "fonts\\time_num.fnt"
+  },
+  "0a7933fd-5ccb-4ccd-b252-6471f40f32db": {
+    "asset": 1520989476535,
+    "meta": 1523496271545,
+    "relativePath": "fonts\\time_num.png"
+  },
+  "6b50b883-fd79-494d-9f81-54ea824ef4d4": {
+    "asset": 1520989476540,
+    "meta": 1523496272894,
+    "relativePath": "images\\game\\score_down.png"
+  },
+  "50b16a97-ba3c-40df-a228-b76a8b900ab3": {
+    "asset": 1520989476541,
+    "meta": 1523496272934,
+    "relativePath": "images\\game\\status_ready.png"
+  },
+  "638292b4-a446-47c2-a088-8e4661e65d14": {
+    "asset": 1520989476541,
+    "meta": 1523496272907,
+    "relativePath": "images\\game\\score_up.png"
+  },
+  "0e6c4d10-41b7-4ab0-999d-714bb2ad51a6": {
+    "asset": 1520989476536,
+    "meta": 1523496272555,
+    "relativePath": "images\\game\\btn_msg.png"
+  },
+  "d161f39b-eab1-45de-837b-fb91fd88079b": {
+    "asset": 1520989476537,
+    "meta": 1523496272572,
+    "relativePath": "images\\game\\btn_voice.png"
+  },
+  "8e4db7e1-9221-4253-93b4-36804554970c": {
+    "asset": 1520989476559,
+    "meta": 1523496273672,
+    "relativePath": "images\\public\\act_ready.png"
+  },
+  "13fc2db2-cfc9-430f-8e52-df8484d64a83": {
+    "asset": 1520989476560,
+    "meta": 1523496273695,
+    "relativePath": "images\\public\\act_tip.png"
+  },
+  "2c25876f-cc59-4bab-9d57-40b7f3cf8626": {
+    "asset": 1520989476559,
+    "meta": 1523496273648,
+    "relativePath": "images\\public\\act_out.png"
+  },
+  "b1d0342e-79dd-45bb-b416-43757aab9d41": {
+    "asset": 1520989476562,
+    "meta": 1523496273760,
+    "relativePath": "images\\public\\btn_grey.png"
+  },
+  "15499d0f-edc1-478c-bdee-e0ad01f59d24": {
+    "asset": 1520989476562,
+    "meta": 1523496273804,
+    "relativePath": "images\\public\\btn_yellow.png"
+  },
+  "27fa12e4-1381-4e6d-a183-34a16268a066": {
+    "asset": 1520989476561,
+    "meta": 1523496273756,
+    "relativePath": "images\\public\\btn_green.png"
+  },
+  "642c114d-ccb5-4b2f-a5fe-87b383069674": {
+    "asset": 1520989476542,
+    "meta": 1523496272949,
+    "relativePath": "images\\game\\tips_outerror.png"
+  },
+  "ee78e3e5-412b-4e4a-84a8-524f062d94a6": {
+    "asset": 1520989476542,
+    "meta": 1523496272944,
+    "relativePath": "images\\game\\tips_onlypass.png"
+  },
+  "ed2e02f5-b00d-46f6-a003-b6c4ac5a88d7": {
+    "asset": 1520989476554,
+    "meta": 1523496273487,
+    "relativePath": "images\\hall\\top_bar_bg.png"
+  },
+  "3b4d809b-c824-4c33-b14a-d41d127cd46b": {
+    "asset": 1520989476552,
+    "meta": 1523496273285,
+    "relativePath": "images\\hall\\head_frame.png"
+  },
+  "9a1c453b-0403-48b9-b607-1887b19f451f": {
+    "asset": 1520989476565,
+    "meta": 1523496273871,
+    "relativePath": "images\\public\\head_clip.png"
+  },
+  "912cdd24-07e8-4596-9d51-6d35a7837da4": {
+    "asset": 1520989476567,
+    "meta": 1523496273884,
+    "relativePath": "images\\public\\id_bg.png"
+  },
+  "c02c4076-8257-49d8-a7a2-ff24fb1f7d9b": {
+    "asset": 1520471158115,
+    "meta": 1523496273820,
+    "relativePath": "images\\public\\buy.png"
+  },
+  "ebb463b1-f770-4836-84ea-91f1526f977a": {
+    "asset": 1520989476563,
+    "meta": 1523496273847,
+    "relativePath": "images\\public\\diamond.png"
+  },
+  "0091a37b-8c38-4890-9526-1a9ba0b6a15f": {
+    "asset": 1520471158113,
+    "meta": 1523496271564,
+    "relativePath": "fonts\\win_num.png"
+  },
+  "299ff269-e068-4ec7-b408-ebc63d5ed9f5": {
+    "asset": 1520989476564,
+    "meta": 1523496273842,
+    "relativePath": "images\\public\\diamond_bg.png"
+  },
+  "76d73f24-ecd4-4a7c-8e43-b1249cae2961": {
+    "asset": 1520989476553,
+    "meta": 1523496273464,
+    "relativePath": "images\\hall\\laba.png"
+  },
+  "2d6c6136-dbde-4ade-9944-19f22455a386": {
+    "asset": 1520989476543,
+    "meta": 1523496272975,
+    "relativePath": "images\\hall\\bg_marquee.png"
+  },
+  "95fc4747-4fc2-4e2e-8012-ac9655b2767c": {
+    "asset": 1520989476552,
+    "meta": 1523496273301,
+    "relativePath": "images\\hall\\hall_bg2.png"
+  },
+  "ee093f09-7b1d-487f-aa46-3b0230571297": {
+    "asset": 1520989476547,
+    "meta": 1523496273130,
+    "relativePath": "images\\hall\\create_room\\bg_create_room.png"
+  },
+  "dbc959b6-1d02-4715-b9c0-5cfbf9a652ce": {
+    "asset": 1520989476560,
+    "meta": 1523496273742,
+    "relativePath": "images\\public\\btn_close.png"
+  },
+  "ef24d485-5a9f-40e1-a7f5-e2cf6a07ce89": {
+    "asset": 1520989476544,
+    "meta": 1523496273054,
+    "relativePath": "images\\hall\\create_room\\btn_create.png"
+  },
+  "75cdc242-a438-4a17-b674-c5646a44cd84": {
+    "asset": 1520556874893,
+    "meta": 1523496273732,
+    "relativePath": "images\\public\\btn_cancel.png"
+  },
+  "e1fad39e-4046-4a1e-aa42-9ee89bc29559": {
+    "asset": 1520989476574,
+    "meta": 1520989476569,
+    "relativePath": "images\\setting"
+  },
+  "7456a68f-cbc1-431e-b92d-7458f978c838": {
+    "asset": 1520989476572,
+    "meta": 1523496273981,
+    "relativePath": "images\\setting\\setup_5.png"
+  },
+  "b25c0686-0eb8-417c-b627-8ba7b2e84eed": {
+    "asset": 1520989476572,
+    "meta": 1523496273986,
+    "relativePath": "images\\setting\\setup_6.png"
+  },
+  "65ed8c2f-55b4-489e-8f0f-b302140b01e1": {
+    "asset": 1520989476571,
+    "meta": 1523496273966,
+    "relativePath": "images\\setting\\setup_3.png"
+  },
+  "a98fb305-d1d3-4ac7-a8ef-8f9c2d34e846": {
+    "asset": 1520989476573,
+    "meta": 1523496273994,
+    "relativePath": "images\\setting\\setup_7.png"
+  },
+  "abfe7fd2-d944-4675-98a4-031c6006f516": {
+    "asset": 1520989476570,
+    "meta": 1523496273959,
+    "relativePath": "images\\setting\\setup_2.png"
+  },
+  "39f95f25-888e-4d46-8ac4-c9e701d0b1fb": {
+    "asset": 1520989476569,
+    "meta": 1523496273954,
+    "relativePath": "images\\setting\\setup_1.png"
+  },
+  "af8ca3af-640c-469a-b8b2-19fa6af34d24": {
+    "asset": 1520989476574,
+    "meta": 1523496274007,
+    "relativePath": "images\\setting\\setup_8.png"
+  },
+  "963b94e1-01c2-439f-86c7-4af4679ce542": {
+    "asset": 1520989476571,
+    "meta": 1523496273971,
+    "relativePath": "images\\setting\\setup_4.png"
+  },
+  "cb6ea073-15a4-417a-92b7-bb9d3a5de5ef": {
+    "asset": 1520989762591,
+    "meta": 1523496273945,
+    "relativePath": "images\\public\\public_frame_b.png"
+  },
+  "95de1a1a-ff44-4396-b373-2d7f7b82c7cd": {
+    "asset": 1520990016844,
+    "meta": 1523496273195,
+    "relativePath": "images\\hall\\dock\\dock_bg.png"
+  },
+  "8dbdb71f-3ea0-4496-aaef-2ca1345a1378": {
+    "asset": 1520992913076,
+    "meta": 1520990663229,
+    "relativePath": "images\\hall\\dock"
+  },
+  "2950d907-3635-4c4e-a5df-31f6830c6349": {
+    "asset": 1520992288753,
+    "meta": 1523496275642,
+    "relativePath": "images\\btn_shop.plist"
+  },
+  "a1e65f5e-66a3-4118-a025-f28691e0a83f": {
+    "asset": 1520992288752,
+    "meta": 1523496275607,
+    "relativePath": "images\\btn_luck.plist"
+  },
+  "eef0606d-003f-4335-b03e-fccece723bc4": {
+    "asset": 1520992288757,
+    "meta": 1523496271631,
+    "relativePath": "images\\btn_shop.png"
+  },
+  "ac65199d-6580-4133-a0bd-c11fcbb09854": {
+    "asset": 1520992288757,
+    "meta": 1523496271597,
+    "relativePath": "images\\btn_luck.png"
+  },
+  "b4777847-0354-49fd-b759-1fa7b408b93d": {
+    "asset": 1520992581488,
+    "meta": 1523496273231,
+    "relativePath": "images\\hall\\dock\\setting.png"
+  },
+  "679b6c5c-d4a6-41b8-805d-65b9fe4915ff": {
+    "asset": 1520992581499,
+    "meta": 1523496273218,
+    "relativePath": "images\\hall\\dock\\help.png"
+  },
+  "5a85d546-9502-4d2b-8520-c4c2fab7a146": {
+    "asset": 1520992581499,
+    "meta": 1523496273205,
+    "relativePath": "images\\hall\\dock\\activity.png"
+  },
+  "cf99b57b-bfca-436b-9a91-40f5216c2dba": {
+    "asset": 1521015771861,
+    "meta": 1523496273812,
+    "relativePath": "images\\public\\btn_tohall.png"
+  },
+  "1c378581-eaed-4869-8084-56f79acd128a": {
+    "asset": 1521015771851,
+    "meta": 1523496273795,
+    "relativePath": "images\\public\\btn_share.png"
+  },
+  "c1e2826e-a395-4edc-ba98-b47b0a632b4f": {
+    "asset": 1521015771862,
+    "meta": 1523496273921,
+    "relativePath": "images\\public\\public_bg1.png"
+  },
+  "679fc46e-a1df-45c7-be24-d06842fe9a7c": {
+    "asset": 1521015771862,
+    "meta": 1523496273941,
+    "relativePath": "images\\public\\public_bg2.png"
+  },
+  "265638e8-96f3-4d98-a96c-ea0ac712c6df": {
+    "asset": 1523341509943,
+    "meta": 1523496273715,
+    "relativePath": "images\\public\\big_een.png"
+  },
+  "d637db46-0c0b-45b2-ae7e-29f16e23b99c": {
+    "asset": 1521015780258,
+    "meta": 1523496272668,
+    "relativePath": "images\\game\\end_small.png"
+  },
+  "dc1c6697-c6d5-4305-8d3a-a3811ef5e7de": {
+    "asset": 1521016253100,
+    "meta": 1523496272663,
+    "relativePath": "images\\game\\end_big.png"
+  },
+  "2eeab886-219d-473c-b867-92a7cf000e87": {
+    "asset": 1522632746875,
+    "meta": 1521162458312,
+    "relativePath": "prefabs"
+  },
+  "e0cd4d5c-887e-40cd-b97c-f945c7e065fe": {
+    "asset": 1521629613578,
+    "meta": 1523496274051,
+    "relativePath": "prefabs\\WaitingConnection.prefab"
+  },
+  "fd1af080-cfea-49e8-80f5-363d7b42a663": {
+    "asset": 1521647149588,
+    "meta": 1523496274045,
+    "relativePath": "prefabs\\Setting.prefab"
+  },
+  "8b811e77-bc39-49e3-a40c-a8f61470c76a": {
+    "asset": 1522112734636,
+    "meta": 1521191347973,
+    "relativePath": "resources\\sounds"
+  },
+  "8a315d14-9870-4bc8-92a4-3786d3e49a77": {
+    "asset": 1521191591276,
+    "meta": 1521191591298,
+    "relativePath": "resources\\sounds\\bg_hall.mp3"
+  },
+  "028521fc-2a7b-4226-b833-da88b3209ddf": {
+    "asset": 1521193094284,
+    "meta": 1521193064511,
+    "relativePath": "resources"
+  },
+  "6f1062a0-01e1-4667-adc0-ecdc2fdea10f": {
+    "asset": 1521449046549,
+    "meta": 1521449046527,
+    "relativePath": "images\\hall\\join_room"
+  },
+  "90dcab13-1956-4236-910d-d7fce7ae5f25": {
+    "asset": 1521449046529,
+    "meta": 1523496273351,
+    "relativePath": "images\\hall\\join_room\\bg.png"
+  },
+  "952b6f2a-5138-4ea0-ae95-e98a202996cf": {
+    "asset": 1521449046531,
+    "meta": 1523496273319,
+    "relativePath": "images\\hall\\join_room\\btn_del_s.png"
+  },
+  "0f3f9ad5-6889-4207-93ed-5ea10a604a0c": {
+    "asset": 1521449046530,
+    "meta": 1523496273312,
+    "relativePath": "images\\hall\\join_room\\btn_del_n.png"
+  },
+  "e65dd344-d9f3-4587-93ed-8ac039e4f45d": {
+    "asset": 1521449046532,
+    "meta": 1523496273336,
+    "relativePath": "images\\hall\\join_room\\btn_reset_s.png"
+  },
+  "d75341f1-a4e9-4308-91b6-4cfd77af2528": {
+    "asset": 1521449046531,
+    "meta": 1523496273329,
+    "relativePath": "images\\hall\\join_room\\btn_reset_n.png"
+  },
+  "acaf607b-d990-4ed4-bf22-20f2beeda5f5": {
+    "asset": 1521449046533,
+    "meta": 1523496273344,
+    "relativePath": "images\\hall\\join_room\\num0_n.png"
+  },
+  "de06004f-5468-4a80-8f8f-b40019903c93": {
+    "asset": 1521449046534,
+    "meta": 1523496273354,
+    "relativePath": "images\\hall\\join_room\\num0_s.png"
+  },
+  "e2bb308d-9b10-496a-ac63-8b3b8eb73957": {
+    "asset": 1521449046535,
+    "meta": 1523496273364,
+    "relativePath": "images\\hall\\join_room\\num1_s.png"
+  },
+  "f05fa914-b2c6-4105-ad18-acfe781887f1": {
+    "asset": 1521449046535,
+    "meta": 1523496273365,
+    "relativePath": "images\\hall\\join_room\\num1_n.png"
+  },
+  "59a6e5f5-4338-42ae-87dc-feadba148f55": {
+    "asset": 1521449046536,
+    "meta": 1523496273373,
+    "relativePath": "images\\hall\\join_room\\num2_n.png"
+  },
+  "6cae0e9e-0087-49d8-8ea1-ea96969c134a": {
+    "asset": 1521449046537,
+    "meta": 1523496273376,
+    "relativePath": "images\\hall\\join_room\\num2_s.png"
+  },
+  "ca238e79-c73a-46e8-92d1-f623127562a6": {
+    "asset": 1521449046538,
+    "meta": 1523496273384,
+    "relativePath": "images\\hall\\join_room\\num3_n.png"
+  },
+  "6d1f1d92-f053-4991-84c7-bc340090fe95": {
+    "asset": 1521449046539,
+    "meta": 1523496273387,
+    "relativePath": "images\\hall\\join_room\\num3_s.png"
+  },
+  "f51a3091-ca08-4440-a2ca-39fde945c52d": {
+    "asset": 1521449046539,
+    "meta": 1523496273398,
+    "relativePath": "images\\hall\\join_room\\num4_n.png"
+  },
+  "177c127b-e7ea-4ae7-abac-ba831340a645": {
+    "asset": 1521449046540,
+    "meta": 1523496273394,
+    "relativePath": "images\\hall\\join_room\\num4_s.png"
+  },
+  "422bfa52-e240-4b8e-9c31-07e53ea3f67e": {
+    "asset": 1521449046542,
+    "meta": 1523496273408,
+    "relativePath": "images\\hall\\join_room\\num5_s.png"
+  },
+  "a9017dbb-6159-412b-93af-d5b86f15e467": {
+    "asset": 1521449046541,
+    "meta": 1523496273405,
+    "relativePath": "images\\hall\\join_room\\num5_n.png"
+  },
+  "a1c41d88-a57d-4162-9afb-4687910e8510": {
+    "asset": 1521449046544,
+    "meta": 1523496273426,
+    "relativePath": "images\\hall\\join_room\\num6_s.png"
+  },
+  "0579c334-1a7b-42b7-a212-a928764675d5": {
+    "asset": 1521449046543,
+    "meta": 1523496273423,
+    "relativePath": "images\\hall\\join_room\\num6_n.png"
+  },
+  "18add552-791a-4531-bfa1-3eb9c55b7bb7": {
+    "asset": 1521449046545,
+    "meta": 1523496273436,
+    "relativePath": "images\\hall\\join_room\\num7_s.png"
+  },
+  "fda0ab86-ad69-4047-84f0-9d728d8507da": {
+    "asset": 1521449046544,
+    "meta": 1523496273433,
+    "relativePath": "images\\hall\\join_room\\num7_n.png"
+  },
+  "584aedc2-2391-435f-8e8c-d87dfe3da5e3": {
+    "asset": 1521449046547,
+    "meta": 1523496273447,
+    "relativePath": "images\\hall\\join_room\\num8_s.png"
+  },
+  "069c88bd-1759-4686-af7f-2c4d4f766e46": {
+    "asset": 1521449046546,
+    "meta": 1523496273443,
+    "relativePath": "images\\hall\\join_room\\num8_n.png"
+  },
+  "1e3df64b-1d54-48fe-9264-7e4491914449": {
+    "asset": 1521449046548,
+    "meta": 1523496273457,
+    "relativePath": "images\\hall\\join_room\\num9_n.png"
+  },
+  "e1bd18d7-ec5f-41bd-8e8e-964b73fbe6b0": {
+    "asset": 1521449046549,
+    "meta": 1523496273454,
+    "relativePath": "images\\hall\\join_room\\num9_s.png"
+  },
+  "e0cd45ed-a689-47c9-80e9-fef29b40122f": {
+    "asset": 1521449046551,
+    "meta": 1523496273876,
+    "relativePath": "images\\public\\head_female.png"
+  },
+  "09cafa83-1343-4003-8d4d-6dcf46662ed2": {
+    "asset": 1521449046553,
+    "meta": 1523496273901,
+    "relativePath": "images\\public\\head_male.png"
+  },
+  "d859b4f3-ce16-4ae6-b9b2-ae22dbdb8196": {
+    "asset": 1521516982790,
+    "meta": 1523496274719,
+    "relativePath": "scripts\\AudioManager.js"
+  },
+  "6a0fb508-becf-4deb-841f-610b07d8f79c": {
+    "asset": 1521517617247,
+    "meta": 1523496275214,
+    "relativePath": "scripts\\components\\Setting.js"
+  },
+  "ea2eacfb-6bb2-41a6-9b3d-d36859cc0a93": {
+    "asset": 1521628231322,
+    "meta": 1523496273929,
+    "relativePath": "images\\public\\public_frame_a.png"
+  },
+  "6e39e5aa-c46f-4128-9460-6b98a990dadb": {
+    "asset": 1522632746876,
+    "meta": 1523496274014,
+    "relativePath": "prefabs\\Alert.prefab"
+  },
+  "01a0e603-df05-4bac-bada-f6c3000af5e4": {
+    "asset": 1521777812263,
+    "meta": 1523496274753,
+    "relativePath": "scripts\\components\\Alert.js"
+  },
+  "3e752232-8194-4aea-b240-3a528238ca3d": {
+    "asset": 1521708156528,
+    "meta": 1521708156527,
+    "relativePath": "scripts\\lib"
+  },
+  "75a19ada-ae95-4526-a6a7-772fdadcf8f3": {
+    "asset": 1521708513377,
+    "meta": 1523496275274,
+    "relativePath": "scripts\\lib\\socket.io.js"
+  },
+  "c9213419-a774-4e23-b15d-ec03b1b27947": {
+    "asset": 1521721908440,
+    "meta": 1523496275258,
+    "relativePath": "scripts\\components\\WaitingConnection.js"
+  },
+  "4d86f401-71bc-43d3-a35b-a2c1e1c396ce": {
+    "asset": 1521786290465,
+    "meta": 1523496274839,
+    "relativePath": "scripts\\components\\CreateRoom.js"
+  },
+  "f1c6796e-7206-4859-800c-6705e883d389": {
+    "asset": 1521775586226,
+    "meta": 1523496275563,
+    "relativePath": "images\\btn_create_join_return.plist"
+  },
+  "054762e4-3ef9-4ded-823f-0b1e5793f2f1": {
+    "asset": 1521775586228,
+    "meta": 1523496271770,
+    "relativePath": "images\\btn_create_join_return.png"
+  },
+  "89ec84d8-e0e5-4310-be57-fc9f279307ed": {
+    "asset": 1522112734650,
+    "meta": 1523496275083,
+    "relativePath": "scripts\\components\\JoinRoom.js"
+  },
+  "55c62cfb-0567-4322-be4c-a9fcb4a1a638": {
+    "asset": 1522128055137,
+    "meta": 1523496274032,
+    "relativePath": "prefabs\\RestCard.prefab"
+  },
+  "51941057-92d7-4d18-804e-fbbe95b38a7a": {
+    "asset": 1522112734635,
+    "meta": 1522112734635,
+    "relativePath": "resources\\sounds\\bg_fight.mp3"
+  },
+  "fe7250fd-5308-4482-b6b0-4bc39a960c4d": {
+    "asset": 1522112734636,
+    "meta": 1522112734636,
+    "relativePath": "resources\\sounds\\click.mp3"
+  },
+  "e16ee3d7-4439-4995-8ab6-ae24dcebebd4": {
+    "asset": 1522131252390,
+    "meta": 1523496275156,
+    "relativePath": "scripts\\components\\Score.js"
+  },
+  "904ff228-6583-4c9d-a079-8b1e6001e753": {
+    "asset": 1522148240253,
+    "meta": 1523496275261,
+    "relativePath": "scripts\\Http.js"
+  },
+  "c4cd4687-0e04-4289-96c8-4a03c070c5f6": {
+    "asset": 1522199609631,
+    "meta": 1523496272638,
+    "relativePath": "images\\game\\chat_top.png"
+  },
+  "9b27c176-df6e-44a5-8b09-fefb6d76355c": {
+    "asset": 1522217227694,
+    "meta": 1523496274028,
+    "relativePath": "prefabs\\Folds.prefab"
+  },
+  "b2a7f88e-bae1-4c96-9475-4d38b62ac886": {
+    "asset": 1520989476558,
+    "meta": 1523496273624,
+    "relativePath": "images\\public\\act_no.png"
+  },
+  "a598193c-67e2-4ea3-9724-1229b7490d4c": {
+    "asset": 1522286192487,
+    "meta": 1523496273833,
+    "relativePath": "images\\public\\buchu.png"
+  },
+  "38eef97e-c0cc-4877-9907-7f53f1236b79": {
+    "asset": 1522286192504,
+    "meta": 1523496274541,
+    "relativePath": "scripts\\AnysdkManager.js"
+  },
+  "1b1f47e5-5922-4d76-afe1-52281a8e7389": {
+    "asset": 1522632746911,
+    "meta": 1523496275076,
+    "relativePath": "scripts\\components\\Hall.js"
+  },
+  "5414c4c9-c1b4-4783-9619-a652981750d9": {
+    "asset": 1522632746905,
+    "meta": 1523496274795,
+    "relativePath": "scripts\\components\\AppStart.js"
+  },
+  "c6fb3df8-53c8-489f-bf5b-d00f0075cfa4": {
+    "asset": 1522632746902,
+    "meta": 1523496275472,
+    "relativePath": "scripts\\UserManager.js"
+  },
+  "335c7d6f-d132-42ef-9dbb-a06f60bf8fdf": {
+    "asset": 1522632746872,
+    "meta": 1523496272747,
+    "relativePath": "images\\game\\head_who.png"
+  },
+  "1e1fae8f-ab8b-47a2-aaa0-db718a2deac1": {
+    "asset": 1522632746897,
+    "meta": 1523496275433,
+    "relativePath": "scripts\\SocketIO.js"
+  },
+  "f2f68099-3485-4ba2-b5e4-02dbb8d5a6d4": {
+    "asset": 1523341509967,
+    "meta": 1523496275345,
+    "relativePath": "scripts\\PokerManager.js"
+  },
+  "527a616c-7b93-4b63-8066-39d37e2a62e7": {
+    "asset": 1523341509979,
+    "meta": 1523496275170,
+    "relativePath": "scripts\\components\\Seat.js"
+  },
+  "d5fe9d07-42f8-466e-bd44-fb54602d7dfb": {
+    "asset": 1523341509940,
+    "meta": 1523341509919,
+    "relativePath": "images\\game_btn"
+  },
+  "6471badb-3d35-4075-8814-af34b19560b3": {
+    "asset": 1523341509922,
+    "meta": 1523496272480,
+    "relativePath": "images\\game_btn\\bbtz.png"
+  },
+  "4e9cc3e8-9274-48f6-ac46-33a522d829c1": {
+    "asset": 1523341509926,
+    "meta": 1523496272496,
+    "relativePath": "images\\game_btn\\ddz.png"
+  },
+  "c1b47575-c3f5-4fb3-b256-4759059a9c40": {
+    "asset": 1523341509933,
+    "meta": 1523496272514,
+    "relativePath": "images\\game_btn\\pdk.png"
+  },
+  "b8cb728d-c681-456e-abad-786eb296b052": {
+    "asset": 1523341509936,
+    "meta": 1523496272526,
+    "relativePath": "images\\game_btn\\ysz.png"
+  },
+  "474a840d-05f1-4753-8178-8fa74446f9e8": {
+    "asset": 1523341509929,
+    "meta": 1523496272508,
+    "relativePath": "images\\game_btn\\dn.png"
+  },
+  "07676fa6-cda6-404f-a733-665a239eaadb": {
+    "asset": 1523341509939,
+    "meta": 1523496272532,
+    "relativePath": "images\\game_btn\\zjh.png"
+  },
+  "a27476a4-5d2f-4fe8-bd00-4cd47f690dd4": {
+    "asset": 1523495691724,
+    "meta": 1523496275040,
+    "relativePath": "scripts\\components\\GameScrollBar.js"
+  },
+  "6ab1accb-a426-480a-9cc5-3e0f98afe055": {
+    "asset": 1523495691708,
+    "meta": 1523496274117,
+    "relativePath": "scenes\\game.fire"
+  },
+  "f3060721-473f-4553-aad0-dcebd2bbb9b2": {
+    "asset": 1523495691717,
+    "meta": 1523496275470,
+    "relativePath": "scripts\\SocketIOManager.js"
+  },
+  "de9d32b8-3d1c-4007-8f7b-60563366d039": {
+    "asset": 1523495691719,
+    "meta": 1523496274950,
+    "relativePath": "scripts\\components\\Folds.js"
+  },
+  "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3": {
+    "asset": 1523495691727,
+    "meta": 1523496275231,
+    "relativePath": "scripts\\components\\Status.js"
+  },
+  "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd": {
+    "asset": 1523495691722,
+    "meta": 1523496274990,
+    "relativePath": "scripts\\components\\Game.js"
+  },
+  "07649596-ecbb-4a98-8e42-c47336c45831": {
+    "asset": 1523498659482,
+    "meta": 1523498659485,
+    "relativePath": "anims"
+  },
+  "e851e89b-faa2-4484-bea6-5c01dd9f06e2": {
+    "asset": 1520937982000,
+    "meta": 1523498913974,
+    "relativePath": "image\\default_btn_normal.png"
+  },
+  "71561142-4c83-4933-afca-cb7a17f67053": {
+    "asset": 1520937982000,
+    "meta": 1523498913979,
+    "relativePath": "image\\default_btn_disabled.png"
+  },
+  "b43ff3c2-02bb-4874-81f7-f2dea6970f18": {
+    "asset": 1520937982000,
+    "meta": 1523498913991,
+    "relativePath": "image\\default_btn_pressed.png"
+  },
+  "d81ec8ad-247c-4e62-aa3c-d35c4193c7af": {
+    "asset": 1520937982000,
+    "meta": 1523498913993,
+    "relativePath": "image\\default_panel.png"
+  },
+  "99170b0b-d210-46f1-b213-7d9e3f23098a": {
+    "asset": 1520937982000,
+    "meta": 1523498914001,
+    "relativePath": "image\\default_progressbar_bg.png"
+  },
+  "cfef78f1-c8df-49b7-8ed0-4c953ace2621": {
+    "asset": 1520937982000,
+    "meta": 1523498914006,
+    "relativePath": "image\\default_progressbar.png"
+  },
+  "567dcd80-8bf4-4535-8a5a-313f1caf078a": {
+    "asset": 1520937982000,
+    "meta": 1523498914015,
+    "relativePath": "image\\default_radio_button_off.png"
+  },
+  "9d60001f-b5f4-4726-a629-2659e3ded0b8": {
+    "asset": 1520937982000,
+    "meta": 1523498914022,
+    "relativePath": "image\\default_radio_button_on.png"
+  },
+  "4bab67cb-18e6-4099-b840-355f0473f890": {
+    "asset": 1520937982000,
+    "meta": 1523498914034,
+    "relativePath": "image\\default_scrollbar_bg.png"
+  },
+  "617323dd-11f4-4dd3-8eec-0caf6b3b45b9": {
+    "asset": 1520937982000,
+    "meta": 1523498914037,
+    "relativePath": "image\\default_scrollbar_vertical_bg.png"
+  },
+  "0291c134-b3da-4098-b7b5-e397edbe947f": {
+    "asset": 1520937982000,
+    "meta": 1523498914048,
+    "relativePath": "image\\default_scrollbar.png"
+  },
+  "d6d3ca85-4681-47c1-b5dd-d036a9d39ea2": {
+    "asset": 1520937982000,
+    "meta": 1523498914051,
+    "relativePath": "image\\default_scrollbar_vertical.png"
+  },
+  "0275e94c-56a7-410f-bd1a-fc7483f7d14a": {
+    "asset": 1520937982000,
+    "meta": 1523498914058,
+    "relativePath": "image\\default_sprite_splash.png"
+  },
+  "6e056173-d285-473c-b206-40a7fff5386e": {
+    "asset": 1520937982000,
+    "meta": 1523498914063,
+    "relativePath": "image\\default_sprite.png"
+  },
+  "73a0903d-d80e-4e3c-aa67-f999543c08f5": {
+    "asset": 1520937982000,
+    "meta": 1523498914075,
+    "relativePath": "image\\default_toggle_checkmark.png"
+  },
+  "c25b9d50-c8fc-4d27-beeb-6e7c1f2e5c0f": {
+    "asset": 1520937982000,
+    "meta": 1523498914081,
+    "relativePath": "image\\default_toggle_disabled.png"
+  },
+  "d29077ba-1627-4a72-9579-7b56a235340c": {
+    "asset": 1520937982000,
+    "meta": 1523498914087,
+    "relativePath": "image\\default_toggle_normal.png"
+  },
+  "b181c1e4-0a72-4a91-bfb0-ae6f36ca60bd": {
+    "asset": 1520937982000,
+    "meta": 1523498914092,
+    "relativePath": "image\\default_toggle_pressed.png"
+  },
+  "972b9a4d-47ee-4c74-b5c3-61d8a69bc29f": {
+    "asset": 1520937982000,
+    "meta": 1523498914098,
+    "relativePath": "prefab\\button.prefab"
+  },
+  "2c937608-2562-40ea-b264-7395df6f0cea": {
+    "asset": 1520937982000,
+    "meta": 1523498914101,
+    "relativePath": "prefab\\canvas.prefab"
+  },
+  "61aeb05b-3b32-452b-8eed-2b76deeed554": {
+    "asset": 1520937982000,
+    "meta": 1523498914108,
+    "relativePath": "prefab\\editbox.prefab"
+  },
+  "27756ebb-3d33-44b0-9b96-e858fadd4dd4": {
+    "asset": 1520937982000,
+    "meta": 1523498914110,
+    "relativePath": "prefab\\label.prefab"
+  },
+  "785a442c-3ceb-45be-a46e-7317f625f3b9": {
+    "asset": 1520937982000,
+    "meta": 1523498914117,
+    "relativePath": "prefab\\layout.prefab"
+  },
+  "ca8401fe-ad6e-41a8-bd46-8e3e4e9945be": {
+    "asset": 1520937982000,
+    "meta": 1523498914120,
+    "relativePath": "prefab\\pageview.prefab"
+  },
+  "cd33edea-55f5-46c2-958d-357a01384a36": {
+    "asset": 1520937982000,
+    "meta": 1523498914127,
+    "relativePath": "prefab\\particlesystem.prefab"
+  },
+  "5965ffac-69da-4b55-bcde-9225d0613c28": {
+    "asset": 1520937982000,
+    "meta": 1523498914129,
+    "relativePath": "prefab\\progressBar.prefab"
+  },
+  "4a37dd57-78cd-4cec-aad4-f11a73d12b63": {
+    "asset": 1520937982000,
+    "meta": 1523498914135,
+    "relativePath": "prefab\\richtext.prefab"
+  },
+  "32044bd2-481f-4cf1-a656-e2b2fb1594eb": {
+    "asset": 1520937982000,
+    "meta": 1523498914140,
+    "relativePath": "prefab\\scrollview.prefab"
+  },
+  "0004d1cf-a0ad-47d8-ab17-34d3db9d35a3": {
+    "asset": 1520937982000,
+    "meta": 1523498914146,
+    "relativePath": "prefab\\slider.prefab"
+  },
+  "1f55e3be-b89b-4b79-88de-47fd31018044": {
+    "asset": 1520937982000,
+    "meta": 1523498914151,
+    "relativePath": "prefab\\sprite_splash.prefab"
+  },
+  "7de03a80-4457-438d-95a7-3e7cdffd6086": {
+    "asset": 1520937982000,
+    "meta": 1523498914158,
+    "relativePath": "prefab\\tiledmap.prefab"
+  },
+  "96083d03-c332-4a3f-9386-d03e2d19e8ee": {
+    "asset": 1520937982000,
+    "meta": 1523498914161,
+    "relativePath": "prefab\\sprite.prefab"
+  },
+  "0d784963-d024-4ea6-a7db-03be0ad63010": {
+    "asset": 1520937982000,
+    "meta": 1523498914168,
+    "relativePath": "prefab\\toggle.prefab"
+  },
+  "bf0a434c-84dd-4a8e-a08a-7a36f180cc75": {
+    "asset": 1520937982000,
+    "meta": 1523498914171,
+    "relativePath": "prefab\\toggleContainer.prefab"
+  },
+  "d1b8be49-b0a0-435c-83b7-552bed4bbe35": {
+    "asset": 1520937982000,
+    "meta": 1523498914176,
+    "relativePath": "prefab\\toggleGroup.prefab"
+  },
+  "232d2782-c4bd-4bb4-9e01-909f03d6d3b9": {
+    "asset": 1520937982000,
+    "meta": 1523498914181,
+    "relativePath": "prefab\\videoplayer.prefab"
+  },
+  "8c5001fd-07ee-4a4b-a8a0-63e15195e94d": {
+    "asset": 1520937982000,
+    "meta": 1523498914185,
+    "relativePath": "prefab\\webview.prefab"
+  },
+  "2da3f1aa-1acd-4e4b-a172-cb3487b59b46": {
+    "asset": 1523501271478,
+    "meta": 1523501271504,
+    "relativePath": "anims\\arrow_left.anim"
+  },
+  "a62add28-616f-407c-8dca-11a45aee85ab": {
+    "asset": 1523503305401,
+    "meta": 1523503305414,
+    "relativePath": "scenes\\Test.fire"
+  },
+  "ac4eb5ff-53b8-4109-a2e2-94141948d903": {
+    "asset": 1523501622691,
+    "meta": 1523501622730,
+    "relativePath": "anims\\arrow_right.anim"
+  },
+  "ca7dc687-fda4-4b86-b85a-113cfed43b5f": {
+    "asset": 1523502451693,
+    "meta": 1523502451720,
+    "relativePath": "anims\\outline.anim"
+  },
+  "fce79ec3-feed-40e4-b112-430f57c669ee": {
+    "asset": 1523503481836,
+    "meta": 1523503481845,
+    "relativePath": "anims\\ligth.anim"
+  }
+}

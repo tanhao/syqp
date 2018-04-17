@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_xiaoxi",
+    "texture": "6e92998a-494b-4cb0-965f-9c30083d0248",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      66,
+      79
+    ],
+    "offset": [
+      -0.5,
+      0
+    ],
+    "originalSize": [
+      67,
+      79
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_paste",
+    "texture": "7b2d827c-860d-4583-90ea-9f10f80680a6",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      110,
+      54
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      110,
+      54
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bank",
+    "texture": "7bb78482-772b-4801-ad3f-b7bad7b97490",
+    "atlas": "",
+    "rect": [
+      1,
+      1,
+      47,
+      49
+    ],
+    "offset": [
+      -0.5,
+      -0.5
+    ],
+    "originalSize": [
+      50,
+      50
+    ]
+  }
+}

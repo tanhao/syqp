@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "power1",
+    "texture": "2ffcde6d-56bc-4566-ae64-34ba436ac08c",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      4,
+      13
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      4,
+      13
+    ],
+    "capInsets": [
+      1,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "act_tip",
+    "texture": "13fc2db2-cfc9-430f-8e52-df8484d64a83",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      81,
+      42
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      81,
+      42
+    ]
+  }
+}

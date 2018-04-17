@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "logo_mini",
+    "texture": "e7153f07-5660-4e0d-b157-04e0e20131f6",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      384,
+      99
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      384,
+      99
+    ]
+  }
+}

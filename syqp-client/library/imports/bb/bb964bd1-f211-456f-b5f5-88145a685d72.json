@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_telp",
+    "texture": "43ce462b-886a-428e-9c82-0842b12155f9",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      66,
+      79
+    ],
+    "offset": [
+      -0.5,
+      0
+    ],
+    "originalSize": [
+      67,
+      79
+    ]
+  }
+}

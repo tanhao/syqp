@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "jzcycle",
+    "texture": "9ccf5025-6e20-4f05-8944-e96aa198a9fd",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      102,
+      102
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      102,
+      102
+    ]
+  }
+}

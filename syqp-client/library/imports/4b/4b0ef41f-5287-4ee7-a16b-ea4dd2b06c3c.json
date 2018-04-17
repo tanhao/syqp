@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "ligth1",
+    "texture": "054762e4-3ef9-4ded-823f-0b1e5793f2f1",
+    "atlas": "f1c6796e-7206-4859-800c-6705e883d389",
+    "rect": [
+      0,
+      818,
+      251,
+      96
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      251,
+      96
+    ]
+  }
+}

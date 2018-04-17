@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "num7_s",
+    "texture": "18add552-791a-4531-bfa1-3eb9c55b7bb7",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      257,
+      85
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      257,
+      85
+    ]
+  }
+}

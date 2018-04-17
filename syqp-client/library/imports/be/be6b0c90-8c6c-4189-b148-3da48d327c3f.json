@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "countdown",
+    "texture": "2bee68e7-b485-4d35-877b-1b5c95cd1244",
+    "atlas": "",
+    "rect": [
+      3,
+      3,
+      147,
+      117
+    ],
+    "offset": [
+      0.5,
+      0.5
+    ],
+    "originalSize": [
+      152,
+      124
+    ]
+  }
+}

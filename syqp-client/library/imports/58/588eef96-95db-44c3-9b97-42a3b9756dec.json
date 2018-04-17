@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "fangfei",
+    "texture": "cdf4eddc-4ada-4e55-8fb9-e08e3ec633c0",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      114,
+      31
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      114,
+      31
+    ]
+  }
+}

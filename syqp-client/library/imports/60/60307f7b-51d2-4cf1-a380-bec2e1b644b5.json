@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "chat_top",
+    "texture": "c4cd4687-0e04-4289-96c8-4a03c070c5f6",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      65,
+      55
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      65,
+      55
+    ],
+    "capInsets": [
+      21,
+      0,
+      14,
+      0
+    ]
+  }
+}

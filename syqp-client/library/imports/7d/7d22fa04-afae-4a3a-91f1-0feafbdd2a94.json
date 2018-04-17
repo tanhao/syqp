@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_disband",
+    "texture": "4cc8d2f8-486f-466d-b6c0-ff276fd9c475",
+    "atlas": "",
+    "rect": [
+      6,
+      1,
+      187,
+      48
+    ],
+    "offset": [
+      3,
+      -0.5
+    ],
+    "originalSize": [
+      193,
+      49
+    ]
+  }
+}

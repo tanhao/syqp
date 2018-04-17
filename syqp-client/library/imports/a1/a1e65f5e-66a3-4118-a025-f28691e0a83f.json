@@ -1,0 +1,50 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "btn_luck.plist",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_spriteFrames": {
+    "luck_btn": {
+      "__uuid__": "8f6328c1-eaee-479e-aae2-612f94abf7ed"
+    },
+    "luck_btn1": {
+      "__uuid__": "19ed66a4-4c18-481a-a2fd-4607cd0cae4c"
+    },
+    "luck_btn2": {
+      "__uuid__": "73a01921-ca4d-45aa-b6a6-3e1046150894"
+    },
+    "luck_btn3": {
+      "__uuid__": "c1a9cd40-5fd9-4244-b92c-d0a2ff981198"
+    },
+    "luck_btn4": {
+      "__uuid__": "42a88aa2-54d1-4679-80b9-045fd8e2f561"
+    },
+    "luck_btn5": {
+      "__uuid__": "c5a6b120-ab80-4d3e-9702-4c2efde5a781"
+    },
+    "luck_btn6": {
+      "__uuid__": "19ffdf63-15b8-4d18-b804-9e07f0ad0380"
+    },
+    "luck_btn7": {
+      "__uuid__": "62ffb5fa-1a1e-4a42-b896-b9a3ae30df4e"
+    },
+    "luck_btn8": {
+      "__uuid__": "9fb907b6-0785-42a1-876f-f6f28767063a"
+    },
+    "luck_btn9": {
+      "__uuid__": "4bc8bc38-c962-40cb-b552-54e0b06f415a"
+    },
+    "luck_btn10": {
+      "__uuid__": "dd6afdee-5ae0-4817-b03f-c7d4ef51859c"
+    },
+    "luck_btn11": {
+      "__uuid__": "162aaafa-33ab-4b7e-81fe-dc7b1b312255"
+    },
+    "luck_btn12": {
+      "__uuid__": "627f41b4-5836-4fbf-9950-834e977889e5"
+    },
+    "luck_btn13": {
+      "__uuid__": "95c35698-248d-4301-b182-eae1207fbaef"
+    }
+  }
+}

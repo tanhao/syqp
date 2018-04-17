@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_tohall",
+    "texture": "cf99b57b-bfca-436b-9a91-40f5216c2dba",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      262,
+      88
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      262,
+      88
+    ]
+  }
+}

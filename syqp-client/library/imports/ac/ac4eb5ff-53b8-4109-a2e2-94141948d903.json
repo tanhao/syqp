@@ -1,0 +1,34 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "arrow_right",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.4,
+  "sample": 10,
+  "speed": 1,
+  "wrapMode": 22,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {}
+    },
+    "props": {
+      "position": [
+        {
+          "frame": 0,
+          "value": [
+            105,
+            5
+          ]
+        },
+        {
+          "frame": 0.4,
+          "value": [
+            95,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  "events": []
+}

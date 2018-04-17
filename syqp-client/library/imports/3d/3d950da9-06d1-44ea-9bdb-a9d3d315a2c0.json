@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "emoji10",
+    "texture": "d9a42d86-e5c0-42f6-8b37-d201561cbaa0",
+    "atlas": "",
+    "rect": [
+      0,
+      3,
+      98,
+      97
+    ],
+    "offset": [
+      -1,
+      -1.5
+    ],
+    "originalSize": [
+      100,
+      100
+    ]
+  }
+}

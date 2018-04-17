@@ -1,0 +1,89 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "btn_create_join_return.plist",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_spriteFrames": {
+    "arrow": {
+      "__uuid__": "3290bfaf-7d35-41b8-a841-9160c4e685fa"
+    },
+    "btn_bg": {
+      "__uuid__": "8c50142d-a24c-45c5-bc1c-5ab2192778f8"
+    },
+    "create_room": {
+      "__uuid__": "6a6414b4-aeb2-47fa-a734-a641449a5d0c"
+    },
+    "join_room": {
+      "__uuid__": "d7d69d7c-c240-4f3c-81c2-6be12b3b953d"
+    },
+    "ligth1": {
+      "__uuid__": "4b0ef41f-5287-4ee7-a16b-ea4dd2b06c3c"
+    },
+    "ligth10": {
+      "__uuid__": "37f1f0b0-d735-4832-b962-963eaeb29634"
+    },
+    "ligth11": {
+      "__uuid__": "aeb5fd95-23ef-4663-a4c1-827362d1d44c"
+    },
+    "ligth2": {
+      "__uuid__": "8566a2fd-b6c6-4855-8857-6ac3bc156e7c"
+    },
+    "ligth3": {
+      "__uuid__": "ae7805e2-88e8-47ef-adb8-44848031d806"
+    },
+    "ligth4": {
+      "__uuid__": "caae18ce-11f8-4004-89a9-3518e4a696e8"
+    },
+    "ligth5": {
+      "__uuid__": "eedbccff-4714-49d2-9211-c1df0e502e86"
+    },
+    "ligth6": {
+      "__uuid__": "119f410e-27b1-4ba4-b182-fe0ab0bacdf1"
+    },
+    "ligth7": {
+      "__uuid__": "b2f14d08-8a54-4ff8-9785-6e6e7fc5c8dd"
+    },
+    "ligth8": {
+      "__uuid__": "38295647-8979-4329-9776-91d0bbcd7ff4"
+    },
+    "ligth9": {
+      "__uuid__": "d155fa88-0189-4664-a4df-f348a6d82dfa"
+    },
+    "outline1": {
+      "__uuid__": "61dbb5a8-72b5-42be-b523-3394908c8d2a"
+    },
+    "outline10": {
+      "__uuid__": "09e9bb87-5f5b-49b1-aeee-346699647af9"
+    },
+    "outline11": {
+      "__uuid__": "be0e2ff8-75f6-4d1c-b826-bc3fa5042ada"
+    },
+    "outline2": {
+      "__uuid__": "51955b76-6221-46ea-a093-94ac0b9f47f1"
+    },
+    "outline3": {
+      "__uuid__": "c65d34bc-cb2d-4fca-b3ff-44a812aa6179"
+    },
+    "outline4": {
+      "__uuid__": "8e516b1b-560f-4619-b35f-752d7d90d5e2"
+    },
+    "outline5": {
+      "__uuid__": "133c7c73-72dd-4826-8fda-1d10a36ac869"
+    },
+    "outline6": {
+      "__uuid__": "2d426bd6-b72c-421e-b33d-0f7d7142b7d6"
+    },
+    "outline7": {
+      "__uuid__": "2fb08f0e-1b84-4760-b9ba-3b6d2222f36c"
+    },
+    "outline8": {
+      "__uuid__": "8dcf7357-6b08-4fb5-8a40-bd85de69b328"
+    },
+    "outline9": {
+      "__uuid__": "c5af93ab-05c0-4fd8-b63c-5207c9efc285"
+    },
+    "return_room": {
+      "__uuid__": "079de942-7d83-4640-b59a-0156007343af"
+    }
+  }
+}

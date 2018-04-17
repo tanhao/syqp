@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "dock",
+    "texture": "9665d35f-fe42-407c-b502-6458ef4a9a1c",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      1280,
+      62
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      1280,
+      62
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "dock_bg",
+    "texture": "95de1a1a-ff44-4396-b373-2d7f7b82c7cd",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      1271,
+      108
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      1271,
+      108
+    ]
+  }
+}

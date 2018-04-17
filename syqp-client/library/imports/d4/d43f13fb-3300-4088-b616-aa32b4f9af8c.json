@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "tips_outerror",
+    "texture": "642c114d-ccb5-4b2f-a5fe-87b383069674",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      353,
+      53
+    ],
+    "offset": [
+      -28,
+      1.5
+    ],
+    "originalSize": [
+      409,
+      56
+    ]
+  }
+}

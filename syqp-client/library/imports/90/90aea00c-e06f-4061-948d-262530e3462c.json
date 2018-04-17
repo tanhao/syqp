@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "jx_spades_4",
+    "texture": "72d3598b-a615-4fa8-bc35-0cce4547bde5",
+    "atlas": "407fda1e-53fd-40e6-a055-f6f8bf8d6be2",
+    "rect": [
+      1023,
+      1031,
+      51,
+      70
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      51,
+      70
+    ]
+  }
+}

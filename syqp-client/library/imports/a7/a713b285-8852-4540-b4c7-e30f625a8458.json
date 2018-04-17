@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "big_een",
+    "texture": "265638e8-96f3-4d98-a96c-ea0ac712c6df",
+    "atlas": "",
+    "rect": [
+      1,
+      0,
+      159,
+      40
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      161,
+      40
+    ]
+  }
+}

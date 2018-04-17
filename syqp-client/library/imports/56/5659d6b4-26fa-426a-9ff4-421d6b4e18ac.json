@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "jzshaizi",
+    "texture": "58ef61e2-1e20-4a0f-a8e0-11e2d4912d44",
+    "atlas": "",
+    "rect": [
+      2,
+      0,
+      36,
+      37
+    ],
+    "offset": [
+      0,
+      0.5
+    ],
+    "originalSize": [
+      40,
+      38
+    ]
+  }
+}
