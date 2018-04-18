@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "border_bottom",
+    "texture": "5e40ea46-93c6-4bde-9eaa-6bbc7a2ed996",
+    "atlas": "",
+    "rect": [
+      0,
+      1,
+      1112,
+      20
+    ],
+    "offset": [
+      0,
+      -0.5
+    ],
+    "originalSize": [
+      1112,
+      21
+    ]
+  }
+}

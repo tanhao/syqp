@@ -1,0 +1,119 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "mj_bottom.plist",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_spriteFrames": {
+    "B_autumn": {
+      "__uuid__": "eee14cc9-7336-4040-8c2e-c91f45290f29"
+    },
+    "B_bamboo_1": {
+      "__uuid__": "927a6165-747b-407c-9c46-f5e6e55ed03b"
+    },
+    "B_bamboo_2": {
+      "__uuid__": "f5a76556-2d66-4b39-94ea-46b7888ccc14"
+    },
+    "B_bamboo_3": {
+      "__uuid__": "46990f58-e3d0-4e64-91c4-93d73f6b3d6d"
+    },
+    "B_bamboo_4": {
+      "__uuid__": "0c0caf29-843b-45d4-95ff-7a365d289558"
+    },
+    "B_bamboo_5": {
+      "__uuid__": "e001e21e-82bb-4d9f-bddb-1596ddccfef2"
+    },
+    "B_bamboo_6": {
+      "__uuid__": "e37f5359-31a3-4d65-8c02-4efc193e20b9"
+    },
+    "B_bamboo_7": {
+      "__uuid__": "9310eddc-5717-4d66-b36e-055d77b5c4c9"
+    },
+    "B_bamboo_8": {
+      "__uuid__": "f8fcf2ed-6a76-4640-89e0-63e994641998"
+    },
+    "B_bamboo_9": {
+      "__uuid__": "6a2a2cbc-163f-4520-aa52-f7e16da1ceda"
+    },
+    "B_character_1": {
+      "__uuid__": "315459d9-bea5-42ac-842a-7bf8818c1758"
+    },
+    "B_character_2": {
+      "__uuid__": "f1a22ba2-2225-45a1-b3ae-4fedfdc10c20"
+    },
+    "B_character_3": {
+      "__uuid__": "ad0afb5f-95e0-45ca-8811-4321698b0bb3"
+    },
+    "B_character_4": {
+      "__uuid__": "fad06bf7-3314-4a3d-a79e-b4e4d2e92da6"
+    },
+    "B_character_5": {
+      "__uuid__": "cd04b042-e43b-4dbe-9ec1-2b6a39ca8985"
+    },
+    "B_character_6": {
+      "__uuid__": "b61b028a-58c5-4a5f-bdd5-c3063e457929"
+    },
+    "B_character_7": {
+      "__uuid__": "3b042b68-fff6-4813-9668-1d0e0610c1be"
+    },
+    "B_character_8": {
+      "__uuid__": "191724e7-bf90-437e-8eeb-a80c25652a2c"
+    },
+    "B_character_9": {
+      "__uuid__": "728a00b6-e5e5-489d-a3d1-a1602c13228d"
+    },
+    "B_dot_1": {
+      "__uuid__": "2213e600-c335-4027-a63b-56c0b813149c"
+    },
+    "B_dot_2": {
+      "__uuid__": "3d812235-ebff-4d17-8418-fc04a4847f8b"
+    },
+    "B_dot_3": {
+      "__uuid__": "f675be2e-1122-4100-a65a-478c03925ac0"
+    },
+    "B_dot_4": {
+      "__uuid__": "9dadccbc-a4b3-4c65-8634-58f6bb64aee9"
+    },
+    "B_dot_5": {
+      "__uuid__": "87327bed-68d2-44b9-9444-48b33a0b0c3f"
+    },
+    "B_dot_6": {
+      "__uuid__": "17e0f0c0-2b9b-4360-bd84-e781bd6c7e74"
+    },
+    "B_dot_7": {
+      "__uuid__": "c82a5eb6-4acf-4414-bfb4-da03838fd7b9"
+    },
+    "B_dot_8": {
+      "__uuid__": "d4668b41-d171-482e-94a7-27eb20c18903"
+    },
+    "B_dot_9": {
+      "__uuid__": "8aa85eff-b020-4645-9cdf-83f709e9fe9e"
+    },
+    "B_plum": {
+      "__uuid__": "9d82b891-a9b6-4508-b5eb-0ef479d7723b"
+    },
+    "B_wind_1": {
+      "__uuid__": "5bdc5a2c-0d3b-421a-9e5e-e297407e08d0"
+    },
+    "B_wind_2": {
+      "__uuid__": "f7ba3aa3-7422-443d-807b-7336f6cb7213"
+    },
+    "B_wind_3": {
+      "__uuid__": "4a7783f0-e509-45e1-a8c2-59b25daa8592"
+    },
+    "B_wind_4": {
+      "__uuid__": "b5cbf0ce-8997-446f-bf1b-077ba0416ee5"
+    },
+    "B_wind_5": {
+      "__uuid__": "129ca312-ac1b-47f5-8939-11828c2f388c"
+    },
+    "B_wind_6": {
+      "__uuid__": "0bb6bb5b-19c9-4874-a936-ef328eed1aa6"
+    },
+    "B_wind_7": {
+      "__uuid__": "a66abc0e-7b53-43c6-8144-839eea15e33b"
+    },
+    "B_winter": {
+      "__uuid__": "efe0dfe5-58d8-4f2e-bd83-db95bfdcae08"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mtp_num",
+    "texture": "12cddf86-80bf-4ac1-851a-f6b13174fde7",
+    "atlas": "",
+    "rect": [
+      0,
+      2,
+      246,
+      77
+    ],
+    "offset": [
+      -2,
+      9.5
+    ],
+    "originalSize": [
+      250,
+      100
+    ]
+  }
+}
