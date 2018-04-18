@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_giveup",
+    "texture": "afddd258-f345-479b-a780-1cc4da5b5281",
+    "atlas": "",
+    "rect": [
+      1,
+      1,
+      129,
+      136
+    ],
+    "offset": [
+      0,
+      3.5
+    ],
+    "originalSize": [
+      131,
+      145
+    ]
+  }
+}

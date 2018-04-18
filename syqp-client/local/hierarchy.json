@@ -1,7 +1,7 @@
 {
   "item-states": [
     {
-      "folded": false,
+      "folded": true,
       "id": "32tsBSiDZHzYl0BdaE74Bt"
     },
     {
@@ -13,7 +13,7 @@
       "id": "cbObvsoPxLFZmWm2KteVE/"
     },
     {
-      "folded": false,
+      "folded": true,
       "id": "b8Cevns8RJDI5GMTdycSql"
     },
     {
@@ -21,7 +21,7 @@
       "id": "e18YtcWwpFxpWb1uwI4498"
     },
     {
-      "folded": false,
+      "folded": true,
       "id": "82XjGrPuxE05wKtVy7ISRb"
     },
     {
@@ -45,7 +45,7 @@
       "id": "9f2903qgZPfLf6BQ5miwLu"
     },
     {
-      "folded": true,
+      "folded": false,
       "id": "9cT/7ZcbVDCZAN6unkXh1f"
     },
     {
@@ -53,7 +53,7 @@
       "id": "bduT7YpldHYY9KxkEsFxND"
     },
     {
-      "folded": false,
+      "folded": true,
       "id": "b7LXEBZGJOW6NSGT4P+jCf"
     },
     {
@@ -73,7 +73,7 @@
       "id": "32wf9rkNxM+qdakSKz2dIB"
     },
     {
-      "folded": true,
+      "folded": false,
       "id": "11XFSBVhdPC4zUhhxKGvDz"
     },
     {
@@ -93,7 +93,7 @@
       "id": "79fBx9/ppF5Ywq1F1NOtNY"
     },
     {
-      "folded": true,
+      "folded": false,
       "id": "cd55fAuVhOBLedWeK3OW5I"
     },
     {
@@ -117,7 +117,7 @@
       "id": "83yJj4a39DILShcTgoWS9j"
     },
     {
-      "folded": true,
+      "folded": false,
       "id": "d0w9WHegNE47RyUBGsD8rm"
     },
     {
@@ -126,23 +126,7 @@
     },
     {
       "folded": true,
-      "id": "252SNvbcJDGpkWIlDRh08W"
-    },
-    {
-      "folded": true,
-      "id": "4f6UBL8zZHXqT0MjwWmWVR"
-    },
-    {
-      "folded": true,
-      "id": "1a5wdv2R1M1LLVJsXtCnfj"
-    },
-    {
-      "folded": true,
-      "id": "6duiCoNwZGaoJ8WcwL5tSs"
-    },
-    {
-      "folded": true,
-      "id": "94E7UfbXpMqoUatwz8PAAf"
+      "id": "42wLMPSadPj6dT0WnS2sPv"
     },
     {
       "folded": true,
@@ -199,6 +183,14 @@
     {
       "folded": false,
       "id": "ff/NHjuppKcpQ5CTSYs1HI"
+    },
+    {
+      "folded": true,
+      "id": "beHFSaJWNL2Kr2bSXG9q/1"
+    },
+    {
+      "folded": true,
+      "id": "94E7UfbXpMqoUatwz8PAAf"
     }
   ]
 }

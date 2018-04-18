@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mahjong_effect_qg_3",
+    "texture": "d84d0673-5c2e-49de-886b-98a6ff6d3e50",
+    "atlas": "",
+    "rect": [
+      19,
+      16,
+      317,
+      227
+    ],
+    "offset": [
+      -2.5,
+      -4.5
+    ],
+    "originalSize": [
+      360,
+      250
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mahjong_effect_zimo_5",
+    "texture": "999b2bb2-a384-4aaf-bf39-7e2a277b3a4b",
+    "atlas": "",
+    "rect": [
+      109,
+      19,
+      316,
+      185
+    ],
+    "offset": [
+      -3,
+      -1.5
+    ],
+    "originalSize": [
+      540,
+      220
+    ]
+  }
+}

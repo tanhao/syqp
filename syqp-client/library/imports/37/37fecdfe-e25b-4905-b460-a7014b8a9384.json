@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mahjong_effect_gang_9",
+    "texture": "bd0938c9-56ad-4d9c-86a2-5d63eaaab3ff",
+    "atlas": "",
+    "rect": [
+      51,
+      67,
+      355,
+      196
+    ],
+    "offset": [
+      3.5,
+      -20
+    ],
+    "originalSize": [
+      450,
+      290
+    ]
+  }
+}

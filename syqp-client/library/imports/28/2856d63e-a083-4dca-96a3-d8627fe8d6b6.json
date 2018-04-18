@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mahjong_effect_peng_7",
+    "texture": "8d1a1e0e-3e33-4991-8a98-3fb9c3fef4e2",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      300,
+      272
+    ],
+    "offset": [
+      0,
+      14
+    ],
+    "originalSize": [
+      300,
+      300
+    ]
+  }
+}

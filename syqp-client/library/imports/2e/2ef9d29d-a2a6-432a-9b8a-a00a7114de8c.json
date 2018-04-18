@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mahjong_effect_angang_3",
+    "texture": "6ac0d6bf-5365-4670-9712-4b2bb3ff98cc",
+    "atlas": "",
+    "rect": [
+      94,
+      54,
+      153,
+      99
+    ],
+    "offset": [
+      5.5,
+      -3.5
+    ],
+    "originalSize": [
+      330,
+      200
+    ]
+  }
+}
