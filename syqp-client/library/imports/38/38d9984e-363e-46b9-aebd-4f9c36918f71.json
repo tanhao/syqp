@@ -1,22 +1,22 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "end_gift",
-    "texture": "8ce0c4d9-13ba-4495-9f02-f28bb8d3b38f",
+    "name": "difeng",
+    "texture": "b4751611-a62a-4f47-ae4b-2ef035fe7baa",
     "atlas": "",
     "rect": [
-      2,
-      1,
+      0,
+      0,
       114,
       30
     ],
     "offset": [
       0,
-      -0.5
+      0
     ],
     "originalSize": [
-      118,
-      31
+      114,
+      30
     ]
   }
 }

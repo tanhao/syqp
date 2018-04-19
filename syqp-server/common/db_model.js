@@ -35,7 +35,7 @@ var RoomSchema=new Schema({
     blind:{type:Number,default:0},
     entryFee:{type:Number,defalut:0},
     openFee:{type:Number,defalut:0},
-    rounds:{type:Number,defalut:4},
+    round:{type:Number,defalut:4},
     minUsers:{type:Number,defalut:2},
     maxUsers:{type:Number,defalut:4},
     */

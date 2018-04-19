@@ -81,7 +81,6 @@ module.exports.begin=function(roomId){
     let game={
         room:room,
         config:room.config,
-        round:room.round,
         seats:[],
         //底牌
         dipai:[],

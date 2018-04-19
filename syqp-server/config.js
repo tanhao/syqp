@@ -1,4 +1,4 @@
-module.exports.mysql=function(){
+ module.exports.mysql=function(){
 	return {
 		HOST: 'localhost',
 		USER: 'root',

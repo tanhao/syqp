@@ -3,8 +3,8 @@
   "_name": "arrow_right",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 0.4,
-  "sample": 10,
+  "_duration": 0.6666666666666666,
+  "sample": 6,
   "speed": 1,
   "wrapMode": 22,
   "curveData": {
@@ -17,14 +17,14 @@
           "frame": 0,
           "value": [
             107,
-            5
+            0
           ]
         },
         {
-          "frame": 0.4,
+          "frame": 0.6666666666666666,
           "value": [
             97,
-            5
+            0
           ]
         }
       ]

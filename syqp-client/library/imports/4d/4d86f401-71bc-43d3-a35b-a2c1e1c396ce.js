@@ -9,11 +9,12 @@ cc.Class({
 
     properties: {
         peoples: 4,
-        score: 1000,
+        round: 8,
         fee: 1,
-        gift: 100,
-        liudipai: false,
-        jipaiqi: false
+        difen: 1,
+        zuozhuang: 1,
+        beishu: 32,
+        ctdsq: false //吃吐荡三圈
     },
 
     onLoad: function onLoad() {},
@@ -28,65 +29,64 @@ cc.Class({
 
     onResetClicked: function onResetClicked() {
         this.peoples = 4;
-        this.score = 1000;
+        this.round = 8;
         this.fee = 1;
-        this.gift = 100;
-        this.liudipai = false;
-        this.jipaiqi = false;
+        this.difen = 1;
+        this.zuozhuang = 1;
+        this.beishu = 32;
+        this.ctdsq = false; //吃吐荡三圈
 
         cc.find("Canvas/create_room/setting_list/peoples/toggleContainer/toggle1").getComponent(cc.Toggle).check();
-        cc.find("Canvas/create_room/setting_list/score/toggleContainer/toggle1").getComponent(cc.Toggle).check();
+        cc.find("Canvas/create_room/setting_list/round/toggleContainer/toggle1").getComponent(cc.Toggle).check();
         cc.find("Canvas/create_room/setting_list/fee/toggleContainer/toggle1").getComponent(cc.Toggle).check();
-        cc.find("Canvas/create_room/setting_list/gift/toggleContainer/toggle1").getComponent(cc.Toggle).check();
+        cc.find("Canvas/create_room/setting_list/difen/toggleContainer/toggle1").getComponent(cc.Toggle).check();
+        cc.find("Canvas/create_room/setting_list/zuozhuang/toggleContainer/toggle1").getComponent(cc.Toggle).check();
+        cc.find("Canvas/create_room/setting_list/beishu/toggleContainer/toggle1").getComponent(cc.Toggle).check();
         cc.find("Canvas/create_room/setting_list/options/toggle1").getComponent(cc.Toggle).uncheck();
-        cc.find("Canvas/create_room/setting_list/options/toggle2").getComponent(cc.Toggle).uncheck();
     },
 
     onCloseClicked: function onCloseClicked() {
         this.node.active = false;
     },
 
-    onPeoplesClicked: function onPeoplesClicked(target, num) {
-        this.peoples = num;
+    onPeoplesClicked: function onPeoplesClicked(target, peoples) {
+        this.peoples = peoples;
     },
 
-    onScoreClicked: function onScoreClicked(target, score) {
-        this.score = score;
+    onRoundClicked: function onRoundClicked(target, round) {
+        this.round = round;
     },
 
     onFeeClicked: function onFeeClicked(target, fee) {
         this.fee = fee;
     },
 
-    onGiftClicked: function onGiftClicked(target, gift) {
-        this.gift = gift;
+    onDifenClicked: function onDifenClicked(target, difen) {
+        this.difen = difen;
     },
 
-    onLiudipaiClicked: function onLiudipaiClicked(target) {
-        this.liudipai = target.isChecked;
+    onZuozhuangClicked: function onZuozhuangClicked(target, zuozhuang) {
+        this.zuozhuang = zuozhuang;
     },
 
-    onJipaiqiClicked: function onJipaiqiClicked(target) {
-        this.jipaiqi = target.isChecked;
+    onBeishuClicked: function onBeishuClicked(target, beishu) {
+        this.beishu = beishu;
+    },
+
+    onCtdsqClicked: function onCtdsqClicked(target) {
+        this.ctdsq = target.isChecked;
     },
 
     onCreateClicked: function onCreateClicked(target) {
         this.node.active = false;
-        /*
-        cc.log("peoples",this.peoples);
-        cc.log("score",this.score);
-        cc.log("fee",this.fee);
-        cc.log("gift",this.gift);
-        cc.log("liudipai",this.liudipai);
-        cc.log("jipaiqi",this.jipaiqi);
-        */
         var config = {
             peoples: this.peoples,
-            score: this.score,
+            round: this.round,
             fee: this.fee,
-            gift: this.gift,
-            liudipai: this.liudipai,
-            jipaiqi: this.jipaiqi
+            difen: this.difen,
+            zuozhuang: this.zuozhuang,
+            beishu: this.beishu,
+            ctdsq: this.ctdsq
         };
         th.userManager.createRoom(config);
     }
