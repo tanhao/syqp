@@ -1,57 +1,322 @@
-2018-04-19T12:45:14.233Z - normal: Load ~/.CocosCreator/settings.json
-2018-04-19T12:45:14.242Z - normal: checking language setting...
-2018-04-19T12:45:14.242Z - normal: Language: zh
-2018-04-19T12:45:17.016Z - success: protocol editor-framework registered
-2018-04-19T12:45:17.017Z - success: protocol app registered
-2018-04-19T12:45:17.017Z - success: protocol theme registered
-2018-04-19T12:45:17.017Z - success: protocol packages registered
-2018-04-19T12:45:17.017Z - success: protocol unpack registerred
-2018-04-19T12:45:17.017Z - success: protocol disable-commonjs registerred
-2018-04-19T12:45:17.272Z - normal: connected!
-2018-04-19T12:45:17.275Z - normal: Check project D:\Workspace_Chess\syqp\syqp-client
-2018-04-19T12:45:17.277Z - normal: Initializing Cocos2d
-2018-04-19T12:45:17.932Z - normal: Initializing Asset Database
-2018-04-19T12:45:17.983Z - success: protocol uuid registerred
-2018-04-19T12:45:17.984Z - success: protocol db registerred
-2018-04-19T12:45:17.984Z - success: protocol thumbnail registerred
-2018-04-19T12:45:17.984Z - normal: Loading editor/builtin packages
-2018-04-19T12:45:18.074Z - success: anysdk loaded
-2018-04-19T12:45:18.225Z - success: assets loaded
-2018-04-19T12:45:18.227Z - success: builder loaded
-2018-04-19T12:45:18.228Z - success: cocos-analytics loaded
-2018-04-19T12:45:18.231Z - success: console loaded
-2018-04-19T12:45:18.265Z - success: fb-instant-games loaded
-2018-04-19T12:45:18.267Z - success: hierarchy loaded
-2018-04-19T12:45:18.270Z - success: inspector loaded
-2018-04-19T12:45:18.271Z - success: keystore loaded
-2018-04-19T12:45:18.273Z - success: node-library loaded
-2018-04-19T12:45:18.274Z - success: package-asset loaded
-2018-04-19T12:45:18.276Z - success: preferences loaded
-2018-04-19T12:45:18.278Z - success: project-exporter loaded
-2018-04-19T12:45:18.333Z - success: project-importer loaded
-2018-04-19T12:45:18.334Z - success: project-settings loaded
-2018-04-19T12:45:18.336Z - success: ui-kit loaded
-2018-04-19T12:45:18.350Z - success: ui-grid loaded
-2018-04-19T12:45:18.353Z - success: scene loaded
-2018-04-19T12:45:18.354Z - success: sprite-editor loaded
-2018-04-19T12:45:18.357Z - success: store loaded
-2018-04-19T12:45:18.360Z - success: timeline loaded
-2018-04-19T12:45:18.361Z - normal: Loading builtin packages
-2018-04-19T12:45:18.369Z - success: asset-db-debugger loaded
-2018-04-19T12:45:18.370Z - success: code-editor loaded
-2018-04-19T12:45:18.379Z - success: color-picker loaded
-2018-04-19T12:45:18.381Z - success: package-manager loaded
-2018-04-19T12:45:18.385Z - success: sdkbox loaded
-2018-04-19T12:45:18.387Z - success: tester loaded
-2018-04-19T12:45:18.388Z - success: ui-kit-preview-extra loaded
-2018-04-19T12:45:18.389Z - success: ui-kit-preview loaded
-2018-04-19T12:45:18.390Z - success: ui-tree loaded
-2018-04-19T12:45:19.911Z - normal: Initializing project D:\Workspace_Chess\syqp\syqp-client
-2018-04-19T12:45:19.913Z - normal: Loading packages
-2018-04-19T12:45:19.936Z - success: bitmap-font loaded
-2018-04-19T12:45:19.936Z - normal: Watching packages
-2018-04-19T12:45:19.976Z - normal: Run Application
-2018-04-19T12:45:26.582Z - success: preview server running at http://localhost:7456
-2018-04-19T12:45:30.669Z - warn: 会话不存在或已过期
-2018-04-19T12:45:31.938Z - normal: 1.9.0
-2018-04-19T14:20:59.924Z - info: shutdown preview server
+2018-04-19T14:38:39.013Z - normal: Load ~/.CocosCreator/settings.json
+2018-04-19T14:38:39.017Z - normal: checking language setting...
+2018-04-19T14:38:39.018Z - normal: Language: zh
+2018-04-19T14:38:41.153Z - success: protocol editor-framework registered
+2018-04-19T14:38:41.154Z - success: protocol app registered
+2018-04-19T14:38:41.154Z - success: protocol theme registered
+2018-04-19T14:38:41.154Z - success: protocol packages registered
+2018-04-19T14:38:41.154Z - success: protocol unpack registerred
+2018-04-19T14:38:41.154Z - success: protocol disable-commonjs registerred
+2018-04-19T14:38:41.407Z - normal: connected!
+2018-04-19T14:38:41.409Z - normal: Check project D:\Workspaces_Chess\syqp\syqp-client
+2018-04-19T14:38:41.412Z - normal: Initializing Cocos2d
+2018-04-19T14:38:41.770Z - normal: Initializing Asset Database
+2018-04-19T14:38:41.836Z - success: protocol uuid registerred
+2018-04-19T14:38:41.837Z - success: protocol db registerred
+2018-04-19T14:38:41.837Z - success: protocol thumbnail registerred
+2018-04-19T14:38:41.837Z - normal: Loading editor/builtin packages
+2018-04-19T14:38:41.868Z - success: anysdk loaded
+2018-04-19T14:38:42.028Z - success: assets loaded
+2018-04-19T14:38:42.031Z - success: builder loaded
+2018-04-19T14:38:42.034Z - success: cocos-analytics loaded
+2018-04-19T14:38:42.039Z - success: console loaded
+2018-04-19T14:38:42.090Z - success: fb-instant-games loaded
+2018-04-19T14:38:42.095Z - success: hierarchy loaded
+2018-04-19T14:38:42.099Z - success: inspector loaded
+2018-04-19T14:38:42.101Z - success: keystore loaded
+2018-04-19T14:38:42.105Z - success: node-library loaded
+2018-04-19T14:38:42.107Z - success: package-asset loaded
+2018-04-19T14:38:42.112Z - success: preferences loaded
+2018-04-19T14:38:42.114Z - success: project-exporter loaded
+2018-04-19T14:38:42.140Z - success: project-importer loaded
+2018-04-19T14:38:42.143Z - success: project-settings loaded
+2018-04-19T14:38:42.145Z - success: ui-kit loaded
+2018-04-19T14:38:42.147Z - success: ui-grid loaded
+2018-04-19T14:38:42.152Z - success: scene loaded
+2018-04-19T14:38:42.153Z - success: sprite-editor loaded
+2018-04-19T14:38:42.157Z - success: store loaded
+2018-04-19T14:38:42.166Z - success: timeline loaded
+2018-04-19T14:38:42.166Z - normal: Loading builtin packages
+2018-04-19T14:38:42.170Z - success: asset-db-debugger loaded
+2018-04-19T14:38:42.172Z - success: code-editor loaded
+2018-04-19T14:38:42.177Z - success: color-picker loaded
+2018-04-19T14:38:42.183Z - success: package-manager loaded
+2018-04-19T14:38:42.192Z - success: sdkbox loaded
+2018-04-19T14:38:42.195Z - success: tester loaded
+2018-04-19T14:38:42.197Z - success: ui-kit-preview-extra loaded
+2018-04-19T14:38:42.199Z - success: ui-kit-preview loaded
+2018-04-19T14:38:42.210Z - success: ui-tree loaded
+2018-04-19T14:38:43.990Z - normal: Initializing project D:\Workspaces_Chess\syqp\syqp-client
+2018-04-19T14:38:43.993Z - normal: Loading packages
+2018-04-19T14:38:44.001Z - normal: Watching packages
+2018-04-19T14:38:44.050Z - normal: Run Application
+2018-04-19T14:38:51.060Z - success: preview server running at http://localhost:7456
+2018-04-19T14:38:55.738Z - warn: 会话不存在或已过期
+2018-04-19T14:38:57.199Z - normal: 1.9.0
+2018-04-19T15:22:21.347Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/scripts/components/CreateRoom.js.meta
+2018-04-19T15:22:21.377Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/scripts/components/Folds.js.meta
+2018-04-19T15:22:21.402Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/scripts/components/Game.js.meta
+2018-04-19T15:22:21.428Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/scripts/components/Seat.js.meta
+2018-04-19T15:22:21.461Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/scripts/components/Status.js.meta
+2018-04-19T15:22:24.151Z - warn: Script attached to "create_room_mj" is missing or invalid. Detailed information:
+Node path: "Canvas/create_room_mj"
+Script UUID: "4d86f401-71bc-43d3-a35b-a2c1e1c396ce"
+Class ID: "4d86fQBcbxD06NbosHhw5bO"
+
+2018-04-19T15:23:17.266Z - warn: Script attached to "status" in scene "mjgame.fire" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Asset url: "db://assets/scenes/mjgame.fire"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:23:17.280Z - warn: Script attached to "Seat" in scene "mjgame.fire" is missing or invalid. Detailed information:
+Node path: "Canvas/left/Seat"
+Asset url: "db://assets/scenes/mjgame.fire"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:23:17.291Z - warn: Script attached to "Seat" in scene "mjgame.fire" is missing or invalid. Detailed information:
+Node path: "Canvas/myself/Seat"
+Asset url: "db://assets/scenes/mjgame.fire"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:23:17.299Z - warn: Script attached to "Seat" in scene "mjgame.fire" is missing or invalid. Detailed information:
+Node path: "Canvas/right/Seat"
+Asset url: "db://assets/scenes/mjgame.fire"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:23:17.308Z - warn: Script attached to "Seat" in scene "mjgame.fire" is missing or invalid. Detailed information:
+Node path: "Canvas/up/Seat"
+Asset url: "db://assets/scenes/mjgame.fire"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:23:17.320Z - warn: Script attached to "Canvas" in scene "mjgame.fire" is missing or invalid. Detailed information:
+Node path: "Canvas"
+Asset url: "db://assets/scenes/mjgame.fire"
+Script UUID: "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd"
+Class ID: "72ccaeRy8xD25rQrBwS/039"
+
+2018-04-19T15:23:35.391Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:23:35.395Z - warn: Script attached to "Seat" is missing or invalid. Detailed information:
+Node path: "Canvas/left/Seat"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:23:35.399Z - warn: Script attached to "Seat" is missing or invalid. Detailed information:
+Node path: "Canvas/myself/Seat"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:23:35.403Z - warn: Script attached to "Seat" is missing or invalid. Detailed information:
+Node path: "Canvas/right/Seat"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:23:35.414Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
+Node path: "Canvas"
+Script UUID: "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd"
+Class ID: "72ccaeRy8xD25rQrBwS/039"
+
+2018-04-19T15:25:33.039Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:25:33.042Z - warn: Script attached to "Seat" is missing or invalid. Detailed information:
+Node path: "Canvas/left/Seat"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:25:33.046Z - warn: Script attached to "Seat" is missing or invalid. Detailed information:
+Node path: "Canvas/myself/Seat"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:25:33.061Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
+Node path: "Canvas"
+Script UUID: "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd"
+Class ID: "72ccaeRy8xD25rQrBwS/039"
+
+2018-04-19T15:26:01.971Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:26:01.975Z - warn: Script attached to "Seat" is missing or invalid. Detailed information:
+Node path: "Canvas/left/Seat"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:26:01.979Z - warn: Script attached to "Seat" is missing or invalid. Detailed information:
+Node path: "Canvas/myself/Seat"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:26:01.993Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
+Node path: "Canvas"
+Script UUID: "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd"
+Class ID: "72ccaeRy8xD25rQrBwS/039"
+
+2018-04-19T15:26:02.340Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:26:02.345Z - warn: Script attached to "Seat" is missing or invalid. Detailed information:
+Node path: "Canvas/left/Seat"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:26:02.349Z - warn: Script attached to "Seat" is missing or invalid. Detailed information:
+Node path: "Canvas/myself/Seat"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:26:02.363Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
+Node path: "Canvas"
+Script UUID: "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd"
+Class ID: "72ccaeRy8xD25rQrBwS/039"
+
+2018-04-19T15:26:02.712Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:26:02.716Z - warn: Script attached to "Seat" is missing or invalid. Detailed information:
+Node path: "Canvas/left/Seat"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:26:02.721Z - warn: Script attached to "Seat" is missing or invalid. Detailed information:
+Node path: "Canvas/myself/Seat"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:26:02.735Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
+Node path: "Canvas"
+Script UUID: "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd"
+Class ID: "72ccaeRy8xD25rQrBwS/039"
+
+2018-04-19T15:26:47.951Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:26:47.956Z - warn: Script attached to "Seat" is missing or invalid. Detailed information:
+Node path: "Canvas/left/Seat"
+Script UUID: "527a616c-7b93-4b63-8066-39d37e2a62e7"
+Class ID: "527a6Fse5NLY4BmOdN+KmLn"
+
+2018-04-19T15:26:47.974Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
+Node path: "Canvas"
+Script UUID: "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd"
+Class ID: "72ccaeRy8xD25rQrBwS/039"
+
+2018-04-19T15:27:12.027Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:27:12.051Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
+Node path: "Canvas"
+Script UUID: "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd"
+Class ID: "72ccaeRy8xD25rQrBwS/039"
+
+2018-04-19T15:27:15.926Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:27:15.949Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
+Node path: "Canvas"
+Script UUID: "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd"
+Class ID: "72ccaeRy8xD25rQrBwS/039"
+
+2018-04-19T15:27:18.142Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:27:18.165Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
+Node path: "Canvas"
+Script UUID: "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd"
+Class ID: "72ccaeRy8xD25rQrBwS/039"
+
+2018-04-19T15:27:20.500Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:27:20.528Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
+Node path: "Canvas"
+Script UUID: "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd"
+Class ID: "72ccaeRy8xD25rQrBwS/039"
+
+2018-04-19T15:27:28.651Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:27:28.674Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
+Node path: "Canvas"
+Script UUID: "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd"
+Class ID: "72ccaeRy8xD25rQrBwS/039"
+
+2018-04-19T15:27:29.294Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:27:29.319Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
+Node path: "Canvas"
+Script UUID: "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd"
+Class ID: "72ccaeRy8xD25rQrBwS/039"
+
+2018-04-19T15:27:33.097Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:27:33.118Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
+Node path: "Canvas"
+Script UUID: "72cca791-cbcc-43db-9ad0-ac1c12ff4dfd"
+Class ID: "72ccaeRy8xD25rQrBwS/039"
+
+2018-04-19T15:28:55.806Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:28:56.408Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:28:56.816Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:28:57.181Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:29:01.152Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T15:29:01.500Z - warn: Script attached to "status" is missing or invalid. Detailed information:
+Node path: "Canvas/status"
+Script UUID: "ebf91bfd-ef4c-4e67-a103-1fc0c1b53fe3"
+Class ID: "ebf91v970xOZ6EDH8DBtT/j"
+
+2018-04-19T18:14:31.795Z - info: shutdown preview server

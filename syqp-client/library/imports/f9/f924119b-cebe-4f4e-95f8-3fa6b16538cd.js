@@ -1,6 +1,6 @@
 "use strict";
-cc._RF.push(module, '527a6Fse5NLY4BmOdN+KmLn', 'Seat');
-// scripts/components/Seat.js
+cc._RF.push(module, 'f9241Gbzr5PTpX4P6axZTjN', 'MJSeat');
+// scripts/components/MJSeat.js
 
 'use strict';
 

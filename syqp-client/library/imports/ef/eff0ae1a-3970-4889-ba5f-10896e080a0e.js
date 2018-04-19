@@ -1,6 +1,6 @@
 "use strict";
-cc._RF.push(module, 'ebf91v970xOZ6EDH8DBtT/j', 'Status');
-// scripts/components/Status.js
+cc._RF.push(module, 'eff0a4aOXBIibpfEIluCAoO', 'MJStatus');
+// scripts/components/MJStatus.js
 
 'use strict';
 
@@ -8,7 +8,6 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        roomId: cc.Label,
         time: cc.Label,
         delay: cc.Label,
         battery: cc.ProgressBar,
@@ -19,10 +18,7 @@ cc.Class({
         _green: new cc.Color(0, 205, 0)
     },
 
-    onLoad: function onLoad() {
-        this.roomId.string = th.socketIOManager.roomId || '------';
-        this.round.string = th.socketIOManager.round == null ? '-' : th.socketIOManager.round + '';
-    },
+    onLoad: function onLoad() {},
     update: function update(dt) {
         if (Date.now() - this._lastUpdateTime > this._updateInterval) {
             this.delay.string = th.sio.delay + "ms";

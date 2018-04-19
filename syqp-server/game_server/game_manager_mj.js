@@ -115,42 +115,53 @@ function checkCanChi(){
 function checkCanHu(){
     
 }
+///开房间时验证balance
+module.exports.checkBalance=function(config,balance){
+    if((config.payment=='FZ'&&((config.round==8&&balance<8)||(config.round==12&&balance<12)||(config.round==16&&balance<16)))||(config.payment=='FZ'&&((config.round==8&&balance<2)||(config.round==12&&balance<3)||(config.round==16&&balance<4)))){
+        return false;
+    }
+    return true;
+}
 //开房间时验证配置
 module.exports.checkConfig=function(config){
-    if(config.peoples == null
+   
+    if(config.people == null
     || config.round == null
-    || config.fee == null
-    || config.difeng == null
+    || config.payment == null
+    || config.difen == null
     || config.zuozhuang == null 
-    || config.beishu == null
+    || config.fengding == null
     || config.ctdsq == null ){
         return false;
     }
-    if(config.peoples != 4 && config.peoples != 3 && config.peoples != 2){
+    config.people=parseInt(config.people);
+    config.difen=parseInt(config.difen);
+    config.fengding=parseInt(config.fengding);
+    if(config.people != 4 && config.people != 3 && config.people != 2){
         return false;
     }
 
     if(config.round != 8 && config.round != 12 && config.round != 16){
         return false;
     }
-    if(config.fee != 1 && config.fee != 2){
+    if(config.payment != 'FZ' && config.payment != 'AA'){
         return false;
     }
-    if(config.difeng != 1 && config.difeng != 2 && config.difeng != 5){
+    if(config.difen != 1 && config.difen != 2 && config.difen != 5){
         return false;
     }
-    if(config.zuozhuang != 1 && config.zuozhuang != 2){
+    if(config.zuozhuang != 'QZ' && config.zuozhuang != 'LZ'){
         return false;
     }
-    if(config.beishu != 32 && config.beishu != 64 && config.beishu != 128){
+    if(config.fengding != 32 && config.fengding != 64 && config.fengding != 128){
         return false;
     }
     return true;
 }
 //生成座位初始化信息
 module.exports.initSeats=function(config){
-    let seats=[];
-    for(let i=0;i<4;i++){
+    let seats=[]; 
+    for(let i=0;i<config.people;i++){
         seats.push({
             userId:null,
             name:null,

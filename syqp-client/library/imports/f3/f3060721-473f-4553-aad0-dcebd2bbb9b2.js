@@ -13,8 +13,9 @@ cc.Class({
         config: null,
         seats: null,
         round: null,
-        creator: null,
-        seatIndex: -1,
+        creator: null, //房主ID
+        seatIndex: -1, //座位Index
+        bankIndex: -1, //庄Index
         needCheckIp: false,
         status: null
     },
@@ -187,18 +188,17 @@ cc.Class({
 
     getWanfa: function getWanfa() {
         var str = [];
-        str.push(this.config.peoples);
-        str.push("人");
-        str.push(" 结算");
-        str.push(this.config.score);
-        str.push(" 奖励");
-        str.push(this.config.gift);
+        str.push("封顶");
+        str.push(this.config.fengding);
+        str.push("/");
+        str.push(this.config.difen);
+        str.push("分/");
+        str.push(this.config.zuozhuang == 'QZ' ? '抢庄' : '轮庄');
+        str.push("/");
+        str.push(this.config.payment == 'FZ' ? '房主付' : 'AA付');
+        str.push(this.config.ctdsq ? '/吃吐荡三圈' : '');
         return str.join("");
     },
-    getDipai: function getDipai() {
-        return this.config.liudipai ? this.config.peoples == 4 ? 8 : this.config.peoples == 3 ? 9 : 0 : 0;
-    },
-
     isFangzhu: function isFangzhu() {
         return this.creator == th.userManager.userId;
     },
@@ -210,7 +210,7 @@ cc.Class({
 
     connectServer: function connectServer(data) {
         var onConnectSuccess = function onConnectSuccess() {
-            cc.director.loadScene("game", function () {
+            cc.director.loadScene("mjgame", function () {
                 th.sio.ping();
                 th.wc.hide();
             });

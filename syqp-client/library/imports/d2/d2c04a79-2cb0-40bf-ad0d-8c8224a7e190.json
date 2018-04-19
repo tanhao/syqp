@@ -10525,7 +10525,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "create_room",
+    "_name": "create_room_mj",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -11511,7 +11511,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "peoples",
+    "_name": "people",
     "_objFlags": 0,
     "_parent": {
       "__id__": 280
@@ -11995,8 +11995,8 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
-    "handler": "onPeoplesClicked",
+    "component": "MJCreateRoom",
+    "handler": "onPeopleClicked",
     "customEventData": "4"
   },
   {
@@ -12281,8 +12281,8 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
-    "handler": "onPeoplesClicked",
+    "component": "MJCreateRoom",
+    "handler": "onPeopleClicked",
     "customEventData": "3"
   },
   {
@@ -12567,8 +12567,8 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
-    "handler": "onPeoplesClicked",
+    "component": "MJCreateRoom",
+    "handler": "onPeopleClicked",
     "customEventData": "2"
   },
   {
@@ -13307,7 +13307,7 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
+    "component": "MJCreateRoom",
     "handler": "onRoundClicked",
     "customEventData": "8"
   },
@@ -13593,7 +13593,7 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
+    "component": "MJCreateRoom",
     "handler": "onRoundClicked",
     "customEventData": "12"
   },
@@ -13879,7 +13879,7 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
+    "component": "MJCreateRoom",
     "handler": "onRoundClicked",
     "customEventData": "16"
   },
@@ -14573,7 +14573,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "fee",
+    "_name": "payment",
     "_objFlags": 0,
     "_parent": {
       "__id__": 280
@@ -15051,9 +15051,9 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
-    "handler": "onFeeClicked",
-    "customEventData": "1"
+    "component": "MJCreateRoom",
+    "handler": "onPaymentClicked",
+    "customEventData": "FZ"
   },
   {
     "__type__": "cc.Node",
@@ -15337,9 +15337,9 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
-    "handler": "onFeeClicked",
-    "customEventData": "2"
+    "component": "MJCreateRoom",
+    "handler": "onPaymentClicked",
+    "customEventData": "AA"
   },
   {
     "__type__": "cc.ToggleContainer",
@@ -15985,7 +15985,7 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
+    "component": "MJCreateRoom",
     "handler": "onDifenClicked",
     "customEventData": "1"
   },
@@ -16271,7 +16271,7 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
+    "component": "MJCreateRoom",
     "handler": "onDifenClicked",
     "customEventData": "2"
   },
@@ -16557,7 +16557,7 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
+    "component": "MJCreateRoom",
     "handler": "onDifenClicked",
     "customEventData": "5"
   },
@@ -17273,9 +17273,9 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
+    "component": "MJCreateRoom",
     "handler": "onZuozhuangClicked",
-    "customEventData": "1"
+    "customEventData": "QZ"
   },
   {
     "__type__": "cc.Node",
@@ -17559,9 +17559,9 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
+    "component": "MJCreateRoom",
     "handler": "onZuozhuangClicked",
-    "customEventData": "2"
+    "customEventData": "LZ"
   },
   {
     "__type__": "cc.ToggleContainer",
@@ -17723,7 +17723,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "beishu",
+    "_name": "fengding",
     "_objFlags": 0,
     "_parent": {
       "__id__": 280
@@ -18207,8 +18207,8 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
-    "handler": "onBeishuClicked",
+    "component": "MJCreateRoom",
+    "handler": "onFengdingClicked",
     "customEventData": "32"
   },
   {
@@ -18493,8 +18493,8 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
-    "handler": "onBeishuClicked",
+    "component": "MJCreateRoom",
+    "handler": "onFengdingClicked",
     "customEventData": "64"
   },
   {
@@ -18779,8 +18779,8 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
-    "handler": "onBeishuClicked",
+    "component": "MJCreateRoom",
+    "handler": "onFengdingClicked",
     "customEventData": "128"
   },
   {
@@ -19433,7 +19433,7 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
+    "component": "MJCreateRoom",
     "handler": "onCtdsqClicked",
     "customEventData": ""
   },
@@ -19737,7 +19737,7 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
+    "component": "MJCreateRoom",
     "handler": "onCloseClicked",
     "customEventData": ""
   },
@@ -19883,7 +19883,7 @@
     "target": {
       "__id__": 258
     },
-    "component": "CreateRoom",
+    "component": "MJCreateRoom",
     "handler": "onCreateClicked",
     "customEventData": ""
   },
@@ -19912,22 +19912,6 @@
     "_isAbsVerticalCenter": true,
     "_originalWidth": 0,
     "_originalHeight": 0
-  },
-  {
-    "__type__": "4d86fQBcbxD06NbosHhw5bO",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 258
-    },
-    "_enabled": true,
-    "peoples": 4,
-    "round": 8,
-    "fee": 1,
-    "difen": 1,
-    "zuozhuang": 1,
-    "beishu": 32,
-    "ctdsq": false
   },
   {
     "__type__": "cc.Button",
@@ -19980,6 +19964,22 @@
     "_N$target": {
       "__id__": 258
     }
+  },
+  {
+    "__type__": "cce92YsEchF14Hs7bYK6yoT",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 258
+    },
+    "_enabled": true,
+    "people": 4,
+    "round": 8,
+    "payment": "FZ",
+    "difen": 1,
+    "zuozhuang": 1,
+    "fengding": 32,
+    "ctdsq": false
   },
   {
     "__type__": "cc.Node",

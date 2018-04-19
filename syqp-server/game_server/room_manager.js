@@ -2,7 +2,7 @@ const logger=require('../common/log.js').getLogger('room_manager.js');
 const crypto=require('../common/crypto.js');
 const mongoose=require('mongoose');
 const db=require('../common/db.js');
-const manager = require("./game_manager_dtz.js");
+const manager = require("./game_manager_mj.js");
 
 var rooms = {};
 //存放用户在那个房间那个座位
@@ -23,12 +23,12 @@ function generateRoomId(){
 
 module.exports.createRoom=function(creator,config,balance,ip,port,callback){
     let success=manager.checkConfig(config);
-    if(!success) return  callback(new Error('config invalid parameters'),null);
-
-    if((config.fee==1&&balance<40)||(config.fee==2&&balance<10)){
-        return callback(new Error("钻石不足，创建房间失败!"),null);
+    if(!success){
+        return callback(new Error('config invalid parameters'),null);
     }
-    
+    if(!manager.checkBalance(config,balance)){
+       return callback(new Error("钻石不足，创建房间失败!"),null);
+    }
     //验证房间配置
     let fnCreate=function(){
         let roomId=generateRoomId();
@@ -40,7 +40,7 @@ module.exports.createRoom=function(creator,config,balance,ip,port,callback){
                 ip:ip,
                 port: port,
                 config:config,
-                seats: manager.initSeats(),
+                seats: manager.initSeats(config),
                 //creator:mongoose.Types.ObjectId(creator),
                 creator:creator,
                 createdTime: Math.ceil(Date.now()/1000)
