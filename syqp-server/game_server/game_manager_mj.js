@@ -91,7 +91,30 @@ function deal(game){
     mopai(game,game.bank);
     
 }
+//检查是否可以暗杠
+function checkCanAnGang(game,seatData){
 
+}
+//检查是否可以点杠
+function checkCanDainGang(){
+
+}
+//检查是否可以明杠
+function checkCanMingGang(){
+
+}
+//检查是否可以碰
+function checkCanPeng(){
+    
+}
+//检查是否可以吃
+function checkCanChi(){
+    
+}
+//检查是否可以胡
+function checkCanHu(){
+    
+}
 //开房间时验证配置
 module.exports.checkConfig=function(config){
     if(config.peoples == null
@@ -233,22 +256,28 @@ module.exports.begin=function(roomId){
     //发牌
     deal(game);
 
+    game.state="playing";
+
     //剩余麻将
     let numOfMj=game.mjs.length-game.mjci;
     //剩余局数
-    let numOfRound=room.config.round=room.round;
+    let numOfRound=room.config.round-room.round;
+
+    let initData={
+        mj:numOfMj,
+        round:numOfRound,
+        bank:game.bank,
+    }
 
     for(let i=0;i<game.seats.length;i++){
         let seat = game.seats[i];
         //通知玩家手牌
         userManager.sendMsg(seat.userId,'holds_push',seat.holds);
-        //通知还剩多少张牌
-        userMgr.sendMsg(s.userId,'mj_count_push',numOfMj);
-        //通知还剩多少局
-        userMgr.sendMsg(s.userId,'round_push',numOfRound);
         //通知游戏开始
-        userManager.sendMsg(seat.userId,'begin_push',game.trun);
+        userManager.sendMsg(seat.userId,'begin_push',initData);
     }
+
+    
 
 
 }

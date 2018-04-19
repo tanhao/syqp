@@ -9,24 +9,19 @@ cc.Class({
        offline:cc.Sprite,
        fangzhu:cc.Sprite,
        emoji:cc.Sprite,
-       countdown:cc.Sprite,
        ready:cc.Sprite,
-       buchu:cc.Sprite,
+       bank:cc.Sprite,
        chat:cc.Label,
-       restCard:cc.Node,
 
        _userId:null,
        _userName:'--',
        _headImgUrl:null,
-       _countdown:null,
-       _countdownEndTime:null,
        _sex:0,
        _score:0,
-       _restCard:0,
        _isOffline:false,
        _isReady:false,
-       _isBuchu:false,
        _isFangzhu:false,
+       _isBank:false,
        _lastChatTime:-1,
     },
 
@@ -36,12 +31,6 @@ cc.Class({
         }
         if(this.emoji){
             this.emoji.node.active=false;
-        }
-        if(this.countdown){
-            this.countdown.node.active=false;
-        }
-        if(this.restCard){
-            this.restCard.active=false;
         }
         this.refresh();
     },
@@ -60,14 +49,12 @@ cc.Class({
         if(this.ready){
             this.ready.node.active = this._isReady; 
         }
-        if(this.buchu){
-            this.buchu.node.active = this._isBuchu; 
-        }
-
         if(this.fangzhu){
             this.fangzhu.node.active = this._isFangzhu;    
         }
-
+        if(this.bank){
+            this.bank.node.active = this._isBank;    
+        }
         //this.node.active = this._userId!=null;
     },
 
@@ -126,10 +113,10 @@ cc.Class({
         }
     },
 
-    setBuchu:function(isBuchu){
-        this._isBuchu = isBuchu;
+    setBank:function(isBank){
+        this._isBank = isBank;
         if(this.buchu){
-            this.buchu.node.active = this._isBuchu; 
+            this.bank.node.active = this._isBank; 
         }
     },
     
@@ -140,13 +127,6 @@ cc.Class({
         }
     },
 
-    setRestCard:function(rest){
-        this._restCard = rest;
-        if(this.restCard){
-            this.restCard.active=rest>0;
-            this.restCard.getChildByName("poker_count").getComponent(cc.Label).string = rest+"";
-        }
-    },
 
     setChat:function(content){
         if(this.chat){
@@ -166,10 +146,6 @@ cc.Class({
         }
     },
 
-    setCountdown(time){
-        this._countdown=time;
-        this._countdownEndTime=Date.now()+time*1000;
-    },  
 
     setInfo:function(id,name,score,headImgUrl){
         this.setUserID(id);
@@ -193,27 +169,5 @@ cc.Class({
                 this.emoji.node.active = false;
             }
         }
-        
-        if(this._countdownEndTime > Date.now()){
-            if(this.countdown.node.active==false){
-                this.countdown.node.active=true;
-            }else{
-               this.countdown.getComponent(cc.Sprite).fillRange=(this._countdownEndTime-Date.now())/1000/this._countdown;
-            }
-        }else if(this._countdownEndTime<=Date.now()&&this.countdown.node.active==true){
-            this.countdown.node.active=false;
-        }
-        
     },
-    
-
-
-
-    /*
-    update (dt) {
-    },
-    */
-
-  
-
 });

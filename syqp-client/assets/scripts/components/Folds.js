@@ -21,10 +21,8 @@ cc.Class({
         this._folds.right=[];
         this._folds.up=[];
         var names =['left','myself','right','up'];
-        var path = ["Canvas/myself/Folds1",
-                    "Canvas/myself/Folds2",
-                    "Canvas/right/Folds1/Folds",
-                    "Canvas/right/Folds2/Folds",
+        var path = ["Canvas/myself/Folds",
+                    "Canvas/right/Folds2",
                     "Canvas/up/Folds1",
                     "Canvas/up/Folds2",
                     "Canvas/left/Folds1",
