@@ -1,13 +1,13 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "gold_icon",
-    "texture": "5b6e0cee-510a-4a8d-b041-0ddb8864af47",
+    "name": "act_yaoqing",
+    "texture": "f68a9e5d-d894-4926-86ff-6e8678815c4d",
     "atlas": "",
     "rect": [
       0,
       0,
-      50,
+      279,
       48
     ],
     "offset": [
@@ -15,7 +15,7 @@
       0
     ],
     "originalSize": [
-      50,
+      279,
       48
     ]
   }

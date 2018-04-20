@@ -12,10 +12,14 @@ cc.Class({
         btnGuo:cc.Button,
         chupaidian:cc.Sprite,
         settingWin:cc.Node,
-        menuWin:cc.Node,
+        optionsWin:cc.Node,
+        nodePrepare:cc.Node,
+        nodeRoomInfo:cc.Node,
+        nodeCaishen:cc.Node,
 
         _mymjs:[],   //自己手上的牌Sprite结合
         _effects:[], //每个座位动画节点（Animation）
+        _chupais:[], //每个座位出牌节点（Sprite）
     },
 
     onLoad () {
@@ -23,23 +27,49 @@ cc.Class({
         this.addComponent("MJFolds");
         this.initView();
         this.initEventHandlers();
+
+        this.nodePrepare.active=true;
+        this.nodeCaishen.active=false;
+        this.nodeRoomInfo.active=false;
+
+        this.onGameBegin();
         th.audioManager.playBGM("bg_fight.mp3");
     },
 
     initView:function(){
+        //把自己的牌都设置为null
         var holds = this.node.getChildByName('myself').getChildByName('Holds');
         for(var j=0;j<holds.children.length;j++){
                 var sprite = holds.children[j].getComponent(cc.Sprite);
+                sprite.node.active=false;
                 this._mymjs.push(sprite);
                 sprite.spriteFrame = null;
         }
+        
         var seatNames = ["myself","right","up","left"];
+        //隐藏其他玩家手上的牌
+        for(var i=1;i<seatNames.length;i++){
+            var mjs=this.node.getChildByName(seatNames[i]).getChildByName('Holds').children;
+            for(var j=0;j<mjs.length;j++){
+                var sprite = mjs[j].getComponent(cc.Sprite);
+                sprite.node.active=false;
+            }
+        }
         for(var i=0;i<seatNames.length;i++){
             if((i==2&&th.socketIOManager.seats.length==3)||((i==1||i==3)&&th.socketIOManager.seats.length==2)){
                 continue;
             }
-            var animComponent=this.node.getChildByName(seatNames[i]).getChildByName('Effect').getComponent(cc.Animation);
-            this._effects.push(animComponent);
+            var seatNode=this.node.getChildByName(seatNames[i]);
+            var animation=seatNode.getChildByName('Effect').getComponent(cc.Animation);
+            this._effects.push(animation);
+            
+        }
+        for(var i=0;i<seatNames.length;i++){
+            var seatNode=this.node.getChildByName(seatNames[i]);
+            var sprite=seatNode.getChildByName('Chupai').getComponent(cc.Sprite);
+            sprite.node.active=false;
+            sprite.spriteFrame = null;
+            this._chupais.push(sprite);
         }
         this.hideOptions();
     },
@@ -120,10 +150,21 @@ cc.Class({
 
     },
     onGameBegin:function(){
-        //隐藏微信邀请，返回大厅，按钮，
-        //启动第一个倒计时
-        this._seat[th.socketIOManager.turn].setCountdown(20);
-        
+        /*
+        this.hideOptions();
+        //显示手上的牌
+        var seatNames = ["right","up","left"];
+        for(var i=0;i<seatNames.length;i++){
+            var mjs=this.node.getChildByName(seatNames[i]).getChildByName('Holds').children;
+            for(var j=0;j<mjs.length;j++){
+                var mj=mjs[j];
+                mj.active=false;
+                var sprite = mj.getComponent(cc.Sprite);
+                sprite.spriteFrame = null;
+                this._folds[name].push(sprite);  
+            }
+        }
+        */
     },
     initPokers:function(){
         var seats=th.socketIOManager.seats;
@@ -150,6 +191,7 @@ cc.Class({
     */
 
     hideOptions:function(data){
+        this.optionsWin.active=false;
         var activeReadyBtn=th.socketIOManager.round==0&&!th.socketIOManager.isReady(th.userManager.userId)
         this.btnReady.node.active = activeReadyBtn;
         this.btnGang.node.active=false;

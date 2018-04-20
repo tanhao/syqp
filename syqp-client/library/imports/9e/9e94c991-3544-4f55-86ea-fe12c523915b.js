@@ -2,14 +2,19 @@
 cc._RF.push(module, '9e94cmRNURPVYbq/hLFI5Fb', 'MJRoom');
 // scripts/components/MJRoom.js
 
-"use strict";
+'use strict';
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
+        menuWin: cc.Node,
         lblRoomId: cc.Label,
         lblWangfa: cc.Label,
+        btnMenu: cc.Button,
+        btnLeave: cc.Button,
+        btnWechatInvite: cc.Button,
+        btnDissolve: cc.Button,
         _seats: []
     },
 
@@ -23,6 +28,13 @@ cc.Class({
     },
 
     initView: function initView() {
+        if (th.socketIOManager.seats.length == 2) {
+            this.node.getChildByName('left').active = false;
+            this.node.getChildByName('right').active = false;
+        } else if (th.socketIOManager.seats.length == 3) {
+            this.node.getChildByName('up').active = false;
+        }
+
         this.lblRoomId.string = th.socketIOManager.roomId || '------';
         this.lblWangfa.string = th.socketIOManager.getWanfa();
 
@@ -34,6 +46,7 @@ cc.Class({
             var seatComponent = this.node.getChildByName(seatNames[i]).getChildByName('Seat').getComponent('MJSeat');
             this._seats.push(seatComponent);
         }
+        this.refreshBtns();
     },
 
     initSeats: function initSeats() {
@@ -52,6 +65,15 @@ cc.Class({
         this._seats[index].setOffline(!seat.online);
     },
 
+    refreshBtns: function refreshBtns() {
+        var isIdle = th.socketIOManager.round == 0;
+        var isFangzhu = th.socketIOManager.isFangzhu();
+        this.btnDissolve.node.active = isIdle && isFangzhu;
+        this.btnLeave.node.active = isIdle && !isFangzhu;
+        this.btnWechatInvite.node.active = isIdle;
+        this.btnMenu.node.active = !isIdle;
+    },
+
     initEventHandlers: function initEventHandlers() {},
 
     onMenuClicked: function onMenuClicked() {
@@ -64,7 +86,6 @@ cc.Class({
         }, true);
     },
     onBtnDissolveClicked: function onBtnDissolveClicked() {
-        this.menuWin.active = false;
         th.alert.show("解散房间", "解散房间不扣钻石，是否确定解散？", function () {
             th.sio.send("dissolve");
         }, true);
@@ -95,6 +116,9 @@ cc.Class({
     onBtnReadyClicked: function onBtnReadyClicked() {
         cc.log('onBtnReadyClicked==>');
         th.sio.send("ready");
+    },
+    onBtnWechatInviteClicked: function onBtnWechatInviteClicked() {
+        cc.log('onBtnWechatInviteClicked==>');
     }
 
     // update: function (dt) {

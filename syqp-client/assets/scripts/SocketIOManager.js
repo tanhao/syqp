@@ -8,10 +8,11 @@ cc.Class({
         seats:null,
         round:null,
         creator:null,         //房主ID
+        chupai:-1,
         seatIndex:-1,         //座位Index
         bankIndex:-1,         //庄Index
         needCheckIp:false,
-        status:null,
+        status:'idle',          //状态  idle,playing
     },
 
 

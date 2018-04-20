@@ -214,7 +214,7 @@ module.exports.begin=function(roomId){
         turn:0,          //轮到那个座位出牌
         caishen:null,    //财神
         chupai:null,     //出的牌
-        state:"idle",    //idle,start,finish
+        state:"idle",    //idle,playing,finish
         mjs:[],          //剩余麻将
         mjci:0,           //麻将当前Index,(摸到第几个麻将了)
     }
