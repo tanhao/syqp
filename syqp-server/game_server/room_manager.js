@@ -89,17 +89,17 @@ module.exports.joinRoom = function(userId,name,headImgUrl,sex,roomId,ip,port,cal
     let room = rooms[roomId];
     if(room){
         //如果房间存在，选一个座位
-        if(!fnTakeSeat(room)) return  callback(new Error('room is full'),null);
+        if(!fnTakeSeat(room)) return  callback(new Error('房间人数已满!'),null);
         callback(null,room);
     }else{
         db.getRoomAndModifyIpPort(roomId,ip,port,function(err,room){
             if(err) return callback(err,null);
-            if(!room) return callback(new Error('room no exist'),null);
+            if(!room) return callback(new Error('房间不存在!'),null);
             //根据DB的数据还原room
             //console.log("根据DB的数据还原room",manager);
             rooms[roomId]=room;
             rooms[roomId].manager=manager;
-            if(!fnTakeSeat(room)) return  callback(new Error('room is full'),null);
+            if(!fnTakeSeat(room)) return  callback(new Error('房间人数已满!'),null);
             callback(null,room);
         })
     }
@@ -109,7 +109,7 @@ module.exports.getRoom = function(roomId){
 	return rooms[roomId];
 };
 
-module.exports.getUserRoomId= function(userId){
+module.exports.getUserRoomId = function(userId){
     let location = locations[userId];
     return location && location.roomId;
 };
@@ -118,6 +118,15 @@ module.exports.getUserSeatIndex = function(userId){
     let location = locations[userId];
     return location && location.seatIndex;
 };
+
+module.exports.isInRoom = function(userId){
+    logger.info(userId,locations[userId]);
+    if(locations[userId]){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 module.exports.setUserIp = function(userId,ip){
     let roomId=module.exports.getUserRoomId(userId);

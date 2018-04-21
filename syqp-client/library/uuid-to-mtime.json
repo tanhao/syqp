@@ -1854,16 +1854,6 @@
     "meta": 1524152854240,
     "relativePath": "scripts\\components\\MJStatus.js"
   },
-  "1b1f47e5-5922-4d76-afe1-52281a8e7389": {
-    "asset": 1524156437043,
-    "meta": 1524156445350,
-    "relativePath": "scripts\\components\\Hall.js"
-  },
-  "d2c04a79-2cb0-40bf-ad0d-8c8224a7e190": {
-    "asset": 1524160672859,
-    "meta": 1524160672888,
-    "relativePath": "scenes\\hall.fire"
-  },
   "cce9262c-11c8-45d7-81ec-edb60aeb2a13": {
     "asset": 1524160317872,
     "meta": 1524160570059,
@@ -2089,24 +2079,34 @@
     "meta": 1524190888170,
     "relativePath": "images\\public\\act_yaoqing.png"
   },
+  "1b1f47e5-5922-4d76-afe1-52281a8e7389": {
+    "asset": 1524231402673,
+    "meta": 1524231404796,
+    "relativePath": "scripts\\components\\Hall.js"
+  },
   "f3060721-473f-4553-aad0-dcebd2bbb9b2": {
-    "asset": 1524191907601,
-    "meta": 1524192093721,
+    "asset": 1524233901086,
+    "meta": 1524233919879,
     "relativePath": "scripts\\SocketIOManager.js"
   },
-  "9e94c991-3544-4f55-86ea-fe12c523915b": {
-    "asset": 1524201995644,
-    "meta": 1524201997870,
-    "relativePath": "scripts\\components\\MJRoom.js"
-  },
   "4bfed7c6-f78c-4bad-b25d-f78eaa6dcc77": {
-    "asset": 1524202103173,
-    "meta": 1524202106506,
+    "asset": 1524234949833,
+    "meta": 1524234965377,
     "relativePath": "scripts\\components\\MJGame.js"
   },
+  "9e94c991-3544-4f55-86ea-fe12c523915b": {
+    "asset": 1524236488987,
+    "meta": 1524236492995,
+    "relativePath": "scripts\\components\\MJRoom.js"
+  },
+  "d2c04a79-2cb0-40bf-ad0d-8c8224a7e190": {
+    "asset": 1524283386967,
+    "meta": 1524283387007,
+    "relativePath": "scenes\\hall.fire"
+  },
   "17fef454-d86d-4d15-9140-1f2e6f234286": {
-    "asset": 1524221808487,
-    "meta": 1524221808529,
+    "asset": 1524301135934,
+    "meta": 1524301135975,
     "relativePath": "scenes\\mjgame.fire"
   }
 }

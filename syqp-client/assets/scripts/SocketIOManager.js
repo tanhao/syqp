@@ -31,8 +31,11 @@ cc.Class({
         this.seats=null;
         this.round=null;
         this.creator=null;
+        this.chupai=-1;
         this.seatIndex=-1;
+        this.bankIndex=-1;
         this.needCheckIp=false;
+        this.status='idle';
     },
 
     dispatchEvent(event,data){
@@ -102,7 +105,9 @@ cc.Class({
         //其他玩家断线
         th.sio.addHandler("offline_push",function(data){
             cc.log("==>SocketIOManager offline_push:",JSON.stringify(data));
-            self.dispatchEvent("offline_push",data);
+            if(self.roomId!=null){
+                self.dispatchEvent("offline_push",data);
+            }
         })
         //其他玩家上线
         th.sio.addHandler("online_push",function(data){

@@ -1,0 +1,64 @@
+2018-04-20T01:02:34.108Z - normal: Load ~/.CocosCreator/settings.json
+2018-04-20T01:02:34.113Z - normal: checking language setting...
+2018-04-20T01:02:34.113Z - normal: Language: zh
+2018-04-20T01:02:36.281Z - success: protocol editor-framework registered
+2018-04-20T01:02:36.282Z - success: protocol app registered
+2018-04-20T01:02:36.282Z - success: protocol theme registered
+2018-04-20T01:02:36.282Z - success: protocol packages registered
+2018-04-20T01:02:36.282Z - success: protocol unpack registerred
+2018-04-20T01:02:36.282Z - success: protocol disable-commonjs registerred
+2018-04-20T01:02:36.527Z - normal: connected!
+2018-04-20T01:02:36.537Z - normal: Check project D:\Workspaces_Chess\syqp\syqp-client
+2018-04-20T01:02:36.539Z - normal: Initializing Cocos2d
+2018-04-20T01:02:36.897Z - normal: Initializing Asset Database
+2018-04-20T01:02:36.960Z - success: protocol uuid registerred
+2018-04-20T01:02:36.961Z - success: protocol db registerred
+2018-04-20T01:02:36.961Z - success: protocol thumbnail registerred
+2018-04-20T01:02:36.961Z - normal: Loading editor/builtin packages
+2018-04-20T01:02:36.993Z - success: anysdk loaded
+2018-04-20T01:02:37.158Z - success: assets loaded
+2018-04-20T01:02:37.161Z - success: builder loaded
+2018-04-20T01:02:37.164Z - success: cocos-analytics loaded
+2018-04-20T01:02:37.168Z - success: console loaded
+2018-04-20T01:02:37.221Z - success: fb-instant-games loaded
+2018-04-20T01:02:37.225Z - success: hierarchy loaded
+2018-04-20T01:02:37.229Z - success: inspector loaded
+2018-04-20T01:02:37.231Z - success: keystore loaded
+2018-04-20T01:02:37.234Z - success: node-library loaded
+2018-04-20T01:02:37.236Z - success: package-asset loaded
+2018-04-20T01:02:37.239Z - success: preferences loaded
+2018-04-20T01:02:37.241Z - success: project-exporter loaded
+2018-04-20T01:02:37.263Z - success: project-importer loaded
+2018-04-20T01:02:37.266Z - success: project-settings loaded
+2018-04-20T01:02:37.268Z - success: ui-kit loaded
+2018-04-20T01:02:37.271Z - success: ui-grid loaded
+2018-04-20T01:02:37.275Z - success: scene loaded
+2018-04-20T01:02:37.276Z - success: sprite-editor loaded
+2018-04-20T01:02:37.280Z - success: store loaded
+2018-04-20T01:02:37.286Z - success: timeline loaded
+2018-04-20T01:02:37.287Z - normal: Loading builtin packages
+2018-04-20T01:02:37.290Z - success: asset-db-debugger loaded
+2018-04-20T01:02:37.291Z - success: code-editor loaded
+2018-04-20T01:02:37.292Z - success: color-picker loaded
+2018-04-20T01:02:37.295Z - success: package-manager loaded
+2018-04-20T01:02:37.301Z - success: sdkbox loaded
+2018-04-20T01:02:37.305Z - success: tester loaded
+2018-04-20T01:02:37.307Z - success: ui-kit-preview-extra loaded
+2018-04-20T01:02:37.309Z - success: ui-kit-preview loaded
+2018-04-20T01:02:37.311Z - success: ui-tree loaded
+2018-04-20T01:02:39.766Z - normal: Initializing project D:\Workspaces_Chess\syqp\syqp-client
+2018-04-20T01:02:39.770Z - normal: Loading packages
+2018-04-20T01:02:39.776Z - normal: Watching packages
+2018-04-20T01:02:39.960Z - normal: Run Application
+2018-04-20T01:02:44.750Z - success: preview server running at http://localhost:7456
+2018-04-20T01:02:50.133Z - warn: 会话不存在或已过期
+2018-04-20T01:02:51.604Z - normal: 1.9.0
+2018-04-20T13:03:56.974Z - warn: The Button referenced by component "Hall" is invalid. Detailed information:
+Node path: "Canvas"
+
+2018-04-20T13:03:58.255Z - warn: The Button referenced by component "Hall" is invalid. Detailed information:
+Node path: "Canvas"
+
+2018-04-20T13:03:59.017Z - warn: The Button referenced by component "Hall" is invalid. Detailed information:
+Node path: "Canvas"
+

@@ -86,53 +86,17 @@ cc.Class({
         var self = this;
         th.socketIOManager.dataEventHandler = this.node;
 
-        this.node.on('init_room', function (target) {
-            console.log('==>Gmae init_room:', JSON.stringify(target.detail));
-        });
-        //加入房间
-        this.node.on('join_push', function (target) {
-            console.log('==>Gmae join_push:', JSON.stringify(target.detail));
-            self.initSingleSeat(target.detail);
-        });
         //检查IP
         this.node.on('check_ip', function (target) {
-            console.log('==>Gmae check_ip:', JSON.stringify(target.detail));
-        });
-        //离开房间
-        this.node.on('leave_push', function (target) {
-            console.log('==>Gmae leave_push:', JSON.stringify(target.detail));
-            self.initSingleSeat(target.detail);
-        });
-        //解散房间
-        this.node.on('dissolve_push', function (target) {
-            console.log('==>Gmae dissolve_push:', JSON.stringify(target.detail));
-        });
-        //其他玩家断线
-        this.node.on("offline_push", function (target) {
-            console.log('==>Gmae offline_push:', JSON.stringify(target.detail));
-            var seatIndex = th.socketIOManager.getSeatIndexById(target.detail.userId);
-            var index = th.socketIOManager.getLocalIndex(seatIndex);
-            self._seat[index].setOffline(true);
-        });
-        //其他玩家上线
-        this.node.on("online_push", function (target) {
-            console.log('==>Gmae online_push:', JSON.stringify(target.detail));
-            var seatIndex = th.socketIOManager.getSeatIndexById(target.detail.userId);
-            var index = th.socketIOManager.getLocalIndex(seatIndex);
-            self._seat[index].setOffline(false);
+            console.log('==>MJGame check_ip:', JSON.stringify(target.detail));
         });
         //自己准备返回
         this.node.on("ready_result", function (target) {
             console.log('==>Gmae ready_result:', JSON.stringify(target.detail));
             var seat = target.detail;
             self.btnReady.node.active = th.socketIOManager.round == 0 && !seat.ready;
-            self.initSingleSeat(seat);
         });
-        //其他玩家准备
-        this.node.on("ready_push", function (target) {
-            console.log('==>Gmae ready_push:', JSON.stringify(target.detail));
-            self.initSingleSeat(target.detail);
-        });
+
         //玩家手上的牌
         this.node.on("holds_push", function (target) {
             console.log('==>Gmae holds_push:', JSON.stringify(target.detail));

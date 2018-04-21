@@ -21,10 +21,6 @@ module.exports.get=function(userId){
     return users[userId];
 }
 
-module.exports.offline = function(userId){
-    return users[userId]=null;
-};
-
 module.exports.isOnline = function(userId){
    return users[userId]?true:false;
 };
@@ -46,7 +42,7 @@ module.exports.kickAllInRoom = function(roomId){
     for(let i = 0; i < room.seats.length; ++i){
         let seat = room.seats[i];
         let socket = users[seat.userId];
-        if(socket){
+        if(socket!=null){
             module.exports.deleteUser(seat.userId);
             socket.disconnect();
         }

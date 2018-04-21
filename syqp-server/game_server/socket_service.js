@@ -127,13 +127,12 @@ module.exports.start=function(config){
         });
         //断开链接
 		socket.on('disconnect',function(data){
-            logger.info(userId+" disconnect !!!");
+            logger.info(socket.userId+" disconnect !!!");
             var userId=socket.userId;
             if(!userId) return;
             var roomId=roomManager.getUserRoomId(userId);
             if(!roomId) return;
             roomManager.setUserOnline(userId,false);
-            userManager.offline(userId)
             userManager.broacastInRoom('offline_push',{userId:userId},userId,false);
             socket.userId = null;
         });

@@ -46,6 +46,7 @@ cc.Class({
             var seatComponent = this.node.getChildByName(seatNames[i]).getChildByName('Seat').getComponent('MJSeat');
             this._seats.push(seatComponent);
         }
+        cc.log("MJRoom Seats:", this._seats.length);
         this.refreshBtns();
     },
 
@@ -74,7 +75,45 @@ cc.Class({
         this.btnMenu.node.active = !isIdle;
     },
 
-    initEventHandlers: function initEventHandlers() {},
+    initEventHandlers: function initEventHandlers() {
+        var self = this;
+        //加入房间
+        this.node.on('join_push', function (target) {
+            console.log('==>MJRoom join_push:', JSON.stringify(target.detail));
+            self.initSingleSeat(target.detail);
+        });
+        //离开房间
+        this.node.on('leave_push', function (target) {
+            console.log('==>MJRoom leave_push:', JSON.stringify(target.detail));
+            self.initSingleSeat(target.detail);
+        });
+
+        //其他玩家断线
+        this.node.on("offline_push", function (target) {
+            console.log('==>MJRoom offline_push:', JSON.stringify(target.detail));
+            var seatIndex = th.socketIOManager.getSeatIndexById(target.detail.userId);
+            var index = th.socketIOManager.getLocalIndex(seatIndex);
+            self._seats[index].setOffline(true);
+        });
+        //其他玩家上线
+        this.node.on("online_push", function (target) {
+            console.log('==>MJRoom online_push:', JSON.stringify(target.detail));
+            var seatIndex = th.socketIOManager.getSeatIndexById(target.detail.userId);
+            var index = th.socketIOManager.getLocalIndex(seatIndex);
+            self._seats[index].setOffline(false);
+        });
+        //自己准备返回
+        this.node.on("ready_result", function (target) {
+            console.log('==>MJRoom ready_result:', JSON.stringify(target.detail));
+            var seat = target.detail;
+            self.initSingleSeat(seat);
+        });
+        //其他玩家准备
+        this.node.on("ready_push", function (target) {
+            console.log('==>MJRoom ready_push:', JSON.stringify(target.detail));
+            self.initSingleSeat(target.detail);
+        });
+    },
 
     onMenuClicked: function onMenuClicked() {
         this.menuWin.active = !this.menuWin.active;

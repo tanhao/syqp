@@ -37,6 +37,7 @@ cc.Class({
         this.lblId.string = "ID:" + th.userManager.userId;
         this.lblName.string = th.userManager.userName;
         this.lblBalance.string = th.userManager.balance;
+        console.log("FFFFFFFFFFFFF:", th.userManager.roomId);
         if (th.userManager.roomId) {
             this.btnJoinRoom.node.active = false;
             this.btnReturnRoom.node.active = true;
@@ -68,6 +69,10 @@ cc.Class({
     // },
 
     onCreateRoomClicked: function onCreateRoomClicked() {
+        if (th.userManager.roomId) {
+            th.alert.show("提示", "你已在房间中，是否返回游戏房间？", this.onReturnRoomClicked, true);
+            return;
+        }
         this.createRoomWin.active = true;
     },
 

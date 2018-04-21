@@ -125,7 +125,7 @@ module.exports.joinRoom=function(userId,name,headImgUrl,sex,roomId,callback){
             //取房间地址
             db.getRoomAddress(roomId,function(err,room){
                 if(err) return callback(err,null);
-                if(!room) return callback(new Error('room no exist.'),null);
+                if(!room) return callback(new Error('房间不存在!'),null);
                 callback(null,room);
             });
         },
@@ -136,7 +136,7 @@ module.exports.joinRoom=function(userId,name,headImgUrl,sex,roomId,callback){
             let server=serverMap[id];
             function chooseNewServer(){
                 let server = chooseServer();
-                if(!server) return  callback(new Error('no server can be used'),null);
+                if(!server) return  callback(new Error('没有服务器可以使用!'),null);
                 callback(null,server);
             }
             if(server){
