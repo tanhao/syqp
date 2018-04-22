@@ -9,13 +9,13 @@ var games = {};
 var users={};
 //取麻将类型
 function getMjType(id){
-    if(id >= 11 && id <= 19){
+    if(id >= 1 && id <= 9){
         return 0;//万
-    }else if(id >= 31 && id <= 39){
+    }else if(id >= 11 && id <= 19){
         return 1;//条
-    }else if(id >= 51 && id < 59){
+    }else if(id >= 21 && id <= 29){
         return 2;//筒子
-    }else if(id >= 71 && id < 77){
+    }else if(id >= 31 && id <= 37){
         return 3;//风
     }
 }
@@ -23,30 +23,30 @@ function getMjType(id){
 function shuffle(game) {
     let mjs = game.mjs;
     
-     //万 (11 ~ 19表示万)
+     //万 (1 ~ 9表示万)
     let index = 0;
+    for(let i = 1; i <= 9; ++i){
+        for(let c = 0; c < 4; ++c){
+            mjs[index] = i;
+            index++;
+        }
+    }
+    //条 (11 ~ 19)
     for(let i = 11; i <= 19; ++i){
         for(let c = 0; c < 4; ++c){
             mjs[index] = i;
             index++;
         }
     }
-    //条 (31 ~ 39表示条子)
-    for(let i = 31; i <= 39; ++i){
+    //筒 (21 ~ 29 表示筒子)
+    for(let i = 21; i <= 29; ++i){
         for(let c = 0; c < 4; ++c){
             mjs[index] = i;
             index++;
         }
     }
-    //筒 (51 ~ 59 表示筒子)
-    for(let i = 51; i <= 59; ++i){
-        for(let c = 0; c < 4; ++c){
-            mjs[index] = i;
-            index++;
-        }
-    }
-    //风 (71 ~ 77表示 东南酉北中发白)
-    for(let i = 71; i <= 77; ++i){
+    //风 (31 ~ 37表示 东南酉北中发白)
+    for(let i = 31; i <= 37; ++i){
         for(let c = 0; c < 4; ++c){
             mjs[index] = i;
             index++;
