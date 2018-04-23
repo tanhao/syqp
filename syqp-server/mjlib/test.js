@@ -3,12 +3,8 @@ let mjlib = require( './mjlib.js' );
 
 function init(){
     mjlib.init();
-   logger.info('Process: heapTotal '+format(mem.heapTotal) + ' heapUsed ' + format(mem.heapUsed) + ' rss ' + format(mem.rss));
-
     mjlib.TableMgr.loadTable();
     mjlib.TableMgr.loadFengTable();
-    logger.info('Process: heapTotal '+format(mem.heapTotal) + ' heapUsed ' + format(mem.heapUsed) + ' rss ' + format(mem.rss));
-
 }
 
 init();
@@ -16,10 +12,10 @@ init();
 function test_one_success() {
     //定义34中牌型
     var cards = [
-        0, 1, 1, 0, 0, 0, 3, 0, 0, 
-        0, 1, 1, 1, 0, 0, 2, 2, 2,
-        0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0,
+        0, 1, 1, 1, 0, 0, 0, 0, 0, 
+        0, 1, 1, 1, 0, 0, 1, 1, 1,
+        0, 1, 1, 1, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 2,
     ];
 
     // 筒  万 条 

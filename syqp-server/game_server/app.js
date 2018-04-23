@@ -38,4 +38,3 @@ db.init(config.mongodb(),function(err,isConnected){
         */
     }
 });
-

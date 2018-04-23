@@ -86,14 +86,14 @@ TableMgr.loadTable = function()
     {
         let name = "table_%d.tbl".replace( '%d', i );
         this.m_tbl[ i ].load( name );
-       // console.log("加载文件["+name+"]Size="+this.m_tbl[i].length);
+        console.log("加载文件["+name+"] Size="+this.m_tbl[i].size());
     }
 
     for( let i = 0; i < 4; i ++ )
     {
         let name = "jiang_table_%d.tbl".replace( '%d', i );
         this.m_jiang_tbl[ i ].load( name );
-        //console.log("加载文件["+name+"]Size="+this.m_tbl[i].length);
+        console.log("加载文件["+name+"] Size="+this.m_jiang_tbl[i].size());
     }
 };
 
@@ -116,11 +116,13 @@ TableMgr.loadFengTable=function()
     for(let i=0; i< 4; i++){
         let name = "feng_table_%d.tbl".replace( '%d', i );
         this.m_feng_tbl[i].load(name);
+        console.log("加载文件["+name+"] Size="+this.m_feng_tbl[i].size());
     }
      for ( let i = 0; i < 4; i++ )
     {
         let name = "feng_jiang_table_%d.tbl".replace( '%d', i );
         this.m_feng_jiang_tbl[ i ].load( name );
+        console.log("加载文件["+name+"] Size="+this.m_feng_jiang_tbl[i].size());
     }
 }
 

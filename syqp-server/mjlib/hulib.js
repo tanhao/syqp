@@ -2,8 +2,9 @@
 
 "use strict";
 
-let MTableMgr = require( './table_mgr.js' );
+let TableMgr = require( './table_mgr.js' );
 
+//1-9万，1-9条，1-9筒，7个风，一共34种
 const MAX_CARD = 34;
 // let ProbabilityItem = { };
 let ProbabilityItemTable = { };
@@ -12,12 +13,14 @@ function _init()
 {
     //需要初始化多个对象
     ProbabilityItemTable = { array_num : 0, m_num : [ 0, 0, 0, 0 ], m : [] };
+    //万，条，筒，风4个种类
     for( let i = 0; i < 4; i ++ )
     {
         ProbabilityItemTable.m[ i ] = [];
+        //每个种类最多5组牌 n*ABC+m*AAA+DD 
         for( let j = 0; j < 5; j ++ )
         {
-            var  ProbabilityItem = { eye : false, gui_num : 0 };
+            var  ProbabilityItem = { jiang : false, gui_num : 0 };
             ProbabilityItemTable.m[ i ].push( ProbabilityItem );
         }
     }
@@ -66,12 +69,14 @@ HuLib.get_hu_info = function( cards, cur_card,gui_1,gui_2)
         tmp_cards[ gui_index2 ] = 0;
     }
 
+    console.log("gui_num:",gui_num);
     if (!this._split( tmp_cards, gui_num, ProbabilityItemTable ) )
     {
 
         return false;
     }
 
+    console.log(JSON.stringify(ProbabilityItemTable));
 
     return this.check_probability( ProbabilityItemTable, gui_num );
 };
@@ -105,10 +110,10 @@ HuLib.check_probability = function( ptbl, gui_num )
     for ( let i = 0; i < ptbl.m_num[ 0 ]; i++ )
     {
         let item = ptbl.m[0][i];
-        let eye = item.eye;
+        let jiang = item.jiang;
         let gui = gui_num - item.gui_num;
 
-        if ( this.check_probability_sub( ptbl, eye, gui, 1, ptbl.array_num ) )
+        if ( this.check_probability_sub( ptbl, jiang, gui, 1, ptbl.array_num ) )
         {
 
             return true;
@@ -118,12 +123,12 @@ HuLib.check_probability = function( ptbl, gui_num )
     return false;
 };
 
-HuLib.check_probability_sub = function( ptbl, eye, gui_num, level, max_level )
+HuLib.check_probability_sub = function( ptbl, jiang, gui_num, level, max_level )
 {
     for ( let i = 0; i < ptbl.m_num[ level ]; i++ )
     {
         let item = ptbl.m[ level ][ i ];
-        if ( eye && item.eye )
+        if ( jiang && item.jiang )
         {
             continue;
         }
@@ -133,13 +138,13 @@ HuLib.check_probability_sub = function( ptbl, eye, gui_num, level, max_level )
         }
         if ( level < max_level - 1 )
         {
-            if ( this.check_probability_sub( ptbl, eye || item.eye, gui_num - item.gui_num, level + 1, ptbl.array_num ) )
+            if ( this.check_probability_sub( ptbl, jiang || item.jiang, gui_num - item.gui_num, level + 1, ptbl.array_num ) )
             {
                 return true;
             }
             continue;
         }
-        if ( !eye && !item.eye && item.gui_num + 2 > gui_num )
+        if ( !jiang && !item.jiang && item.gui_num + 2 > gui_num )
         {
             continue;
         }
@@ -199,7 +204,7 @@ HuLib.list_probability = function( color, gui_num, num, key, chi, ptbl )
 
     for ( let i = 0; i <= gui_num; i++ )
     {
-        let eye = false;
+        let jiang = false;
         let yu = ( num + i ) % 3;
         if ( yu == 1 )
         {
@@ -207,13 +212,13 @@ HuLib.list_probability = function( color, gui_num, num, key, chi, ptbl )
         }
         else if( yu == 2 )
         {
-            eye = true;
+            jiang = true;
         }
-        if ( find || MTableMgr.check( key, i, eye, chi ) )
+        if ( find || TableMgr.check( key, i, jiang, chi ) )
         {
             let item = ptbl.m[ anum ][ ptbl.m_num[ anum ] ];
             ptbl.m_num[ anum ]++;
-            item.eye = eye;
+            item.jiang = jiang;
             item.gui_num = i;
             find = true
         }
