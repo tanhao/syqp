@@ -8,3 +8,9 @@ module.exports.init = function()
     this.TableMgr.init();
     console.log("init table manager end.");
 };
+
+module.exports.initTable = function()
+{
+    this.TableMgr.loadTable();
+    this.TableMgr.loadFengTable();
+};
