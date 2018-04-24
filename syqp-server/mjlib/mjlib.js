@@ -11,6 +11,8 @@ module.exports.init = function()
 
 module.exports.initTable = function()
 {
+    this.TableMgr.init();
     this.TableMgr.loadTable();
     this.TableMgr.loadFengTable();
+    return this;
 };

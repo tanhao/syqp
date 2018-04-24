@@ -83,6 +83,7 @@ Gen.gen_no_jiang = function( cards, level, jiang )
         //穷举加上坎子，或者顺子
         //0-8 9个坎子，9-15 7个顺子 
         if(i<=8){
+            //因为可能4个带1个鬼
             if(cards[i]>=3){
                 continue;
             }

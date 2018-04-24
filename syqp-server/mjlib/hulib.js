@@ -71,6 +71,7 @@ HuLib.get_hu_info = function( cards, cur_card,gui_1)
     {
         return false;
     }
+    console.log(JSON.stringify(Probability));
     return this.check_probability( Probability, gui_num );
 };
 
@@ -130,13 +131,11 @@ HuLib.check_probability = function( ptbl, gui_num )
     // 全是鬼牌
     if( ptbl.array_num == 0 )
     {
-        console.log("全是鬼牌");
         return gui_num >= 2;
     }
     // 只有一种花色的牌的鬼牌
     if ( ptbl.array_num == 1 )
     { 
-        console.log("清一色");
         return true;
     }
     // 尝试组合花色，能组合则胡

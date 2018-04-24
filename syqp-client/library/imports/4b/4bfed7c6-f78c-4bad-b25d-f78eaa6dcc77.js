@@ -10,6 +10,7 @@ cc.Class({
     properties: {
         lblMjCount: cc.Label,
         lblRoundCount: cc.Label,
+        spriteCaishen: cc.Sprite,
         btnReady: cc.Button,
         btnGang: cc.Button,
         btnPeng: cc.Button,
@@ -18,9 +19,9 @@ cc.Class({
         btnGuo: cc.Button,
         chupaidian: cc.Sprite,
         settingWin: cc.Node,
-        optionsWin: cc.Node,
+        optionsWin: cc.Node, ///所有可以做的操作节点
         nodePrepare: cc.Node,
-        nodeRoomInfo: cc.Node,
+        nodeGameInfo: cc.Node,
         nodeCaishen: cc.Node,
 
         _mymjs: [], //自己手上的牌Sprite结合
@@ -38,7 +39,7 @@ cc.Class({
 
         this.nodePrepare.active = true;
         this.nodeCaishen.active = false;
-        this.nodeRoomInfo.active = false;
+        this.nodeGameInfo.active = false;
 
         this.onGameBegin();
         th.audioManager.playBGM("bg_fight.mp3");
@@ -100,7 +101,7 @@ cc.Class({
         //玩家手上的牌
         this.node.on("holds_push", function (target) {
             console.log('==>Gmae holds_push:', JSON.stringify(target.detail));
-            self.initPokers();
+            self.initMahjongs();
         });
         //开始游戏，出头的人
         this.node.on("begin_push", function (target) {
@@ -111,10 +112,37 @@ cc.Class({
                 cc.log("check ip ....");
             }
         });
-
         //断线
         this.node.on('disconnect', function (target) {
             console.log('==>Gmae disconnect:', JSON.stringify(target.detail));
+        });
+
+        //通知还剩多少张牌
+        this.node.on("mjsy_push", function (target) {
+            console.log('==>Gmae mjsy_push:', JSON.stringify(target.detail));
+            self.lblMjCount.string = "剩余 " + th.socketIOManager.mjsy + " 张";
+        });
+
+        //通知当前是第几局
+        this.node.on("round_push", function (target) {
+            console.log('==>Gmae round_push:', JSON.stringify(target.detail));
+            self.lblRoundCount.string = "剩余 " + (th.socketIOManager.config.round - th.socketIOManager.round) + " 局";
+        });
+
+        this.node.on('begin_push', function (data) {
+            console.log('==>Gmae begin_push:', JSON.stringify(target.detail));
+            self.onGameBegin();
+            cc.log("check ip ....");
+        });
+
+        this.node.on('chupai_push', function (data) {
+            console.log('==>Gmae chupai_push:', JSON.stringify(target.detail));
+            self.hideChupai();
+        });
+
+        this.node.on('action_push', function (data) {
+            console.log('==>Gmae action_push:', JSON.stringify(target.detail));
+            self.showAction(data.detail);
         });
     },
     onGameBegin: function onGameBegin() {
@@ -128,13 +156,50 @@ cc.Class({
                 var mj=mjs[j];
                 mj.active=false;
                 var sprite = mj.getComponent(cc.Sprite);
-                sprite.spriteFrame = null;
+                sprite.spriteFFrame = null;
                 this._folds[name].push(sprite);  
             }
         }
         */
     },
-    initPokers: function initPokers() {
+    hideChupai: function hideChupai() {
+        for (var i = 0; i < this._chupais.length; i++) {
+            this._chupais[i].node.active = false;
+        }
+    },
+    showChupai: function showChupai() {
+        var pai = th.socketIOManager.chupai;
+        if (pai != chupai) {
+            var localIndex = this.getLocalIndex(th.socketIOManager.turn);
+            var sprite = this._chupais[localIndex];
+            sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID("M_", pai);
+            sprite.node.active = true;
+        }
+    },
+    showAction: function showAction(data) {
+        if (this.optionsWin.active) {
+            this.hideOptions();
+        }
+        if (data && (data.hu || data.gang || data.peng || data.chi)) {
+            this._options.active = true;
+            if (data.hu) {
+                this.btnHu.node.active = true;
+            }
+            if (data.peng) {
+                this.btnChi.node.active = true;
+            }
+            if (data.chi) {
+                this.btnHu.node.active = true;
+            }
+            if (data.gang) {
+                for (var i = 0; i < data.gangpai.length; ++i) {
+                    var gp = data.gangpai[i];
+                    this.addOption("btnGang", gp);
+                }
+            }
+        }
+    },
+    initMahjongs: function initMahjongs() {
         var seats = th.socketIOManager.seats;
         var seat = seats[th.socketIOManager.seatIndex];
         var holds = seat.holds;
@@ -147,7 +212,7 @@ cc.Class({
             var pokerId = holds[i];
             var sprite = this._myHoldPokers[i];
             sprite.node.pokerId = pokerId;
-            sprite.spriteFrame = th.pokerManager.getSpriteFrameByPokerId(pokerId);
+            sprite.spriteFrame = th.mahjongManager.getSpriteFrameByPokerId(pokerId);
             sprite.node.active = true;
         }
         for (var i = 0; i < seats.length; i++) {

@@ -12,13 +12,16 @@ cc.Class({
         roomId: null,
         config: null,
         seats: null,
-        round: null,
+        round: null, //当前第几局,算剩余几局用config.round-this.round
         creator: null, //房主ID
-        chupai: -1,
+        chupai: null, //出的牌
+        caishen: null, //财神 
         seatIndex: -1, //座位Index
         bankIndex: -1, //庄Index
+        turn: -1, //轮到谁出牌了
+        mjsy: 0, //剩余麻将
         needCheckIp: false,
-        status: 'idle' //状态  idle,playing
+        status: 'idle' //状态  idle,beging
     },
 
     onLoad: function onLoad() {},
@@ -37,8 +40,11 @@ cc.Class({
         this.round = null;
         this.creator = null;
         this.chupai = -1;
+        this.caishen = null;
         this.seatIndex = -1;
         this.bankIndex = -1;
+        this.turn = -1;
+        this.mjsy = 0;
         this.needCheckIp = false;
         this.status = 'idle';
     },
@@ -143,12 +149,38 @@ cc.Class({
             self.dispatchEvent("holds_push");
         });
 
-        //开始游戏，出头的人
+        //通知还剩多少张牌
+        th.sio.addHandler("mjsy_push", function (data) {
+            cc.log("==>SocketIOManager mjsy_push:", JSON.stringify(data));
+            self.mjsy = mjsy;
+            self.dispatchEvent("mjsy_push");
+        });
+
+        //通知当前是第几局
+        th.sio.addHandler("round_push", function (data) {
+            cc.log("==>SocketIOManager round_push:", JSON.stringify(data));
+            self.round = round;
+            self.dispatchEvent("round_push");
+        });
+
+        //开始游戏基本消息
         th.sio.addHandler("begin_push", function (data) {
             cc.log("==>SocketIOManager begin_push:", JSON.stringify(data));
             self.turn = data.turn;
             self.status = "begin";
             self.dispatchEvent("begin_push");
+        });
+
+        //谁出牌
+        th.sio.addHandler("chupai_push", function (data) {
+            cc.log("==>SocketIOManager chupai_push:", JSON.stringify(data));
+            self.dispatchEvent("chupai_push");
+        });
+
+        //出牌时可以做的操作
+        th.sio.addHandler("action_push", function (data) {
+            cc.log("==>SocketIOManager action_push:", JSON.stringify(data));
+            self.dispatchEvent("action_push");
         });
 
         //断线
