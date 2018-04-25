@@ -16,6 +16,8 @@ cc.Class({
         mjsy:0,                //剩余麻将
         needCheckIp:false,
         status:'idle',         //状态  idle,beging
+        actions:null,          //玩家可以做操作
+
     },
 
 
@@ -42,6 +44,16 @@ cc.Class({
         this.mjsy=0;
         this.needCheckIp=false;
         this.status='idle';
+        this.actions=null;
+        for(var i = 0; i < this.seats.length;i++){
+            this.seats[i].holds = [];
+            this.seats[i].folds = [];
+            this.seats[i].pengs = [];
+            this.seats[i].angangs = [];
+            this.seats[i].diangangs = [];
+            this.seats[i].bugangs = [];
+            this.seats[i].ready = false;
+        }
     },
 
     dispatchEvent(event,data){
@@ -140,6 +152,28 @@ cc.Class({
             cc.log("==>SocketIOManager holds_push:",JSON.stringify(data));
             var seat = self.seats[self.seatIndex]; 
             seat.holds=data;
+            for(var i = 0; i < self.seats.length; ++i){
+                var s = self.seats[i]; 
+                if(s.folds == null){
+                    s.folds = [];
+                }
+                if(s.angangs == null){
+                    s.angangs = [];
+                }
+                if(s.diangangs == null){
+                    s.diangangs = [];
+                }
+                if(s.bugangs == null){
+                    s.bugangs = [];
+                }
+                if(s.pengs == null){
+                    s.pengs = [];
+                }
+                if(s.chis == null){
+                    s.chis = [];
+                }
+                s.ready = false;
+            }
             self.dispatchEvent("holds_push");
         })
 
@@ -169,12 +203,15 @@ cc.Class({
         //谁出牌
         th.sio.addHandler("chupai_push",function(data){
             cc.log("==>SocketIOManager chupai_push:",JSON.stringify(data));
-            self.dispatchEvent("chupai_push");
+            var turnUserId=data;
+            var seatIndex=self.getSeatByUserId(turnUserId);
+            self.doTurnChange(seatIndex);
         })
 
         //出牌时可以做的操作
         th.sio.addHandler("action_push",function(data){
             cc.log("==>SocketIOManager action_push:",JSON.stringify(data));
+            self.actions=data;
             self.dispatchEvent("action_push");
         })
 
@@ -200,6 +237,14 @@ cc.Class({
        
     },
 
+    doTurnChange:function(seatIndex){
+        var data = {
+            last:this.turn,
+            turn:seatIndex,
+        }
+        this.turn = seatIndex;
+        this.dispatchEvent('chupai_push',data);
+    },
     getSeatIndexById:function(userId){
         for(var i = 0; i < this.seats.length;i++){
             if(this.seats[i].userId == userId){

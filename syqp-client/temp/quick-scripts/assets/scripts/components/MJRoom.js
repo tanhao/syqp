@@ -38,12 +38,12 @@ cc.Class({
         this.lblRoomId.string = th.socketIOManager.roomId || '------';
         this.lblWangfa.string = th.socketIOManager.getWanfa();
 
-        var seatNames = ["myself", "right", "up", "left"];
-        for (var i = 0; i < seatNames.length; i++) {
+        var sides = ["myself", "right", "up", "left"];
+        for (var i = 0; i < sides.length; i++) {
             if (i == 2 && th.socketIOManager.seats.length == 3 || (i == 1 || i == 3) && th.socketIOManager.seats.length == 2) {
                 continue;
             }
-            var seatComponent = this.node.getChildByName(seatNames[i]).getChildByName('Seat').getComponent('MJSeat');
+            var seatComponent = this.node.getChildByName(sides[i]).getChildByName('Seat').getComponent('MJSeat');
             this._seats.push(seatComponent);
         }
         cc.log("MJRoom Seats:", this._seats.length);

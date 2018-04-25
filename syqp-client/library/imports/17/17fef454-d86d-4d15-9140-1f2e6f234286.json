@@ -35103,7 +35103,7 @@
     "_mymjs": [],
     "_effects": [],
     "_chupais": [],
-    "_options": []
+    "_hupaiTips": []
   },
   {
     "__type__": "9e94cmRNURPVYbq/hLFI5Fb",
@@ -35160,17 +35160,15 @@
       "__uuid__": "c98ba94b-b380-4f49-8062-3e9e388fc751"
     },
     "holdsEmpty": [
+      null,
       {
-        "__uuid__": "4e7e0a32-7c2f-4d8b-8882-7b9701c2ac66"
+        "__uuid__": "2de746e5-04dc-4507-b14e-cd90c9511289"
       },
       {
-        "__uuid__": "630939dc-eef3-4891-a2ef-3abb0ea45092"
+        "__uuid__": "2fa0db69-625e-4e41-bd0e-71bbe70a14cf"
       },
       {
-        "__uuid__": "53ed174c-1ccb-4978-a873-2056d640d078"
-      },
-      {
-        "__uuid__": "7742d599-284f-435e-954d-5224c708f13e"
+        "__uuid__": "725f315a-0c4a-4a2d-9c28-9fe379d2d8a7"
       }
     ],
     "_sides": null,

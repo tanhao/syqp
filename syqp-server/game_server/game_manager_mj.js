@@ -356,8 +356,10 @@ module.exports.begin=function(roomId){
         data.folds = [];
         //暗杠的牌
         data.angangs = [];    //{pai:15,pos:1}
-        //明杠的牌
-        data.minggangs = [];  //{pai:15,pos:1}
+        //点杠的牌
+        data.diangangs = [];  //{pai:15,pos:1}
+        //补杠的牌
+        data.bugangs = [];  //{pai:15,pos:1}
         //碰了的牌
         data.pengs = [];      //pai:15,pos:1}
         //吃了的牌
@@ -377,6 +379,10 @@ module.exports.begin=function(roomId){
         data.chiPai=[];
         //是否可以胡
         data.canHu = false;
+        //是否胡了
+        data.isHu = false;
+        //是否是自摸
+        data.isZimo = false;
         //是否可以出牌
         data.canChuPai = false;
 

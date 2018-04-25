@@ -1,6 +1,5 @@
 cc.Class({
     extends: cc.Component,
-
     properties: {
         lblMjCount:cc.Label,
         lblRoundCount:cc.Label,
@@ -18,11 +17,11 @@ cc.Class({
         nodeGameInfo:cc.Node,
         nodeCaishen:cc.Node,
 
-        _mymjs:[],   //自己手上的牌Sprite结合
-        _effects:[], //每个座位动画节点（Animation）
-        _chupais:[], //每个座位出牌节点（Sprite）
+        _mymjs:[],      //自己手上的牌Sprite结合
+        _effects:[],    //每个座位动画节点（Animation）
+        _chupais:[],    //每个座位出牌节点（Sprite）
+        _hupaiTips:[],  //每个座位胡牌提示节点:自摸，胡（抢杠胡）
     },
-
     onLoad () {
         if(th==null){ return; }
         this.addComponent("MJFolds");
@@ -30,13 +29,11 @@ cc.Class({
         this.initEventHandlers();
 
         this.nodePrepare.active=true;
-        this.nodeCaishen.active=false;
         this.nodeGameInfo.active=false;
 
         this.onGameBegin();
         th.audioManager.playBGM("bg_fight.mp3");
     },
-
     initView:function(){
         //把自己的牌都设置为null
         var holds = this.node.getChildByName('myself').getChildByName('Holds');
@@ -47,34 +44,36 @@ cc.Class({
                 sprite.spriteFrame = null;
         }
         
-        var seatNames = ["myself","right","up","left"];
+        var sides = ["myself","right","up","left"];
         //隐藏其他玩家手上的牌
-        for(var i=1;i<seatNames.length;i++){
-            var mjs=this.node.getChildByName(seatNames[i]).getChildByName('Holds').children;
+        for(var i=1;i<sides.length;i++){
+            var mjs=this.node.getChildByName(sides[i]).getChildByName('Holds').children;
             for(var j=0;j<mjs.length;j++){
                 var sprite = mjs[j].getComponent(cc.Sprite);
                 sprite.node.active=false;
             }
         }
-        for(var i=0;i<seatNames.length;i++){
+        for(var i=0;i<sides.length;i++){
+            var seatNode=this.node.getChildByName(sides[i]);
+            //出牌
+            var spriteChupai=seatNode.getChildByName('Chupai').getComponent(cc.Sprite);
+            spriteChupai.node.active=false;
+            spriteChupai.spriteFrame = null;
+            //胡牌NODE
+            var nodeHupai=seatNode.getChildByName('HuPai');
+            nodeHupai.node.active=false;
             if((i==2&&th.socketIOManager.seats.length==3)||((i==1||i==3)&&th.socketIOManager.seats.length==2)){
                 continue;
             }
-            var seatNode=this.node.getChildByName(seatNames[i]);
+            //操作效果
             var animation=seatNode.getChildByName('Effect').getComponent(cc.Animation);
             this._effects.push(animation);
+            this._chupais.push(spriteChupai);
+            this._hupaiTips.push(nodeHupai);
             
-        }
-        for(var i=0;i<seatNames.length;i++){
-            var seatNode=this.node.getChildByName(seatNames[i]);
-            var sprite=seatNode.getChildByName('Chupai').getComponent(cc.Sprite);
-            sprite.node.active=false;
-            sprite.spriteFrame = null;
-            this._chupais.push(sprite);
         }
         this.hideOptions();
     },
-
     initEventHandlers:function(){
         var self=this;
         th.socketIOManager.dataEventHandler=this.node;
@@ -121,16 +120,22 @@ cc.Class({
             self.lblRoundCount.string="剩余 "+(th.socketIOManager.config.round-th.socketIOManager.round)+" 局";
         })
 
-
         this.node.on('begin_push',function(data){
             console.log('==>Gmae begin_push:',JSON.stringify(target.detail));
             self.onGameBegin();
-            cc.log("check ip ....");    
+            //第一把开局，要提示
+            if(th.socketIOManager.round == 1){
+                cc.log("check ip ....");    
+            }
         });
         
         this.node.on('chupai_push',function(data){
             console.log('==>Gmae chupai_push:',JSON.stringify(target.detail));
+            data = data.detail;
             self.hideChupai();
+            if(data.last != th.socketIOManager.seatIndex){
+                self.initMopai(data.last,null);   
+            }
         });
 
         this.node.on('action_push',function(data){
@@ -140,21 +145,89 @@ cc.Class({
 
     },
     onGameBegin:function(){
-        /*
-        this.hideOptions();
-        //显示手上的牌
-        var seatNames = ["right","up","left"];
-        for(var i=0;i<seatNames.length;i++){
-            var mjs=this.node.getChildByName(seatNames[i]).getChildByName('Holds').children;
-            for(var j=0;j<mjs.length;j++){
-                var mj=mjs[j];
-                mj.active=false;
-                var sprite = mj.getComponent(cc.Sprite);
-                sprite.spriteFFrame = null;
-                this._folds[name].push(sprite);  
-            }
+        //隐藏每个座位上的动画sprite
+        for(var i = 0; i < this._effects.length; i++){
+            this._effects[i].node.active = false;
         }
-        */
+
+        //自摸胡判断
+        for(var i = 0; i < th.socketIOManager.seats.length; I++){
+            var seatData = th.socketIOManager.seats[i];
+            var localIndex = th.socketIOManager.getLocalIndex(i);        
+            var nodeHupai = this._hupaiTips[localIndex];
+            nodeHupai.active = seatData.isHu;
+            if(seatData.isHu){
+                nodeHupai.getChildByName("hu").active = !seatData.isZimo;
+                nodeHupai.getChildByName("zimo").active = seatData.isZimo;
+            }
+            //todo 如果有胡牌信息
+
+        }
+        //隐藏各座位出牌点
+        this.hideChupai();
+        //隐藏当前玩家所有操作（吃，碰，杠，胡，弃）
+        this.hideOptions();
+        //初始化其他玩家手上的牌
+        var sides = ["right","up","left"];        
+        for(var i = 0; i < sides.length; ++i){
+            var holds = this.node.getChildByName(sides[i]).getChildByName("Holds");
+            for(var j = 0; j < holds.childrenCount; ++j){
+                var nc = holds.children[j];
+                nc.active = true;
+                nc.scaleX = 1.0;
+                nc.scaleY = 1.0;
+                var sprite = nc.getComponent(cc.Sprite); 
+                sprite.spriteFrame =th.mahjongManager.holdsEmpty[i+1];
+            }            
+        }
+        //todo 判断是否回放
+
+        this.nodePrepare.active=false;
+        this.nodeGameInfo.active=true;
+
+        this.initMahjongs();
+
+        
+
+
+    },
+    getMJIndex:function(side,index){
+        if(side == "right" || side == "up"){
+            return 13 - index;
+        }
+        return index;
+    },
+    initMopai:function(seatIndex,pai){
+        var localIndex = th.socketIOManager.getLocalIndex(seatIndex);
+        var side =th.mahjongManager.getSide(localIndex);
+        var pre = th.mahjongManager.getFoldPre(localIndex);
+        var holds = this.node.getChildByName(side).getChildByName("Holds");
+        var lastIndex = this.getMJIndex(side,13);
+        var nc = holds.children[lastIndex];
+
+        nc.scaleX = 1.0;
+        nc.scaleY = 1.0;
+        if(pai == null){
+            nc.active = false;
+        }else if(pai >= 0){
+            nc.active = true;
+            //游戏回放时用到
+            if(side == "up"){
+                nc.scaleX = 0.73;
+                nc.scaleY = 0.73;                    
+            }
+            var sprite = nc.getComponent(cc.Sprite); 
+            sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID(pre,pai);
+        } else if(pai != null){
+            nc.active = true;
+            //UP方向正常抓牌是-1
+            if(side == "up"){
+                nc.scaleX = 1.0;
+                nc.scaleY = 1.0;                    
+            }
+            var sprite = nc.getComponent(cc.Sprite); 
+            sprite.spriteFrame = th.mahjongManager.getHoldsEmptySpriteFrame(side);
+        }
     },
     hideChupai:function(){
         for(var i = 0; i < this._chupais.length;i++){
@@ -163,7 +236,7 @@ cc.Class({
     },
     showChupai:function(){
         var pai = th.socketIOManager.chupai; 
-        if( pai !=chupai){
+        if( pai >=0){
             var localIndex = this.getLocalIndex(th.socketIOManager.turn);
             var sprite = this._chupais[localIndex];
             sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID("M_",pai);
@@ -194,29 +267,39 @@ cc.Class({
         }
     },
     initMahjongs:function(){
+        //手上麻将
         var seats=th.socketIOManager.seats;
-        var seat=seats[th.socketIOManager.seatIndex];
-        var holds=seat.holds;
-        cc.log("initPokers:",holds);
+        var seatData=seats[th.socketIOManager.seatIndex];
+        var holds=seatData.holds;
+        cc.log("initMahjongs:",holds);
         //排序
         holds.sort(function(a,b){return a-b});
-        for(var i=0;i<holds.length;i++){
-            var pokerId=holds[i];
-            var sprite=this._myHoldPokers[i];
-            sprite.node.pokerId = pokerId;
-            sprite.spriteFrame = th.mahjongManager.getSpriteFrameByPokerId(pokerId);
-            sprite.node.active = true;
-        }
-        for(var i=0;i<seats.length;i++){
-            this._seat[i].setRestCard(holds.length);
-        }
-    },
-    
-    /*
-    update (dt) {
-    },
-    */
 
+        var lackingNum = (seatData.pengs.length + seatData.angangs.length + seatData.diangangs.length + seatData.bugangs.length +seatData.chis.length)*3;
+        //初始化手牌
+        for(var i=0;i<holds.length;i++){
+            var mjid = holds[i];
+            var sprite=this._mymjs[lackingNum+i];
+            sprite.node.mjId = mjid;
+            this.setSpriteFrameByMJID("M_",sprite,mjid);
+        }
+        for(var i = 0; i < lackingNum; i++){
+            var sprite = this._mymjs[i]; 
+            sprite.node.mjId = null;
+            sprite.spriteFrame = null;
+            sprite.node.active = false;
+        }
+        for(var i = lackingNum + holds.length; i < this._mymjs.length; ++i){
+            var sprite = this._mymjs[i]; 
+            sprite.node.mjId = null;
+            sprite.spriteFrame = null;
+            sprite.node.active = false;            
+        }
+    },
+    setSpriteFrameByMJID:function(pre,sprite,mjid){
+        sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID(pre,mjid);
+        sprite.node.active = true;
+    },
     hideOptions:function(data){
         this.optionsWin.active=false;
         var activeReadyBtn=th.socketIOManager.round==0&&!th.socketIOManager.isReady(th.userManager.userId)
@@ -228,5 +311,8 @@ cc.Class({
         this.btnGuo.node.active=false;
     },
   
-
+    /*
+    update (dt) {
+    },
+    */
 });

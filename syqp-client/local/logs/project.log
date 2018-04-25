@@ -1,0 +1,73 @@
+2018-04-25T03:40:55.214Z - normal: Load ~/.CocosCreator/settings.json
+2018-04-25T03:40:55.221Z - normal: checking language setting...
+2018-04-25T03:40:55.222Z - normal: Language: zh
+2018-04-25T03:40:57.388Z - success: protocol editor-framework registered
+2018-04-25T03:40:57.389Z - success: protocol app registered
+2018-04-25T03:40:57.389Z - success: protocol theme registered
+2018-04-25T03:40:57.389Z - success: protocol packages registered
+2018-04-25T03:40:57.389Z - success: protocol unpack registerred
+2018-04-25T03:40:57.389Z - success: protocol disable-commonjs registerred
+2018-04-25T03:40:57.693Z - normal: connected!
+2018-04-25T03:40:57.697Z - normal: Check project D:\Workspaces_Chess\syqp\syqp-client
+2018-04-25T03:40:57.700Z - normal: Initializing Cocos2d
+2018-04-25T03:40:58.041Z - normal: Initializing Asset Database
+2018-04-25T03:40:58.100Z - success: protocol uuid registerred
+2018-04-25T03:40:58.101Z - success: protocol db registerred
+2018-04-25T03:40:58.101Z - success: protocol thumbnail registerred
+2018-04-25T03:40:58.101Z - normal: Loading editor/builtin packages
+2018-04-25T03:40:58.129Z - success: anysdk loaded
+2018-04-25T03:40:58.284Z - success: assets loaded
+2018-04-25T03:40:58.287Z - success: builder loaded
+2018-04-25T03:40:58.290Z - success: cocos-analytics loaded
+2018-04-25T03:40:58.294Z - success: console loaded
+2018-04-25T03:40:58.345Z - success: fb-instant-games loaded
+2018-04-25T03:40:58.349Z - success: hierarchy loaded
+2018-04-25T03:40:58.352Z - success: inspector loaded
+2018-04-25T03:40:58.355Z - success: keystore loaded
+2018-04-25T03:40:58.359Z - success: node-library loaded
+2018-04-25T03:40:58.361Z - success: package-asset loaded
+2018-04-25T03:40:58.363Z - success: preferences loaded
+2018-04-25T03:40:58.365Z - success: project-exporter loaded
+2018-04-25T03:40:58.390Z - success: project-importer loaded
+2018-04-25T03:40:58.393Z - success: project-settings loaded
+2018-04-25T03:40:58.396Z - success: ui-kit loaded
+2018-04-25T03:40:58.399Z - success: ui-grid loaded
+2018-04-25T03:40:58.403Z - success: scene loaded
+2018-04-25T03:40:58.404Z - success: sprite-editor loaded
+2018-04-25T03:40:58.409Z - success: store loaded
+2018-04-25T03:40:58.416Z - success: timeline loaded
+2018-04-25T03:40:58.416Z - normal: Loading builtin packages
+2018-04-25T03:40:58.419Z - success: asset-db-debugger loaded
+2018-04-25T03:40:58.421Z - success: code-editor loaded
+2018-04-25T03:40:58.421Z - success: color-picker loaded
+2018-04-25T03:40:58.425Z - success: package-manager loaded
+2018-04-25T03:40:58.433Z - success: sdkbox loaded
+2018-04-25T03:40:58.436Z - success: tester loaded
+2018-04-25T03:40:58.437Z - success: ui-kit-preview-extra loaded
+2018-04-25T03:40:58.439Z - success: ui-kit-preview loaded
+2018-04-25T03:40:58.441Z - success: ui-tree loaded
+2018-04-25T03:41:00.004Z - normal: Initializing project D:\Workspaces_Chess\syqp\syqp-client
+2018-04-25T03:41:00.010Z - normal: Loading packages
+2018-04-25T03:41:00.016Z - normal: Watching packages
+2018-04-25T03:41:00.032Z - normal: Run Application
+2018-04-25T03:41:06.881Z - success: preview server running at http://localhost:7457
+2018-04-25T03:41:13.376Z - normal: 1.9.0
+2018-04-25T10:56:11.425Z - failed: [db-task][sync-changes] Failed to import asset D:\Workspaces_Chess\syqp\syqp-client\assets\scripts\components\MJGame.js, message: Compile error: SyntaxError: D:/Workspaces_Chess/syqp/syqp-client/assets/scripts/components/MJGame.js: Unexpected token (189:4)
+  187 | 
+  188 | 
+> 189 |     },
+      |     ^
+  190 |     getMJIndex:function(side,index){
+  191 |         if(side == "right" || side == "up"){
+  192 |             return 13 - index;
+    at Parser.pp$5.raise (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:4454:13)
+    at Parser.pp.unexpected (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:1761:8)
+    at Parser.pp$3.parseIdentifier (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:4332:10)
+    at Parser.pp$3.parseSubscripts (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3517:30)
+    at Parser.pp$3.parseExprSubscripts (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3504:15)
+    at Parser.pp$3.parseMaybeUnary (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3474:19)
+    at Parser.pp$3.parseExprOps (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3404:19)
+    at Parser.pp$3.parseMaybeConditional (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3381:19)
+    at Parser.pp$3.parseMaybeAssign (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3344:19)
+    at Parser.pp$3.parseExpression (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3306:19)
+2018-04-25T10:59:37.640Z - info: shutdown preview server
