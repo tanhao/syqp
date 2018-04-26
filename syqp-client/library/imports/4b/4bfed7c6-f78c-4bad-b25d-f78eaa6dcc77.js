@@ -45,13 +45,22 @@ cc.Class({
 
     initView: function initView() {
         //把自己的牌都设置为null
-        var holds = this.node.getChildByName('myself').getChildByName('Holds');
-        for (var j = 0; j < holds.children.length; j++) {
-            var sprite = holds.children[j].getComponent(cc.Sprite);
+
+        this.chupaidian.node.active = false;
+
+        var myHolds = this.node.getChildByName('myself').getChildByName('Holds');
+        for (var j = 0; j < myHolds.children.length; j++) {
+            var sprite = myHolds.children[j].getComponent(cc.Sprite);
             sprite.node.active = false;
             this._mymjs.push(sprite);
             sprite.spriteFrame = null;
+            //todo添加拖动效果
+            this.initDragStuffs(sprite.node);
         }
+
+        var realwidth = cc.director.getVisibleSize().width;
+        myHolds.scaleX *= realwidth / 1280;
+        myHolds.scaleY *= realwidth / 1280;
 
         var sides = ["myself", "right", "up", "left"];
         //隐藏其他玩家手上的牌
@@ -69,7 +78,7 @@ cc.Class({
             spriteChupai.node.active = false;
             spriteChupai.spriteFrame = null;
             //胡牌NODE
-            var nodeHupai = seatNode.getChildByName('HuPai');
+            var nodeHupai = seatNode.getChildByName('Hupai');
             nodeHupai.node.active = false;
             if (i == 2 && th.socketIOManager.seats.length == 3 || (i == 1 || i == 3) && th.socketIOManager.seats.length == 2) {
                 continue;
@@ -151,6 +160,79 @@ cc.Class({
             self.showAction(data.detail);
         });
     },
+    initDragStuffs: function initDragStuffs(node) {
+        node.on(cc.Node.EventType.TOUCH_START, function (event) {
+
+            if (th.socketIOManager.turn != th.socketIOManager.seatIndex) {
+                return;
+            }
+            node.interactable = node.getComponent(cc.Button).interactable;
+            if (!node.interactable) {
+                return;
+            }
+            console.log("cc.Node.EventType.TOUCH_START");
+            this.chupaidian.node.active = false;
+            this.chupaidian.spriteFrame = node.getComponent(cc.Sprite).spriteFrame;
+            this.chupaidian.x = event.getLocationX() - cc.director.getVisibleSize().width / 2;
+            this.chupaidian.y = event.getLocationY() - cc.director.getVisibleSize().height / 2;
+        }.bind(this));
+        node.on(cc.Node.EventType.TOUCH_MOVE, function (event) {
+            if (th.socketIOManager.turn != th.socketIOManager.seatIndex) {
+                return;
+            }
+            if (!node.interactable) {
+                return;
+            }
+            if (Math.abs(event.getDeltaX()) + Math.abs(event.getDeltaY()) < 0.5) {
+                return;
+            }
+            console.log("cc.Node.EventType.TOUCH_MOVE");
+            this.chupaidian.node.active = true;
+            node.opacity = 150;
+            this.chupaidian.opacity = 255;
+            this.chupaidian.scaleX = 1;
+            this.chupaidian.scaleY = 1;
+            this.chupaidian.x = event.getLocationX() - cc.director.getVisibleSize().width / 2;
+            this.chupaidian.y = event.getLocationY() - cc.director.getVisibleSize().height / 2;
+            node.y = 0;
+        }.bind(this));
+        node.on(cc.Node.EventType.TOUCH_END, function (event) {
+            if (th.socketIOManager.turn != th.socketIOManager.seatIndex) {
+                return;
+            }
+            if (!node.interactable) {
+                return;
+            }
+            console.log("cc.Node.EventType.TOUCH_END");
+            this.chupaidian.node.active = false;
+            node.opacity = 255;
+            if (event.getLocationY() >= 200) {
+                this.shoot(node.mjId);
+            }
+        }.bind(this));
+        node.on(cc.Node.EventType.TOUCH_CANCEL, function (event) {
+            if (th.socketIOManager.turn != th.socketIOManager.seatIndex) {
+                return;
+            }
+            if (!node.interactable) {
+                return;
+            }
+            console.log("cc.Node.EventType.TOUCH_CANCEL");
+            if (event.getLocationY() >= 200) {
+                this.chupaidian.node.active = false;
+                node.opacity = 255;
+                this.shoot(node.mjId);
+            } else {
+                var moveBack = cc.moveTo(0.2, node.getLocation()).easing(cc.easeSineOut());
+                var seq = cc.sequence(moveBack, cc.callFunc(function () {
+                    cc.log("moveback==========>");
+                    this.chupaidian.node.active = false;
+                    node.opacity = 255;
+                }, this));
+                this.chupaidian.runAction(seq);
+            }
+        }.bind(this));
+    },
     onGameBegin: function onGameBegin() {
         //隐藏每个座位上的动画sprite
         for (var i = 0; i < this._effects.length; i++) {
@@ -192,6 +274,67 @@ cc.Class({
         this.nodeGameInfo.active = true;
 
         this.initMahjongs();
+
+        //初始化其他玩家的牌
+        for (var i = 0; i < th.socketIOManager.seats.length; I++) {
+            var seatData = th.socketIOManager.seats[i];
+            var localIndex = th.socketIOManager.getLocalIndex(i);
+            if (localIndex != 0) {
+                this.initOtherMahjongs(seatData);
+                if (i == th.socketIOManager.turn) {
+                    this.initMopai(i, -1);
+                } else {
+                    this.initMopai(i, null);
+                }
+            }
+        }
+        this.showChupai();
+        if (th.socketIOManager.actions != null) {
+            this.showAction(th.socketIOManager.actions);
+            this.socketIOManager.actions = null;
+        }
+    },
+    onMJClicked: function onMJClicked(event) {
+        if (th.socketIOManager.turn != th.socketIOManager.seatIndex) {
+            return;
+        }
+        for (var i = 0; i < this._mymjs.length; ++i) {
+            if (event.target == this._mymjs[i].node) {
+                //如果是再次点击，则出牌
+                if (event.target == this._selectedMJ) {
+                    this.shoot(this._selectedMJ.mjId);
+                    this._selectedMJ.y = 0;
+                    this._selectedMJ = null;
+                    return;
+                }
+                if (this._selectedMJ != null) {
+                    this._selectedMJ.y = 0;
+                }
+                event.target.y = 15;
+                this._selectedMJ = event.target;
+                return;
+            }
+        }
+    },
+    onOptionClicked: function onOptionClicked(event) {
+        if (event.target.name == "btnPeng") {
+            th.sio.send("peng");
+        } else if (event.target.name == "btnGang") {
+            th.sio.send("gang", event.target.pai);
+        } else if (event.target.name == "btnHu") {
+            th.sio.send("hu");
+        } else if (event.target.name == "btnChi") {
+            th.sio.send("chi", event.target.pais);
+        } else if (event.target.name == "btnGuo") {
+            th.sio.send("guo");
+        }
+    },
+    //出牌
+    shoot: function shoot(mjId) {
+        if (mjId == null) {
+            return;
+        }
+        th.sio.send('chupai', mjId);
     },
     getMJIndex: function getMJIndex(side, index) {
         if (side == "right" || side == "up") {
@@ -249,6 +392,7 @@ cc.Class({
         if (this.optionsWin.active) {
             this.hideOptions();
         }
+        //todo 
         if (data && (data.hu || data.gang || data.peng || data.chi)) {
             this._options.active = true;
             if (data.hu) {
@@ -298,6 +442,39 @@ cc.Class({
             sprite.node.mjId = null;
             sprite.spriteFrame = null;
             sprite.node.active = false;
+        }
+    },
+    initOtherMahjongs: function initOtherMahjongs(seatData) {
+        var localIndex = this.getLocalIndex(seatData.index);
+        if (localIndex == 0) {
+            return;
+        }
+        var side = th.mahjongManager.getSide(localIndex);
+        var sideHolds = this.node.getChildByName(side).getChildByName("Holds");
+        var lackingNum = (seatData.pengs.length + seatData.angangs.length + seatData.diangangs.length + seatData.bugangs.length + seatData.chis.length) * 3;
+        for (var i = 0; i < lackingNum; i++) {
+            var idx = this.getMJIndex(side, i);
+            sideHolds.children[idx].active = false;
+        }
+        var pre = th.mahjongManager.getFoldPre(localIndex);
+        var holds = this.sortHolds(seatData);
+        console.log("initOtherMahjongs:", side, pre, side);
+        if (holds != null && holds.length > 0) {
+            for (var i = 0; i < holds.length; i++) {
+                var idx = this.getMJIndex(side, i + lackingNum);
+                var sprite = sideHolds.children[idx].getComponent(cc.Sprite);
+                if (side == "up") {
+                    sprite.node.scaleX = 0.73;
+                    sprite.node.scaleY = 0.73;
+                }
+                sprite.node.active = true;
+                sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID(pre, holds[i]);
+            }
+
+            if (holds.length + lackingNum == 13) {
+                var lasetIdx = this.getMJIndex(side, 13);
+                sideHolds.children[lasetIdx].active = false;
+            }
         }
     },
     setSpriteFrameByMJID: function setSpriteFrameByMJID(pre, sprite, mjid) {

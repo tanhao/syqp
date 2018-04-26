@@ -3,9 +3,18 @@ const roomManager=require('./room_manager.js');
 const userManager=require('./user_manager.js');
 const mjlib = require( '../mjlib/mjlib.js' ).initTable();
 
-
 var games = {};
-var users={};
+var SEAT_DATE_MAP={};   //KEY=userId
+
+var ACTION_CHUPAI = 1;
+var ACTION_MOPAI = 2;
+var ACTION_PENG = 3;
+var ACTION_GANG = 4;
+var ACTION_HU = 5;
+var ACTION_ZIMO = 6;
+var ACTION_CHI= 7;
+
+
 //取麻将类型
 function getMjType(id){
     if(id >= 0 && id <= 8){
@@ -135,7 +144,6 @@ function checkCanPeng(game,seatData,targetPai){
     var count = seatData.mjmap[targetPai];
     if(count != null && count >= 2){
         seatData.canPeng = true;
-        seatData.pengPai.push(targetPai);
     }
 }
 //检查是否可以吃
@@ -222,7 +230,6 @@ function sendOperations(game,seatData,pai) {
             peng:seatData.canPeng,
             gang:seatData.canGang,
             gangPai:seatData.gangPai,
-            pengPai:seatData.pengPai,
             chiPai:seatData.chiPai
         };
         //如果可以有操作，则进行操作
@@ -231,6 +238,32 @@ function sendOperations(game,seatData,pai) {
     }
     else{
         userManager.sendMsg(seatData.userId,'action_push');
+    }
+}
+//清空game里所有玩家可以做的操作,吃，碰，杠，胡
+function clearAllOptions(game,seatData){
+    var fnClear = function(sd){
+        sd.canPeng = false;
+        sd.canGang = false;
+        sd.gangPai = [];
+        sd.canHu = false;
+        sd.canChi = false;
+        sd.chiPai = [];
+    }
+    if(seatData){
+        fnClear(seatData);
+    }else{
+        for(var i = 0; i < game.seats.length; ++i){
+            fnClear(game.seats[i]);
+        }
+    }
+}
+//记录所有的游戏操作
+function recordGameAction(game,seatIndex,action,pai){
+    game.actions.push(seatIndex);
+    game.actions.push(action);
+    if(pai != null){
+        game.actions.push(pai);
     }
 }
 ///开房间时验证balance
@@ -334,10 +367,11 @@ module.exports.begin=function(roomId){
         bank:0,          //庄是那个座位
         turn:0,          //轮到那个座位出牌
         caishen:null,    //财神
-        chupai:null,     //出的牌
+        chupai:null,     //出的牌 {mjid:1,idx:0}
         state:"idle",    //idle,playing,finish
         mjs:[],          //剩余麻将
-        mjci:0,           //麻将当前Index,(摸到第几个麻将了)
+        mjci:0,          //麻将当前Index,(摸到第几个麻将了)
+        actions:[]       //游戏操作，用来回放
     }
     room.round++;
     //第一局随机一个庄
@@ -355,43 +389,42 @@ module.exports.begin=function(roomId){
         //打出的牌
         data.folds = [];
         //暗杠的牌
-        data.angangs = [];    //{pai:15,pos:1}
+        data.angangs = [];    //[{mjid:0,idx:1}]
         //点杠的牌
-        data.diangangs = [];  //{pai:15,pos:1}
+        data.diangangs = [];  //[{mjid:0,idx:1}]
         //补杠的牌
-        data.bugangs = [];  //{pai:15,pos:1}
+        data.bugangs = [];    //[{mjid:0,idx:1}]
         //碰了的牌
-        data.pengs = [];      //pai:15,pos:1}
+        data.pengs = [];      //[{mjid:0,idx:1}]
         //吃了的牌
-        data.chis = [];      
+        data.chis = [];       //[{mjids:[],idx:1}]
 
         //是否可以杠
         data.canGang = false;
         //如果可以杠，要杠的牌
-        data.gangPai=[];
+        data.gangPai=[];       //[1,2]
         //是否可以碰
         data.canPeng = false;
-        //如果可以碰，要碰的牌
-        data.pengPai=[];
+
         //是否可以吃
         data.canChi = false;
         //如果可以吃，要吃的牌
-        data.chiPai=[];
+        data.chiPai=[];        //[[1,2],[1,2]]
         //是否可以胡
         data.canHu = false;
         //是否胡了
         data.isHu = false;
         //是否是自摸
         data.isZimo = false;
-        //是否可以出牌
-        data.canChuPai = false;
+        //是否可以出牌,用来防止多次出牌
+        data.canChupai = false;
 
-        data.actions = [];
+        data.actions = [];  
 
         //玩家手上的牌的数目，用于快速判定碰杠吃
         data.mjmap = {};
 
-        users[data.userId]=data;
+        SEAT_DATE_MAP[data.userId]=data;
 
     }
     games[roomId]=game;
@@ -422,6 +455,7 @@ module.exports.begin=function(roomId){
 
     var turnSeat = game.seats[game.turn];
     //通知玩家出牌方
+    turnSeat.canChupai = true;
     userManager.broacastInRoom('chupai_push',turnSeat.userId,turnSeat.userId,true);
     //检查否可以暗杠或者胡
     checkCanAnGang(game,turnSeat);
@@ -430,4 +464,125 @@ module.exports.begin=function(roomId){
     sendOperations(game,turnSeat,game.chuPai);
 
 
+}
+//吃
+module.exports.chi=function(userId,pais){
+}
+//碰
+module.exports.peng=function(userId){
+    let seatData = SEAT_DATE_MAP[userId];
+    if(seatData == null){
+        logger.info("can't find user game data.");
+        return;
+    }
+    let game = seatData.game;
+    //如果是他出的牌，则忽略
+    if(game.turn == seatData.index){
+        logger.info("it's your turn.");
+        return;
+    }
+    //如果没有碰的机会，则不能再碰
+    if(seatData.canPeng == false){
+        logger.info("seatData.peng == false");
+        return;
+    }
+    clearAllOptions(game);
+    //验证手上的牌的数目
+    var pai = game.chupai;
+    var count = seatData.mjmap[pai];
+    if(count == null || count < 2){
+        logger.info("pai:" + pai + ",count:" + c);
+        logger.info(seatData.holds);
+        logger.info("lack of mj.==>> "+pai);
+        return;
+    }
+    //进行碰牌处理 扣掉手上的牌 从此人牌中扣除
+    for(var i = 0; i < 2; i++){
+        var index = seatData.holds.indexOf(pai);
+        if(index == -1){
+            logger.info("can't find mj.==>> "+pai);
+            return;
+        }
+        seatData.holds.splice(index,1);
+        seatData.mjmap[pai] --;
+    }
+    seatData.pengs.push({mjid:pai,si:1});
+    game.chupai = null;
+}
+//杠
+module.exports.gang=function(userId,pai){
+}
+//胡
+module.exports.hu=function(userId){
+}
+//过
+module.exports.guo=function(userId){
+}
+//出牌
+module.exports.chupai=function(userId,pai){
+    pai = Number.parseInt(pai);
+    if(seatData == null){
+        logger.info("can't find user game data.");
+        return;
+    }
+    let game = seatData.game;
+    let seatIndex = seatData.index;
+    //如果不该他出，则忽略
+    if(game.turn != seatIndex){
+        logger.info("not your turn.");
+        return;
+    }
+    if(seatData.canChupai == false){
+        logger.info('already chipaied,no need chupai again.');
+        return;
+    }
+    if(hasOperations(seatData)){
+        logger.info('plz guo before you chupai.');
+        return;
+    }
+    let count = seatData.mjmap[pai];
+    //验证手上的牌的数目
+    if(count < 1){
+        logger.info("pai:" + pai + ",count:" + c);
+        logger.info(seatData.holds);
+        logger.info("lack of mj.==>> "+pai);
+        return;
+    }
+    //从此人牌中扣除
+    let index = seatData.holds.indexOf(pai);
+    if(index == -1){
+        logger.info("holds:" + seatData.holds);
+        logger.info("can't find mj.==>> " + pai);
+        return;
+    }
+    seatData.canChupai = false;
+    seatData.holds.splice(index,1);
+    seatData.mjmap[pai] --;
+    game.chupai = {mjid:pai,idx:seatData.index};
+    //记录游戏操作用来回放
+    recordGameAction(game,seatData.seatIndex,ACTION_CHUPAI,pai);
+
+    userMgr.broacastInRoom('chupai_notify_push',{userId:seatData.userId,pai:pai},seatData.userId,true);
+    //检查是否有人要碰 要杠 要吃
+    let hasActions = false;
+    for(let i = 0; i < game.seats.length; ++i){
+        //玩家自己不检查
+        if(game.turn == i){
+            continue;
+        }
+        checkCanPeng(game,seat[i],pai);
+        checkCanDainGang(game,seat[i],pai);
+        //判断下手是否可以吃
+        let nextIndex=game.turn+1;
+        nextIndex %=4;
+        if(i==nextIndex){
+            checkCanChi(game,seat[i],pai);
+        }
+        
+
+    }
+
+    //如果没有人有操作，则向下一家发牌，并通知他出牌
+    if(!hasActions){
+    }
 }

@@ -72,7 +72,6 @@ module.exports.start=function(config){
             let newUserData=room.seats.find(seat=>seat.userId==userId);
             userManager.broacastInRoom('join_push',newUserData,userId,false);
         }
-        
         //离开房间
         socket.on('leave',function(data){
             var userId = socket.userId;
@@ -92,7 +91,6 @@ module.exports.start=function(config){
             socket.emit('leave_result');
             socket.disconnect();
         });
-
         //解散房间,只有房主在游戏没开始前才能解散房间
         socket.on('dissolve',function(data){
             var userId=socket.userId;
@@ -108,7 +106,6 @@ module.exports.start=function(config){
             roomManager.destroyRoom(roomId);
             socket.disconnect();
         });
-
         //准备
         socket.on('ready',function(data){
             var userId=socket.userId;
@@ -128,23 +125,81 @@ module.exports.start=function(config){
         //断开链接
 		socket.on('disconnect',function(data){
             logger.info(socket.userId+" disconnect !!!");
-            var userId=socket.userId;
+            let userId=socket.userId;
             if(!userId) return;
-            var roomId=roomManager.getUserRoomId(userId);
+            let roomId=roomManager.getUserRoomId(userId);
             if(!roomId) return;
             roomManager.setUserOnline(userId,false);
             userManager.broacastInRoom('offline_push',{userId:userId},userId,false);
             socket.userId = null;
         });
         //ping
-
         socket.on('th-ping',function(data){
-            var userId = socket.userId;
+            let userId = socket.userId;
 			if(!userId){
 				return;
             }
             socket.emit('th-pong');
-		});
+        });
+        //出牌
+		socket.on('chupai',function(data){
+            let userId=socket.userId;
+            if(!userId) return;
+            let pai = -1;
+			if(typeof(data) == "number"){
+				pai = data;
+			}else if(typeof(data) == "string"){
+				pai = parseInt(data);
+			}else{
+				logger.info("chupai:invalid param");
+				return;
+			}
+			socket.gameMgr.chupai(socket.userId,pai);
+        });
+        //吃
+		socket.on('chi',function(data){
+            let userId=socket.userId;
+            if(!userId) return;
+            let pais = data.split(',');
+			if(!pais||pais.length!=2){
+				logger.info("chi:invalid param");
+				return;
+			}
+            socket.manager.chi(socket.userId,pais);
+        });
+        //碰
+		socket.on('peng',function(data){
+            let userId=socket.userId;
+            if(!userId) return;
+            socket.manager.peng(socket.userId);
+        });
+        //杠
+		socket.on('gang',function(data){
+            let userId=socket.userId;
+            if(!userId) return;
+            let pai = -1;
+			if(typeof(data) == "number"){
+				pai = data;
+			}else if(typeof(data) == "string"){
+				pai = parseInt(data);
+			}else{
+				logger.info("gang:invalid param");
+				return;
+            }
+            socket.manager.gang(socket.userId,pai);
+        });
+        //胡
+		socket.on('hu',function(data){
+            let userId=socket.userId;
+            if(!userId) return;
+            socket.manager.hu(socket.userId);
+        });
+        //过
+		socket.on('guo',function(data){
+            let userId=socket.userId;
+            if(!userId) return;
+            socket.manager.guo(socket.userId);
+        });
         
         
      });

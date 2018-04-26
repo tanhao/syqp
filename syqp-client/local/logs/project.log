@@ -1,73 +1,155 @@
-2018-04-25T03:40:55.214Z - normal: Load ~/.CocosCreator/settings.json
-2018-04-25T03:40:55.221Z - normal: checking language setting...
-2018-04-25T03:40:55.222Z - normal: Language: zh
-2018-04-25T03:40:57.388Z - success: protocol editor-framework registered
-2018-04-25T03:40:57.389Z - success: protocol app registered
-2018-04-25T03:40:57.389Z - success: protocol theme registered
-2018-04-25T03:40:57.389Z - success: protocol packages registered
-2018-04-25T03:40:57.389Z - success: protocol unpack registerred
-2018-04-25T03:40:57.389Z - success: protocol disable-commonjs registerred
-2018-04-25T03:40:57.693Z - normal: connected!
-2018-04-25T03:40:57.697Z - normal: Check project D:\Workspaces_Chess\syqp\syqp-client
-2018-04-25T03:40:57.700Z - normal: Initializing Cocos2d
-2018-04-25T03:40:58.041Z - normal: Initializing Asset Database
-2018-04-25T03:40:58.100Z - success: protocol uuid registerred
-2018-04-25T03:40:58.101Z - success: protocol db registerred
-2018-04-25T03:40:58.101Z - success: protocol thumbnail registerred
-2018-04-25T03:40:58.101Z - normal: Loading editor/builtin packages
-2018-04-25T03:40:58.129Z - success: anysdk loaded
-2018-04-25T03:40:58.284Z - success: assets loaded
-2018-04-25T03:40:58.287Z - success: builder loaded
-2018-04-25T03:40:58.290Z - success: cocos-analytics loaded
-2018-04-25T03:40:58.294Z - success: console loaded
-2018-04-25T03:40:58.345Z - success: fb-instant-games loaded
-2018-04-25T03:40:58.349Z - success: hierarchy loaded
-2018-04-25T03:40:58.352Z - success: inspector loaded
-2018-04-25T03:40:58.355Z - success: keystore loaded
-2018-04-25T03:40:58.359Z - success: node-library loaded
-2018-04-25T03:40:58.361Z - success: package-asset loaded
-2018-04-25T03:40:58.363Z - success: preferences loaded
-2018-04-25T03:40:58.365Z - success: project-exporter loaded
-2018-04-25T03:40:58.390Z - success: project-importer loaded
-2018-04-25T03:40:58.393Z - success: project-settings loaded
-2018-04-25T03:40:58.396Z - success: ui-kit loaded
-2018-04-25T03:40:58.399Z - success: ui-grid loaded
-2018-04-25T03:40:58.403Z - success: scene loaded
-2018-04-25T03:40:58.404Z - success: sprite-editor loaded
-2018-04-25T03:40:58.409Z - success: store loaded
-2018-04-25T03:40:58.416Z - success: timeline loaded
-2018-04-25T03:40:58.416Z - normal: Loading builtin packages
-2018-04-25T03:40:58.419Z - success: asset-db-debugger loaded
-2018-04-25T03:40:58.421Z - success: code-editor loaded
-2018-04-25T03:40:58.421Z - success: color-picker loaded
-2018-04-25T03:40:58.425Z - success: package-manager loaded
-2018-04-25T03:40:58.433Z - success: sdkbox loaded
-2018-04-25T03:40:58.436Z - success: tester loaded
-2018-04-25T03:40:58.437Z - success: ui-kit-preview-extra loaded
-2018-04-25T03:40:58.439Z - success: ui-kit-preview loaded
-2018-04-25T03:40:58.441Z - success: ui-tree loaded
-2018-04-25T03:41:00.004Z - normal: Initializing project D:\Workspaces_Chess\syqp\syqp-client
-2018-04-25T03:41:00.010Z - normal: Loading packages
-2018-04-25T03:41:00.016Z - normal: Watching packages
-2018-04-25T03:41:00.032Z - normal: Run Application
-2018-04-25T03:41:06.881Z - success: preview server running at http://localhost:7457
-2018-04-25T03:41:13.376Z - normal: 1.9.0
-2018-04-25T10:56:11.425Z - failed: [db-task][sync-changes] Failed to import asset D:\Workspaces_Chess\syqp\syqp-client\assets\scripts\components\MJGame.js, message: Compile error: SyntaxError: D:/Workspaces_Chess/syqp/syqp-client/assets/scripts/components/MJGame.js: Unexpected token (189:4)
-  187 | 
-  188 | 
-> 189 |     },
-      |     ^
-  190 |     getMJIndex:function(side,index){
-  191 |         if(side == "right" || side == "up"){
-  192 |             return 13 - index;
-    at Parser.pp$5.raise (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:4454:13)
-    at Parser.pp.unexpected (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:1761:8)
-    at Parser.pp$3.parseIdentifier (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:4332:10)
-    at Parser.pp$3.parseSubscripts (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3517:30)
-    at Parser.pp$3.parseExprSubscripts (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3504:15)
-    at Parser.pp$3.parseMaybeUnary (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3474:19)
-    at Parser.pp$3.parseExprOps (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3404:19)
-    at Parser.pp$3.parseMaybeConditional (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3381:19)
-    at Parser.pp$3.parseMaybeAssign (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3344:19)
-    at Parser.pp$3.parseExpression (D:\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3306:19)
-2018-04-25T10:59:37.640Z - info: shutdown preview server
+2018-04-25T14:08:47.990Z - normal: Load ~/.CocosCreator/settings.json
+2018-04-25T14:08:47.995Z - normal: checking language setting...
+2018-04-25T14:08:47.995Z - normal: Language: zh
+2018-04-25T14:08:50.228Z - success: protocol editor-framework registered
+2018-04-25T14:08:50.228Z - success: protocol app registered
+2018-04-25T14:08:50.228Z - success: protocol theme registered
+2018-04-25T14:08:50.229Z - success: protocol packages registered
+2018-04-25T14:08:50.229Z - success: protocol unpack registerred
+2018-04-25T14:08:50.229Z - success: protocol disable-commonjs registerred
+2018-04-25T14:08:51.751Z - normal: connected!
+2018-04-25T14:08:51.754Z - normal: Check project D:\Workspaces_Chess\syqp\syqp-client
+2018-04-25T14:08:51.758Z - normal: Initializing Cocos2d
+2018-04-25T14:08:52.120Z - normal: Initializing Asset Database
+2018-04-25T14:08:52.177Z - success: protocol uuid registerred
+2018-04-25T14:08:52.178Z - success: protocol db registerred
+2018-04-25T14:08:52.178Z - success: protocol thumbnail registerred
+2018-04-25T14:08:52.178Z - normal: Loading editor/builtin packages
+2018-04-25T14:08:52.207Z - success: anysdk loaded
+2018-04-25T14:08:52.369Z - success: assets loaded
+2018-04-25T14:08:52.372Z - success: builder loaded
+2018-04-25T14:08:52.375Z - success: cocos-analytics loaded
+2018-04-25T14:08:52.380Z - success: console loaded
+2018-04-25T14:08:52.429Z - success: fb-instant-games loaded
+2018-04-25T14:08:52.434Z - success: hierarchy loaded
+2018-04-25T14:08:52.437Z - success: inspector loaded
+2018-04-25T14:08:52.439Z - success: keystore loaded
+2018-04-25T14:08:52.442Z - success: node-library loaded
+2018-04-25T14:08:52.445Z - success: package-asset loaded
+2018-04-25T14:08:52.447Z - success: preferences loaded
+2018-04-25T14:08:52.449Z - success: project-exporter loaded
+2018-04-25T14:08:52.471Z - success: project-importer loaded
+2018-04-25T14:08:52.474Z - success: project-settings loaded
+2018-04-25T14:08:52.476Z - success: ui-kit loaded
+2018-04-25T14:08:52.478Z - success: ui-grid loaded
+2018-04-25T14:08:52.482Z - success: scene loaded
+2018-04-25T14:08:52.484Z - success: sprite-editor loaded
+2018-04-25T14:08:52.488Z - success: store loaded
+2018-04-25T14:08:52.494Z - success: timeline loaded
+2018-04-25T14:08:52.494Z - normal: Loading builtin packages
+2018-04-25T14:08:52.497Z - success: asset-db-debugger loaded
+2018-04-25T14:08:52.499Z - success: code-editor loaded
+2018-04-25T14:08:52.500Z - success: color-picker loaded
+2018-04-25T14:08:52.503Z - success: package-manager loaded
+2018-04-25T14:08:52.509Z - success: sdkbox loaded
+2018-04-25T14:08:52.519Z - success: tester loaded
+2018-04-25T14:08:52.521Z - success: ui-kit-preview-extra loaded
+2018-04-25T14:08:52.523Z - success: ui-kit-preview loaded
+2018-04-25T14:08:52.525Z - success: ui-tree loaded
+2018-04-25T14:08:54.141Z - normal: Initializing project D:\Workspaces_Chess\syqp\syqp-client
+2018-04-25T14:08:54.145Z - normal: Loading packages
+2018-04-25T14:08:54.152Z - normal: Watching packages
+2018-04-25T14:08:54.168Z - normal: Run Application
+2018-04-25T14:08:56.488Z - success: preview server running at http://localhost:7456
+2018-04-25T14:09:03.591Z - normal: 1.9.0
+2018-04-25T14:31:11.820Z - warn: The Asset used by component "cc.Sprite" in prefab "ChiPengGangMyself.prefab" is missing. Detailed information:
+Node path: "PengGangMyself/B_bamboo_1"
+Asset url: "db://assets/prefabs/ChiPengGangMyself.prefab"
+Missing uuid: "8532d2cf-5b76-4801-a64f-cf9e12a138f7"
+
+2018-04-25T14:31:11.824Z - warn: The Asset used in prefab "ChiPengGangMyself.prefab" is missing. Detailed information:
+Asset url: "db://assets/prefabs/ChiPengGangMyself.prefab"
+Missing uuid: "d6891d75-4cbd-44cd-88ff-7c3b6387946f"
+
+2018-04-25T14:31:11.825Z - warn: The Asset used by component "cc.Sprite" in prefab "ChiPengGangMyself.prefab" is missing. Detailed information:
+Node path: "PengGangMyself/B_bamboo_1"
+Asset url: "db://assets/prefabs/ChiPengGangMyself.prefab"
+Missing uuid: "8532d2cf-5b76-4801-a64f-cf9e12a138f7"
+
+2018-04-25T14:31:11.825Z - warn: The Asset used in prefab "ChiPengGangMyself.prefab" is missing. Detailed information:
+Asset url: "db://assets/prefabs/ChiPengGangMyself.prefab"
+Missing uuid: "d6891d75-4cbd-44cd-88ff-7c3b6387946f"
+
+2018-04-25T14:31:11.825Z - warn: The Asset used by component "cc.Sprite" in prefab "ChiPengGangMyself.prefab" is missing. Detailed information:
+Node path: "PengGangMyself/B_bamboo_1"
+Asset url: "db://assets/prefabs/ChiPengGangMyself.prefab"
+Missing uuid: "8532d2cf-5b76-4801-a64f-cf9e12a138f7"
+
+2018-04-25T14:31:11.826Z - warn: The Asset used in prefab "ChiPengGangMyself.prefab" is missing. Detailed information:
+Asset url: "db://assets/prefabs/ChiPengGangMyself.prefab"
+Missing uuid: "d6891d75-4cbd-44cd-88ff-7c3b6387946f"
+
+2018-04-25T14:31:11.826Z - warn: The Asset used by component "cc.Sprite" in prefab "ChiPengGangMyself.prefab" is missing. Detailed information:
+Node path: "PengGangMyself/gang"
+Asset url: "db://assets/prefabs/ChiPengGangMyself.prefab"
+Missing uuid: "8532d2cf-5b76-4801-a64f-cf9e12a138f7"
+
+2018-04-25T14:31:11.826Z - warn: The Asset used in prefab "ChiPengGangMyself.prefab" is missing. Detailed information:
+Asset url: "db://assets/prefabs/ChiPengGangMyself.prefab"
+Missing uuid: "d6891d75-4cbd-44cd-88ff-7c3b6387946f"
+
+2018-04-25T14:31:11.827Z - warn: The Asset used in prefab "ChiPengGangMyself.prefab" is missing. Detailed information:
+Asset url: "db://assets/prefabs/ChiPengGangMyself.prefab"
+Missing uuid: "d6891d75-4cbd-44cd-88ff-7c3b6387946f"
+
+2018-04-25T14:40:30.456Z - warn: The Asset used by component "cc.Sprite" in prefab "ChiPengGangLeftAndRight.prefab" is missing. Detailed information:
+Node path: "PengGangLeftAndRight/L_autumn"
+Asset url: "db://assets/prefabs/ChiPengGangLeftAndRight.prefab"
+Missing uuid: "5a8ba0b6-f0d2-40c8-a712-8a42f323c602"
+
+2018-04-25T14:40:30.459Z - warn: The Asset used by component "cc.Sprite" in prefab "ChiPengGangLeftAndRight.prefab" is missing. Detailed information:
+Node path: "PengGangLeftAndRight/L_autumn"
+Asset url: "db://assets/prefabs/ChiPengGangLeftAndRight.prefab"
+Missing uuid: "dc0f12a0-949b-450f-9d67-9f1054b115f8"
+
+2018-04-25T14:40:30.459Z - warn: The Asset used in prefab "ChiPengGangLeftAndRight.prefab" is missing. Detailed information:
+Asset url: "db://assets/prefabs/ChiPengGangLeftAndRight.prefab"
+Missing uuid: "65bb91f9-898a-4f92-a37d-fb84bed2cd5c"
+
+2018-04-25T14:40:30.459Z - warn: The Asset used by component "cc.Sprite" in prefab "ChiPengGangLeftAndRight.prefab" is missing. Detailed information:
+Node path: "PengGangLeftAndRight/L_autumn"
+Asset url: "db://assets/prefabs/ChiPengGangLeftAndRight.prefab"
+Missing uuid: "5a8ba0b6-f0d2-40c8-a712-8a42f323c602"
+
+2018-04-25T14:40:30.460Z - warn: The Asset used by component "cc.Sprite" in prefab "ChiPengGangLeftAndRight.prefab" is missing. Detailed information:
+Node path: "PengGangLeftAndRight/L_autumn"
+Asset url: "db://assets/prefabs/ChiPengGangLeftAndRight.prefab"
+Missing uuid: "dc0f12a0-949b-450f-9d67-9f1054b115f8"
+
+2018-04-25T14:40:30.460Z - warn: The Asset used in prefab "ChiPengGangLeftAndRight.prefab" is missing. Detailed information:
+Asset url: "db://assets/prefabs/ChiPengGangLeftAndRight.prefab"
+Missing uuid: "65bb91f9-898a-4f92-a37d-fb84bed2cd5c"
+
+2018-04-25T14:40:30.460Z - warn: The Asset used by component "cc.Sprite" in prefab "ChiPengGangLeftAndRight.prefab" is missing. Detailed information:
+Node path: "PengGangLeftAndRight/L_autumn"
+Asset url: "db://assets/prefabs/ChiPengGangLeftAndRight.prefab"
+Missing uuid: "5a8ba0b6-f0d2-40c8-a712-8a42f323c602"
+
+2018-04-25T14:40:30.460Z - warn: The Asset used by component "cc.Sprite" in prefab "ChiPengGangLeftAndRight.prefab" is missing. Detailed information:
+Node path: "PengGangLeftAndRight/L_autumn"
+Asset url: "db://assets/prefabs/ChiPengGangLeftAndRight.prefab"
+Missing uuid: "dc0f12a0-949b-450f-9d67-9f1054b115f8"
+
+2018-04-25T14:40:30.460Z - warn: The Asset used in prefab "ChiPengGangLeftAndRight.prefab" is missing. Detailed information:
+Asset url: "db://assets/prefabs/ChiPengGangLeftAndRight.prefab"
+Missing uuid: "65bb91f9-898a-4f92-a37d-fb84bed2cd5c"
+
+2018-04-25T14:40:30.460Z - warn: The Asset used by component "cc.Sprite" in prefab "ChiPengGangLeftAndRight.prefab" is missing. Detailed information:
+Node path: "PengGangLeftAndRight/gang"
+Asset url: "db://assets/prefabs/ChiPengGangLeftAndRight.prefab"
+Missing uuid: "5a8ba0b6-f0d2-40c8-a712-8a42f323c602"
+
+2018-04-25T14:40:30.461Z - warn: The Asset used by component "cc.Sprite" in prefab "ChiPengGangLeftAndRight.prefab" is missing. Detailed information:
+Node path: "PengGangLeftAndRight/gang"
+Asset url: "db://assets/prefabs/ChiPengGangLeftAndRight.prefab"
+Missing uuid: "dc0f12a0-949b-450f-9d67-9f1054b115f8"
+
+2018-04-25T14:40:30.461Z - warn: The Asset used in prefab "ChiPengGangLeftAndRight.prefab" is missing. Detailed information:
+Asset url: "db://assets/prefabs/ChiPengGangLeftAndRight.prefab"
+Missing uuid: "65bb91f9-898a-4f92-a37d-fb84bed2cd5c"
+
+2018-04-25T14:40:30.461Z - warn: The Asset used in prefab "ChiPengGangLeftAndRight.prefab" is missing. Detailed information:
+Asset url: "db://assets/prefabs/ChiPengGangLeftAndRight.prefab"
+Missing uuid: "65bb91f9-898a-4f92-a37d-fb84bed2cd5c"
+
+2018-04-26T10:56:45.552Z - info: shutdown preview server
