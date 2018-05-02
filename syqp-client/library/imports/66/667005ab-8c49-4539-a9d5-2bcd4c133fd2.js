@@ -39,7 +39,7 @@ cc.Class({
             self.onChiPengGangChanged(data.seatData);
         });
 
-        this.node.on('game_begin', function (data) {
+        this.node.on('begin_push', function (data) {
             self.onGameBegin();
         });
 

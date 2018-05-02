@@ -118,6 +118,7 @@ cc.Class({
             //第一把开局，要检查IP
             if (th.socketIOManager.round == 1) {
                 cc.log("check ip ....");
+                //todo
             }
         });
         //断线
@@ -153,6 +154,7 @@ cc.Class({
             if (data.last != th.socketIOManager.seatIndex) {
                 self.initMopai(data.last, null);
             }
+            //todo 回放
         });
 
         this.node.on('action_push', function (data) {
@@ -388,6 +390,39 @@ cc.Class({
             sprite.node.active = true;
         }
     },
+    addOption: function addOption(btnName, pai) {
+        var options = this.optionsWin.getChildByName('Options');
+        for (var i = 0; i < options.childrenCount; i++) {
+            var child = options.children[i];
+            if (child.name = 'Option' && child.active == false) {
+                child.active = true;
+                var option = child.getChildByName('Option');
+                if (btnName != 'btnChi') {
+                    var sprite = option.getChildByName("opTarget1").getComponent(cc.Sprite);
+                    sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID("M_", pai);
+                    sprite.active = true;
+                    var btns = option.getChildByName('btns');
+                    var btn = btns.getChildByName(btnName);
+                    btn.active = true;
+                    btn.pai = pai;
+                } else {
+                    var pais = [];
+                    for (var i = 0; i < pai.length; i++) {
+                        if (pai[i] != -1) {
+                            pais[i] = pai[i];
+                            var sprite = option.getChildByName("opTarget" + pais.length).getComponent(cc.Sprite);
+                            sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID("M_", pai[i]);
+                            sprite.active = true;
+                        }
+                    }
+                    var btns = option.getChildByName('btns');
+                    var btn = btns.getChildByName(btnName);
+                    btn.active = true;
+                    btn.pais = pais.join(",");
+                }
+            }
+        }
+    },
     showAction: function showAction(data) {
         if (this.optionsWin.active) {
             this.hideOptions();
@@ -396,17 +431,20 @@ cc.Class({
         if (data && (data.hu || data.gang || data.peng || data.chi)) {
             this._options.active = true;
             if (data.hu) {
-                this.btnHu.node.active = true;
+                this.addOption("btnHu", data.pai);
             }
             if (data.peng) {
-                this.btnChi.node.active = true;
+                this.addOption("btnPeng", data.pai);
             }
             if (data.chi) {
-                this.btnHu.node.active = true;
+                for (var i = 0; i < data.chiPai.length; ++i) {
+                    var gps = data.chiPai[i];
+                    this.addOption("btnChi", gps);
+                }
             }
             if (data.gang) {
-                for (var i = 0; i < data.gangpai.length; ++i) {
-                    var gp = data.gangpai[i];
+                for (var i = 0; i < data.gangPai.length; ++i) {
+                    var gp = data.gangPai[i];
                     this.addOption("btnGang", gp);
                 }
             }
@@ -483,13 +521,23 @@ cc.Class({
     },
     hideOptions: function hideOptions(data) {
         this.optionsWin.active = false;
-        var activeReadyBtn = th.socketIOManager.round == 0 && !th.socketIOManager.isReady(th.userManager.userId);
-        this.btnReady.node.active = activeReadyBtn;
-        this.btnGang.node.active = false;
-        this.btnPeng.node.active = false;
-        this.btnChi.node.active = false;
-        this.btnHu.node.active = false;
-        this.btnGuo.node.active = false;
+        var options = this.optionsWin.getChildByName('Options');
+        for (var i = 0; i < options.childrenCount; i++) {
+            var child = options.children[i];
+            if (child.name = 'Option') {
+                child.active = false;
+                var option = child.getChildByName('Option');
+                option.getChildByName('opTarget1').active = false;
+                option.getChildByName('opTarget2').active = false;
+                var btns = option.getChildByName('btns');
+                btns.getChildByName('btnChi').active = false;
+                btns.getChildByName('btnPeng').active = false;
+                btns.getChildByName('btnGang').active = false;
+                btns.getChildByName('btnHu').active = false;
+            }
+        }
+        //var activeReadyBtn=th.socketIOManager.round==0&&!th.socketIOManager.isReady(th.userManager.userId)
+        //this.btnReady.node.active = activeReadyBtn;
     }
 
     /*

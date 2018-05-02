@@ -43,7 +43,7 @@ cc.Class({
 
     initEventHandler: function initEventHandler() {
         var self = this;
-        this.node.on('game_begin', function (data) {
+        this.node.on('begin_push', function (data) {
             self.initAllFolds();
         });
     },

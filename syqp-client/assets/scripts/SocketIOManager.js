@@ -19,8 +19,6 @@ cc.Class({
         actions:null,          //玩家可以做操作
 
     },
-
-
     onLoad () {
     },
 
@@ -28,7 +26,6 @@ cc.Class({
     update (dt) {
     },
     */
-
     reset:function(){
         th.userManager.roomId=null;
         this.roomId=null;
@@ -55,13 +52,11 @@ cc.Class({
             this.seats[i].ready = false;
         }
     },
-
     dispatchEvent(event,data){
         if(this.dataEventHandler){
             this.dataEventHandler.emit(event,data);
         }    
     },
-
     initHandlers:function(){
         var self = this;
         //连接成功初始化信息
@@ -74,7 +69,7 @@ cc.Class({
             self.creator=data.creator;
             self.seatIndex=self.getSeatIndexById(th.userManager.userId);
             self.dispatchEvent("init_room",data);
-        })
+        });
         //其他玩家加入房间
         th.sio.addHandler("join_push",function(data){
             cc.log("==>SocketIOManager join_push:",JSON.stringify(data));
@@ -93,11 +88,11 @@ cc.Class({
             if(self.needCheckIp){
                 self.dispatchEvent('check_ip',self.seats[index]);
             }
-        })
+        });
         //自己离开房间
         th.sio.addHandler("leave_result",function(data){
             self.reset();
-        })
+        });
         //其他玩家离开房间
         th.sio.addHandler("leave_push",function(data){
             cc.log("==>SocketIOManager leave_push:",JSON.stringify(data));
@@ -114,39 +109,38 @@ cc.Class({
                 seat.online=false;
             }
             self.dispatchEvent("leave_push",seat);
-        })
+        });
         //解散房间，所有玩家退出房间，收到此消息返回大厅
         th.sio.addHandler("dissolve_push",function(data){
             self.reset();
             cc.log("==>SocketIOManager dissolve_push:",JSON.stringify(data));
-        })
+        });
         //其他玩家断线
         th.sio.addHandler("offline_push",function(data){
             cc.log("==>SocketIOManager offline_push:",JSON.stringify(data));
             if(self.roomId!=null){
                 self.dispatchEvent("offline_push",data);
             }
-        })
+        });
         //其他玩家上线
         th.sio.addHandler("online_push",function(data){
             cc.log("==>SocketIOManager online_push:",JSON.stringify(data));
             self.dispatchEvent("online_push",data);
-        })
+        });
         //自己准备返回
         th.sio.addHandler("ready_result",function(data){
             cc.log("==>SocketIOManager ready_result:",JSON.stringify(data));
             var seat = self.getSeatByUserId(th.userManager.userId);
             seat.ready=true;
             self.dispatchEvent("ready_result",seat);
-        })
+        });
         //其他玩家准备
         th.sio.addHandler("ready_push",function(data){
             cc.log("==>SocketIOManager ready_push:",JSON.stringify(data));
             var seat = self.getSeatByUserId(data.userId);
             seat.ready=true;
             self.dispatchEvent("ready_push",seat);
-        })
-
+        });
         //玩家手上的牌
         th.sio.addHandler("holds_push",function(data){
             cc.log("==>SocketIOManager holds_push:",JSON.stringify(data));
@@ -175,47 +169,80 @@ cc.Class({
                 s.ready = false;
             }
             self.dispatchEvent("holds_push");
-        })
-
+        });
         //通知还剩多少张牌
         th.sio.addHandler("mjsy_push",function(data){
-            cc.log("==>SocketIOManager mjsy_push:",JSON.stringify(data));
-            self.mjsy=mjsy;
+            cc.log("==>SocketIOManager mjsy_push:",data);
+            self.mjsy=data;
             self.dispatchEvent("mjsy_push");
-        })
-
+        });
         //通知当前是第几局
         th.sio.addHandler("round_push",function(data){
-            cc.log("==>SocketIOManager round_push:",JSON.stringify(data));
-            self.round=round;
+            cc.log("==>SocketIOManager round_push:",data);
+            self.round=data;
             self.dispatchEvent("round_push");
-        })
-
-
+        });
         //开始游戏基本消息
         th.sio.addHandler("begin_push",function(data){
-            cc.log("==>SocketIOManager begin_push:",JSON.stringify(data));
-            self.turn=data.turn;
+            cc.log("==>SocketIOManager begin_push:",data);
+            self.bankIndex=data;
+            self.turn=self.bankIndex;
             self.status="begin";
             self.dispatchEvent("begin_push");
-        })
-
+        });
         //谁出牌
         th.sio.addHandler("chupai_push",function(data){
             cc.log("==>SocketIOManager chupai_push:",JSON.stringify(data));
             var turnUserId=data;
             var seatIndex=self.getSeatByUserId(turnUserId);
             self.doTurnChange(seatIndex);
-        })
-
+        });
         //出牌时可以做的操作
         th.sio.addHandler("action_push",function(data){
             cc.log("==>SocketIOManager action_push:",JSON.stringify(data));
             self.actions=data;
-            self.dispatchEvent("action_push");
-        })
+            self.dispatchEvent("action_push",data);
+        });
+        th.sio.addHandler("guo_result",function(data){
+            self.dispatchEvent('guo_result');
+        });
+        th.sio.addHandler("guo_notify_push",function(data){
+            var userId = data.userId;
+            var pai = data.pai;
+            var seatIndex = self.getSeatIndexByID(userId);
+            self.doGuo(seatIndex,data.pai);
+        });
+        th.sio.addHandler("chi_notify_push",function(data){
+            var userId = data.userId;
+            var pai = data.pai;
+            var seatIndex = self.getSeatIndexByID(userId);
+            self.doChi(seatIndex,data.info,pai);
+        });
+        th.sio.addHandler("peng_notify_push",function(data){
+            var userId = data.userId;
+            var pai = data.pai;
+            var seatIndex = self.getSeatIndexByID(userId);
+            self.doPeng(seatIndex,data.info);
+        });
+        th.sio.addHandler("gang_notify_push",function(data){
+            var userId = data.userId;
+            var pai = data.pai;
+            var seatIndex = self.getSeatIndexByID(userId);
+            self.doGang(seatIndex,data.info,data.gangType);
+        });
+        th.sio.addHandler("chupai_notify_push",function(data){
+            var userId = data.userId;
+            var pai = data.pai;
+            var seatIndex = self.getSeatIndexByID(userId);
+            self.doChupai(seatIndex,pai);
+        });
+        th.sio.addHandler("mopai_push",function(data){
+            self.doMopai(self.seatIndex,data);
+        });
 
-
+        th.sio.addHandler("hu_notify_push",function(data){
+            self.doHu(data);
+        });
         //断线
         th.sio.addHandler("disconnect",function(data){
             if(self.roomId == null){
@@ -236,7 +263,122 @@ cc.Class({
         });
        
     },
-
+    getGangType:function(seatData,pai){
+        var idx=-1;
+        for(var i=0;i<seatData.pengs.length;i++){
+            if(seatData.pengs[i].mjid==pai){
+                idx=i;
+                break;
+            }
+        }
+        if(idx != -1){
+            return "bugang";
+        }else{
+            var cnt = 0;
+            for(var i = 0; i < seatData.holds.length; ++i){
+                if(seatData.holds[i] == pai){
+                    cnt++;
+                }
+            }
+            if(cnt == 3){
+                return "diangang";
+            }else{
+                return "angang";
+            }
+        }
+    },
+    doGuo:function(seatIndex,pai){
+        var seatData = this.seats[seatIndex];
+        var folds = seatData.folds;
+        folds.push(pai);
+        this.dispatchEvent('guo_notify_push',seatData);    
+    },
+    doChi:function(seatIndex,info,pai){
+        var seatData = this.seats[seatIndex];
+        //移除手牌
+        if(seatData.holds){
+            for(var i = 0; i < info.mjids.length; ++i){
+                if(info.mjids[i]==pai){
+                    continue;
+                }
+                var idx = seatData.holds.indexOf(info.mjids[i]);
+                seatData.holds.splice(idx,1);
+            }
+            //更新碰牌数据
+        }
+        var chis = seatData.chis;
+        chis.push(info);
+        this.dispatchEvent('chi_notify_push',seatData);
+    },
+    doPeng:function(seatIndex,info){
+        var seatData = this.seats[seatIndex];
+        //移除手牌
+        if(seatData.holds){
+            for(var i = 0; i < 2; ++i){
+                var idx = seatData.holds.indexOf(info.mjid);
+                seatData.holds.splice(idx,1);
+            }                
+        }
+        //更新碰牌数据
+        var pengs = seatData.pengs;
+        pengs.push(info);
+        this.dispatchEvent('peng_notify_push',seatData);
+    },
+    doGang:function(seatIndex,info,gangType){
+        var seatData = this.seats[seatIndex];
+        var pai=info.mjid;
+        if(!gangType){
+            gangType = this.getGangType(seatData,pai);
+        }
+        if(gangType == "bugang"){
+            var idx=-1;
+            for(var i=0;i<seatData.pengs.length;i++){
+                if(seatData.pengs[i].mjid==pai){
+                    idx=i;
+                    break;
+                }
+            }
+            if(idx != -1){
+                 seatData.pengs.splice(idx,1);
+            }
+            seatData.bugangs.push(info);      
+        }
+        if(seatData.holds){
+            for(var i = 0; i <= 4; ++i){
+                var idx = seatData.holds.indexOf(pai);
+                if(idx == -1){
+                    //如果没有找到，表示移完了，直接跳出循环
+                    break;
+                }
+                seatData.holds.splice(idx,1);
+            }
+        }
+        if(gangType == "angang"){
+            seatData.angangs.push(info);
+        }
+        else if(gangType == "diangang"){
+            seatData.diangangs.push(info);
+        }
+        this.dispatchEvent('gang_notify_push',{seatData:seatData,gangType:gangType});
+    },
+    doChupai:function(seatIndex,pai){
+        this.chupai = pai;
+        var seatData = this.seats[seatIndex];
+        if(seatData.holds){             
+            var idx = seatData.holds.indexOf(pai);
+            seatData.holds.splice(idx,1);
+        }
+        this.dispatchEvent('chupai_notify_push',{seatData:seatData,pai:pai});    
+    },
+    doMopai:function(seatIndex,pai){
+        var seatData = this.seats[seatIndex];
+        if(seatData.holds){
+            seatData.holds.push(pai);
+            this.dispatchEvent('mopai_push',{seatIndex:seatIndex,pai:pai});            
+        }
+    },
+    doHu:function(seatIndex,pai){
+    },
     doTurnChange:function(seatIndex){
         var data = {
             last:this.turn,
@@ -253,19 +395,16 @@ cc.Class({
         }
         return -1;
     },
-
     getLocalIndex:function(index){
         var total=this.seats.length;
         var ret = (index - this.seatIndex + total) % total;
         return ret;
     },
-
     getSeatByUserId:function(userId){
         var index = this.getSeatIndexById(userId);
         var seat = this.seats[index];
         return seat;
     },
-
     getWanfa:function(){
        var str=[];
        str.push("封顶");
@@ -282,12 +421,10 @@ cc.Class({
     isFangzhu:function(){
         return this.creator==th.userManager.userId;
     },
-
     isReady:function(userId){
         var seat=this.getSeatByUserId(userId);
         return seat.ready;
     },
-
     connectServer:function(data){
         var onConnectSuccess=function(){
             cc.director.loadScene("mjgame",function(){

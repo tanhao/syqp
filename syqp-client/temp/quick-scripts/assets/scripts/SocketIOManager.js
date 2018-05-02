@@ -185,22 +185,23 @@ cc.Class({
 
         //通知还剩多少张牌
         th.sio.addHandler("mjsy_push", function (data) {
-            cc.log("==>SocketIOManager mjsy_push:", JSON.stringify(data));
-            self.mjsy = mjsy;
+            cc.log("==>SocketIOManager mjsy_push:", data);
+            self.mjsy = data;
             self.dispatchEvent("mjsy_push");
         });
 
         //通知当前是第几局
         th.sio.addHandler("round_push", function (data) {
-            cc.log("==>SocketIOManager round_push:", JSON.stringify(data));
-            self.round = round;
+            cc.log("==>SocketIOManager round_push:", data);
+            self.round = data;
             self.dispatchEvent("round_push");
         });
 
         //开始游戏基本消息
         th.sio.addHandler("begin_push", function (data) {
-            cc.log("==>SocketIOManager begin_push:", JSON.stringify(data));
-            self.turn = data.turn;
+            cc.log("==>SocketIOManager begin_push:", data);
+            self.bankIndex = data;
+            self.turn = self.bankIndex;
             self.status = "begin";
             self.dispatchEvent("begin_push");
         });
@@ -217,7 +218,47 @@ cc.Class({
         th.sio.addHandler("action_push", function (data) {
             cc.log("==>SocketIOManager action_push:", JSON.stringify(data));
             self.actions = data;
-            self.dispatchEvent("action_push");
+            self.dispatchEvent("action_push", data);
+        });
+
+        th.sio.addHandler("guo_notify_push", function (data) {
+            var userId = data.userId;
+            var pai = data.pai;
+            var seatIndex = self.getSeatIndexByID(userId);
+            self.doGuo(seatIndex, data.pai);
+        });
+        th.sio.addHandler("chi_notify_push", function (data) {
+            var userId = data.userId;
+            var pai = data.pai;
+            var seatIndex = self.getSeatIndexByID(userId);
+            self.doChi(seatIndex, data.info, pai);
+        });
+        th.sio.addHandler("peng_notify_push", function (data) {
+            var userId = data.userId;
+            var pai = data.pai;
+            var seatIndex = self.getSeatIndexByID(userId);
+            self.doPeng(seatIndex, data.info);
+        });
+        th.sio.addHandler("gang_notify_push", function (data) {
+            var userId = data.userId;
+            var pai = data.pai;
+            var seatIndex = self.getSeatIndexByID(userId);
+            self.doGang(seatIndex, data.info, data.gangType);
+        });
+        th.sio.addHandler("chupai_notify_push", function (data) {
+            var userId = data.userId;
+            var pai = data.pai;
+            var seatIndex = self.getSeatIndexByID(userId);
+            self.doChupai(seatIndex, pai);
+        });
+        th.sio.addHandler("mopai_push", function (data) {
+            self.doMopai(self.seatIndex, data);
+        });
+        th.sio.addHandler("guo_result", function (data) {
+            self.dispatchEvent('guo_result');
+        });
+        th.sio.addHandler("hu_notify_push", function (data) {
+            self.doHu(data);
         });
 
         //断线
@@ -239,6 +280,120 @@ cc.Class({
             }
         });
     },
+    getGangType: function getGangType(seatData, pai) {
+        var idx = -1;
+        for (var i = 0; i < seatData.pengs.length; i++) {
+            if (seatData.pengs[i].mjid == pai) {
+                idx = i;
+                break;
+            }
+        }
+        if (idx != -1) {
+            return "bugang";
+        } else {
+            var cnt = 0;
+            for (var i = 0; i < seatData.holds.length; ++i) {
+                if (seatData.holds[i] == pai) {
+                    cnt++;
+                }
+            }
+            if (cnt == 3) {
+                return "diangang";
+            } else {
+                return "angang";
+            }
+        }
+    },
+    doGuo: function doGuo(seatIndex, pai) {
+        var seatData = this.seats[seatIndex];
+        var folds = seatData.folds;
+        folds.push(pai);
+        this.dispatchEvent('guo_notify_push', seatData);
+    },
+    doChi: function doChi(seatIndex, info, pai) {
+        var seatData = this.seats[seatIndex];
+        //移除手牌
+        if (seatData.holds) {
+            for (var i = 0; i < info.mjids.length; ++i) {
+                if (info.mjids[i] == pai) {
+                    continue;
+                }
+                var idx = seatData.holds.indexOf(info.mjids[i]);
+                seatData.holds.splice(idx, 1);
+            }
+            //更新碰牌数据
+        }
+        var chis = seatData.chis;
+        chis.push(info);
+        this.dispatchEvent('chi_notify_push', seatData);
+    },
+    doPeng: function doPeng(seatIndex, info) {
+        var seatData = this.seats[seatIndex];
+        //移除手牌
+        if (seatData.holds) {
+            for (var i = 0; i < 2; ++i) {
+                var idx = seatData.holds.indexOf(info.mjid);
+                seatData.holds.splice(idx, 1);
+            }
+        }
+        //更新碰牌数据
+        var pengs = seatData.pengs;
+        pengs.push(info);
+        this.dispatchEvent('peng_notify_push', seatData);
+    },
+    doGang: function doGang(seatIndex, info, gangType) {
+        var seatData = this.seats[seatIndex];
+        var pai = info.mjid;
+        if (!gangType) {
+            gangType = this.getGangType(seatData, pai);
+        }
+        if (gangType == "bugang") {
+            var idx = -1;
+            for (var i = 0; i < seatData.pengs.length; i++) {
+                if (seatData.pengs[i].mjid == pai) {
+                    idx = i;
+                    break;
+                }
+            }
+            if (idx != -1) {
+                seatData.pengs.splice(idx, 1);
+            }
+            seatData.bugangs.push(info);
+        }
+        if (seatData.holds) {
+            for (var i = 0; i <= 4; ++i) {
+                var idx = seatData.holds.indexOf(pai);
+                if (idx == -1) {
+                    //如果没有找到，表示移完了，直接跳出循环
+                    break;
+                }
+                seatData.holds.splice(idx, 1);
+            }
+        }
+        if (gangType == "angang") {
+            seatData.angangs.push(info);
+        } else if (gangType == "diangang") {
+            seatData.diangangs.push(info);
+        }
+        this.dispatchEvent('gang_notify_push', { seatData: seatData, gangType: gangType });
+    },
+    doChupai: function doChupai(seatIndex, pai) {
+        this.chupai = pai;
+        var seatData = this.seats[seatIndex];
+        if (seatData.holds) {
+            var idx = seatData.holds.indexOf(pai);
+            seatData.holds.splice(idx, 1);
+        }
+        this.dispatchEvent('chupai_notify_push', { seatData: seatData, pai: pai });
+    },
+    doMopai: function doMopai(seatIndex, pai) {
+        var seatData = this.seats[seatIndex];
+        if (seatData.holds) {
+            seatData.holds.push(pai);
+            this.dispatchEvent('mopai_push', { seatIndex: seatIndex, pai: pai });
+        }
+    },
+    doHu: function doHu(seatIndex, pai) {},
 
     doTurnChange: function doTurnChange(seatIndex) {
         var data = {

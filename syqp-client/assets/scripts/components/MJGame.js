@@ -110,6 +110,7 @@ cc.Class({
              //第一把开局，要检查IP
             if(th.socketIOManager.round == 1){
                 cc.log("check ip ....");    
+                //todo
             }
         })
         //断线
@@ -145,6 +146,7 @@ cc.Class({
             if(data.last != th.socketIOManager.seatIndex){
                 self.initMopai(data.last,null);   
             }
+            //todo 回放
         });
 
         this.node.on('action_push',function(data){
@@ -152,6 +154,102 @@ cc.Class({
             self.showAction(data.detail);
         });
 
+        //过，自己操做过返回结果
+        this.node.on('guo_result',function(data){
+            self.hideChupai();
+        });
+        //过牌，
+        this.node.on('guo_notify_push',function(data){
+            console.log('==>Gmae guo_notify_push:',JSON.stringify(target.detail));
+            self.hideChupai();
+            self.hideOptions();
+            var seatData=data.detail;
+            //如果是自己，则刷新手牌
+            if(seatData.index ==th.socketIOManager.seatIndex){
+                self.initMahjongs();                
+            }
+            th.audioManager.playSFX("give.mp3");
+        });
+        //吃牌
+        this.node.on('chi_notify_push',function(data){
+            console.log('==>Gmae chi_notify_push:',JSON.stringify(target.detail));
+            self.hideChupai();
+            var seatData=data.detail;
+            if(seatData.index == th.socketIOManager.seatIndex){
+                self.initMahjongs();                
+            }else{
+                self.initOtherMahjongs(seatData);
+            }
+            var localIndex = th.socketIOManager.getLocalIndex(seatData.index);
+            self.playEffect(localIndex,"play_chi");
+            th.audioManager.playSFX("nv/chi.mp3");
+            self.hideOptions();
+        });
+        //碰牌
+        this.node.on('peng_notify_push',function(data){
+            console.log('==>Gmae peng_notify_push:',JSON.stringify(target.detail));
+            self.hideChupai();
+            var seatData=data.detail;
+            if(seatData.index == th.socketIOManager.seatIndex){
+                self.initMahjongs();                
+            }else{
+                self.initOtherMahjongs(seatData);
+            }
+            var localIndex = th.socketIOManager.getLocalIndex(seatData.index);
+            self.playEffect(localIndex,"play_peng");
+            th.audioManager.playSFX("nv/peng.mp3");
+            self.hideOptions();
+        });
+        //杠牌
+        this.node.on('gang_notify_push',function(data){
+            console.log('==>Gmae gang_notify_push:',JSON.stringify(target.detail));
+            self.hideChupai();
+            var seatData=data.detail;
+            if(seatData.index == th.socketIOManager.seatIndex){
+                self.initMahjongs();                
+            }else{
+                self.initOtherMahjongs(seatData);
+            }
+            var localIndex = th.socketIOManager.getLocalIndex(seatData.index);
+            self.playEffect(localIndex,"play_gang");
+            th.audioManager.playSFX("nv/pang.mp3");
+            self.hideOptions();
+        });
+        //出牌
+        this.node.on('chupai_notify_push',function(data){
+            self.hideChupai();
+            var seatData = data.detail.seatData;
+            if(seatData.index == th.socketIOManager.seatIndex){
+                self.initMahjongs();                
+            }else{
+                self.initOtherMahjongs(seatData);
+            }
+            self.showChupai();
+            var audioUrl = th.mahjongManager.getAudioURLByMJID(data.detail.pai);
+            th.audioManager.playSFX(audioUrl);
+        });
+        //摸牌只有自己才会收到此消息
+        this.node.on('mopai_push',function(data){
+            self.hideChupai();
+            data = data.detail;
+            var pai = data.pai;
+            var localIndex = th.socketIOManager.getLocalIndex(data.seatIndex);
+            if(localIndex == 0){
+                var index = 13;
+                var sprite=this._mymjs[index];
+                sprite.node.mjId = pai;
+                self.setSpriteFrameByMJID("M_",sprite,pai);
+
+            }else if(false){
+                //todo 重放
+            }
+        });
+      
+
+    },
+    playEffect:function(index,name){
+        this._effects[index].node.active = true;
+        this._effects[index].play(name);
     },
     initDragStuffs:function(node){
         node.on(cc.Node.EventType.TOUCH_START, function (event) {
@@ -384,6 +482,39 @@ cc.Class({
             sprite.node.active = true;   
         }
     },
+    addOption:function(btnName,pai){
+        var options=this.optionsWin.getChildByName('Options');
+        for(var i = 0; i < options.childrenCount; i++){
+            var child = options.children[i];
+            if(child.name='Option'&&child.active==false){
+                child.active=true;
+                var option=child.getChildByName('Option');
+                if(btnName!='btnChi'){
+                    var sprite = option.getChildByName("opTarget1").getComponent(cc.Sprite);
+                    sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID("M_",pai);
+                    sprite.active=true;
+                    var btns=option.getChildByName('btns');
+                    var btn = btns.getChildByName(btnName); 
+                    btn.active = true;
+                    btn.pai = pai;
+                }else{
+                    var pais=[];
+                    for(var i=0;i<pai.length;i++){
+                        if(pai[i]!=-1){
+                            pais[i]=pai[i];
+                            var sprite = option.getChildByName("opTarget"+pais.length).getComponent(cc.Sprite);
+                            sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID("M_",pai[i]);
+                            sprite.active=true;
+                        }
+                    }
+                    var btns=option.getChildByName('btns');
+                    var btn = btns.getChildByName(btnName); 
+                    btn.active = true;
+                    btn.pais = pais.join(",");
+                }
+            }
+        }
+    },
     showAction:function(data){
         if(this.optionsWin.active){
             this.hideOptions();
@@ -392,17 +523,20 @@ cc.Class({
         if(data && (data.hu || data.gang || data.peng || data.chi)){
             this._options.active = true;
             if(data.hu){
-                this.btnHu.node.active=true;
+                this.addOption("btnHu",data.pai);
             }
             if(data.peng){
-                this.btnChi.node.active=true;
+                this.addOption("btnPeng",data.pai);
             }
             if(data.chi){
-                this.btnHu.node.active=true;
+                for(var i = 0; i < data.chiPai.length;++i){
+                    var gps = data.chiPai[i];
+                    this.addOption("btnChi",gps);
+                }
             }
             if(data.gang){
-                for(var i = 0; i < data.gangpai.length;++i){
-                    var gp = data.gangpai[i];
+                for(var i = 0; i < data.gangPai.length;++i){
+                    var gp = data.gangPai[i];
                     this.addOption("btnGang",gp);
                 }
             }   
@@ -478,13 +612,23 @@ cc.Class({
     },
     hideOptions:function(data){
         this.optionsWin.active=false;
-        var activeReadyBtn=th.socketIOManager.round==0&&!th.socketIOManager.isReady(th.userManager.userId)
-        this.btnReady.node.active = activeReadyBtn;
-        this.btnGang.node.active=false;
-        this.btnPeng.node.active=false;
-        this.btnChi.node.active=false;
-        this.btnHu.node.active=false;
-        this.btnGuo.node.active=false;
+        var options=this.optionsWin.getChildByName('Options');
+        for(var i = 0; i < options.childrenCount; i++){
+            var child = options.children[i];
+            if(child.name='Option'){
+                child.active=false;
+                var option=child.getChildByName('Option');
+                option.getChildByName('opTarget1').active=false;
+                option.getChildByName('opTarget2').active=false;
+                var btns=option.getChildByName('btns');
+                btns.getChildByName('btnChi').active=false;
+                btns.getChildByName('btnPeng').active=false;
+                btns.getChildByName('btnGang').active=false;
+                btns.getChildByName('btnHu').active=false;
+            }
+        }
+        //var activeReadyBtn=th.socketIOManager.round==0&&!th.socketIOManager.isReady(th.userManager.userId)
+        //this.btnReady.node.active = activeReadyBtn;
     },
   
     /*

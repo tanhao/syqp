@@ -113,6 +113,11 @@ cc.Class({
             console.log('==>MJRoom ready_push:', JSON.stringify(target.detail));
             self.initSingleSeat(target.detail);
         });
+
+        this.node.on('begin_push', function (data) {
+            self.refreshBtns();
+            self.initSeats();
+        });
     },
 
     onMenuClicked: function onMenuClicked() {

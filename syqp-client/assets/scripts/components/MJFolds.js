@@ -38,19 +38,65 @@ cc.Class({
   
     initEventHandler:function(){
         var self = this;
-        this.node.on('game_begin',function(data){
+        this.node.on('begin_push',function(data){
             self.initAllFolds();
         });  
+
+        //过牌
+        this.node.on('guo_notify_push',function(data){
+            self.initFolds(data.detail);
+        });
+
+        //出牌
+        this.node.on('chupai_notify_push',function(data){
+            self.initFolds(data.detail.seatData);
+        });
+
     },
 
     hideAllFolds:function(){
-        cc.log("Folds hideAllFolds.....");
         for(var key in this._folds){
             var mjs = this._folds[key];
             for(var i=0;i<mjs.length;i++){
                 mjs[i].node.active = false;
             }
         }
+        /*
+        var seats = th.socketIOManager.seats;
+        for(var i in seats){
+            this.initFolds(seats[i]);
+        }
+        */
+    },
+
+    initFolds:function(seatData){
+        var folds = seatData.folds;
+        if(folds == null){
+            return;
+        }
+        var localIndex = th.socketIOManager.getLocalIndex(seatData.seatindex);
+        var pre = th.mahjongManager.getFoldPre(localIndex);
+        var side = th.mahjongManager.getSide(localIndex);
+        var foldsSprites = this._folds[side];
+        for(var i = 0; i < foldsSprites.length; ++i){
+            var index = i;
+            if(side == "right" || side == "up"){
+                index = foldsSprites.length - i - 1;
+            }
+            var sprite = foldsSprites[index];
+            sprite.node.active = true;
+            this.setSpriteFrameByMJID(pre,sprite,folds[i]);
+        }
+        for(var i = folds.length; i < foldsSprites.length; ++i){
+            var index = i;
+            if(side == "right" || side == "up"){
+                index = foldsSprites.length - i - 1;
+            }
+            var sprite = foldsSprites[index];
+            
+            sprite.spriteFrame = null;
+            sprite.node.active = false;
+        }  
     },
 
     refreshAllSeat:function(){
@@ -59,6 +105,10 @@ cc.Class({
 
     refreshOneSeat:function(){
 
-    }
+    },
 
+    setSpriteFrameByMJID:function(pre,sprite,mjid){
+        sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID(pre,mjid);
+        sprite.node.active = true;
+    },
 });

@@ -17,25 +17,25 @@ cc.Class({
         nodeChiPengGang.scaleX *= scale;
         nodeChiPengGang.scaleY *= scale;
 
-        this.node.on('chi_notify',function(data){
-            console.log("chi_notify",data.detail);
+        this.node.on('chi_notify_push',function(data){
+            console.log("ChiPengGang chi_notify_push",data.detail);
             var data = data.detail;
             self.onChiPengGangChanged(data);
         });
 
-        this.node.on('peng_notify',function(data){
-            console.log("peng_notify",data.detail);
+        this.node.on('peng_notify_push',function(data){
+            console.log("ChiPengGang peng_notify_push",data.detail);
             var data = data.detail;
             self.onChiPengGangChanged(data);
         });
         
-        this.node.on('gang_notify',function(data){
-            console.log("gang_notify",data.detail);
+        this.node.on('gang_notify_push',function(data){
+            console.log("ChiPengGang gang_notify_push",data.detail);
             var data = data.detail;
             self.onChiPengGangChanged(data.seatData);
         });
 
-        this.node.on('game_begin',function(data){
+        this.node.on('begin_push',function(data){
             self.onGameBegin();
         });
 
