@@ -43,11 +43,7 @@ HuLib.get_hu_info = function( cards, cur_card,gui_1)
         tmp_cards[ gui_1 ] = 0;
     }
 
-    //两个特别玩法单独检测
-    //3财神直接可以胡
-    if(gui_num>=3){
-        return true;
-    }
+    /*
     let count=0;
     tmp_cards.forEach(card =>{count += card;});
     if(count+gui_num==14){
@@ -61,17 +57,19 @@ HuLib.get_hu_info = function( cards, cur_card,gui_1)
         }
     }
 
+    */
     //松阳麻将特别规则，如果不是13幺，白板可以代替财神的牌
     tmp_cards[ gui_1 ] = tmp_cards[ BAI_BANG_INDEX ];
     if(gui_1!=BAI_BANG_INDEX){
         tmp_cards[BAI_BANG_INDEX]=0;
     }
+    
 
     if (!this._split( tmp_cards, gui_num, Probability ) )
     {
         return false;
     }
-    console.log(JSON.stringify(Probability));
+    //console.log(JSON.stringify(Probability));
     return this.check_probability( Probability, gui_num );
 };
 

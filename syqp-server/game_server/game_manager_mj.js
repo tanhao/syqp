@@ -15,6 +15,18 @@ var ACTION_ZIMO = 6;
 var ACTION_CHI= 7;
 
 
+var ZG_QF_13YAO=1;
+var ZG_13YAO=2;
+var FZG_QF_13YAO=3;
+var FZG_13YAO=4;
+var QI_DUI=5;
+var PENG_PENG_HU=6;
+var PING_HU=7;
+var SAN_CAI_SHEN=8;
+
+const BAI_BANG_INDEX=33
+
+
 //取麻将类型
 function getMjType(id){
     if(id >= 0 && id <= 8){
@@ -54,7 +66,7 @@ function shuffle(game) {
             index++;
         }
     }
-    //风 (31 ~ 37表示 东南酉北中发白)
+    //风 (31 ~ 33表示 东南酉北中发白)
     for(let i = 27; i <= 33; ++i){
         for(let c = 0; c < 4; ++c){
             mjs[index] = i;
@@ -215,9 +227,38 @@ function checkCanHu(game,seatData,targetPai){
         let ci=seatData.holds[i];
         cards[ci]=cards[ci]+1;
     }
+
+    let tmpCards = cards.concat();
+    if (targetPai!=null && targetPai != 34 ){
+        tmpCards[ targetPai ] += 1;
+    }
+    let gui_num =  tmpCards[game.caishen]; 
+    tmpCards[game.caishen]=0;
+
+    //3财神直接可以胡
+    if(gui_num>=3){
+        seatData.canHu=true;
+        return true;
+    }
+
+    let count=0;
+    tmpCards.forEach(card =>{count += card;});
+    if(count+gui_num==14){
+        //7対
+        if(this.check_7dui(tmpCards,gui_num)){
+            return true;
+        }
+        //13幺
+        if(this.check_13yao(tmpCards,gui_num)){
+            return true;
+        }
+    }
+
     if (mjlib.Hulib.get_hu_info(cards, targetPai, game.caishen) ){
         seatData.canHu=true;
     }
+
+   
 }
 //检查有没有可能做的操作
 function hasOperations(seatData){
@@ -256,6 +297,9 @@ function clearAllOptions(game,seatData){
         sd.canHu = false;
         sd.canChi = false;
         sd.chiPai = [];
+        sd.gangFan=1;
+        sd.piaocaiFan=1;
+        sd.lastFangGangSeatIndex=null;
     }
     if(seatData){
         fnClear(seatData);
@@ -287,11 +331,11 @@ function moveToNextUser(game,nextSeatIndex){
 function doUserMoPai(game){
     game.chupai = null;
     var turnSeat = game.seats[game.turn];
+    turnSeat.lastFangGangSeatIndex=null;
     var pai = mopai(game,game.turn);
     //牌摸完了，结束
     if(pai == -1){
-        //todo
-        //doGameOver(game,turnSeat.userId);
+        doGameOver(game,turnSeat.userId);
         logger.info("not has pai ,finish..............");
         return;
     }else{
@@ -348,55 +392,189 @@ function checkCanQiangGang(game,turnSeat,seatData,gangType,numOfCnt,pai){
     return game.qiangGangContext != null;
 
 }
-//开杠逻辑
-function doGang(game,turnSeat,seatData,gangType,numOfCnt,pai){
-    var seatIndex = seatData.index;
-    var gameTurn = turnSeat.index;
-    if(gangType == "bugang"){
-        var idx=-1;
-        for(var i=0;i<seatData.pengs.length;i++){
-            if(seatData.pengs[i].mjid==pai){
-                idx=i;
-                break;
+//计算输赢
+function calculateResult(game,room){
+    for(var i = 0; i < game.seats.length; ++i){
+        var seatData = game.seats[i];
+        if(seatData.isHu){
+            var fan = seatData.fan;
+            //
+            if(seatData.holds.length == 1 || seatData.holds.length == 2){
+                fan *= 2;
+                seatData.isDangDiao = true;
             }
-        }
-        if(idx >= 0){
-            seatData.pengs.splice(idx,1);
+
         }
     }
-     //扣掉手上的牌
-    //从此人牌中扣除
-    for(var i = 0; i < numOfCnt; i++){
-        var index = seatData.holds.indexOf(pai);
-        if(index == -1){
-            logger.info(seatData.holds);
-            logger.info("can't find mj.");
+}
+//是否是清一色
+function isQingYiSe(seatData){
+
+}
+//是否是混一色
+function isHunYiSe(seatData){
+
+}
+//是否是字一色
+function isZiYiSe(seatData){
+
+}
+//检测是否清一色，混一色，字一色
+function checkQingHunZiYiSe(seatData){
+
+}
+//检测是否三财神
+function checkSanCaiShen(game,seatData){
+    seatData.isSanCaiShen=seatData.mjmap[game.caishen]==3;
+}
+//检测是否财神头
+function checkCaiShenTou(game,seatData){
+
+}
+//检测牌型
+function checkPaiXing(game,seatData,pai){
+    //如果pai为空，自摸，如果不为空那就是抢杠虎，胡的牌为holds 最后一个
+    //返回当前数组的副本
+    let tmpHolds = seatData.holds.concat();
+    if(pai!=null){
+        tmpHolds.push(pai)
+    }
+
+    let cards=new Array(34).fill(0);
+    for(let i=0;i<tmpHolds.length;i++){
+        let ci=tmpHolds[i];
+        cards[ci]=cards[ci]+1;
+    }
+    let tmpCards=cards.concat();
+
+    //鬼的个数
+    let gui_num = cards[game.caishen];
+    cards[caishen]=0
+
+    if(tmpHolds.length==14){
+        //13幺判断
+        if(mjlib.Hulib.check_13yao(cards,gui_num)){
+            //万
+            let wangs=cards.slice(0,9);
+            //条
+            let tiao=cards.slice(9,18)
+            //筒
+            let tong=cards.slice(18,27);
+            let huase=[wangs,tiao,tong];
+            //是否是正规13幺
+            let isZhenggui=true;
+            for(let i=0;i<3;i++){
+                let yao13Cards=huase[i];
+                let offset=yao13Cards.findIndex(val=>val>0);
+                for(let j=offset+1;j<yao13Cards.length;j++){
+                    if(cards[j]>0){
+                        if((j-offset)%3!=0){
+                            isZhenggui=false;
+                            break;
+                        }
+                        offset=j;
+                    }
+                }
+            }
+             //是否是7风13幺
+            let isQifeng=false;
+            //风
+            let fengCount=0;
+            let fengs=cards.slice(27,34);
+            for(let i=0;i<fengs.length;i++){
+                if(fengs[0]>0){
+                    fengCount+=1;
+                }
+            }
+            if(fengCount+gui_num>=7){
+                isQifeng=true;
+            }
+
+            if(isZhenggui){
+                if(isQifeng){
+                    seatData.paiXing={type:ZG_QF_13YAO,fan:16};
+                }else{
+                    seatData.paiXing={type:ZG_13YAO,fan:8};
+                }
+            }else{
+                if(isQifeng){
+                    seatData.paiXing={type:FZG_QF_13YAO,fan:8};
+                }else{
+                    seatData.paiXing={type:FZG_13YAO,fan:4};
+                }
+            }
+
+            //判断是不是三财神
+            checkSanCaiShen(game,seatData);
+            //13幺没有财神头
+            return;
+        }else if(mjlib.Hulib.check_7dui(cards,gui_num)){
+            seatData.paiXing={type:QI_DUI,fan:4};
+            checkQingHunZiYiSe(seatData);
+            //判断是不是三财神
+            checkSanCaiShen(game,seatData);
+            //判断是不是财神头
+            checkCaiShenTou(game,seatData);
             return;
         }
-        seatData.holds.splice(index,1);
-        seatData.mjmap[pai] --;
-    }
-    recordGameAction(game,seatData.index,ACTION_GANG,pai);
-
-    //记录下玩家的杠牌
-    var gangInfo={mjid:pai,idx:gameTurn};
-    if(gangType == "angang"){
-        seatData.angangs.push(gangInfo);
-    }else if(gangType == "diangang"){
-        seatData.diangangs.push(gangInfo);
-    }else if(gangType == "bugang"){
-        seatData.bugangs.push(gangInfo);
     }
 
-    //通知其他玩家，有人杠了牌
-    userManager.broacastInRoom('gang_notify_push',{userId:seatData.userId,info:gangInfo,gangType:gangType},seatData.userId,true);
+    //判断对对胡 
+    //不能有吃的牌
+    if(seatData.chis.length==0){
+        //对对胡叫牌有两种情况
+        //1、N坎 + 1张单牌
+        //2、N-1坎 + 两对牌 
+        let need=0;
+        for( let i = 0; i < 34; i++ )
+        {
+            if ( cards[ i ] % 3 != 0 )
+            {
+                need += 3-(cards[ i ] % 3);
+            }
+        }
+        if(need<=gui_num){
+            seatData.paiXing={type:PENG_PENG_HU,fan:4};
+            checkQingHunZiYiSe(seatData);
+            //判断是不是三财神
+            checkSanCaiShen(game,seatData);
+            //判断是不是财神头
+            checkCaiShenTou(game,seatData);
+            return;
+        }
+    }
 
-    //开杠有一个牌不要
-    game.mjci++;
-    //变成自己的轮子
-    moveToNextUser(game,seatIndex);
-    //再次摸牌
-    doUserMoPai(game);   
+    //平胡
+    if (mjlib.Hulib.get_hu_info(tmpCards, 34, game.caishen) ){
+        seatData.paiXing={type:PING_HU,fan:2};
+        checkQingHunZiYiSe(seatData);
+        //判断是不是三财神
+        checkSanCaiShen(game,seatData);
+        //判断是不是财神头
+        checkCaiShenTou(game,seatData);
+        return;  
+    }
+
+    //三财神自摸
+    seatData.paiXing={type:SAN_CAI_SHEN,fan:2};
+    checkQingHunZiYiSe(seatData);
+}
+//一局结束
+function doGameOver(game,userId,forceEnd){
+    var roomId = roomManager.getUserRoom(userId);
+    if(roomId == null){
+        return;
+    }
+    var room = roomManager.getRoom(roomId);
+    if(room == null){
+        return;
+    }
+    if(game != null){
+        if(!forceEnd){
+            calculateResult(game,room);    
+        }
+    }
+
 }
 //开房间时验证balance
 module.exports.checkBalance=function(config,balance){
@@ -500,6 +678,7 @@ module.exports.begin=function(roomId){
         turn:0,           //轮到那个座位出牌
         caishen:null,     //财神
         chupai:null,      //出的牌 {mjid:1,idx:0}
+        piaocaiSeatIndex:null,      //飘财seatIndex,不为空时代表有人飘财
         state:"idle",     //idle,playing,finish
         mjs:[],           //剩余麻将
         mjci:0,           //麻将当前Index,(摸到第几个麻将了)
@@ -547,15 +726,44 @@ module.exports.begin=function(roomId){
         data.canHu = false;
         //是否胡了
         data.isHu = false;
+        //如果胡了牌型
+        data.paiXing=null;      //{type:'13yao',fan:2};
         //是否是自摸
         data.isZimo = false;
+        //是不是杠上花
+        data.isGangHu = false;
+        //是不是海底胡
+        data.isHaiDiHu=false;
+        //是否单吊
+        data.isDangDiao=false;
+        //是否是3财神
+        data.isSanCaiShen=false;
+        //是否是财神头
+        data.isCaiShenTou=false;
+        //是否是清一色
+        data.isQingYiSe=false;
+        //是否是混一色
+        data.isHunYiSe=false;
+        //是否是字一色
+        data.isZiYiSe=false;
         //是否可以出牌,用来防止多次出牌
         data.canChupai = false;
+        //是否飘财
+        data.isPiaocai=false;
 
         data.actions = [];  
 
         //玩家手上的牌的数目，用于快速判定碰杠吃
         data.mjmap = {};
+
+        //连着杠的次数，胡牌用来算番数,每杠一次*2
+        data.gangFan=1;
+        //连着飘财次数，胡牌用来算番数,每飘一次*2
+        data.piaocaiFan=1;
+        //最后放杠给自己的人，过手就会清除，用来判断是不是杠胡
+        data.lastFangGangSeatIndex=null;
+        //总番数
+        data.fan=1;
 
         SEAT_DATE_MAP[data.userId]=data;
 
@@ -713,6 +921,62 @@ module.exports.peng=function(userId){
     seatData.canChupai = true;
     userManager.broacastInRoom('chupai_push',seatData.userId,seatData.userId,true);
 }
+//开杠逻辑
+function doGang(game,turnSeat,seatData,gangType,numOfCnt,pai){
+    var seatIndex = seatData.index;
+    var gameTurn = turnSeat.index;
+    if(gangType == "bugang"){
+        var idx=-1;
+        for(var i=0;i<seatData.pengs.length;i++){
+            if(seatData.pengs[i].mjid==pai){
+                idx=i;
+                break;
+            }
+        }
+        if(idx >= 0){
+            seatData.pengs.splice(idx,1);
+        }
+    }
+     //扣掉手上的牌
+    //从此人牌中扣除
+    for(var i = 0; i < numOfCnt; i++){
+        var index = seatData.holds.indexOf(pai);
+        if(index == -1){
+            logger.info(seatData.holds);
+            logger.info("can't find mj.");
+            return;
+        }
+        seatData.holds.splice(index,1);
+        seatData.mjmap[pai] --;
+    }
+    recordGameAction(game,seatData.index,ACTION_GANG,pai);
+
+    //记录下玩家的杠牌
+    var gangInfo={mjid:pai,idx:gameTurn};
+    if(gangType == "angang"){
+        seatData.angangs.push(gangInfo);
+    }else if(gangType == "diangang"){
+        seatData.diangangs.push(gangInfo);
+    }else if(gangType == "bugang"){
+        seatData.bugangs.push(gangInfo);
+    }
+
+    //通知其他玩家，有人杠了牌
+    userManager.broacastInRoom('gang_notify_push',{userId:seatData.userId,info:gangInfo,gangType:gangType},seatData.userId,true);
+
+    //开杠有一个牌不要
+    game.mjci++;
+
+    //变成自己的轮子
+    moveToNextUser(game,seatIndex);
+    //再次摸牌
+    doUserMoPai(game);   
+
+    //记录连杠次数 因为不胡就会清除
+    seatData.gangFan *=2;
+    //只能放在这里。因为过手就会清除杠牌标记,用来判断是不是杠胡
+    seatData.lastFangGangSeatIndex = gameTurn;
+}
 //杠
 module.exports.gang=function(userId,pai){
     let seatData = SEAT_DATE_MAP[userId];
@@ -772,24 +1036,44 @@ module.exports.hu=function(userId){
     }
     var seatIndex = seatData.index;
     let game = seatData.game;
-    //如果他不能和牌，那和个啥啊
+    //如果他不能胡牌，那胡个啥啊
     if(seatData.canHu == false){
         logger.info("invalid request.");
         return;
     }
-    //标记为和牌
+    //标记为胡牌
     seatData.isHu=true;
     var hupai = game.chupai;
     var isZimo = false;
 
     var turnSeat = game.seats[game.turn];
-
-
+    seatData.isGangHu = turnSeat.lastFangGangSeat >= 0;
+    var notify = null;
     if(game.qiangGangContext != null){
         //抢杠胡
+        var gangSeat = game.qiangGangContext.seatData;
+        hupai = game.qiangGangContext.pai;
+        notify=hupai;
+        seatData.isZimo=false;
+        recordGameAction(game,seatIndex,ACTION_HU,hupai);
+        game.qiangGangContext.isValid = false;
     }else if(game.chupai==null){
         //自摸
+        seatData.isZimo=true;
+        isZim=true;
+        recordGameAction(game,seatIndex,ACTION_ZIMO,hupai);
     }
+    //如果是最后一张牌，则认为是海底胡
+    seatData.isHaiDiHu = game.mjci == (game.mjs.length-20);
+    //判断是不是单吊
+    if(seatData.holds.length==1||seatData.holds.length==2){
+        seatData.isDangDiao=true;
+    }
+    
+    clearAllOptions(game);
+    //通知前端，有人和牌了
+    userManager.broacastInRoom('hu_push',{seatIndex:seatIndex,isZimo:isZimo,hupai:notify},seatData.userId,true);
+    doGameOver(game,seatData.userId);
 
 }
 //过
@@ -890,6 +1174,22 @@ module.exports.chupai=function(userId,pai){
     seatData.canChupai = false;
     seatData.holds.splice(index,1);
     seatData.mjmap[pai] --;
+    //清空杠番
+    seatData.gangFan=1;
+    //如果打的是彩神,并且手上还有一个财神以上那就是飘财
+    if(game.caishen==pai&&seatData.mjmap[pai]>=1){
+        //记录连杠次数 因为过手就会清除
+        seatData.piaocaiFan *=2;
+        seatData.isPiaocai = true;
+        game.piaocaiSeatIndex=seatData.index;
+    }else{
+        seatData.piaocaiFan =1;
+        seatData.isPiaocai = false;
+        //如果飘财的人出牌
+        if(seatData.index==game.piaocaiSeatIndex){
+            game.piaocaiSeatIndex=null;
+        }
+    }
     game.chupai = {mjid:pai,idx:seatData.index};
     //记录游戏操作用来回放
     recordGameAction(game,seatData.seatIndex,ACTION_CHUPAI,pai);
@@ -898,6 +1198,10 @@ module.exports.chupai=function(userId,pai){
     //检查是否有人要碰 要杠 要吃
     let hasActions = false;
     for(let i = 0; i < game.seats.length; ++i){
+        //如果是飘财，其他人不能吃碰
+        if( game.piaocaiSeatIndex!=null){
+            break;
+        }
         let tmpSeatData=game.seats[i];
         //玩家自己不检查
         if(game.turn == i){
@@ -927,4 +1231,4 @@ module.exports.chupai=function(userId,pai){
             doUserMoPai(game);
         },500);
     }
-}
+} 
