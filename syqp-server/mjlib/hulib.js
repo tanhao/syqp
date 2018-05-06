@@ -63,13 +63,12 @@ HuLib.get_hu_info = function( cards, cur_card,gui_1)
     if(gui_1!=BAI_BANG_INDEX){
         tmp_cards[BAI_BANG_INDEX]=0;
     }
-    
 
     if (!this._split( tmp_cards, gui_num, Probability ) )
     {
         return false;
     }
-    //console.log(JSON.stringify(Probability));
+    console.log(JSON.stringify(Probability));
     return this.check_probability( Probability, gui_num );
 };
 
@@ -131,7 +130,7 @@ HuLib.check_probability = function( ptbl, gui_num )
     {
         return gui_num >= 2;
     }
-    // 只有一种花色的牌的鬼牌
+    // 只有一种花色的牌
     if ( ptbl.array_num == 1 )
     { 
         return true;

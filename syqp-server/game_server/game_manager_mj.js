@@ -407,33 +407,198 @@ function calculateResult(game,room){
         }
     }
 }
+function isSameTypeHolds(game,type,arr){
+    for(let i = 0; i < arr.length; ++i){
+        //手上的财神不用判断
+        if(game.caishen==arr[i]){
+            continue;
+        }
+        let t = getMjType(arr[i]);
+        if(type != -1 && type != t){
+            return false;
+        }
+        type = t;
+    }
+    return true; 
+}
+function isSameTypePengGang(game,type,arr){
+    for(let i = 0; i < arr.length; ++i){
+        //判断是不是白板。
+        var pai=arr[i].mjid;
+        if(BAI_BANG_INDEX==pai){
+            pai=game.caishen;
+        }
+        let t = getMjType(pai);
+        if(type != -1 && type != t){
+            return false;
+        }
+        type = t;
+    }
+    return true; 
+}
+function isSameTypeChi(game,type,arr){
+    for(let i = 0; i < arr.length; ++i){
+        //判断吃牌时，有可能有白板，只要取不是白板的其他随便一个就行了。
+        var pai=arr[i].mjids[0];
+        if(BAI_BANG_INDEX==pai){
+            pai=game.caishen;
+        }
+        let t = getMjType(pai);
+        if(type != -1 && type != t){
+            return false;
+        }
+        type = t;
+    }
+    return true; 
+}
 //是否是清一色
-function isQingYiSe(seatData){
+function isQingYiSe(game,seatData){
+    let type = getMjType(seatData.holds[0]);
 
+    //检查手上的牌
+    if(isSameTypeHolds(game,type,seatData.holds) == false){
+        return false;
+    }
+
+    //检查杠下的牌
+    if(isSameTypePengGang(game,type,seatData.angangs) == false){
+        return false;
+    }
+    if(isSameTypePengGang(game,type,seatData.diangangs) == false){
+        return false;
+    }
+    if(isSameTypePengGang(game,type,seatData.bugangs) == false){
+        return false;
+    }
+    
+    //检查碰牌
+    if(isSameTypePengGang(game,type,seatData.pengs) == false){
+        return false;
+    }
+
+    //检查吃
+    if(isSameTypeChi(game,type,seatData,chis) == false){
+        return false;
+    }
 }
 //是否是混一色
-function isHunYiSe(seatData){
+function isHunYiSe(game,seatData){
+    let types=[0,0,0,0];
+    //检查手上的牌
+    for(let i = 0; i < seatData.holds.length; ++i){
+        let type = getMjType(seatData.holds[i]);
+        types[type]=1;
+    }
+    if(types[0]+types[1]+types[2]>1){
+        return false;
+    }
+    //检查杠下的牌
+    function parsePengGang(game,types,arr){
+        for(let i = 0; i < arr.length; ++i){
+            //判断是不是白板。
+            var pai=arr[i].mjid;
+            if(BAI_BANG_INDEX==pai){
+                pai=game.caishen;
+            }
+            let type = getMjType(pai);
+            types[type]=1;
+        }
+    }
+    parsePengGang(game,types,seatData.angangs);
+    parsePengGang(game,types,seatData.diangangs);
+    parsePengGang(game,types,seatData.bugangs);
+    if(types[0]+types[1]+types[2]>1){
+        return false;
+    }
 
+    //检查碰下的牌
+    parsePengGang(game,types,seatData.pengs);
+    if(types[0]+types[1]+types[2]>1){
+        return false;
+    }
+
+    //检查吃
+    for(let i = 0; i < seatData.chis.length; ++i){
+        //判断吃牌时，有可能有白板，只要取不是白板的其他随便一个就行了。
+        var pai=seatData.chis[i].mjids[0];
+        if(BAI_BANG_INDEX==pai){
+            pai=game.caishen;
+        }
+        let type = getMjType(pai);
+        types[type]=1;
+    }
+    if(types[0]+types[1]+types[2]>1||types[3]==0){
+        return false;
+    }
+    return true;
 }
 //是否是字一色
-function isZiYiSe(seatData){
-
+function isZiYiSe(game,seatData){
+    if(isQingYiSe(game,seatData)==false){
+        return false;
+    }
+    let type = getMjType(seatData.holds[0]);
+    if(type!=3){
+        return false;
+    }
+    return true;
 }
 //检测是否清一色，混一色，字一色
-function checkQingHunZiYiSe(seatData){
-
+function checkQingHunZiYiSe(gaem,seatData){
+    if(isZiYiSe(game,seatData)){
+        seatData.isZiYiSe=true;
+        seatData.isHunYiSe=false;
+        seatData.isQingYiSe=false;
+    }else if(isQingYiSe(game,seatData)){
+        seatData.isZiYiSe=false;
+        seatData.isHunYiSe=false;
+        seatData.isQingYiSe=true;
+    }else if(isHunYiSe(game,seatData)){
+        seatData.isZiYiSe=false;
+        seatData.isHunYiSe=true;
+        seatData.isQingYiSe=false;
+    }else{
+        seatData.isZiYiSe=false;
+        seatData.isHunYiSe=false;
+        seatData.isQingYiSe=false;
+    }
 }
 //检测是否三财神
 function checkSanCaiShen(game,seatData){
     seatData.isSanCaiShen=seatData.mjmap[game.caishen]==3;
 }
 //检测是否财神头
-function checkCaiShenTou(game,seatData){
+function checkCaiShenTou(game,seatData,pai,type){
+    //如果都没有财神，就不要判断了
+    if(!seatData.mjmap[game.caishen] || seatData.mjmap[game.caishen]==0){
+        seatData.isCaiShenTou=false;
+        return;
+    }
+    let tmpHolds = seatData.holds.concat();
+    if(pai!=null){
+        tmpHolds.push(pai)
+    }
+    let tmpMJMap = {};
+    for(let i=0;i<tmpHolds.length;i++){
+        let count=tmpMJMap[tmpHolds[i]];
+        if(count==null){ count=0; }
+        tmpMJMap[pai]=count+1;
+    }
+    let count=data.mjmap[pai];
+    if(count==null){ count=0; }
+    data.mjmap[pai]=count+1;
 
+    if(type==1){
+        //碰碰胡
+    }else if(type==2){
+        //七对
+    }else if(type==3){
+        //平胡
+    }
 }
 //检测牌型
 function checkPaiXing(game,seatData,pai){
-    //如果pai为空，自摸，如果不为空那就是抢杠虎，胡的牌为holds 最后一个
+    //如果pai为空，自摸，如果不为空那就是抢杠胡，胡的牌为holds 最后一个
     //返回当前数组的副本
     let tmpHolds = seatData.holds.concat();
     if(pai!=null){
@@ -510,11 +675,11 @@ function checkPaiXing(game,seatData,pai){
             return;
         }else if(mjlib.Hulib.check_7dui(cards,gui_num)){
             seatData.paiXing={type:QI_DUI,fan:4};
-            checkQingHunZiYiSe(seatData);
+            checkQingHunZiYiSe(game,seatData);
             //判断是不是三财神
             checkSanCaiShen(game,seatData);
             //判断是不是财神头
-            checkCaiShenTou(game,seatData);
+            checkCaiShenTou(game,seatData,pai,2);
             return;
         }
     }
@@ -533,13 +698,13 @@ function checkPaiXing(game,seatData,pai){
                 need += 3-(cards[ i ] % 3);
             }
         }
-        if(need<=gui_num){
+        if(need-1<=gui_num){
             seatData.paiXing={type:PENG_PENG_HU,fan:4};
-            checkQingHunZiYiSe(seatData);
+            checkQingHunZiYiSe(game,seatData);
             //判断是不是三财神
             checkSanCaiShen(game,seatData);
             //判断是不是财神头
-            checkCaiShenTou(game,seatData);
+            checkCaiShenTou(game,seatData,pai,1);
             return;
         }
     }
@@ -547,17 +712,17 @@ function checkPaiXing(game,seatData,pai){
     //平胡
     if (mjlib.Hulib.get_hu_info(tmpCards, 34, game.caishen) ){
         seatData.paiXing={type:PING_HU,fan:2};
-        checkQingHunZiYiSe(seatData);
+        checkQingHunZiYiSe(game,seatData);
         //判断是不是三财神
         checkSanCaiShen(game,seatData);
         //判断是不是财神头
-        checkCaiShenTou(game,seatData);
+        checkCaiShenTou(game,seatData,pai,3);
         return;  
     }
 
     //三财神自摸
     seatData.paiXing={type:SAN_CAI_SHEN,fan:2};
-    checkQingHunZiYiSe(seatData);
+    checkQingHunZiYiSe(game,seatData,pai);
 }
 //一局结束
 function doGameOver(game,userId,forceEnd){
