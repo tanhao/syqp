@@ -75,10 +75,8 @@ HuLib.get_hu_info = function( cards, cur_card,gui_1)
 HuLib.check_7dui = function( cards, gui_num )
 {
     let need = 0;
-    for( let i = 0; i < 34; i++ )
-    {
-        if ( cards[ i ] % 2 != 0 )
-        {
+    for( let i = 0; i < 34; i++ ){
+        if ( cards[ i ] % 2 != 0 ){
             need += 1;
         }
     }

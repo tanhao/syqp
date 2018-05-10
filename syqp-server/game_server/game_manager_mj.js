@@ -410,10 +410,14 @@ function calculateResult(game,room){
 function isSameTypeHolds(game,type,arr){
     for(let i = 0; i < arr.length; ++i){
         //手上的财神不用判断
-        if(game.caishen==arr[i]){
+        let pai=arr[i];
+        if(game.caishen==pai){
             continue;
         }
-        let t = getMjType(arr[i]);
+        if(BAI_BANG_INDEX==pai){
+            pai=game.caishen;
+        }
+        let t = getMjType(pai);
         if(type != -1 && type != t){
             return false;
         }
@@ -544,7 +548,7 @@ function isZiYiSe(game,seatData){
     return true;
 }
 //检测是否清一色，混一色，字一色
-function checkQingHunZiYiSe(gaem,seatData){
+function checkQingHunZiYiSe(game,seatData){
     if(isZiYiSe(game,seatData)){
         seatData.isZiYiSe=true;
         seatData.isHunYiSe=false;
@@ -575,47 +579,67 @@ function checkCaiShenTou(game,seatData,pai,type){
         return;
     }
     let tmpHolds = seatData.holds.concat();
-    if(pai!=null){
-        tmpHolds.push(pai)
+    if(pai==null){
+        //自莫，把最后一个牌去掉
+        tmpHolds.pop();
     }
-    let tmpMJMap = {};
+    
+    let cards=new Array(34).fill(0);
     for(let i=0;i<tmpHolds.length;i++){
-        let count=tmpMJMap[tmpHolds[i]];
-        if(count==null){ count=0; }
-        tmpMJMap[pai]=count+1;
+        let ci=tmpHolds[i];
+        cards[ci]=cards[ci]+1;
     }
-    let count=data.mjmap[pai];
-    if(count==null){ count=0; }
-    data.mjmap[pai]=count+1;
+    //再去掉一个财神，如果剩下的能组能坎或者连子就为财神头
+    cards[game.caishen]=cards[game.caishen]-1;
+    //把剩下的鬼拿出来
+    let gui_num=cards[game.caishen];
+    cards[game.caishen]=0;
 
     if(type==1){
         //碰碰胡
+        let need=0;
+        for( let i = 0; i < 34; i++ ){
+            if ( cards[ i ] % 3 != 0 ){
+                need += 3-(cards[ i ] % 3);
+            }
+        }
+        if(gui_num==need){
+            seatData.isCaiShenTou=true;
+        }
     }else if(type==2){
         //七对
+        let need = 0;
+        for( let i = 0; i < 34; i++ ){
+            if ( cards[ i ] % 2 != 0 ){
+                need += 1;
+            }
+        }
+        if(gui_num==need){
+            seatData.isCaiShenTou=true;
+        }
     }else if(type==3){
         //平胡
+        
     }
 }
 //检测牌型
 function checkPaiXing(game,seatData,pai){
-    //如果pai为空，自摸，如果不为空那就是抢杠胡，胡的牌为holds 最后一个
+    //如果pai为空，自摸胡的牌为holds 最后一个，如果不为空那就是抢杠胡，
     //返回当前数组的副本
     let tmpHolds = seatData.holds.concat();
     if(pai!=null){
         tmpHolds.push(pai)
     }
-
     let cards=new Array(34).fill(0);
     for(let i=0;i<tmpHolds.length;i++){
         let ci=tmpHolds[i];
         cards[ci]=cards[ci]+1;
     }
     let tmpCards=cards.concat();
-
     //鬼的个数
     let gui_num = cards[game.caishen];
     cards[caishen]=0
-
+     //13幺判断与7对子
     if(tmpHolds.length==14){
         //13幺判断
         if(mjlib.Hulib.check_13yao(cards,gui_num)){
@@ -683,18 +707,14 @@ function checkPaiXing(game,seatData,pai){
             return;
         }
     }
-
-    //判断对对胡 
-    //不能有吃的牌
+    //判断对对胡 ，不能有吃的牌
     if(seatData.chis.length==0){
         //对对胡叫牌有两种情况
         //1、N坎 + 1张单牌
         //2、N-1坎 + 两对牌 
         let need=0;
-        for( let i = 0; i < 34; i++ )
-        {
-            if ( cards[ i ] % 3 != 0 )
-            {
+        for( let i = 0; i < 34; i++ ){
+            if ( cards[ i ] % 3 != 0 ){
                 need += 3-(cards[ i ] % 3);
             }
         }
@@ -708,7 +728,6 @@ function checkPaiXing(game,seatData,pai){
             return;
         }
     }
-
     //平胡
     if (mjlib.Hulib.get_hu_info(tmpCards, 34, game.caishen) ){
         seatData.paiXing={type:PING_HU,fan:2};
@@ -719,7 +738,6 @@ function checkPaiXing(game,seatData,pai){
         checkCaiShenTou(game,seatData,pai,3);
         return;  
     }
-
     //三财神自摸
     seatData.paiXing={type:SAN_CAI_SHEN,fan:2};
     checkQingHunZiYiSe(game,seatData,pai);
