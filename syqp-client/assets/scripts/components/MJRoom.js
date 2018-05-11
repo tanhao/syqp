@@ -55,7 +55,7 @@ cc.Class({
         var index = th.socketIOManager.getLocalIndex(seat.index);
         this._seats[index].setInfo(seat.userId,seat.name,seat.score,seat.headImgUrl);
         this._seats[index].setFangzhu(seat.userId==th.socketIOManager.creator);
-        this._seats[index].setBank(seat.seatindex==th.socketIOManager.bankIndex);
+        this._seats[index].setbanker(seat.seatindex==th.socketIOManager.bankerIndex);
         this._seats[index].setReady(seat.ready);
         this._seats[index].setOffline(!seat.online);
     },

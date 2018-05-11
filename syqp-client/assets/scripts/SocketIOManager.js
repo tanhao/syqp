@@ -11,7 +11,7 @@ cc.Class({
         chupai:null,           //出的牌
         caishen:null,          //财神 
         seatIndex:-1,          //座位Index
-        bankIndex:-1,          //庄Index
+        bankerIndex:-1,          //庄Index
         turn:-1,               //轮到谁出牌了
         mjsy:0,                //剩余麻将
         needCheckIp:false,
@@ -36,7 +36,7 @@ cc.Class({
         this.chupai=-1;
         this.caishen=null;
         this.seatIndex=-1;
-        this.bankIndex=-1;
+        this.bankerIndex=-1;
         this.turn=-1;
         this.mjsy=0;
         this.needCheckIp=false;
@@ -185,8 +185,8 @@ cc.Class({
         //开始游戏基本消息
         th.sio.addHandler("begin_push",function(data){
             cc.log("==>SocketIOManager begin_push:",data);
-            self.bankIndex=data;
-            self.turn=self.bankIndex;
+            self.bankerIndex=data;
+            self.turn=self.bankerIndex;
             self.status="begin";
             self.dispatchEvent("begin_push");
         });
