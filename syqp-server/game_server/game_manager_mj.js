@@ -394,17 +394,51 @@ function checkCanQiangGang(game,turnSeat,seatData,gangType,numOfCnt,pai){
 }
 //计算输赢
 function calculateResult(game,room){
-    for(var i = 0; i < game.seats.length; ++i){
-        var seatData = game.seats[i];
-        if(seatData.isHu){
-            var fan = seatData.fan;
-            //
-            if(seatData.holds.length == 1 || seatData.holds.length == 2){
-                fan *= 2;
-                seatData.isDangDiao = true;
+    if(game.hupaiSeatIndex==null){
+        //臭了
+        let bankSeat=game.seats[game.bank];
+        let loseScore=game.config.difen*2;
+        let totalLoseScore=0;
+        for(let i=0;i<game.seats.length;i++){
+            let winScore=game.config.difen*2;
+            game.score+=loseScore;
+            totalLoseScore+=-loseScore;
+        }
+        bankSeat.score=totalLoseScore;
+    }else{
+        let hupaiSeatData=game.seats[game.hupaiSeatIndex];
+        let fan = hupaiSeatData.paiXing.fan;
+        if(hupaiSeatData.isDangDiao){
+            fan *=2;
+        }
+        if(hupaiSeatData.isSanCaiShen){
+            fan *=2;
+        }
+        if(hupaiSeatData.isCaiShenTou){
+            fan *=2;
+        }
+        if(hupaiSeatData.isZiYiSe){
+            fan *=2;
+        }else if(hupaiSeatData.isQingYiSe){
+            fan *=4;
+        }else if(hupaiSeatData.isHunYiSe){
+            fan *=8;
+        }
+        //如果是庄还要再*2
+        if(game.bank==hupaiSeatData.index){
+            fan *=2;
+        }
+        let totalWinScore=0;
+        for(let i = 0; i < game.seats.length;i++){
+            let loseSeatData = game.seats[i];
+            let loseFan=fan;
+            if(hupaiSeatData.baoSeatIndex=loseSeatData.index){
+                loseFan*2;
             }
 
         }
+        
+   
     }
 }
 function isSameTypeHolds(game,type,arr){
@@ -580,7 +614,7 @@ function checkCaiShenTou(game,seatData,pai,type){
     }
     let tmpHolds = seatData.holds.concat();
     if(pai==null){
-        //自莫，把最后一个牌去掉
+        //自摸，把最后一个牌去掉
         tmpHolds.pop();
     }
     
@@ -619,7 +653,10 @@ function checkCaiShenTou(game,seatData,pai,type){
         }
     }else if(type==3){
         //平胡
-        
+        cards[game.caishen]=gui_num;
+        if(mjlib.Hulib2.is3N(cards, 34,game.caishen)){
+            seatData.isCaiShenTou=true;
+        }
     }
 }
 //检测牌型
@@ -753,9 +790,12 @@ function doGameOver(game,userId,forceEnd){
         return;
     }
     if(game != null){
+        //如果不是解散房间就计算番
         if(!forceEnd){
             calculateResult(game,room);    
         }
+        
+
     }
 
 }
@@ -867,6 +907,7 @@ module.exports.begin=function(roomId){
         mjci:0,           //麻将当前Index,(摸到第几个麻将了)
         actions:[],       //游戏操作，用来回放
         qiangGangContext:null,   //{  turnSeat:turnSeat, seatData:seatData, gangType:gangType,numOfCnt:numOfCnt, pai:pai,  isValid:true,  }
+        hupaiSeatIndex:null, //如果为空就是渣胡（臭了）
     }
     room.round++;
     //第一局随机一个庄
@@ -945,8 +986,16 @@ module.exports.begin=function(roomId){
         data.piaocaiFan=1;
         //最后放杠给自己的人，过手就会清除，用来判断是不是杠胡
         data.lastFangGangSeatIndex=null;
+        //当局输赢分数
+        data.score=0;
         //总番数
         data.fan=1;
+        //我被那些人包起来了。可以是多个。比如其他3家都吃碰杠了我3次
+        data.unbaoSeatIndexMap={};
+        //包起来的seatIndex，最多只能包一人个，因为最多只可以吃碰杠4次，3次才能包一个人
+        data.baoSeatIndex=null;
+        //玩家吃碰杠其他人的牌的次数，用来快速判断是不是包起来了
+        data.baoMap = {};
 
         SEAT_DATE_MAP[data.userId]=data;
 
@@ -1040,6 +1089,20 @@ module.exports.chi=function(userId,pais){
         seatData.countMap[pais[i]] --;
     }
     seatData.chis.push([{mjids:tmpChipai,idx:game.turn}]); //[{mjids:[],idx:1}]
+
+        
+    //统计吃同一个人的次数
+    if(seatData.baoMap[game.turn]==null){
+        seatData.baoMap[game.turn]=0;
+    }
+    seatData.baoMap[game.turn]+=1;
+    if(seatData.baoMap[game.turn]>=3){
+        //包起来了
+        seatData.baoSeatIndex=game.turn;
+        //被包的人的数据也刷新下
+        game.seats[game.turn].unbaoSeatIndexMap[seatData]=true;
+    }
+
     game.chupai = null;
 
     recordGameAction(game,seatData.seatIndex,ACTION_CHI,pai);
@@ -1092,6 +1155,20 @@ module.exports.peng=function(userId){
         seatData.mjmap[pai] --;
     }
     seatData.pengs.push({mjid:pai,idx:game.turn});
+
+    //统计吃同一个人的次数
+    if(seatData.baoMap[game.turn]==null){
+        seatData.baoMap[game.turn]=0;
+    }
+    seatData.baoMap[game.turn]+=1;
+    if(seatData.baoMap[game.turn]>=3){
+        //包起来了
+        seatData.baoSeatIndex=game.turn;
+        //被包的人的数据也标记下被谁包了
+        game.seats[game.turn].unbaoSeatIndexMap[seatData]=true;
+    }
+
+
     game.chupai = null;
     recordGameAction(game,seatData.seatIndex,ACTION_PENG,pai);
     //广播通知其它玩家
@@ -1142,6 +1219,20 @@ function doGang(game,turnSeat,seatData,gangType,numOfCnt,pai){
         seatData.diangangs.push(gangInfo);
     }else if(gangType == "bugang"){
         seatData.bugangs.push(gangInfo);
+    }
+
+    if(gangType == "diangang"){
+        //统计吃同一个人的次数
+        if(seatData.baoMap[game.turn]==null){
+            seatData.baoMap[game.turn]=0;
+        }
+        seatData.baoMap[game.turn]+=1;
+        if(seatData.baoMap[game.turn]>=3){
+            //包起来了
+            seatData.baoSeatIndex=game.turn;
+            //被包的人的数据也标记下被谁包了
+            game.seats[game.turn].unbaoSeatIndexMap[seatData]=true;
+        }
     }
 
     //通知其他玩家，有人杠了牌
@@ -1224,10 +1315,14 @@ module.exports.hu=function(userId){
         logger.info("invalid request.");
         return;
     }
+    //标记为胡牌座位index
+    game.hupaiSeatIndex=seatData.index;
     //标记为胡牌
     seatData.isHu=true;
     var hupai = game.chupai;
     var isZimo = false;
+
+
 
     var turnSeat = game.seats[game.turn];
     seatData.isGangHu = turnSeat.lastFangGangSeat >= 0;
@@ -1240,18 +1335,23 @@ module.exports.hu=function(userId){
         seatData.isZimo=false;
         recordGameAction(game,seatIndex,ACTION_HU,hupai);
         game.qiangGangContext.isValid = false;
+
+        
     }else if(game.chupai==null){
         //自摸
         seatData.isZimo=true;
-        isZim=true;
+        isZimo=true;
         recordGameAction(game,seatIndex,ACTION_ZIMO,hupai);
     }
+    //判断牌型
+    checkPaiXing(game,seatData,hupai);
     //如果是最后一张牌，则认为是海底胡
     seatData.isHaiDiHu = game.mjci == (game.mjs.length-20);
     //判断是不是单吊
     if(seatData.holds.length==1||seatData.holds.length==2){
         seatData.isDangDiao=true;
     }
+
     
     clearAllOptions(game);
     //通知前端，有人和牌了
