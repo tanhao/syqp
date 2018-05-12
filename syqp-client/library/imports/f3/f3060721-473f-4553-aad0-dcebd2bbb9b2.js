@@ -17,7 +17,7 @@ cc.Class({
         chupai: null, //出的牌
         caishen: null, //财神 
         seatIndex: -1, //座位Index
-        bankIndex: -1, //庄Index
+        bankerIndex: -1, //庄Index
         turn: -1, //轮到谁出牌了
         mjsy: 0, //剩余麻将
         needCheckIp: false,
@@ -25,7 +25,6 @@ cc.Class({
         actions: null //玩家可以做操作
 
     },
-
     onLoad: function onLoad() {},
 
 
@@ -33,7 +32,6 @@ cc.Class({
     update (dt) {
     },
     */
-
     reset: function reset() {
         th.userManager.roomId = null;
         this.roomId = null;
@@ -44,7 +42,7 @@ cc.Class({
         this.chupai = -1;
         this.caishen = null;
         this.seatIndex = -1;
-        this.bankIndex = -1;
+        this.bankerIndex = -1;
         this.turn = -1;
         this.mjsy = 0;
         this.needCheckIp = false;
@@ -53,6 +51,7 @@ cc.Class({
         for (var i = 0; i < this.seats.length; i++) {
             this.seats[i].holds = [];
             this.seats[i].folds = [];
+            this.seats[i].chis = [];
             this.seats[i].pengs = [];
             this.seats[i].angangs = [];
             this.seats[i].diangangs = [];
@@ -60,13 +59,11 @@ cc.Class({
             this.seats[i].ready = false;
         }
     },
-
     dispatchEvent: function dispatchEvent(event, data) {
         if (this.dataEventHandler) {
             this.dataEventHandler.emit(event, data);
         }
     },
-
 
     initHandlers: function initHandlers() {
         var self = this;
@@ -152,7 +149,6 @@ cc.Class({
             seat.ready = true;
             self.dispatchEvent("ready_push", seat);
         });
-
         //玩家手上的牌
         th.sio.addHandler("holds_push", function (data) {
             cc.log("==>SocketIOManager holds_push:", JSON.stringify(data));
@@ -182,45 +178,48 @@ cc.Class({
             }
             self.dispatchEvent("holds_push");
         });
-
         //通知还剩多少张牌
         th.sio.addHandler("mjsy_push", function (data) {
             cc.log("==>SocketIOManager mjsy_push:", data);
             self.mjsy = data;
             self.dispatchEvent("mjsy_push");
         });
-
         //通知当前是第几局
         th.sio.addHandler("round_push", function (data) {
             cc.log("==>SocketIOManager round_push:", data);
             self.round = data;
             self.dispatchEvent("round_push");
         });
-
+        //通知财神
+        th.sio.addHandler("caishen_push", function (data) {
+            cc.log("==>SocketIOManager caishen_push:", data);
+            self.caishen = data;
+            self.dispatchEvent("caishen_push");
+        });
         //开始游戏基本消息
         th.sio.addHandler("begin_push", function (data) {
             cc.log("==>SocketIOManager begin_push:", data);
-            self.bankIndex = data;
-            self.turn = self.bankIndex;
+            self.bankerIndex = data;
+            self.turn = self.bankerIndex;
             self.status = "begin";
             self.dispatchEvent("begin_push");
         });
-
         //谁出牌
         th.sio.addHandler("chupai_push", function (data) {
             cc.log("==>SocketIOManager chupai_push:", JSON.stringify(data));
             var turnUserId = data;
-            var seatIndex = self.getSeatByUserId(turnUserId);
+            var seatIndex = self.getSeatIndexById(turnUserId);
             self.doTurnChange(seatIndex);
         });
-
         //出牌时可以做的操作
         th.sio.addHandler("action_push", function (data) {
             cc.log("==>SocketIOManager action_push:", JSON.stringify(data));
             self.actions = data;
             self.dispatchEvent("action_push", data);
         });
-
+        th.sio.addHandler("guo_result", function (data) {
+            self.dispatchEvent('guo_result');
+        });
         th.sio.addHandler("guo_notify_push", function (data) {
             var userId = data.userId;
             var pai = data.pai;
@@ -254,13 +253,10 @@ cc.Class({
         th.sio.addHandler("mopai_push", function (data) {
             self.doMopai(self.seatIndex, data);
         });
-        th.sio.addHandler("guo_result", function (data) {
-            self.dispatchEvent('guo_result');
-        });
+
         th.sio.addHandler("hu_notify_push", function (data) {
             self.doHu(data);
         });
-
         //断线
         th.sio.addHandler("disconnect", function (data) {
             if (self.roomId == null) {
@@ -394,7 +390,6 @@ cc.Class({
         }
     },
     doHu: function doHu(seatIndex, pai) {},
-
     doTurnChange: function doTurnChange(seatIndex) {
         var data = {
             last: this.turn,
@@ -411,19 +406,16 @@ cc.Class({
         }
         return -1;
     },
-
     getLocalIndex: function getLocalIndex(index) {
         var total = this.seats.length;
         var ret = (index - this.seatIndex + total) % total;
         return ret;
     },
-
     getSeatByUserId: function getSeatByUserId(userId) {
         var index = this.getSeatIndexById(userId);
         var seat = this.seats[index];
         return seat;
     },
-
     getWanfa: function getWanfa() {
         var str = [];
         str.push("封顶");
@@ -440,12 +432,10 @@ cc.Class({
     isFangzhu: function isFangzhu() {
         return this.creator == th.userManager.userId;
     },
-
     isReady: function isReady(userId) {
         var seat = this.getSeatByUserId(userId);
         return seat.ready;
     },
-
     connectServer: function connectServer(data) {
         var onConnectSuccess = function onConnectSuccess() {
             cc.director.loadScene("mjgame", function () {

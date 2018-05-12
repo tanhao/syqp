@@ -60,11 +60,10 @@ cc.Class({
         }
     },
     onChiPengGangChanged:function(seatData){
-        //(seatData.pengs seatData.angangs seatData.diangangs seatData.bugangs seatData.chis
         if(seatData.pengs == null && seatData.angangs == null && seatData.diangangs == null && seatData.bugangs == null && seatData.chis == null){
             return;
         }
-        var localIndex = th.socketIOManager.getLocalIndex(seatData.seatindex);
+        var localIndex = th.socketIOManager.getLocalIndex(seatData.index);
         var side = th.mahjongManager.getSide(localIndex);
         var pre = th.mahjongManager.getFoldPre(localIndex);
         var nodeSide = this.node.getChildByName(side);

@@ -73,6 +73,12 @@ cc.Class({
             mahjongSprites.push("dot_" + i);        
         }
 
+        //风
+        for(var i = 1; i < 8; ++i){
+            mahjongSprites.push("wind_" + i);        
+        }
+
+        /*
         //中、发、白
         mahjongSprites.push("red");
         mahjongSprites.push("green");
@@ -83,6 +89,7 @@ cc.Class({
         mahjongSprites.push("wind_west");
         mahjongSprites.push("wind_south");
         mahjongSprites.push("wind_north");
+        */
     },
     
     getMahjongSpriteByID:function(id){

@@ -154,7 +154,7 @@ module.exports.start=function(config){
 				logger.info("chupai:invalid param");
 				return;
 			}
-			socket.gameMgr.chupai(socket.userId,pai);
+			socket.manager.chupai(socket.userId,pai);
         });
         //吃
 		socket.on('chi',function(data){

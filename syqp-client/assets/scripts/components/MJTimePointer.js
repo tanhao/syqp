@@ -2,18 +2,19 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-       lblTime:cc.Lable,
+       lblTime:cc.Label,
        bottomPointer:cc.Sprite,
        rightPointer:cc.Sprite,
        topPointer:cc.Sprite,
        leftPointer:cc.Sprite,
-       _pointers:null,
+       _pointers:[],
        _countdownEndTime:0,
        _alertStartTime:0,
-       _isPlay:false,
+       _isPlay:true,
     },
 
     onLoad () {
+        console.log("TimePointer load ....");
         if(th.socketIOManager.seats.length==4){
             this._pointers.push(this.bottomPointer);
             this._pointers.push(this.rightPointer);
@@ -23,12 +24,12 @@ cc.Class({
             this._pointers.push(this.bottomPointer);
             this._pointers.push(this.rightPointer);
             this._pointers.push(this.leftPointer);
-            this.topPointer.active=false;
+            this.topPointer.node.active=false;
         }else if(th.socketIOManager.seats.length==2){
             this._pointers.push(this.bottomPointer);
             this._pointers.push(this.topPointer);
-            this.rightPointer.active=false;
-            this.leftPointer.active=false;
+            this.rightPointer.node.active=false;
+            this.leftPointer.node.active=false;
         }
         this.initPointer();
         this.initEventHandlers();
@@ -36,10 +37,12 @@ cc.Class({
 
     initPointer:function(){
         if(th==null) return;
+        this._isPlay=true;
         var turn=th.socketIOManager.turn;
         var localIndex=th.socketIOManager.getLocalIndex(turn);
         for(var i = 0; i < this._pointers.length; ++i){
-            this._pointers[i].active = i == localIndex;
+            var isAcitve=(i == localIndex);
+            this._pointers[i].node.active = isAcitve;
         }
     },
 
@@ -50,6 +53,7 @@ cc.Class({
         });
         
         this.node.on('chupai_push',function(data){
+            console.log("TimePointer chupai_push");
             self.initPointer();
             self._countdownEndTime=Date.now()+10*1000;
             self._alertStartTime=Date.now()+7*1000;
@@ -58,14 +62,14 @@ cc.Class({
     },
 
     update (dt) {
-        var now=Data.now();
+        var now=Date.now();
         if(this._countdownEndTime > now){
-            var miao=Math.ceil((this._countdownEndTime-now)/1000);
+            var miao=Math.ceil((this._countdownEndTime-now)/1000)-1;
             this.lblTime.string=miao<10?("0"+miao):(miao+"");
         }
         if(this._alertStartTime<now&&!this._isPlay){
             this._isPlay=true;
-            th.audioManager.playBGM("timeup_alarm.mp3");
+            th.audioManager.playSFX("timeup_alarm.mp3");
         }
     },
 

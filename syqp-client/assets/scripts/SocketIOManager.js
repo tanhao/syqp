@@ -45,6 +45,7 @@ cc.Class({
         for(var i = 0; i < this.seats.length;i++){
             this.seats[i].holds = [];
             this.seats[i].folds = [];
+            this.seats[i].chis = [];
             this.seats[i].pengs = [];
             this.seats[i].angangs = [];
             this.seats[i].diangangs = [];
@@ -182,6 +183,12 @@ cc.Class({
             self.round=data;
             self.dispatchEvent("round_push");
         });
+        //通知财神
+        th.sio.addHandler("caishen_push",function(data){
+            cc.log("==>SocketIOManager caishen_push:",data);
+            self.caishen=data;
+            self.dispatchEvent("caishen_push");
+        });
         //开始游戏基本消息
         th.sio.addHandler("begin_push",function(data){
             cc.log("==>SocketIOManager begin_push:",data);
@@ -194,7 +201,7 @@ cc.Class({
         th.sio.addHandler("chupai_push",function(data){
             cc.log("==>SocketIOManager chupai_push:",JSON.stringify(data));
             var turnUserId=data;
-            var seatIndex=self.getSeatByUserId(turnUserId);
+            var seatIndex=self.getSeatIndexById(turnUserId);
             self.doTurnChange(seatIndex);
         });
         //出牌时可以做的操作

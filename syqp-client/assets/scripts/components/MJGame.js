@@ -15,7 +15,6 @@ cc.Class({
         optionsWin:cc.Node,    ///所有可以做的操作节点
         nodePrepare:cc.Node,
         nodeGameInfo:cc.Node,
-        nodeCaishen:cc.Node,
 
         _mymjs:[],      //自己手上的牌Sprite结合
         _effects:[],    //每个座位动画节点（Animation）
@@ -25,6 +24,7 @@ cc.Class({
     onLoad () {
         if(th==null){ return; }
         this.addComponent("MJFolds");
+        this.addComponent("MJChiPengGangs");
         this.initView();
         this.initEventHandlers();
 
@@ -55,8 +55,10 @@ cc.Class({
         
         var sides = ["myself","right","up","left"];
         //隐藏其他玩家手上的牌
+       
         for(var i=1;i<sides.length;i++){
             var mjs=this.node.getChildByName(sides[i]).getChildByName('Holds').children;
+            console.log("隐藏："+sides[i]+" 手上的牌: "+mjs.length);
             for(var j=0;j<mjs.length;j++){
                 var sprite = mjs[j].getComponent(cc.Sprite);
                 sprite.node.active=false;
@@ -70,7 +72,7 @@ cc.Class({
             spriteChupai.spriteFrame = null;
             //胡牌NODE
             var nodeHupai=seatNode.getChildByName('Hupai');
-            nodeHupai.node.active=false;
+            nodeHupai.active=false;
             if((i==2&&th.socketIOManager.seats.length==3)||((i==1||i==3)&&th.socketIOManager.seats.length==2)){
                 continue;
             }
@@ -78,6 +80,8 @@ cc.Class({
             var animation=seatNode.getChildByName('Effect').getComponent(cc.Animation);
             this._effects.push(animation);
             this._chupais.push(spriteChupai);
+
+            console.log("_hupaiTips:",nodeHupai);
             this._hupaiTips.push(nodeHupai);
             
         }
@@ -88,24 +92,24 @@ cc.Class({
         th.socketIOManager.dataEventHandler=this.node;
         
         //检查IP
-        this.node.on('check_ip', function (target) {
-            console.log('==>MJGame check_ip:',JSON.stringify(target.detail));
+        this.node.on('check_ip', function (data) {
+            console.log('==>MJGame check_ip:',JSON.stringify(data.detail));
         });
         //自己准备返回
-        this.node.on("ready_result",function(target){
-            console.log('==>Gmae ready_result:',JSON.stringify(target.detail));
-            var seat=target.detail;
+        this.node.on("ready_result",function(data){
+            console.log('==>Gmae ready_result:',JSON.stringify(data.detail));
+            var seat=data.detail;
             self.btnReady.node.active = th.socketIOManager.round==0&&!seat.ready;
         })
 
         //玩家手上的牌
-        this.node.on("holds_push",function(target){
-            console.log('==>Gmae holds_push:',JSON.stringify(target.detail));
+        this.node.on("holds_push",function(data){
+            console.log('==>Gmae holds_push:',JSON.stringify(data.detail));
             self.initMahjongs();
         })
         //开始游戏，出头的人
-        this.node.on("begin_push",function(target){
-            console.log('==>Gmae begin_push:',JSON.stringify(target.detail));
+        this.node.on("begin_push",function(data){
+            console.log('==>Gmae begin_push:',JSON.stringify(data.detail));
             self.onGameBegin();
              //第一把开局，要检查IP
             if(th.socketIOManager.round == 1){
@@ -114,8 +118,8 @@ cc.Class({
             }
         })
         //断线
-        this.node.on('disconnect', function (target) {
-            console.log('==>Gmae disconnect:',JSON.stringify(target.detail));
+        this.node.on('disconnect', function (data) {
+            console.log('==>Gmae disconnect:',JSON.stringify(data.detail));
         });
         
         //通知还剩多少张牌
@@ -125,13 +129,19 @@ cc.Class({
         })
 
         //通知当前是第几局
-        this.node.on("round_push",function(target){
-            console.log('==>Gmae round_push:',JSON.stringify(target.detail));
+        this.node.on("round_push",function(data){
+            console.log('==>Gmae round_push:',JSON.stringify(data.detail));
             self.lblRoundCount.string="剩余 "+(th.socketIOManager.config.round-th.socketIOManager.round)+" 局";
         })
 
+        //通知当前是第几局
+        this.node.on("caishen_push",function(data){
+            console.log('==>Gmae caishen_push:',JSON.stringify(data.detail));
+            self.setSpriteFrameByMJID("M_", self.spriteCaishen,th.socketIOManager.caishen);
+        })
+
         this.node.on('begin_push',function(data){
-            console.log('==>Gmae begin_push:',JSON.stringify(target.detail));
+            console.log('==>Gmae begin_push:',JSON.stringify(data.detail));
             self.onGameBegin();
             //第一把开局，要提示
             if(th.socketIOManager.round == 1){
@@ -140,7 +150,7 @@ cc.Class({
         });
         
         this.node.on('chupai_push',function(data){
-            console.log('==>Gmae chupai_push:',JSON.stringify(target.detail));
+            console.log('==>Gmae chupai_push:',JSON.stringify(data.detail));
             data = data.detail;
             self.hideChupai();
             if(data.last != th.socketIOManager.seatIndex){
@@ -150,7 +160,7 @@ cc.Class({
         });
 
         this.node.on('action_push',function(data){
-            console.log('==>Gmae action_push:',JSON.stringify(target.detail));
+            console.log('==>Gmae action_push:',JSON.stringify(data.detail));
             self.showAction(data.detail);
         });
 
@@ -160,7 +170,7 @@ cc.Class({
         });
         //过牌，
         this.node.on('guo_notify_push',function(data){
-            console.log('==>Gmae guo_notify_push:',JSON.stringify(target.detail));
+            console.log('==>Gmae guo_notify_push:',JSON.stringify(data.detail));
             self.hideChupai();
             self.hideOptions();
             var seatData=data.detail;
@@ -172,7 +182,7 @@ cc.Class({
         });
         //吃牌
         this.node.on('chi_notify_push',function(data){
-            console.log('==>Gmae chi_notify_push:',JSON.stringify(target.detail));
+            console.log('==>Gmae chi_notify_push:',JSON.stringify(data.detail));
             self.hideChupai();
             var seatData=data.detail;
             if(seatData.index == th.socketIOManager.seatIndex){
@@ -187,7 +197,7 @@ cc.Class({
         });
         //碰牌
         this.node.on('peng_notify_push',function(data){
-            console.log('==>Gmae peng_notify_push:',JSON.stringify(target.detail));
+            console.log('==>Gmae peng_notify_push:',JSON.stringify(data.detail));
             self.hideChupai();
             var seatData=data.detail;
             if(seatData.index == th.socketIOManager.seatIndex){
@@ -202,7 +212,7 @@ cc.Class({
         });
         //杠牌
         this.node.on('gang_notify_push',function(data){
-            console.log('==>Gmae gang_notify_push:',JSON.stringify(target.detail));
+            console.log('==>Gmae gang_notify_push:',JSON.stringify(data.detail));
             self.hideChupai();
             var seatData=data.detail;
             if(seatData.index == th.socketIOManager.seatIndex){
@@ -264,8 +274,8 @@ cc.Class({
             console.log("cc.Node.EventType.TOUCH_START");
             this.chupaidian.node.active=false;
             this.chupaidian.spriteFrame=node.getComponent(cc.Sprite).spriteFrame;
-            this.chupaidian.x = event.getLocationX() - cc.director.getVisibleSize().width / 2;
-            this.chupaidian.y = event.getLocationY() - cc.director.getVisibleSize().height / 2;
+            this.chupaidian.node.x = event.getLocationX() - cc.director.getVisibleSize().width / 2;
+            this.chupaidian.node.y = event.getLocationY() - cc.director.getVisibleSize().height / 2;
         }.bind(this));
         node.on(cc.Node.EventType.TOUCH_MOVE, function (event) {
             if (th.socketIOManager.turn != th.socketIOManager.seatIndex) {
@@ -280,11 +290,11 @@ cc.Class({
             console.log("cc.Node.EventType.TOUCH_MOVE");
             this.chupaidian.node.active=true;
             node.opacity = 150;
-            this.chupaidian.opacity = 255;
-            this.chupaidian.scaleX = 1;
-            this.chupaidian.scaleY = 1;
-            this.chupaidian.x = event.getLocationX() - cc.director.getVisibleSize().width / 2;
-            this.chupaidian.y = event.getLocationY() - cc.director.getVisibleSize().height / 2;
+            this.chupaidian.node.opacity = 255;
+            this.chupaidian.node.scaleX = 1;
+            this.chupaidian.node.scaleY = 1;
+            this.chupaidian.node.x = event.getLocationX() - cc.director.getVisibleSize().width / 2;
+            this.chupaidian.node.y = event.getLocationY() - cc.director.getVisibleSize().height / 2;
             node.y = 0;
         }.bind(this));
         node.on(cc.Node.EventType.TOUCH_END, function (event) {
@@ -297,7 +307,7 @@ cc.Class({
             console.log("cc.Node.EventType.TOUCH_END");
             this.chupaidian.node.active=false;
             node.opacity = 255;
-            if (event.getLocationY() >= 200) {
+            if (event.getLocationY() >= 500) {
                 this.shoot(node.mjId);
             }
         }.bind(this));
@@ -332,9 +342,9 @@ cc.Class({
         }
 
         //自摸胡判断
-        for(var i = 0; i < th.socketIOManager.seats.length; I++){
+        for(var i = 0; i < th.socketIOManager.seats.length; i++){
             var seatData = th.socketIOManager.seats[i];
-            var localIndex = th.socketIOManager.getLocalIndex(i);        
+            var localIndex = th.socketIOManager.getLocalIndex(i); 
             var nodeHupai = this._hupaiTips[localIndex];
             nodeHupai.active = seatData.isHu;
             if(seatData.isHu){
@@ -348,6 +358,11 @@ cc.Class({
         this.hideChupai();
         //隐藏当前玩家所有操作（吃，碰，杠，胡，弃）
         this.hideOptions();
+        
+        //todo 判断是否回放  //&& cc.vv.replayMgr.isReplay() == false
+        if(th.socketIOManager.status == "idle" ){
+            return;
+        }
         //初始化其他玩家手上的牌
         var sides = ["right","up","left"];        
         for(var i = 0; i < sides.length; ++i){
@@ -361,7 +376,6 @@ cc.Class({
                 sprite.spriteFrame =th.mahjongManager.holdsEmpty[i+1];
             }            
         }
-        //todo 判断是否回放
 
         this.nodePrepare.active=false;
         this.nodeGameInfo.active=true;
@@ -369,7 +383,7 @@ cc.Class({
         this.initMahjongs();
 
         //初始化其他玩家的牌
-        for(var i = 0; i < th.socketIOManager.seats.length; I++){
+        for(var i = 0; i < th.socketIOManager.seats.length; i++){
             var seatData = th.socketIOManager.seats[i];
             var localIndex = th.socketIOManager.getLocalIndex(i);
             if(localIndex != 0){
@@ -476,7 +490,7 @@ cc.Class({
     showChupai:function(){
         var pai = th.socketIOManager.chupai; 
         if( pai >=0){
-            var localIndex = this.getLocalIndex(th.socketIOManager.turn);
+            var localIndex = th.socketIOManager.getLocalIndex(th.socketIOManager.turn);
             var sprite = this._chupais[localIndex];
             sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID("M_",pai);
             sprite.node.active = true;   
@@ -547,9 +561,13 @@ cc.Class({
         var seats=th.socketIOManager.seats;
         var seatData=seats[th.socketIOManager.seatIndex];
         var holds=seatData.holds;
-        cc.log("initMahjongs:",holds);
+        if(holds == null){
+            return;
+        }
         //排序
         holds.sort(function(a,b){return a-b});
+        
+        holds=this.sortHolds(holds);
 
         var lackingNum = (seatData.pengs.length + seatData.angangs.length + seatData.diangangs.length + seatData.bugangs.length +seatData.chis.length)*3;
         //初始化手牌
@@ -558,6 +576,9 @@ cc.Class({
             var sprite=this._mymjs[lackingNum+i];
             sprite.node.mjId = mjid;
             this.setSpriteFrameByMJID("M_",sprite,mjid);
+
+            var gold_icon=sprite.node.getChildByName("gold_icon");
+            gold_icon.active=mjid==th.socketIOManager.caishen;
         }
         for(var i = 0; i < lackingNum; i++){
             var sprite = this._mymjs[i]; 
@@ -573,7 +594,7 @@ cc.Class({
         }
     },
     initOtherMahjongs:function(seatData){
-        var localIndex = this.getLocalIndex(seatData.index);
+        var localIndex = th.socketIOManager.getLocalIndex(seatData.index);
         if(localIndex == 0){
             return;
         }
@@ -585,8 +606,7 @@ cc.Class({
             sideHolds.children[idx].active = false;
         }
         var pre = th.mahjongManager.getFoldPre(localIndex);
-        var holds = this.sortHolds(seatData);
-        console.log("initOtherMahjongs:",side,pre,side);
+        var holds = this.sortHolds(seatData.holds);
         if(holds != null && holds.length > 0){
             for(var i = 0; i < holds.length; i++){
                 var idx = this.getMJIndex(side,i + lackingNum);
@@ -606,6 +626,23 @@ cc.Class({
         }
 
     },
+    sortHolds:function(holds){
+        if(holds==null){
+            return holds;
+        }
+        holds.sort(function(a,b){
+            var aa=a;
+            var bb=b;
+            if(aa==th.socketIOManager.caishen){
+                aa=aa-100;
+            }
+            if(bb==th.socketIOManager.caishen){
+                bb=bb-100;
+            }
+            return aa-bb;
+        });
+        return holds;
+    },
     setSpriteFrameByMJID:function(pre,sprite,mjid){
         sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID(pre,mjid);
         sprite.node.active = true;
@@ -615,7 +652,7 @@ cc.Class({
         var options=this.optionsWin.getChildByName('Options');
         for(var i = 0; i < options.childrenCount; i++){
             var child = options.children[i];
-            if(child.name='Option'){
+            if(child.name=='Option'){
                 child.active=false;
                 var option=child.getChildByName('Option');
                 option.getChildByName('opTarget1').active=false;
@@ -627,8 +664,6 @@ cc.Class({
                 btns.getChildByName('btnHu').active=false;
             }
         }
-        //var activeReadyBtn=th.socketIOManager.round==0&&!th.socketIOManager.isReady(th.userManager.userId)
-        //this.btnReady.node.active = activeReadyBtn;
     },
   
     /*

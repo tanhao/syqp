@@ -9,6 +9,7 @@ cc.Class({
         if(th==null){ return; }
         this.initView();
         this.initEventHandler();
+        this.initAllFolds();
     },
 
 
@@ -21,16 +22,16 @@ cc.Class({
         this._folds.myself=[];
         this._folds.right=[];
         this._folds.up=[];
-        var names =['myself','right','up','left'];
-        for(var i = 0; i < names.length; i++){
-            var name=names[i];
-            var mjs=this.node.getChildByName(name).getChildByName("Folds").children;
+        var sides =['myself','right','up','left'];
+        for(var i = 0; i < sides.length; i++){
+            var side=sides[i];
+            var mjs=this.node.getChildByName(side).getChildByName("Folds").children;
             for(var j=0;j<mjs.length;j++){
                 var mj=mjs[j];
                 mj.active=false;
                 var sprite = mj.getComponent(cc.Sprite);
                 sprite.spriteFrame = null;
-                this._folds[name].push(sprite);  
+                this._folds[side].push(sprite);  
             }
         }
     },
@@ -61,12 +62,13 @@ cc.Class({
                 mjs[i].node.active = false;
             }
         }
-        /*
+    },
+
+    initAllFolds:function(){
         var seats = th.socketIOManager.seats;
         for(var i in seats){
             this.initFolds(seats[i]);
         }
-        */
     },
 
     initFolds:function(seatData){
@@ -74,7 +76,7 @@ cc.Class({
         if(folds == null){
             return;
         }
-        var localIndex = th.socketIOManager.getLocalIndex(seatData.seatindex);
+        var localIndex = th.socketIOManager.getLocalIndex(seatData.index);
         var pre = th.mahjongManager.getFoldPre(localIndex);
         var side = th.mahjongManager.getSide(localIndex);
         var foldsSprites = this._folds[side];

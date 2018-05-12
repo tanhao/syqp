@@ -47,7 +47,7 @@ cc.Class({
         }
         
         if(this.ready){
-            this.ready.node.active = this._isReady; 
+            this.ready.node.active = this._isReady && th.socketIOManager.status=="idle"; 
         }
         if(this.fangzhu){
             this.fangzhu.node.active = this._isFangzhu;    
@@ -113,9 +113,9 @@ cc.Class({
         }
     },
 
-    setbanker:function(isbanker){
+    setBanker:function(isbanker){
         this._isbanker = isbanker;
-        if(this.buchu){
+        if(this.banker){
             this.banker.node.active = this._isbanker; 
         }
     },

@@ -280,11 +280,11 @@ function checkCanHu(game,seatData,targetPai){
     tmpCards.forEach(card =>{count += card;});
     if(count+gui_num==14){
         //7対
-        if(this.check_7dui(tmpCards,gui_num)){
+        if(mjlib.Hulib.check_7dui(tmpCards,gui_num)){
             return true;
         }
         //13幺
-        if(this.check_13yao(tmpCards,gui_num)){
+        if(mjlib.Hulib.check_13yao(tmpCards,gui_num)){
             return true;
         }
     }
@@ -376,7 +376,7 @@ function doUserMoPai(game){
     }else{
         let mjsy=game.mjs.length-game.mjci-20;
         //通知还剩多少张牌
-        userManager.sendMsg(s.userId,'mjsy_push',mjsy);
+        userManager.broacastInRoom('mjsy_push',mjsy,turnSeat.userId,true);
     }
     recordGameAction(game,game.turn,ACTION_MOPAI,pai);
     //通知前端新摸的牌
@@ -972,7 +972,7 @@ module.exports.begin=function(roomId){
         caishen:null,     //财神
         chupai:null,      //出的牌 {mjid:1,idx:0}
         piaocaiSeatIndex:null,      //飘财seatIndex,不为空时代表有人飘财
-        state:"idle",     //idle,playing,finish
+        status:"idle",     //idle,playing,finish
         mjs:[],           //剩余麻将
         mjci:0,           //麻将当前Index,(摸到第几个麻将了)
         actions:[],       //游戏操作，用来回放
@@ -1082,8 +1082,8 @@ module.exports.begin=function(roomId){
     //发牌
     deal(game);
     //财神取最后一个
-    game.caishen=game.mjs[gmae.mjs.length-1];
-    game.state="begin";
+    game.caishen=game.mjs[game.mjs.length-1];
+    game.status="begin";
 
     //剩余麻将
     let mjsy=game.mjs.length-game.mjci-20;
@@ -1092,9 +1092,11 @@ module.exports.begin=function(roomId){
         //通知玩家手牌
         userManager.sendMsg(seat.userId,'holds_push',seat.holds);
         //通知还剩多少张牌
-        userMgr.sendMsg(s.userId,'mjsy_push',mjsy);
+        userManager.sendMsg(seat.userId,'mjsy_push',mjsy);
         //通知当前是第几局
-        userMgr.sendMsg(s.userId,'round_push',room.round);
+        userManager.sendMsg(seat.userId,'round_push',room.round);
+        //通知财神
+        userManager.sendMsg(seat.userId,'caishen_push',game.caishen);
         //通知游戏开始
         userManager.sendMsg(seat.userId,'begin_push',game.turn);
     }
@@ -1550,7 +1552,7 @@ module.exports.chupai=function(userId,pai){
     //记录游戏操作用来回放
     recordGameAction(game,seatData.seatIndex,ACTION_CHUPAI,pai);
 
-    userMgr.broacastInRoom('chupai_notify_push',{userId:seatData.userId,pai:pai},seatData.userId,true);
+    userManager.broacastInRoom('chupai_notify_push',{userId:seatData.userId,pai:pai},seatData.userId,true);
     //检查是否有人要碰 要杠 要吃
     let hasActions = false;
     for(let i = 0; i < game.seats.length; ++i){
@@ -1580,7 +1582,7 @@ module.exports.chupai=function(userId,pai){
     //如果没有人有操作，则向下一家发牌，并通知他出牌
     if(!hasActions){
         setTimeout(function(){
-            userManager.broacastInRoom("guo_notify_push",{userId:seatData.userId,pai:gam.chupai},seatData.userId,true);
+            userManager.broacastInRoom("guo_notify_push",{userId:seatData.userId,pai:game.chupai},seatData.userId,true);
             seatData.folds.push(game.chupai);
             game.chupai = null;
             moveToNextUser(game);

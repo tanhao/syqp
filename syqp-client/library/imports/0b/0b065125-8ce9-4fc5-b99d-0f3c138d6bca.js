@@ -1,6 +1,6 @@
 "use strict";
-cc._RF.push(module, '66700WrjElFOanVK81MEz/S', 'ChiPengGangs');
-// scripts/components/ChiPengGangs.js
+cc._RF.push(module, '0b065EljOlPxbmdDzwTjWvK', 'MJChiPengGangs');
+// scripts/components/MJChiPengGangs.js
 
 "use strict";
 
@@ -21,20 +21,20 @@ cc.Class({
         nodeChiPengGang.scaleX *= scale;
         nodeChiPengGang.scaleY *= scale;
 
-        this.node.on('chi_notify', function (data) {
-            console.log("chi_notify", data.detail);
+        this.node.on('chi_notify_push', function (data) {
+            console.log("ChiPengGang chi_notify_push", data.detail);
             var data = data.detail;
             self.onChiPengGangChanged(data);
         });
 
-        this.node.on('peng_notify', function (data) {
-            console.log("peng_notify", data.detail);
+        this.node.on('peng_notify_push', function (data) {
+            console.log("ChiPengGang peng_notify_push", data.detail);
             var data = data.detail;
             self.onChiPengGangChanged(data);
         });
 
-        this.node.on('gang_notify', function (data) {
-            console.log("gang_notify", data.detail);
+        this.node.on('gang_notify_push', function (data) {
+            console.log("ChiPengGang gang_notify_push", data.detail);
             var data = data.detail;
             self.onChiPengGangChanged(data.seatData);
         });
@@ -64,11 +64,10 @@ cc.Class({
         }
     },
     onChiPengGangChanged: function onChiPengGangChanged(seatData) {
-        //(seatData.pengs seatData.angangs seatData.diangangs seatData.bugangs seatData.chis
         if (seatData.pengs == null && seatData.angangs == null && seatData.diangangs == null && seatData.bugangs == null && seatData.chis == null) {
             return;
         }
-        var localIndex = th.socketIOManager.getLocalIndex(seatData.seatindex);
+        var localIndex = th.socketIOManager.getLocalIndex(seatData.index);
         var side = th.mahjongManager.getSide(localIndex);
         var pre = th.mahjongManager.getFoldPre(localIndex);
         var nodeSide = this.node.getChildByName(side);

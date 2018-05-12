@@ -16,7 +16,7 @@ cc.Class({
         fangzhu: cc.Sprite,
         emoji: cc.Sprite,
         ready: cc.Sprite,
-        bank: cc.Sprite,
+        banker: cc.Sprite,
         chat: cc.Label,
 
         _userId: null,
@@ -27,7 +27,7 @@ cc.Class({
         _isOffline: false,
         _isReady: false,
         _isFangzhu: false,
-        _isBank: false,
+        _isbanker: false,
         _lastChatTime: -1
     },
 
@@ -54,13 +54,13 @@ cc.Class({
         }
 
         if (this.ready) {
-            this.ready.node.active = this._isReady;
+            this.ready.node.active = this._isReady && th.socketIOManager.status == "idle";
         }
         if (this.fangzhu) {
             this.fangzhu.node.active = this._isFangzhu;
         }
-        if (this.bank) {
-            this.bank.node.active = this._isBank;
+        if (this.banker) {
+            this.banker.node.active = this._isbanker;
         }
         //this.node.active = this._userId!=null;
     },
@@ -120,10 +120,10 @@ cc.Class({
         }
     },
 
-    setBank: function setBank(isBank) {
-        this._isBank = isBank;
-        if (this.buchu) {
-            this.bank.node.active = this._isBank;
+    setBanker: function setBanker(isbanker) {
+        this._isbanker = isbanker;
+        if (this.banker) {
+            this.banker.node.active = this._isbanker;
         }
     },
 
