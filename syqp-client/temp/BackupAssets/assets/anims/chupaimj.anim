@@ -1,0 +1,30 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "chupaimj",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.36,
+  "sample": 14,
+  "speed": 1,
+  "wrapMode": 54,
+  "curveData": {
+    "props": {
+      "y": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 0.07142857142857142,
+          "value": 2.9104800021981934
+        },
+        {
+          "frame": 0.35714285714285715,
+          "value": 15
+        }
+      ],
+      "position": []
+    }
+  },
+  "events": []
+}

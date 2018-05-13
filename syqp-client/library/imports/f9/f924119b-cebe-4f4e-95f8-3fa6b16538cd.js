@@ -116,7 +116,7 @@ cc.Class({
     setReady: function setReady(isReady) {
         this._isReady = isReady;
         if (this.ready) {
-            this.ready.node.active = this._isReady;
+            this.ready.node.active = this._isReady && th.socketIOManager.status == "idle";
         }
     },
 

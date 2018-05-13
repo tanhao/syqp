@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "mj1",
+    "_name": "MyMahJong",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -57,7 +57,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": -505,
       "y": 0
     },
     "_skewX": 0,
@@ -220,9 +220,9 @@
     "_N$enableAutoGrayEffect": false,
     "_N$normalColor": {
       "__type__": "cc.Color",
-      "r": 214,
-      "g": 214,
-      "b": 214,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_N$disabledColor": {

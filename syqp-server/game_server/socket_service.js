@@ -161,10 +161,13 @@ module.exports.start=function(config){
             let userId=socket.userId;
             if(!userId) return;
             let pais = data.split(',');
-			if(!pais||pais.length!=2){
+			if(!pais||pais.length!=3){
 				logger.info("chi:invalid param");
 				return;
-			}
+            }
+            pais.forEach((pai,idx) => {
+                pais[idx]=parseInt(pai);
+            });
             socket.manager.chi(socket.userId,pais);
         });
         //碰

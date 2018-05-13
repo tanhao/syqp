@@ -109,6 +109,18 @@
           }
         ]
       }
+    },
+    "props": {
+      "opacity": [
+        {
+          "frame": 0.9375,
+          "value": 255
+        },
+        {
+          "frame": 1,
+          "value": 0
+        }
+      ]
     }
   },
   "events": []

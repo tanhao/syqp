@@ -53,7 +53,6 @@ cc.Class({
         });
         
         this.node.on('chupai_push',function(data){
-            console.log("TimePointer chupai_push");
             self.initPointer();
             self._countdownEndTime=Date.now()+10*1000;
             self._alertStartTime=Date.now()+7*1000;

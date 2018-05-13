@@ -31,9 +31,9 @@ cc.Class({
         var sides = ['myself', 'right', 'up', 'left'];
         for (var i = 0; i < sides.length; i++) {
             var side = sides[i];
-            var mjs = this.node.getChildByName(side).getChildByName("Folds").children;
-            for (var j = 0; j < mjs.length; j++) {
-                var mj = mjs[j];
+            var folds = this.node.getChildByName(side).getChildByName("Folds");
+            for (var j = 1; j <= folds.children.length; j++) {
+                var mj = folds.getChildByName("mj" + j);
                 mj.active = false;
                 var sprite = mj.getComponent(cc.Sprite);
                 sprite.spriteFrame = null;
@@ -47,18 +47,17 @@ cc.Class({
         this.node.on('begin_push', function (data) {
             self.initAllFolds();
         });
-
         //过牌
         this.node.on('guo_notify_push', function (data) {
+            //console.log('==>MJFolds guo_notify_push:',JSON.stringify(data.detail));
             self.initFolds(data.detail);
         });
-
         //出牌
         this.node.on('chupai_notify_push', function (data) {
+            //console.log('==>MJFolds chupai_notify_push:',JSON.stringify(data.detail));
             self.initFolds(data.detail.seatData);
         });
     },
-
     hideAllFolds: function hideAllFolds() {
         for (var key in this._folds) {
             var mjs = this._folds[key];
@@ -67,14 +66,12 @@ cc.Class({
             }
         }
     },
-
     initAllFolds: function initAllFolds() {
         var seats = th.socketIOManager.seats;
         for (var i in seats) {
             this.initFolds(seats[i]);
         }
     },
-
     initFolds: function initFolds(seatData) {
         var folds = seatData.folds;
         if (folds == null) {
@@ -84,31 +81,32 @@ cc.Class({
         var pre = th.mahjongManager.getFoldPre(localIndex);
         var side = th.mahjongManager.getSide(localIndex);
         var foldsSprites = this._folds[side];
+
         for (var i = 0; i < foldsSprites.length; ++i) {
             var index = i;
-            if (side == "right" || side == "up") {
+            /*
+            if(side == "right" || side == "up"){
                 index = foldsSprites.length - i - 1;
             }
+            */
             var sprite = foldsSprites[index];
             sprite.node.active = true;
             this.setSpriteFrameByMJID(pre, sprite, folds[i]);
         }
         for (var i = folds.length; i < foldsSprites.length; ++i) {
             var index = i;
-            if (side == "right" || side == "up") {
+            /*
+            if(side == "right" || side == "up"){
                 index = foldsSprites.length - i - 1;
             }
+            */
             var sprite = foldsSprites[index];
-
             sprite.spriteFrame = null;
             sprite.node.active = false;
         }
     },
-
     refreshAllSeat: function refreshAllSeat() {},
-
     refreshOneSeat: function refreshOneSeat() {},
-
     setSpriteFrameByMJID: function setSpriteFrameByMJID(pre, sprite, mjid) {
         sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID(pre, mjid);
         sprite.node.active = true;

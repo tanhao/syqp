@@ -221,33 +221,39 @@ cc.Class({
             self.dispatchEvent('guo_result');
         });
         th.sio.addHandler("guo_notify_push", function (data) {
+            //console.log("socketIOManager guo_notify_push:",data);
             var userId = data.userId;
             var pai = data.pai;
-            var seatIndex = self.getSeatIndexByID(userId);
+            var seatIndex = self.getSeatIndexById(userId);
             self.doGuo(seatIndex, data.pai);
         });
         th.sio.addHandler("chi_notify_push", function (data) {
             var userId = data.userId;
             var pai = data.pai;
-            var seatIndex = self.getSeatIndexByID(userId);
+            var seatIndex = self.getSeatIndexById(userId);
             self.doChi(seatIndex, data.info, pai);
         });
         th.sio.addHandler("peng_notify_push", function (data) {
             var userId = data.userId;
             var pai = data.pai;
-            var seatIndex = self.getSeatIndexByID(userId);
+            var seatIndex = self.getSeatIndexById(userId);
             self.doPeng(seatIndex, data.info);
         });
+        th.sio.addHandler("hangang_notify_push", function (data) {
+            self.dispatchEvent("hangang_notify_push", data);
+        });
+
         th.sio.addHandler("gang_notify_push", function (data) {
+            console.log("socketIOManager gang_notify_push:", data);
             var userId = data.userId;
             var pai = data.pai;
-            var seatIndex = self.getSeatIndexByID(userId);
+            var seatIndex = self.getSeatIndexById(userId);
             self.doGang(seatIndex, data.info, data.gangType);
         });
         th.sio.addHandler("chupai_notify_push", function (data) {
             var userId = data.userId;
             var pai = data.pai;
-            var seatIndex = self.getSeatIndexByID(userId);
+            var seatIndex = self.getSeatIndexById(userId);
             self.doChupai(seatIndex, pai);
         });
         th.sio.addHandler("mopai_push", function (data) {
@@ -303,7 +309,7 @@ cc.Class({
     doGuo: function doGuo(seatIndex, pai) {
         var seatData = this.seats[seatIndex];
         var folds = seatData.folds;
-        folds.push(pai);
+        folds.push(pai.mjid);
         this.dispatchEvent('guo_notify_push', seatData);
     },
     doChi: function doChi(seatIndex, info, pai) {
@@ -338,6 +344,7 @@ cc.Class({
         this.dispatchEvent('peng_notify_push', seatData);
     },
     doGang: function doGang(seatIndex, info, gangType) {
+        console.log("gangType", gangType, " info:", info);
         var seatData = this.seats[seatIndex];
         var pai = info.mjid;
         if (!gangType) {
@@ -371,7 +378,7 @@ cc.Class({
         } else if (gangType == "diangang") {
             seatData.diangangs.push(info);
         }
-        this.dispatchEvent('gang_notify_push', { seatData: seatData, gangType: gangType });
+        this.dispatchEvent('gang_notify_push', seatData);
     },
     doChupai: function doChupai(seatIndex, pai) {
         this.chupai = pai;
@@ -400,7 +407,7 @@ cc.Class({
     },
     getSeatIndexById: function getSeatIndexById(userId) {
         for (var i = 0; i < this.seats.length; i++) {
-            if (this.seats[i].userId == userId) {
+            if (this.seats[i].userId == parseInt(userId)) {
                 return i;
             }
         }

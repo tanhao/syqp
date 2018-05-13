@@ -61,10 +61,21 @@ cc.Class({
         }
         th.mahjongManager = this;
 
-        this._sides = ["myself", "right", "up", "left"];
-        this._pres = ["M_", "R_", "B_", "L_"];
-        this._foldPres = ["B_", "R_", "B_", "L_"];
-
+        var seatSize = th.socketIOManager.seats.length;
+        console.log("==>MahjongManger seatSzie:", seatSize);
+        if (seatSize == 4) {
+            this._sides = ["myself", "right", "up", "left"];
+            this._pres = ["M_", "R_", "B_", "L_"];
+            this._foldPres = ["B_", "R_", "B_", "L_"];
+        } else if (seatSize == 3) {
+            this._sides = ["myself", "right", "left"];
+            this._pres = ["M_", "R_", "L_"];
+            this._foldPres = ["B_", "R_", "L_"];
+        } else if (seatSize == 2) {
+            this._sides = ["myself", "up"];
+            this._pres = ["M_", "B_"];
+            this._foldPres = ["B_", "B_"];
+        }
         //万
         for (var i = 1; i < 10; ++i) {
             mahjongSprites.push("character_" + i);
@@ -144,7 +155,8 @@ cc.Class({
 
     getEmptySpriteFrame: function getEmptySpriteFrame(side) {
         if (side == "up") {
-            return this.emptyAtlas.getSpriteFrame("e_mj_b_up");
+            //return this.emptyAtlas.getSpriteFrame("e_mj_b_up");
+            return this.emptyAtlas.getSpriteFrame("e_mj_b_bottom");
         } else if (side == "myself") {
             return this.emptyAtlas.getSpriteFrame("e_mj_b_bottom");
         } else if (side == "left") {

@@ -68,7 +68,7 @@ HuLib.get_hu_info = function( cards, cur_card,gui_1)
     {
         return false;
     }
-    console.log(JSON.stringify(Probability));
+    //console.log(JSON.stringify(Probability));
     return this.check_probability( Probability, gui_num );
 };
 

@@ -22,21 +22,20 @@ cc.Class({
         nodeChiPengGang.scaleY *= scale;
 
         this.node.on('chi_notify_push', function (data) {
-            console.log("ChiPengGang chi_notify_push", data.detail);
+            console.log("==>ChiPengGang chi_notify_push", data.detail);
             var data = data.detail;
             self.onChiPengGangChanged(data);
         });
 
         this.node.on('peng_notify_push', function (data) {
-            console.log("ChiPengGang peng_notify_push", data.detail);
+            console.log("==>ChiPengGang peng_notify_push", data.detail);
             var data = data.detail;
             self.onChiPengGangChanged(data);
         });
 
         this.node.on('gang_notify_push', function (data) {
-            console.log("ChiPengGang gang_notify_push", data.detail);
-            var data = data.detail;
-            self.onChiPengGangChanged(data.seatData);
+            console.log("==>ChiPengGang gang_notify_push", data.detail);
+            self.onChiPengGangChanged(data.detail);
         });
 
         this.node.on('begin_push', function (data) {
@@ -105,7 +104,7 @@ cc.Class({
             }
         }
         //初始化吃的牌
-        var chis = seatData.pengs;
+        var chis = seatData.chis;
         if (chis) {
             for (var i = 0; i < chis.length; ++i) {
                 var mjid = chis[i];
@@ -115,6 +114,7 @@ cc.Class({
         }
     },
     initChiPengAndGangs: function initChiPengAndGangs(nodeChiPengGang, side, pre, index, info, flag) {
+        console.log("initChiPengAndGangs", side, pre, index, info, flag);
         var nodeCPG = null;
         if (nodeChiPengGang.childrenCount <= index) {
             if (side == "left" || side == "right") {
@@ -122,6 +122,7 @@ cc.Class({
             } else {
                 nodeCPG = cc.instantiate(th.mahjongManager.pengPrefabSelf);
             }
+            nodeChiPengGang.addChild(nodeCPG);
         } else {
             nodeCPG = nodeChiPengGang.children[index];
             nodeCPG.active = true;
@@ -135,22 +136,25 @@ cc.Class({
         } else if (side == "myself") {
             nodeCPG.x = index * 55 * 3 + index * 10;
         } else {
-            nodeCPG.x = -(index * 55 * 3);
+            nodeCPG.x = -(index * 55 * 3) - index * 7;
         }
 
-        var sprites = pgroot.getComponentsInChildren(cc.Sprite);
+        var sprites = nodeCPG.getComponentsInChildren(cc.Sprite);
         if (flag == "angang") {
             for (var i = 0; i < sprites.length; i++) {
+                var sprite = sprites[i];
                 sprite.node.active = true;
                 sprite.spriteFrame = th.mahjongManager.getEmptySpriteFrame(side);
             }
         } else if (flag == "diangang" || flag == "bugang") {
             for (var i = 0; i < sprites.length; i++) {
+                var sprite = sprites[i];
                 sprite.node.active = true;
                 sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID(pre, info.mjid);
             }
         } else if (flag == "peng") {
             for (var i = 0; i < sprites.length; i++) {
+                var sprite = sprites[i];
                 if (sprite.node.name == "gang") {
                     sprite.node.active = false;
                 } else {
@@ -161,6 +165,7 @@ cc.Class({
         } else if (flag == "chi") {
             var idx = 0;
             for (var i = 0; i < sprites.length; i++) {
+                var sprite = sprites[i];
                 if (sprite.node.name == "gang") {
                     sprite.node.active = false;
                 } else {
