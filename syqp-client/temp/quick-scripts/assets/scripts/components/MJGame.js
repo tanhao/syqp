@@ -234,7 +234,6 @@ cc.Class({
             th.audioManager.playSFX("nv/gang.mp3");
             self.hideOptions();
         });
-
         //出牌
         this.node.on('chupai_notify_push', function (data) {
             //console.log('==>Gmae chupai_notify_push:',JSON.stringify(data.detail));
@@ -265,6 +264,28 @@ cc.Class({
             } else if (false) {
                 //todo 重放
             }
+        });
+        //胡牌
+        this.node.on('hu_push', function (data) {
+            console.log('==>Gmae hu_push:', JSON.stringify(data.detail));
+
+            var data = data.detail;
+            var seatIndex = data.seatIndex;
+            var localIndex = th.socketIOManager.getLocalIndex(seatIndex);
+            var nodeHupai = self._hupaiTips[localIndex];
+            nodeHupai.active = true;
+
+            if (localIndex == 0) {
+                self.hideOptions();
+            }
+            var seatData = th.socketIOManager.seats[seatIndex];
+            seatData.isHu = true;
+
+            nodeHupai.getChildByName("hu").active = !data.isZimo;
+            nodeHupai.getChildByName("zimo").active = data.isZimo;
+            //todo 回放
+            self.playEffect(localIndex, data.isZimo ? "play_zimo" : "play_hu");
+            th.audioManager.playSFX("nv/hu.mp3");
         });
     },
     playEffect: function playEffect(index, name) {

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "hallAM7_30",
+    "texture": "fe562e6a-3fb7-442e-99fc-f18ce0466539",
+    "atlas": "455641bd-5ab5-447c-b19b-f1e17cb1f482",
+    "rect": [
+      292,
+      85,
+      59,
+      19
+    ],
+    "offset": [
+      -48,
+      -18
+    ],
+    "originalSize": [
+      349,
+      95
+    ]
+  }
+}

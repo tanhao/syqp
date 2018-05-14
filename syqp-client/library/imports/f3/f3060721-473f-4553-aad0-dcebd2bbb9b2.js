@@ -242,7 +242,6 @@ cc.Class({
         th.sio.addHandler("hangang_notify_push", function (data) {
             self.dispatchEvent("hangang_notify_push", data);
         });
-
         th.sio.addHandler("gang_notify_push", function (data) {
             console.log("socketIOManager gang_notify_push:", data);
             var userId = data.userId;
@@ -259,7 +258,10 @@ cc.Class({
         th.sio.addHandler("mopai_push", function (data) {
             self.doMopai(self.seatIndex, data);
         });
-
+        th.sio.addHandler("hu_push", function (data) {
+            console.log("socketIOManager hu_push:", data);
+            self.doHu(data);
+        });
         th.sio.addHandler("hu_notify_push", function (data) {
             self.doHu(data);
         });
@@ -396,7 +398,9 @@ cc.Class({
             this.dispatchEvent('mopai_push', { seatIndex: seatIndex, pai: pai });
         }
     },
-    doHu: function doHu(seatIndex, pai) {},
+    doHu: function doHu(data) {
+        this.dispatchEvent('hu_push', data);
+    },
     doTurnChange: function doTurnChange(seatIndex) {
         var data = {
             last: this.turn,

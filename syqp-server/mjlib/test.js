@@ -6,8 +6,8 @@ let mjlib = require( './mjlib.js' ).initTable();
 function test_one_success() {
     //定义34中牌型
     var cards = [
-        3, 0, 0, 3, 0, 0, 0, 0, 0, 
-        3, 0, 0, 3, 0, 0, 0, 0, 0,
+        0, 0, 0, 1, 1, 1, 0, 0, 0, 
+        0, 0, 0, 0, 0, 2, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0,
     ];
@@ -36,6 +36,6 @@ function test_n3() {
 }
 
 let time1=Date.now();
-test_n3();
+test_one_success();
 let time2=Date.now();
 console.log("Time:"+(time2-time1)+'ms');

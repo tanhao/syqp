@@ -11,6 +11,7 @@ cc.Class({
         bgmVolume: 0.5,
         sfxVolume: 0.5,
         bgmAudioID: -1,
+        sfxAudioID: -1,
         _pauseBgm: true
     },
 
@@ -60,8 +61,13 @@ cc.Class({
     },
     playSFX: function playSFX(url) {
         var audioUrl = this.getUrl(url);
+        /*
+        if(this.sfxAudioID>=0){
+            cc.audioEngine.stop(this.sfxAudioID);
+        }
+        */
         if (this.sfxVolume > 0) {
-            var audioId = cc.audioEngine.play(audioUrl, false, this.sfxVolume);
+            this.sfxAudioID = cc.audioEngine.play(audioUrl, false, this.sfxVolume);
         }
     },
 

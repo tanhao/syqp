@@ -457,25 +457,33 @@ function calculateResult(game,room){
     }else{
         let hupaiSeatData=game.seats[game.hupaiSeatIndex];
         let fan = hupaiSeatData.paiXing.fan;
+        logger.info("胡牌:",fan)
         if(hupaiSeatData.isDangDiao){
             fan *=2;
+            logger.info("单吊*2");
         }
         if(hupaiSeatData.isSanCaiShen){
             fan *=2;
+            logger.info("三财神*2");
         }
         if(hupaiSeatData.isCaiShenTou){
             fan *=2;
+            logger.info("财神头*2");
         }
         if(hupaiSeatData.isZiYiSe){
-            fan *=2;
+            fan *=8;
+            logger.info("字一色*8");
         }else if(hupaiSeatData.isQingYiSe){
             fan *=4;
+            logger.info("清一色*4");
         }else if(hupaiSeatData.isHunYiSe){
-            fan *=8;
+            fan *=2;
+            logger.info("混一色*2");
         }
         //如果是庄还要再*2
         if(game.banker==hupaiSeatData.index){
             fan *=2;
+            logger.info("庄家胡*2");
         }
         let totalWinScore=0;
         let difen=game.config.difen;
@@ -485,10 +493,12 @@ function calculateResult(game,room){
                 continue;
             }
             let loseFan=fan;
-            if(hupaiSeatData.baoSeatIndex=loseSeatData.index){
+            if(hupaiSeatData.baoSeatIndex==loseSeatData.index){
+                logger.info("包了别人*2");
                 //如果包了别人要番倍
                 loseFan*=2;
             }else if(hupaiSeatData.unbaoSeatIndexMap[loseSeatData.index]){
+                logger.info("反包别人*4");
                 //我被人包了要番两倍
                 loseFan*=4;
             }
@@ -497,7 +507,7 @@ function calculateResult(game,room){
                 loseFan=game.config.fengding;
             }
             let loseScore=loseFan*difen;
-            loseSeatData.score -=loseScore*-1;
+            loseSeatData.score -=loseScore;
             totalWinScore += loseScore;
         }
         hupaiSeatData.score = totalWinScore;
@@ -645,6 +655,11 @@ function isZiYiSe(game,seatData){
 }
 //检测是否清一色，混一色，字一色
 function checkQingHunZiYiSe(game,seatData){
+    logger.info("checkQingHunZiYiSe chis",JSON.stringify(seatData.chis));
+    logger.info("checkQingHunZiYiSe pengs",JSON.stringify(seatData.pengs));
+    logger.info("checkQingHunZiYiSe angangs",JSON.stringify(seatData.angangs));
+    logger.info("checkQingHunZiYiSe bugangs",JSON.stringify(seatData.bugangs));
+    logger.info("checkQingHunZiYiSe diangangs",JSON.stringify(seatData.diangangs));
     if(isZiYiSe(game,seatData)){
         seatData.isZiYiSe=true;
         seatData.isHunYiSe=false;
@@ -843,7 +858,7 @@ function checkPaiXing(game,seatData,pai){
 }
 //一局结束
 function doGameOver(game,userId,forceEnd){
-    let roomId = roomManager.getUserRoom(userId);
+    let roomId = roomManager.getUserRoomId(userId);
     if(roomId == null){
         return;
     }
@@ -892,6 +907,8 @@ function doGameOver(game,userId,forceEnd){
             results.push(userRT);
             delete SEAT_DATE_MAP[seatData.userId];
         }
+
+        logger.info(JSON.stringify(results));
         delete games[roomId];
         //下把谁当庄
         if(game.config.zuozhuang=='QZ'){
@@ -1399,7 +1416,7 @@ module.exports.hu=function(userId){
         logger.info("can't find user game data.");
         return;
     }
-    var seatIndex = seatData.index;
+    let seatIndex = seatData.index;
     let game = seatData.game;
     //如果他不能胡牌，那胡个啥啊
     if(seatData.canHu == false){
@@ -1410,24 +1427,32 @@ module.exports.hu=function(userId){
     game.hupaiSeatIndex=seatData.index;
     //标记为胡牌
     seatData.isHu=true;
-    var hupai = game.chupai;
-    var isZimo = false;
-
-
-
-    var turnSeat = game.seats[game.turn];
+    let hupai = null;
+    let isZimo = false;
+    
+    let turnSeat = game.seats[game.turn];
     seatData.isGangHu = turnSeat.lastFangGangSeat >= 0;
     if(game.qiangGangContext != null){
         //抢杠胡
-        var gangSeat = game.qiangGangContext.seatData;
+        let gangSeat = game.qiangGangContext.seatData;
         hupai = game.qiangGangContext.pai;
         seatData.isZimo=false;
         recordGameAction(game,seatIndex,ACTION_HU,hupai);
         game.qiangGangContext.isValid = false;
+        logger.info("抢杠胡:",hupai);
     }else if(game.chupai==null){
         //自摸
+        hupai = seatData.holds.pop();
+        seatData.mjmap[hupai] --;
         seatData.isZimo=true;
         isZimo=true;
+        if(seatData.isGangHu){
+            if(turnSeat.lastFangGangSeatIndex == seatIndex){
+                logger.info("杠上花:",hupai);
+            }else{
+                logger.info("放跑胡（松阳麻将没有）:",hupai);
+            } 
+        }
         recordGameAction(game,seatIndex,ACTION_ZIMO,hupai);
     }
     seatData.hupai=hupai;
@@ -1443,7 +1468,8 @@ module.exports.hu=function(userId){
     
     clearAllOptions(game);
     //通知前端，有人和牌了
-    userManager.broacastInRoom('hu_push',{seatIndex:seatIndex,isZimo:isZimo,hupai:notify},seatData.userId,true);
+    userManager.broacastInRoom('hu_push',{seatIndex:seatIndex,isZimo:isZimo,hupai:hupai},seatData.userId,true);
+   
     doGameOver(game,seatData.userId);
 
 }
