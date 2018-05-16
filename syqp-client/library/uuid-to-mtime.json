@@ -2130,8 +2130,8 @@
     "relativePath": "resources\\sounds\\shuffle.mp3"
   },
   "d2c04a79-2cb0-40bf-ad0d-8c8224a7e190": {
-    "asset": 1526487215246,
-    "meta": 1526487269073,
+    "asset": 1526492693535,
+    "meta": 1526492693560,
     "relativePath": "scenes\\hall.fire"
   },
   "1b1f47e5-5922-4d76-afe1-52281a8e7389": {
@@ -2369,56 +2369,6 @@
     "meta": 1526489713573,
     "relativePath": "scripts\\components\\MJRoom.js"
   },
-  "71561142-4c83-4933-afca-cb7a17f67053": {
-    "asset": 1520937982000,
-    "meta": 1526492002515,
-    "relativePath": "image\\default_btn_disabled.png"
-  },
-  "e851e89b-faa2-4484-bea6-5c01dd9f06e2": {
-    "asset": 1520937982000,
-    "meta": 1526492002517,
-    "relativePath": "image\\default_btn_normal.png"
-  },
-  "b43ff3c2-02bb-4874-81f7-f2dea6970f18": {
-    "asset": 1520937982000,
-    "meta": 1526492002524,
-    "relativePath": "image\\default_btn_pressed.png"
-  },
-  "d81ec8ad-247c-4e62-aa3c-d35c4193c7af": {
-    "asset": 1520937982000,
-    "meta": 1526492002525,
-    "relativePath": "image\\default_panel.png"
-  },
-  "99170b0b-d210-46f1-b213-7d9e3f23098a": {
-    "asset": 1520937982000,
-    "meta": 1526492002530,
-    "relativePath": "image\\default_progressbar_bg.png"
-  },
-  "cfef78f1-c8df-49b7-8ed0-4c953ace2621": {
-    "asset": 1520937982000,
-    "meta": 1526492002531,
-    "relativePath": "image\\default_progressbar.png"
-  },
-  "9d60001f-b5f4-4726-a629-2659e3ded0b8": {
-    "asset": 1520937982000,
-    "meta": 1526492002537,
-    "relativePath": "image\\default_radio_button_on.png"
-  },
-  "567dcd80-8bf4-4535-8a5a-313f1caf078a": {
-    "asset": 1520937982000,
-    "meta": 1526492002538,
-    "relativePath": "image\\default_radio_button_off.png"
-  },
-  "4bab67cb-18e6-4099-b840-355f0473f890": {
-    "asset": 1520937982000,
-    "meta": 1526492002542,
-    "relativePath": "image\\default_scrollbar_bg.png"
-  },
-  "617323dd-11f4-4dd3-8eec-0caf6b3b45b9": {
-    "asset": 1520937982000,
-    "meta": 1526492002543,
-    "relativePath": "image\\default_scrollbar_vertical_bg.png"
-  },
   "0291c134-b3da-4098-b7b5-e397edbe947f": {
     "asset": 1520937982000,
     "meta": 1526492002548,
@@ -2553,5 +2503,55 @@
     "asset": 1520937982000,
     "meta": 1526492002611,
     "relativePath": "prefab\\webview.prefab"
+  },
+  "71561142-4c83-4933-afca-cb7a17f67053": {
+    "asset": 1520937982000,
+    "meta": 1526492685704,
+    "relativePath": "image\\default_btn_disabled.png"
+  },
+  "e851e89b-faa2-4484-bea6-5c01dd9f06e2": {
+    "asset": 1520937982000,
+    "meta": 1526492685706,
+    "relativePath": "image\\default_btn_normal.png"
+  },
+  "b43ff3c2-02bb-4874-81f7-f2dea6970f18": {
+    "asset": 1520937982000,
+    "meta": 1526492685710,
+    "relativePath": "image\\default_btn_pressed.png"
+  },
+  "d81ec8ad-247c-4e62-aa3c-d35c4193c7af": {
+    "asset": 1520937982000,
+    "meta": 1526492685711,
+    "relativePath": "image\\default_panel.png"
+  },
+  "99170b0b-d210-46f1-b213-7d9e3f23098a": {
+    "asset": 1520937982000,
+    "meta": 1526492685714,
+    "relativePath": "image\\default_progressbar_bg.png"
+  },
+  "cfef78f1-c8df-49b7-8ed0-4c953ace2621": {
+    "asset": 1520937982000,
+    "meta": 1526492685715,
+    "relativePath": "image\\default_progressbar.png"
+  },
+  "567dcd80-8bf4-4535-8a5a-313f1caf078a": {
+    "asset": 1520937982000,
+    "meta": 1526492685720,
+    "relativePath": "image\\default_radio_button_off.png"
+  },
+  "9d60001f-b5f4-4726-a629-2659e3ded0b8": {
+    "asset": 1520937982000,
+    "meta": 1526492685721,
+    "relativePath": "image\\default_radio_button_on.png"
+  },
+  "4bab67cb-18e6-4099-b840-355f0473f890": {
+    "asset": 1520937982000,
+    "meta": 1526492685724,
+    "relativePath": "image\\default_scrollbar_bg.png"
+  },
+  "617323dd-11f4-4dd3-8eec-0caf6b3b45b9": {
+    "asset": 1520937982000,
+    "meta": 1526492685725,
+    "relativePath": "image\\default_scrollbar_vertical_bg.png"
   }
 }
