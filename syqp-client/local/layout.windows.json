@@ -18,7 +18,7 @@
                 "children": [
                   "hierarchy"
                 ],
-                "height": 463.953125,
+                "height": 649,
                 "type": "panel",
                 "width": 204
               },
@@ -27,7 +27,7 @@
                 "children": [
                   "assets"
                 ],
-                "height": 462.046875,
+                "height": 277,
                 "type": "panel",
                 "width": 204
               }
@@ -56,7 +56,7 @@
                     ],
                     "height": 700,
                     "type": "panel",
-                    "width": 1149.96875
+                    "width": 1192.984375
                   },
                   {
                     "active": 0,
@@ -65,7 +65,7 @@
                     ],
                     "height": 700,
                     "type": "panel",
-                    "width": 247
+                    "width": 204
                   }
                 ],
                 "height": 700,
@@ -73,7 +73,7 @@
                 "width": 1399.984375
               },
               {
-                "active": 1,
+                "active": 0,
                 "children": [
                   "console",
                   "timeline"

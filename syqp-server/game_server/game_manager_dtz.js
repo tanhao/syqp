@@ -143,7 +143,7 @@ module.exports.begin=function(roomId){
     pokers.sort(function(){ return 0.5 - Math.random() });
     //发牌
     //3人玩每人44张，4人玩每人33张
-    let peoples=game.config.peoples;
+    let =game.config.peoples;
     let dipai=game.config.liudipai?(peoples==4?8:9):0;
     let pokersCount=pokers.length-dipai;
     let seatIndex=game.turn;

@@ -120,3 +120,11 @@ module.exports.getRoomAndModifyIpPort=function(roomId,ip,port,callback){
         callback(err,res.value);
     });
 }
+
+
+//更新房间下把庄seatIndex
+module.exports.updateRoomBanker=function(roomId,banker,callback){
+    Room.updateOne({id:roomId},{banker:banker},function(err,res){
+        callback(err,err?false:true)
+    });
+}

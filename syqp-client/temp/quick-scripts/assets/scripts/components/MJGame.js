@@ -11,11 +11,6 @@ cc.Class({
         lblRoundCount: cc.Label,
         spriteCaishen: cc.Sprite,
         btnReady: cc.Button,
-        btnGang: cc.Button,
-        btnPeng: cc.Button,
-        btnChi: cc.Button,
-        btnHu: cc.Button,
-        btnGuo: cc.Button,
         chupaidian: cc.Sprite,
         settingWin: cc.Node,
         optionsWin: cc.Node, ///所有可以做的操作节点
@@ -463,6 +458,9 @@ cc.Class({
         } else if (event.target.name == "btnChi") {
             th.sio.send("chi", event.target.pais);
         } else if (event.target.name == "btnGuo") {
+            if (th.socketIOManager.turn == th.socketIOManager.seatIndex) {
+                this.optionsWin.active = true;
+            }
             th.sio.send("guo");
         }
     },

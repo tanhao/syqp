@@ -26,10 +26,10 @@ var RoomSchema=new Schema({
     port: { type:Number, required:true },
     config:{ type:Object, required:true },
     seats: { type:Array },
-    round: { type:Number, required:true ,default:0},  
-    banker: { type:Number},  
+    round: { type:Number, required:true ,default:0},   //现在第几局
+    banker: { type:Number,required:true },   //下把庄的seatIndex，当为空时随机庄
     //creator:{ type:Schema.Types.ObjectId, required:true,ref:'User'},
-    creator:{ type:Number, required:true },
+    creator:{ type:Number, required:true },   //房主ID
     createdTime:{ type:Number,required:true}
     /*
     ownerId: {type:ObjectID},

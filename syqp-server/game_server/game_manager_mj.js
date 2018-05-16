@@ -859,14 +859,9 @@ function checkPaiXing(game,seatData,pai){
 //一局结束
 function doGameOver(game,userId,forceEnd){
     let roomId = roomManager.getUserRoomId(userId);
-    if(roomId == null){
-        return;
-    }
+    if(roomId == null){ return;}
     let room = roomManager.getRoom(roomId);
-    if(room == null){
-        return;
-    }
-    
+    if(room == null){return;}
     let fnNoticeResult=function(isEnd){
         logger.info("game end ...................");
     }
@@ -884,6 +879,11 @@ function doGameOver(game,userId,forceEnd){
             let seatData=game.seats[i];
             seat.ready=false;
             seat.score += seatData.score;
+            seat.numZiMo += seatData.numZiMo;
+            seat.numJiePao += seatData.numJiePao;
+            seat.numDianPao += seatData.numDianPao;
+            seat.numAnGang += seatData.numAnGang;
+            seat.numMingGang += seatData.numMingGang;
             
             let userRT={
                 userId:seat.userId,
@@ -910,25 +910,31 @@ function doGameOver(game,userId,forceEnd){
 
         logger.info(JSON.stringify(results));
         delete games[roomId];
+        var oldBanker = room.banker;
         //下把谁当庄
         if(game.config.zuozhuang=='QZ'){
             room.banker=game.hupaiSeatIndex!=null?game.hupaiSeatIndex:game.banker;
         }else{
             room.banker=(game.banker+1)%room.seats.length;
         }
-        if(forceEnd || game == null){
-            fnNoticeResult(true);   
-        }else{
-            //保存游戏
-            //记录玩家操作
-            //保存游戏局数
-            //如果是第一次，则扣除房卡
-            if(room.round==1){
-                logger.info("扣除房卡");
-            }
-            var isEnd = (room.round >= room.config.round);
-            fnNoticeResult(isEnd);
+        if(oldBanker!=room.banker){
+
         }
+       
+    }
+
+    if(forceEnd || game == null){
+        fnNoticeResult(true);   
+    }else{
+        //保存游戏
+        //记录玩家操作
+        //保存游戏局数
+        //如果是第一次，则扣除房卡
+        if(room.round==1){
+            logger.info("扣除房卡");
+        }
+        var isEnd = (room.round >= room.config.round);
+        fnNoticeResult(isEnd);
     }
 
 }
@@ -1007,12 +1013,14 @@ module.exports.begin=function(roomId){
         hupaiSeatIndex:null, //如果为空就是渣胡（臭了）
     }
     room.round++;
+    /*
     //第一局随机一个庄
     if(room.round==1){
         game.banker=Math.floor(Math.random()*game.seats.length);
     }else{
         game.banker=room.banker;
     }
+    */
     //当前前出牌设置为庄家
     game.turn = game.banker;
 
@@ -1104,10 +1112,11 @@ module.exports.begin=function(roomId){
         data.baoMap = {};
 
         //统计信息
-        data.numZiMo = 0;
-        data.numQiangGang = 0;
-        data.numAnGang = 0;
-        data.numMingGang = 0;
+        data.numZiMo = 0;      //自摸胡
+        data.numJiePao = 0;    //抢杠胡
+        data.numDianPao = 0;   //被捉杠
+        data.numAnGang = 0;    //暗杠
+        data.numMingGang = 0;  //明杠
 
         SEAT_DATE_MAP[data.userId]=data;
 

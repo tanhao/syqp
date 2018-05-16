@@ -18,7 +18,6 @@ cc.Class({
         this.initSeats();
         this.initEventHandlers();
     },
-
     initView:function(){
         if(th.socketIOManager.seats.length==2){
             this.node.getChildByName('left').active=false;
@@ -42,15 +41,12 @@ cc.Class({
         cc.log("MJRoom Seats:",this._seats.length);
         this.refreshBtns();
     },
-
-  
     initSeats:function(){
         var seats=th.socketIOManager.seats;
         for(var i = 0; i < seats.length; ++i){
             this.initSingleSeat(seats[i]);
         }
     },
-
     initSingleSeat:function(seat){
         var index = th.socketIOManager.getLocalIndex(seat.index);
         this._seats[index].setInfo(seat.userId,seat.name,seat.score,seat.headImgUrl);
@@ -59,7 +55,6 @@ cc.Class({
         this._seats[index].setReady(seat.ready);
         this._seats[index].setOffline(!seat.online);
     },
-
     refreshBtns:function(){
          var isIdle=th.socketIOManager.round==0;
          var isFangzhu=th.socketIOManager.isFangzhu();
@@ -68,7 +63,6 @@ cc.Class({
          this.btnWechatInvite.node.active=isIdle;
          this.btnMenu.node.active=!isIdle;
     },
-
     initEventHandlers:function(){
         var self=this;
         //加入房间
@@ -113,7 +107,6 @@ cc.Class({
             self.initSeats();
         });
     },
-
     onMenuClicked:function(){
         this.menuWin.active=!this.menuWin.active;
     },

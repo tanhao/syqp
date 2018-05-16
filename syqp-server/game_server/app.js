@@ -23,7 +23,7 @@ db.init(config.mongodb(),function(err,isConnected){
         
 
         var room={"id":531962,"ip":"127.0.0.1","port":8888,
-                "config":{"peoples":4,"score":1000,"fee":1,"gift":100,"liudipai":false,"jipaiqi":false},
+                "config":{"people":4,"score":1000,"fee":1,"gift":100,"liudipai":false,"jipaiqi":false},
                 "seats":[{"userId":null,"name":null,"headImgUrl":null,"score":0,"ready":false,"online":false,"index":0},
                          {"userId":null,"name":null,"headImgUrl":null,"score":0,"ready":false,"online":false,"index":1},
                          {"userId":null,"name":null,"headImgUrl":null,"score":0,"ready":false,"online":false,"index":2},
@@ -36,5 +36,10 @@ db.init(config.mongodb(),function(err,isConnected){
             logger.info(data);
         })
         */
+
+        db.updateRoomBanker(176810,3,function(err,data){
+            logger.info("FUCK:"+err)
+            logger.info(data);
+        });
     }
 });

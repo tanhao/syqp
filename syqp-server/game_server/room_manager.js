@@ -41,6 +41,8 @@ module.exports.createRoom=function(creator,config,balance,ip,port,callback){
                 port: port,
                 config:config,
                 seats: manager.initSeats(config),
+                round:0,
+                banker:Math.floor(Math.random()*config.people),   //第一吧随机一个庄
                 //creator:mongoose.Types.ObjectId(creator),
                 creator:creator,
                 createdTime: Math.ceil(Date.now()/1000)
@@ -204,15 +206,15 @@ module.exports.leaveRoom = function(userId){
     seat.online=false;
     seat.ip=null;
 
-    var peoples=0;
+    var people=0;
     room.seats.forEach(seat => {
-        peoples+=seat.userId?1:0;
+        people+=seat.userId?1:0;
     });
     db.updateUsersRoomId([userId],null,function(err,res){
          logger.info(userId+" leave room "+roomId)
     })
 
-    if(peoples==0){
+    if(people==0){
         module.exports.destroyRoom (roomId);
     }
 }
