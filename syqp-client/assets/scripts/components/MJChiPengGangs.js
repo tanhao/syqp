@@ -75,19 +75,19 @@ cc.Class({
         var gangs = seatData.angangs;
         for(var i = 0; i < gangs.length; ++i){
             var mjid = gangs[i];
-            this.initChiPengAndGangs(nodeChiPengGang,side,pre,index,mjid,"angang");
+            this.initChiPengAndGangs(nodeChiPengGang,side,pre,index,mjid,"angang",seatData.index);
             index++;    
         } 
         gangs = seatData.diangangs;
         for(var i = 0; i < gangs.length; ++i){
             var mjid = gangs[i];
-            this.initChiPengAndGangs(nodeChiPengGang,side,pre,index,mjid,"diangang");
+            this.initChiPengAndGangs(nodeChiPengGang,side,pre,index,mjid,"diangang",seatData.index);
             index++;    
         }
         gangs = seatData.bugangs;
         for(var i = 0; i < gangs.length; ++i){
             var mjid = gangs[i];
-            this.initChiPengAndGangs(nodeChiPengGang,side,pre,index,mjid,"bugang");
+            this.initChiPengAndGangs(nodeChiPengGang,side,pre,index,mjid,"bugang",seatData.index);
             index++;    
         }
         //初始化碰牌
@@ -95,7 +95,7 @@ cc.Class({
         if(pengs){
             for(var i = 0; i < pengs.length; ++i){
                 var mjid = pengs[i];
-                this.initChiPengAndGangs(nodeChiPengGang,side,pre,index,mjid,"peng");
+                this.initChiPengAndGangs(nodeChiPengGang,side,pre,index,mjid,"peng",seatData.index);
                 index++;    
             }    
         }  
@@ -104,12 +104,12 @@ cc.Class({
         if(chis){
             for(var i = 0; i < chis.length; ++i){
                 var mjid = chis[i];
-                this.initChiPengAndGangs(nodeChiPengGang,side,pre,index,mjid,"chi");
+                this.initChiPengAndGangs(nodeChiPengGang,side,pre,index,mjid,"chi",seatData.index);
                 index++;    
             }    
         }
     },
-    initChiPengAndGangs:function(nodeChiPengGang,side,pre,index,info,flag){
+    initChiPengAndGangs:function(nodeChiPengGang,side,pre,index,info,flag,seatIndex){
         console.log("initChiPengAndGangs",side,pre,index,info,flag);
         var nodeCPG = null;
         if(nodeChiPengGang.childrenCount <= index){
@@ -124,7 +124,6 @@ cc.Class({
             nodeCPG = nodeChiPengGang.children[index];
             nodeCPG.active = true;
         }
-
         if(side == "left"){
             nodeCPG.y = -(index * 25 * 3);                    
         }else if(side == "right"){
@@ -139,19 +138,84 @@ cc.Class({
         var sprites = nodeCPG.getComponentsInChildren(cc.Sprite);
         if(flag=="angang"){
             for(var i = 0; i < sprites.length; i++){
+                if(sprite.node.name == "point_left" || sprite.node.name == "point_dui" || sprite.node.name == "point_right"){
+                    sprite.node.active = false;
+                }
                 var sprite = sprites[i];
                 sprite.node.active = true;
                 sprite.spriteFrame = th.mahjongManager.getEmptySpriteFrame(side);
             }
         }else if(flag=="diangang"||flag=="bugang"){
+            var isUp=false;
+            var isNext=false;
+            var isDui=false;
+            if(this.getUpSeatIndex(seatIndex)==info.idx){
+                isUp=true;
+                isNext=false;
+                isDui=false;
+            }else if(this.getNextSeatIndex(seatIndex)==info.idx){
+                isUp=false;
+                isNext=true;
+                isDui=false;
+            }else{
+                isUp=false;
+                isNext=false;
+                isDui=true;
+            }
             for(var i = 0; i < sprites.length; i++){
                 var sprite = sprites[i];
+                if(sprite.node.name == "point_left" || sprite.node.name == "point_right" || sprite.node.name == "point_dui"){
+                    if(sprite.node.name == "point_left" ){
+                        sprite.node.active= isUp;
+                    }else if(sprite.node.name == "point_right"){
+                        sprite.node.active= isNext;
+                    }else if(sprite.node.name == "point_dui"){
+                        sprite.node.active= isDui;
+                    }
+                    if(side=="up"){
+                        sprite.node.y -= 100;
+                    }else if(side=="right"){
+                        sprite.node.x -= 40;
+                    }
+                    continue;
+                }
                 sprite.node.active = true;
-                sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID(pre,info.mjid);    
+                sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID(pre,info.mjid);  
             }
         }else if(flag=="peng"){
+            var isUp=false;
+            var isNext=false;
+            var isDui=false;
+            if(this.getUpSeatIndex(seatIndex)==info.idx){
+                isUp=true;
+                isNext=false;
+                isDui=false;
+            }else if(this.getNextSeatIndex(seatIndex)==info.idx){
+                isUp=false;
+                isNext=true;
+                isDui=false;
+            }else{
+                isUp=false;
+                isNext=false;
+                isDui=true;
+            }
             for(var i = 0; i < sprites.length; i++){
                 var sprite = sprites[i];
+                if(sprite.node.name == "point_left" || sprite.node.name == "point_right" || sprite.node.name == "point_dui"){
+                    if(sprite.node.name == "point_left" ){
+                        sprite.node.active= isUp;
+                    }else if(sprite.node.name == "point_right"){
+                        sprite.node.active= isNext;
+                    }else if(sprite.node.name == "point_dui"){
+                        sprite.node.active= isDui;
+                    }
+                    if(side=="up"){
+                        sprite.node.y -= 100;
+                    }else if(side=="right"){
+                        sprite.node.x -= 40;
+                    }
+                    continue;
+                }
                 if(sprite.node.name == "gang"){
                     sprite.node.active = false;
                 }else{
@@ -160,9 +224,41 @@ cc.Class({
                 }
             }
         }else if(flag=="chi"){
+            var isUp=false;
+            var isNext=false;
+            var isDui=false;
+            if(this.getUpSeatIndex(seatIndex)==info.idx){
+                isUp=true;
+                isNext=false;
+                isDui=false;
+            }else if(this.getNextSeatIndex(seatIndex)==info.idx){
+                isUp=false;
+                isNext=true;
+                isDui=false;
+            }else{
+                isUp=false;
+                isNext=false;
+                isDui=true;
+            }
+
             var idx=0;
             for(var i = 0; i < sprites.length; i++){
                 var sprite = sprites[i];
+                if(sprite.node.name == "point_left" || sprite.node.name == "point_right" || sprite.node.name == "point_dui"){
+                    if(sprite.node.name == "point_left" ){
+                        sprite.node.active= isUp;
+                    }else if(sprite.node.name == "point_right"){
+                        sprite.node.active= isNext;
+                    }else if(sprite.node.name == "point_dui"){
+                        sprite.node.active= isDui;
+                    }
+                    if(side=="up"){
+                        sprite.node.y -= 100;
+                    }else if(side=="right"){
+                        sprite.node.x -= 40;
+                    }
+                    continue;
+                }
                 if(sprite.node.name == "gang"){
                     sprite.node.active = false;
                 }else{
@@ -172,8 +268,23 @@ cc.Class({
                 }
             }
         }
-    }
+    },
 
+    getUpSeatIndex:function(seatIndex){
+        var total=th.socketIOManager.seats.length;
+        var ret = (seatIndex - 1+ total) % total;
+        return ret;
+    },
+    getNextSeatIndex:function(seatIndex){
+        var total=th.socketIOManager.seats.length;
+        var ret = (seatIndex +1 + total) % total;
+        return ret;
+    },
+    getDuiSeatIndex:function(seatIndex){
+        var total=th.socketIOManager.seats.length;
+        var ret = (seatIndex + 2 + total) % total;
+        return ret;
+    }
     // update: function (dt) {
 
     // },

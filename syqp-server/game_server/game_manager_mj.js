@@ -1,4 +1,4 @@
-const logger=require('../common/log.js').getLogger('game_dtz.js');
+const logger=require('../common/log.js').getLogger('game_manager_mj.js');
 const roomManager=require('./room_manager.js');
 const userManager=require('./user_manager.js');
 const mjlib = require( '../mjlib/mjlib.js' ).initTable();
@@ -1102,6 +1102,12 @@ module.exports.begin=function(roomId){
         data.baoSeatIndex=null; 
         //玩家吃碰杠其他人的牌的次数，用来快速判断是不是包起来了
         data.baoMap = {};
+
+        //统计信息
+        data.numZiMo = 0;
+        data.numQiangGang = 0;
+        data.numAnGang = 0;
+        data.numMingGang = 0;
 
         SEAT_DATE_MAP[data.userId]=data;
 

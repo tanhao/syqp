@@ -3,7 +3,7 @@
   "_name": "hall_bg",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 1,
+  "_duration": 1.1,
   "sample": 10,
   "speed": 1,
   "wrapMode": 2,
@@ -20,7 +20,7 @@
           {
             "frame": 0.1,
             "value": {
-              "__uuid__": "97b939ce-5a3f-4f04-ac05-5a9b9617b263"
+              "__uuid__": "9d8f9861-f3e5-45d1-99b1-076886a3ab0c"
             }
           },
           {
@@ -56,19 +56,25 @@
           {
             "frame": 0.7,
             "value": {
-              "__uuid__": "1da3bc34-5662-4867-927d-e933eaa81607"
+              "__uuid__": "889543e3-4f18-460d-aad6-41080acc0ebb"
             }
           },
           {
             "frame": 0.8,
             "value": {
-              "__uuid__": "a73a8869-6bba-4356-b362-d27bd9e293e6"
+              "__uuid__": "889543e3-4f18-460d-aad6-41080acc0ebb"
             }
           },
           {
             "frame": 0.9,
             "value": {
-              "__uuid__": "029267ea-146d-482d-829f-93fb5884d197"
+              "__uuid__": "a73a8869-6bba-4356-b362-d27bd9e293e6"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "9d8f9861-f3e5-45d1-99b1-076886a3ab0c"
             }
           }
         ]
