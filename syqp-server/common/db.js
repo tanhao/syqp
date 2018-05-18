@@ -121,10 +121,23 @@ module.exports.getRoomAndModifyIpPort=function(roomId,ip,port,callback){
     });
 }
 
-
 //更新房间下把庄seatIndex
 module.exports.updateRoomBanker=function(roomId,banker,callback){
     Room.updateOne({id:roomId},{banker:banker},function(err,res){
         callback(err,err?false:true)
+    });
+}
+
+//更新房间第几轮1代表打了几轮，
+module.exports.updateRoomRound=function(roomId,round,callback){
+    Room.updateOne({id:roomId},{round:round},function(err,res){
+        callback(err,err?false:true)
+    });
+}
+
+//添加或扣除balance玩家余额
+module.exports.incUserBalance=function(userId,amount,callback){
+    User.updateOne({id:userId},{$inc:{balance:amount}},function(err,res){
+        callback(err,err?false:true);
     });
 }

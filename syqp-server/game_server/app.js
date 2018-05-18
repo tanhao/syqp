@@ -37,9 +37,8 @@ db.init(config.mongodb(),function(err,isConnected){
         })
         */
 
-        db.updateRoomBanker(176810,3,function(err,data){
-            logger.info("FUCK:"+err)
-            logger.info(data);
+        db.incUserBalance(100001,-123,function(err,data){
+
         });
     }
 });

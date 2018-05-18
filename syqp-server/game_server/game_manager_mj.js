@@ -2,6 +2,7 @@ const logger=require('../common/log.js').getLogger('game_manager_mj.js');
 const roomManager=require('./room_manager.js');
 const userManager=require('./user_manager.js');
 const mjlib = require( '../mjlib/mjlib.js' ).initTable();
+const db=require('../common/db.js');
 
 var games = {};
 var SEAT_DATE_MAP={};   //KEY=userId
@@ -26,6 +27,7 @@ var SAN_CAI_SHEN=8;
 
 const BAI_BANG_INDEX=33
 
+
 //开房间时验证配置
 module.exports.checkConfig=function(config){
    
@@ -48,9 +50,11 @@ module.exports.checkConfig=function(config){
     if(config.round != 8 && config.round != 12 && config.round != 16){
         return false;
     }
+    /*
     if(config.payment != 'FZ' && config.payment != 'AA'){
         return false;
     }
+    */
     if(config.difen != 1 && config.difen != 2 && config.difen != 5){
         return false;
     }
@@ -61,6 +65,15 @@ module.exports.checkConfig=function(config){
         return false;
     }
     return true;
+}
+//开房间时验证balance
+module.exports.checkBalance=function(config,balance){
+    var fee=getFee(config.round);
+    return balance>=fee;
+}
+//获取要扣的费用
+function getFee(round){
+    return round==8?2:round==12?3:round==16?4:100;
 }
 //取麻将类型
 function getMjType(id){
@@ -918,7 +931,9 @@ function doGameOver(game,userId,forceEnd){
             room.banker=(game.banker+1)%room.seats.length;
         }
         if(oldBanker!=room.banker){
-
+            db.updateRoomBanker(roomId,room.banker,function(err,success){
+                logger.info("房间："+roomId+" 更新banker:"+room.banker+" ==>"+success);
+            });
         }
        
     }
@@ -929,22 +944,22 @@ function doGameOver(game,userId,forceEnd){
         //保存游戏
         //记录玩家操作
         //保存游戏局数
+        db.updateRoomRound(roomId,room.round,function(err,success){
+            logger.info("房间："+roomId+" 更新Round:"+room.banker+" ==>"+success);
+        })
         //如果是第一次，则扣除房卡
         if(room.round==1){
-            logger.info("扣除房卡");
+            //todo
+            db.incUserBalance(room.creator,getFee(room.config.round),function(err,success){
+                logger.info("房间："+roomId+" 扣除房主:"+room.creator+" 放开："+getFee(room.config.round));
+            });
         }
         var isEnd = (room.round >= room.config.round);
         fnNoticeResult(isEnd);
     }
 
 }
-//开房间时验证balance
-module.exports.checkBalance=function(config,balance){
-    if((config.payment=='FZ'&&((config.round==8&&balance<8)||(config.round==12&&balance<12)||(config.round==16&&balance<16)))||(config.payment=='FZ'&&((config.round==8&&balance<2)||(config.round==12&&balance<3)||(config.round==16&&balance<4)))){
-        return false;
-    }
-    return true;
-}
+
 //生成座位初始化信息
 module.exports.initSeats=function(config){
     let seats=[]; 
