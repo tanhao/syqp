@@ -57,6 +57,15 @@ cc.Class({
             //console.log('==>MJFolds chupai_notify_push:',JSON.stringify(data.detail));
             self.initFolds(data.detail.seatData);
         });
+
+        this.node.on('sync_push', function (data) {
+            //console.log('==>MJFolds chupai_notify_push:',JSON.stringify(data.detail));
+            self.initAllFolds();
+        });
+
+        this.node.on('clean_push', function () {
+            self.initAllFolds();
+        });
     },
     hideAllFolds: function hideAllFolds() {
         for (var key in this._folds) {

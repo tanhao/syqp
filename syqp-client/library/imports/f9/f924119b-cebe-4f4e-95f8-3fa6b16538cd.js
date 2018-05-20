@@ -11,7 +11,8 @@ cc.Class({
         headImg: cc.Sprite,
         headwho: cc.Sprite,
         lblName: cc.Label,
-        lblScore: cc.Label,
+        lblWinScore: cc.Label,
+        lblLoseScore: cc.Label,
         offline: cc.Sprite,
         fangzhu: cc.Sprite,
         emoji: cc.Sprite,
@@ -47,7 +48,15 @@ cc.Class({
             this.lblName.string = this._userName;
         }
         if (this._score) {
-            this.lblScore.string = this._score;
+            if (this._score >= 0) {
+                this.lblWinScore.string = this._score;
+                this.lblWinScore.node.active = true;
+                this.lblLoseScore.node.active = false;
+            } else {
+                this.lblLoseScore.string = this._score;
+                this.lblLoseScore.node.active = true;
+                this.lblWinScore.node.active = false;
+            }
         }
         if (this.offline) {
             this.offline.node.active = this._isOffline && this._userId != null;
@@ -101,8 +110,16 @@ cc.Class({
 
     setScore: function setScore(score) {
         this._score = score;
-        if (this.lblScore) {
-            this.lblScore.string = this._score;
+        if (this.lblLoseScore && this.lblWinScore) {
+            if (this._score >= 0) {
+                this.lblWinScore.string = this._score;
+                this.lblWinScore.node.active = true;
+                this.lblLoseScore.node.active = false;
+            } else {
+                this.lblLoseScore.string = this._score;
+                this.lblLoseScore.node.active = true;
+                this.lblWinScore.node.active = false;
+            }
         }
     },
 

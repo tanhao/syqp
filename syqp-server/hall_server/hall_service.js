@@ -111,17 +111,28 @@ module.exports.createRoom=function(userId,roomConfig,callback){
 }
 
 module.exports.joinRoom=function(userId,name,headImgUrl,sex,roomId,callback){
-    let sign = crypto.md5(userId + name + headImgUrl +sex+ roomId  + config.HALL_PRIVATE_KEY);
-    let data={
+    //let sign = crypto.md5(userId + name + headImgUrl +sex+ roomId + bal + config.HALL_PRIVATE_KEY);
+    let joinData={
         userId:userId,
         name:name,
         headImgUrl:headImgUrl,
         sex:sex,
         roomId:roomId,
-        sign:sign
+        balance:0,
+        sign:""
     };
     waterfall([
         (callback)=>{
+            //取房间地址
+            db.getBalanceOfUser(userId,function(err,balance){
+                if(err) return callback(err,null);
+                joinData.balance=balance;
+                joinData.sign = crypto.md5(userId + name + headImgUrl +sex+ roomId + balance + config.HALL_PRIVATE_KEY);
+                callback(null,balance);
+            });
+            
+        },
+        (balance,callback)=>{
             //取房间地址
             db.getRoomAddress(roomId,function(err,room){
                 if(err) return callback(err,null);
@@ -155,7 +166,7 @@ module.exports.joinRoom=function(userId,name,headImgUrl,sex,roomId,callback){
         },
         (server,callback)=>{
             //向游戏服务器请求加入房间
-            let search=qs.stringify(data);
+            let search=qs.stringify(joinData);
             let url=`http://${server.ip}:${server.nodePort}/join_room?${search}`;
             http.get(url,function(err,data){
                 if(err) return callback(err,null);

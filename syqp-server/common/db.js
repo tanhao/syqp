@@ -1,6 +1,6 @@
 const logger=require('../common/log.js').getLogger('db.js');
 const mongoose=require('mongoose');
-var {User,Room}=require('./db_model.js');
+var {User,Room,Game}=require('./db_model.js');
 
 
 module.exports.init=function(config,callback){
@@ -29,11 +29,11 @@ module.exports.isUserExist=function(account,callback){
 }
 //根据账号取用户
 module.exports.findUserByAccount=function(account,callback){
-    User.findOne({account,account},{_id:0,__v:0},callback);
+    User.findOne({account,account},{_id:0,__v:0,history:0},callback);
 }
 //根据userId取用户
 module.exports.findUserById=function(userId,callback){
-    User.findOne({id:userId},{_id:0,__v:0},callback);
+    User.findOne({id:userId},{_id:0,__v:0,history:0},callback);
 }
 //创建用户
 module.exports.createUser=function(obj,callback){
@@ -135,9 +135,49 @@ module.exports.updateRoomRound=function(roomId,round,callback){
     });
 }
 
-//添加或扣除balance玩家余额
-module.exports.incUserBalance=function(userId,amount,callback){
-    User.updateOne({id:userId},{$inc:{balance:amount}},function(err,res){
+//添加或扣除玩家费用
+module.exports.incUserBalance=function(userIds,amount,callback){
+    let logic=[];
+    userIds.forEach((val,i) => {
+        logic[i]={id:val};
+    });
+    let where = {$or: logic};
+    let update={$inc:{balance:amount}};
+    User.updateMany(where,update,function(err,res){
         callback(err,err?false:true);
+    });
+}
+
+//写入每局结果
+module.exports.createGame=function(obj,callback){
+    let game=new Game(obj);
+    game.save(callback);
+}
+
+//更新用户游戏记录
+module.exports.updateUsersHistroy=function(userIds,histroy,callback){
+    let logic=[];
+    userIds.forEach((val,i) => {
+        logic[i]={id:val};
+    });
+    let where = {$or: logic};
+    let update = {$push:{history:histroy}};
+
+    User.updateMany(where,update,function(err,res){
+        callback(err,err?false:true)
+    });
+}
+
+//更新房间座位用户信息
+module.exports.updateRoomSeatInfo=function(roomId,idx,userId,name,headImgUrl,sex,callback){
+    let where = {id: roomId};
+    let data={};
+    data['seats.'+idx+'.userId']=userId;
+    data['seats.'+idx+'.name']=name;
+    data['seats.'+idx+'.headImgUrl']=headImgUrl;
+    data['seats.'+idx+'.sex']=sex;
+    let update = {$set:data};
+    Room.updateOne(where,update,function(err,res){
+        callback(err,err?false:true)
     });
 }

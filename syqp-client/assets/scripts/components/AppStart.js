@@ -1,9 +1,15 @@
 function initManager(I){
-    window.th=window.th || {};
-    
+    var defaultBaseUrl="http://127.0.0.1:9001";
+    window.th=window.th;
+    if(window.th){ 
+        th.http.baseURL=defaultBaseUrl;
+        return;
+    }
+    window.th={};
     th.http=require("Http");
-    th.http.baseURL="http://127.0.0.1:9001"
+    th.http.baseURL=defaultBaseUrl;
     th.sio=require("SocketIO");
+    th.sio.h
 
     var UserManager=require("UserManager");
     th.userManager=new UserManager();
@@ -18,6 +24,9 @@ function initManager(I){
     var SocketIOManager=require("SocketIOManager");
     th.socketIOManager=new SocketIOManager();
     th.socketIOManager.initHandlers();
+
+    var Utils = require("Utils");
+    th.utils = new Utils();
 }   
 
 
@@ -31,6 +40,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+        console.log("================>>initManager<<=====================");
         initManager();
         //console.log('onLoad'); 
     },

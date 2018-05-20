@@ -35,10 +35,27 @@ db.init(config.mongodb(),function(err,isConnected){
             logger.info("FUCK:"+err)
             logger.info(data);
         })
+        db.updateRoomRound(1768110,3,function(err,data){
+            console.log(err,data);
+        });
+        
+        db.updateRoomSeatInfo(852078,6,88,'tanhao','www.baidu.com',0,function(err,data){
+            console.log(err,data);
+        });
+        
+        let data={
+            roomId:1111,
+            round:1,
+            baseInfo:{peng:2,diffeng:3},
+            results:[1,2,3,45],
+            actions:[1,'a',1,'b'],
+            createdTime: Math.ceil(Date.now()/1000),
+        }
+        db.createGame(data,function(err,data){
+            console.log(err,data);
+        });
         */
 
-        db.incUserBalance(100001,-123,function(err,data){
-
-        });
+    
     }
 });

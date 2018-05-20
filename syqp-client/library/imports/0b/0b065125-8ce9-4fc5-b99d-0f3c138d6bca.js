@@ -42,6 +42,10 @@ cc.Class({
             self.onGameBegin();
         });
 
+        this.node.on('clean_push', function () {
+            self.onGameBegin();
+        });
+
         var seats = th.socketIOManager.seats;
         for (var i in seats) {
             this.onChiPengGangChanged(seats[i]);
@@ -78,28 +82,28 @@ cc.Class({
         var index = 0;
         var gangs = seatData.angangs;
         for (var i = 0; i < gangs.length; ++i) {
-            var mjid = gangs[i];
-            this.initChiPengAndGangs(nodeChiPengGang, side, pre, index, mjid, "angang", seatData.index);
+            var info = gangs[i];
+            this.initChiPengAndGangs(nodeChiPengGang, side, pre, index, info, "angang", seatData.index);
             index++;
         }
         gangs = seatData.diangangs;
         for (var i = 0; i < gangs.length; ++i) {
-            var mjid = gangs[i];
-            this.initChiPengAndGangs(nodeChiPengGang, side, pre, index, mjid, "diangang", seatData.index);
+            var info = gangs[i];
+            this.initChiPengAndGangs(nodeChiPengGang, side, pre, index, info, "diangang", seatData.index);
             index++;
         }
         gangs = seatData.bugangs;
         for (var i = 0; i < gangs.length; ++i) {
-            var mjid = gangs[i];
-            this.initChiPengAndGangs(nodeChiPengGang, side, pre, index, mjid, "bugang", seatData.index);
+            var info = gangs[i];
+            this.initChiPengAndGangs(nodeChiPengGang, side, pre, index, info, "bugang", seatData.index);
             index++;
         }
         //初始化碰牌
         var pengs = seatData.pengs;
         if (pengs) {
             for (var i = 0; i < pengs.length; ++i) {
-                var mjid = pengs[i];
-                this.initChiPengAndGangs(nodeChiPengGang, side, pre, index, mjid, "peng", seatData.index);
+                var info = pengs[i];
+                this.initChiPengAndGangs(nodeChiPengGang, side, pre, index, info, "peng", seatData.index);
                 index++;
             }
         }
@@ -107,8 +111,8 @@ cc.Class({
         var chis = seatData.chis;
         if (chis) {
             for (var i = 0; i < chis.length; ++i) {
-                var mjid = chis[i];
-                this.initChiPengAndGangs(nodeChiPengGang, side, pre, index, mjid, "chi", seatData.index);
+                var info = chis[i];
+                this.initChiPengAndGangs(nodeChiPengGang, side, pre, index, info, "chi", seatData.index);
                 index++;
             }
         }
@@ -141,10 +145,11 @@ cc.Class({
         var sprites = nodeCPG.getComponentsInChildren(cc.Sprite);
         if (flag == "angang") {
             for (var i = 0; i < sprites.length; i++) {
+                var sprite = sprites[i];
                 if (sprite.node.name == "point_left" || sprite.node.name == "point_dui" || sprite.node.name == "point_right") {
                     sprite.node.active = false;
+                    continue;
                 }
-                var sprite = sprites[i];
                 sprite.node.active = true;
                 sprite.spriteFrame = th.mahjongManager.getEmptySpriteFrame(side);
             }
@@ -176,9 +181,9 @@ cc.Class({
                         sprite.node.active = isDui;
                     }
                     if (side == "up") {
-                        sprite.node.y -= 100;
+                        sprite.node.y = -53;
                     } else if (side == "right") {
-                        sprite.node.x -= 40;
+                        sprite.node.x = -40;
                     }
                     continue;
                 }
@@ -213,9 +218,9 @@ cc.Class({
                         sprite.node.active = isDui;
                     }
                     if (side == "up") {
-                        sprite.node.y -= 100;
+                        sprite.node.y = -53;
                     } else if (side == "right") {
-                        sprite.node.x -= 40;
+                        sprite.node.x = -40;
                     }
                     continue;
                 }
@@ -256,9 +261,9 @@ cc.Class({
                         sprite.node.active = isDui;
                     }
                     if (side == "up") {
-                        sprite.node.y -= 100;
+                        sprite.node.y = -53;
                     } else if (side == "right") {
-                        sprite.node.x -= 40;
+                        sprite.node.x = -40;
                     }
                     continue;
                 }

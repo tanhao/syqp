@@ -3,6 +3,13 @@ const roomManager=require('./room_manager.js');
 
 var users = {};
 module.exports.bind = function(userId,socket){
+    if( module.exports.isExist(userId)){
+        logger.info(userId+" repeat_login<<==================");
+        module.exports.sendMsg(userId,'repeat_login',{});
+        let socket = users[userId];
+        if(socket) socket.disconnect();;
+       
+    }
     users[userId] = socket;
 }
 

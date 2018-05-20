@@ -1,74 +1,65 @@
-2018-05-16T16:14:18.097Z - normal: Load ~/.CocosCreator/settings.json
-2018-05-16T16:14:18.101Z - normal: checking language setting...
-2018-05-16T16:14:18.101Z - normal: Language: zh
-2018-05-16T16:14:20.696Z - success: protocol editor-framework registered
-2018-05-16T16:14:20.696Z - success: protocol app registered
-2018-05-16T16:14:20.696Z - success: protocol theme registered
-2018-05-16T16:14:20.696Z - success: protocol packages registered
-2018-05-16T16:14:20.697Z - success: protocol unpack registerred
-2018-05-16T16:14:20.697Z - success: protocol disable-commonjs registerred
-2018-05-16T16:14:21.481Z - normal: connected!
-2018-05-16T16:14:21.487Z - normal: Check project D:\Workspace_Chess\syqp\syqp-client
-2018-05-16T16:14:21.496Z - normal: Initializing Cocos2d
-2018-05-16T16:14:22.140Z - normal: Initializing Asset Database
-2018-05-16T16:14:22.182Z - success: protocol uuid registerred
-2018-05-16T16:14:22.183Z - success: protocol db registerred
-2018-05-16T16:14:22.183Z - success: protocol thumbnail registerred
-2018-05-16T16:14:22.183Z - normal: Loading editor/builtin packages
-2018-05-16T16:14:22.271Z - success: anysdk loaded
-2018-05-16T16:14:22.421Z - success: assets loaded
-2018-05-16T16:14:22.436Z - success: builder loaded
-2018-05-16T16:14:22.437Z - success: cocos-analytics loaded
-2018-05-16T16:14:22.440Z - success: console loaded
-2018-05-16T16:14:22.474Z - success: fb-instant-games loaded
-2018-05-16T16:14:22.477Z - success: hierarchy loaded
-2018-05-16T16:14:22.479Z - success: inspector loaded
-2018-05-16T16:14:22.480Z - success: keystore loaded
-2018-05-16T16:14:22.488Z - success: node-library loaded
-2018-05-16T16:14:22.489Z - success: package-asset loaded
-2018-05-16T16:14:22.491Z - success: preferences loaded
-2018-05-16T16:14:22.492Z - success: project-exporter loaded
-2018-05-16T16:14:22.506Z - success: project-importer loaded
-2018-05-16T16:14:22.507Z - success: project-settings loaded
-2018-05-16T16:14:22.509Z - success: ui-kit loaded
-2018-05-16T16:14:22.513Z - success: ui-grid loaded
-2018-05-16T16:14:22.515Z - success: scene loaded
-2018-05-16T16:14:22.516Z - success: sprite-editor loaded
-2018-05-16T16:14:22.519Z - success: store loaded
-2018-05-16T16:14:22.523Z - success: timeline loaded
-2018-05-16T16:14:22.523Z - normal: Loading builtin packages
-2018-05-16T16:14:22.532Z - success: asset-db-debugger loaded
-2018-05-16T16:14:22.533Z - success: code-editor loaded
-2018-05-16T16:14:22.542Z - success: color-picker loaded
-2018-05-16T16:14:22.543Z - success: package-manager loaded
-2018-05-16T16:14:22.547Z - success: sdkbox loaded
-2018-05-16T16:14:22.549Z - success: tester loaded
-2018-05-16T16:14:22.550Z - success: ui-kit-preview-extra loaded
-2018-05-16T16:14:22.551Z - success: ui-kit-preview loaded
-2018-05-16T16:14:22.552Z - success: ui-tree loaded
-2018-05-16T16:14:24.366Z - normal: Initializing project D:\Workspace_Chess\syqp\syqp-client
-2018-05-16T16:14:24.376Z - normal: Loading packages
-2018-05-16T16:14:24.384Z - success: bitmap-font loaded
-2018-05-16T16:14:24.384Z - normal: Watching packages
-2018-05-16T16:14:24.414Z - normal: Run Application
-2018-05-16T16:14:31.963Z - success: preview server running at http://localhost:7456
-2018-05-16T16:14:36.867Z - normal: 1.9.0
-2018-05-16T16:51:12.632Z - warn: The Button referenced by component "MJGame" is invalid. Detailed information:
-Node path: "Canvas"
-
-2018-05-16T16:51:12.634Z - warn: The Button referenced by component "cc.Button" is invalid. Detailed information:
-Node path: "ops/btn_peng"
-
-2018-05-16T16:51:12.634Z - warn: The Button referenced by component "cc.Button" is invalid. Detailed information:
-Node path: "ops/btn_peng"
-
-2018-05-16T16:51:13.351Z - warn: The Button referenced by component "MJGame" is invalid. Detailed information:
-Node path: "Canvas"
-
-2018-05-16T16:51:13.351Z - warn: The Button referenced by component "cc.Button" is invalid. Detailed information:
-Node path: "ops/btn_peng"
-
-2018-05-16T16:51:13.351Z - warn: The Button referenced by component "cc.Button" is invalid. Detailed information:
-Node path: "ops/btn_peng"
-
-2018-05-16T17:44:54.107Z - info: shutdown preview server
+2018-05-20T14:06:28.670Z - normal: Load ~/.CocosCreator/settings.json
+2018-05-20T14:06:28.674Z - normal: checking language setting...
+2018-05-20T14:06:28.674Z - normal: Language: zh
+2018-05-20T14:06:31.381Z - success: protocol editor-framework registered
+2018-05-20T14:06:31.381Z - success: protocol app registered
+2018-05-20T14:06:31.381Z - success: protocol theme registered
+2018-05-20T14:06:31.382Z - success: protocol packages registered
+2018-05-20T14:06:31.382Z - success: protocol unpack registerred
+2018-05-20T14:06:31.382Z - success: protocol disable-commonjs registerred
+2018-05-20T14:06:31.791Z - normal: connected!
+2018-05-20T14:06:31.801Z - normal: Check project D:\Workspace_Chess\syqp\syqp-client
+2018-05-20T14:06:31.808Z - normal: Initializing Cocos2d
+2018-05-20T14:06:32.506Z - normal: Initializing Asset Database
+2018-05-20T14:06:32.553Z - success: protocol uuid registerred
+2018-05-20T14:06:32.554Z - success: protocol db registerred
+2018-05-20T14:06:32.554Z - success: protocol thumbnail registerred
+2018-05-20T14:06:32.554Z - normal: Loading editor/builtin packages
+2018-05-20T14:06:32.661Z - success: anysdk loaded
+2018-05-20T14:06:32.844Z - success: assets loaded
+2018-05-20T14:06:32.865Z - success: builder loaded
+2018-05-20T14:06:32.867Z - success: cocos-analytics loaded
+2018-05-20T14:06:32.870Z - success: console loaded
+2018-05-20T14:06:32.908Z - success: fb-instant-games loaded
+2018-05-20T14:06:32.910Z - success: hierarchy loaded
+2018-05-20T14:06:32.912Z - success: inspector loaded
+2018-05-20T14:06:32.913Z - success: keystore loaded
+2018-05-20T14:06:32.915Z - success: node-library loaded
+2018-05-20T14:06:32.916Z - success: package-asset loaded
+2018-05-20T14:06:32.917Z - success: preferences loaded
+2018-05-20T14:06:32.919Z - success: project-exporter loaded
+2018-05-20T14:06:32.931Z - success: project-importer loaded
+2018-05-20T14:06:32.932Z - success: project-settings loaded
+2018-05-20T14:06:32.934Z - success: ui-kit loaded
+2018-05-20T14:06:32.943Z - success: ui-grid loaded
+2018-05-20T14:06:32.945Z - success: scene loaded
+2018-05-20T14:06:32.946Z - success: sprite-editor loaded
+2018-05-20T14:06:32.948Z - success: store loaded
+2018-05-20T14:06:32.951Z - success: timeline loaded
+2018-05-20T14:06:32.951Z - normal: Loading builtin packages
+2018-05-20T14:06:32.962Z - success: asset-db-debugger loaded
+2018-05-20T14:06:32.963Z - success: code-editor loaded
+2018-05-20T14:06:32.972Z - success: color-picker loaded
+2018-05-20T14:06:32.973Z - success: package-manager loaded
+2018-05-20T14:06:32.977Z - success: sdkbox loaded
+2018-05-20T14:06:32.979Z - success: tester loaded
+2018-05-20T14:06:32.980Z - success: ui-kit-preview-extra loaded
+2018-05-20T14:06:32.981Z - success: ui-kit-preview loaded
+2018-05-20T14:06:32.981Z - success: ui-tree loaded
+2018-05-20T14:06:34.473Z - normal: Initializing project D:\Workspace_Chess\syqp\syqp-client
+2018-05-20T14:06:34.475Z - normal: Loading packages
+2018-05-20T14:06:34.484Z - success: bitmap-font loaded
+2018-05-20T14:06:34.484Z - normal: Watching packages
+2018-05-20T14:06:34.509Z - normal: Run Application
+2018-05-20T14:06:38.238Z - success: preview server running at http://localhost:7456
+2018-05-20T14:06:43.962Z - normal: 1.9.0
+2018-05-20T17:32:10.720Z - error: TypeError: Cannot read property 'nativeWin' of null
+    at Object.callback (D:\CocosCreator1.9\resources\app.asar\editor-framework\lib\main\ipc.js:1:2550)
+    at Timeout.setTimeout [as _onTimeout] (D:\CocosCreator1.9\resources\app.asar\editor-framework\lib\main\ipc.js:1:356)
+    at ontimeout (timers.js:386:14)
+    at tryOnTimeout (timers.js:250:5)
+    at Timer.listOnTimeout (timers.js:214:5)
+    at process.on.t (D:\CocosCreator1.9\resources\app.asar\editor\core\editor-init.js:1:1068)
+    at emitOne (events.js:101:20)
+    at process.emit (events.js:191:7)
+    at process._fatalException (bootstrap_node.js:308:26)

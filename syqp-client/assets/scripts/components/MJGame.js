@@ -20,6 +20,8 @@ cc.Class({
         if(th==null){ return; }
         this.addComponent("MJFolds");
         this.addComponent("MJChiPengGangs");
+        this.addComponent("MJGameOver");
+        this.addComponent("MJGameResult");
         this.initView();
         this.initEventHandlers();
 
@@ -31,9 +33,7 @@ cc.Class({
     },
     initView:function(){
         //把自己的牌都设置为null
-
         this.chupaidian.node.active=false;
-
         var myHolds = this.node.getChildByName('myself').getChildByName('Holds');
         for(var j=0;j<myHolds.children.length;j++){
                 var sprite = myHolds.children[j].getComponent(cc.Sprite);
@@ -50,7 +50,6 @@ cc.Class({
         
         var sides = ["myself","right","up","left"];
         //隐藏其他玩家手上的牌
-       
         for(var i=1;i<sides.length;i++){
             var mjs=this.node.getChildByName(sides[i]).getChildByName('Holds').children;
             for(var j=0;j<mjs.length;j++){
@@ -86,6 +85,11 @@ cc.Class({
         //检查IP
         this.node.on('check_ip', function (data) {
             console.log('==>MJGame check_ip:',JSON.stringify(data.detail));
+            self.checkIp();
+        });
+        this.node.on('sync_push',function(data){
+            self.onGameBegin();
+            self.checkIp();
         });
         //自己准备返回
         this.node.on("ready_result",function(data){
@@ -122,7 +126,7 @@ cc.Class({
             console.log('==>Gmae round_push:',JSON.stringify(data.detail));
             self.lblRoundCount.string="剩余 "+(th.socketIOManager.config.round-th.socketIOManager.round)+" 局";
         })
-        //通知当前是第几局
+        //通知财神是那个
         this.node.on("caishen_push",function(data){
             console.log('==>Gmae caishen_push:',JSON.stringify(data.detail));
             self.setSpriteFrameByMJID("M_", self.spriteCaishen,th.socketIOManager.caishen);
@@ -276,6 +280,38 @@ cc.Class({
             self.playEffect(localIndex,data.isZimo ? "play_zimo":"play_hu");
             th.audioManager.playSFX("nv/hu.mp3");
         });
+        this.node.on('clean_push',function(){
+            console.log('==>Gmae clean_push:');
+            //隐藏自己牌
+            var sides = ["myself","right","up","left"];
+            //隐藏其他玩家手上的牌
+            for(var i=0;i<sides.length;i++){
+                var seatNode=self.node.getChildByName(sides[i]);
+                var mjs=seatNode.getChildByName('Holds').children;
+                for(var j=0;j<mjs.length;j++){
+                    var sprite = mjs[j].getComponent(cc.Sprite);
+                    sprite.node.active=false;
+                    sprite.spriteFrame = null;
+                }
+
+                //出牌
+                var spriteChupai=seatNode.getChildByName('Chupai').getComponent(cc.Sprite);
+                spriteChupai.node.active=false;
+                spriteChupai.spriteFrame = null;
+                //胡牌NODE
+                var nodeHupai=seatNode.getChildByName('Hupai');
+                nodeHupai.active=false;
+            }
+            self.nodeGameInfo.active=false;
+            self.hideChupai();
+            self.hideOptions();
+        });
+        this.node.on('repeat_login',function(){
+            th.alert.show("提示","您的账号已在别处登录！",function(){
+                th.wc.show('正在返回登录场景');
+                cc.director.loadScene("login");
+            },false);
+        });
 
     },
     playEffect:function(index,name){
@@ -381,10 +417,16 @@ cc.Class({
         //隐藏当前玩家所有操作（吃，碰，杠，胡，弃）
         this.hideOptions();
         
+        this.btnReady.node.active = th.socketIOManager.status == "idle" && !th.socketIOManager.seats[th.socketIOManager.seatIndex].ready;
+        
         //todo 判断是否回放  //&& cc.vv.replayMgr.isReplay() == false
         if(th.socketIOManager.status == "idle" ){
             return;
         }
+
+        this.setSpriteFrameByMJID("M_", this.spriteCaishen,th.socketIOManager.caishen);
+        this.lblRoundCount.string="剩余 "+(th.socketIOManager.config.round-th.socketIOManager.round)+" 局";
+        this.lblMjCount.string="剩余 "+th.socketIOManager.mjsy+" 张";
         //初始化其他玩家手上的牌
         var sides = ["right","up","left"];        
         for(var i = 0; i < sides.length; ++i){
@@ -595,8 +637,6 @@ cc.Class({
             return;
         }
         //排序
-        holds.sort(function(a,b){return a-b});
-        
         holds=this.sortHolds(holds);
 
         var lackingNum = (seatData.pengs.length + seatData.angangs.length + seatData.diangangs.length + seatData.bugangs.length +seatData.chis.length)*3;
@@ -699,7 +739,9 @@ cc.Class({
             }
         }
     },
-  
+    checkIp:function(){
+        console.log('==>MJGame check_ip:');
+    }
     /*
     update (dt) {
     },

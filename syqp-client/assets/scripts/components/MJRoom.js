@@ -3,6 +3,7 @@ cc.Class({
 
     properties: {
         menuWin:cc.Node,
+        settingWin:cc.Node,
         lblRoomId:cc.Label,
         lblWangfa:cc.Label,
         btnMenu:cc.Button,
@@ -92,13 +93,18 @@ cc.Class({
         })
         //自己准备返回
         this.node.on("ready_result",function(target){
-            console.log('==>MJRoom ready_result:',JSON.stringify(target.detail));
+            //console.log('==>MJRoom ready_result:',JSON.stringify(target.detail));
             var seat=target.detail;
             self.initSingleSeat(seat);
         })
         //其他玩家准备
         this.node.on("ready_push",function(target){
-            console.log('==>MJRoom ready_push:',JSON.stringify(target.detail));
+            //console.log('==>MJRoom ready_push:',JSON.stringify(target.detail));
+            self.initSingleSeat(target.detail);
+        })
+        //分数
+        this.node.on("score_push",function(target){
+            //console.log('==>MJRoom score_push:',JSON.stringify(target.detail));
             self.initSingleSeat(target.detail);
         })
 

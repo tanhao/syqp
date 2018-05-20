@@ -47,13 +47,20 @@ module.exports.start=function(config){
         let roomId = roomManager.getUserRoomId(userId);
         let ip = socket.handshake.address.replace('::ffff:','');
         //logger.info('connection=>',token,userId,roomId);
-        let isExist=userManager.isExist(userId);
+        let isExist=userManager.isExist(userId); 
         userManager.bind(userId,socket);
         //设置用户IP
         roomManager.setUserIp(userId,ip);
-        roomManager.setUserOnline(userId,true);
         //返回房间信息
         let room = roomManager.getRoom(roomId);
+
+        for(let i=0;i<room.seats.length;i++){
+            if(room.seats[i].userId!=null){
+                let online=userManager.isOnline(room.seats[i].userId);
+                room.seats[i].online=userManager.isOnline(room.seats[i].userId);
+            }
+        }
+
         let initData={
             roomId:room.id,
             config:room.config,
@@ -64,6 +71,10 @@ module.exports.start=function(config){
         socket.userId=userId;
         socket.manager=room.manager;
         socket.emit('init_room',initData);
+        socket.manager.syncPush(userId);
+        //玩家上线，强制设置为TRUE
+        //socket.manager.setReady(userId);
+
         if(isExist){
             //通知其它客户端
             userManager.broacastInRoom('online_push',{userId:userId},userId,false);
@@ -129,7 +140,6 @@ module.exports.start=function(config){
             if(!userId) return;
             let roomId=roomManager.getUserRoomId(userId);
             if(!roomId) return;
-            roomManager.setUserOnline(userId,false);
             userManager.broacastInRoom('offline_push',{userId:userId},userId,false);
             socket.userId = null;
         });

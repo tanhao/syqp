@@ -14,7 +14,9 @@ cc.Class({
         difen: 1,
         zuozhuang: 'QZ',
         fengding: 32,
-        ctdsq: false //吃吐荡三圈
+        ctdsq: false, //吃吐荡三圈
+        lbl8Round: cc.Label,
+        lbl16Round: cc.Label
     },
 
     onLoad: function onLoad() {},
@@ -51,10 +53,20 @@ cc.Class({
 
     onPeopleClicked: function onPeopleClicked(target, people) {
         this.people = people;
+        if (this.people == 4) {
+            this.lbl8Round.string = "x4";
+            this.lbl16Round.string = "x8";
+        } else if (this.people == 3) {
+            this.lbl8Round.string = "x3";
+            this.lbl16Round.string = "x6";
+        } else if (this.people == 2) {
+            this.lbl8Round.string = "x2";
+            this.lbl16Round.string = "x4";
+        }
     },
 
     onRoundClicked: function onRoundClicked(target, round) {
-        this.round = round;
+        this.round = parseInt(round);
     },
 
     onPaymentClicked: function onPaymentClicked(target, payment) {

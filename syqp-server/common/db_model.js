@@ -9,7 +9,8 @@ var UserSchema=new Schema({
     sex: {type:Number},
     headImgUrl: {type:String},
     balance: {type:Number,min:0,default:0},
-    roomId: {type:Number}
+    roomId: {type:Number},
+    history: { type:Array }
 },{
     j: 1, w: 1, wtimeout: 10000
 });
@@ -26,24 +27,18 @@ var RoomSchema=new Schema({
     port: { type:Number, required:true },
     config:{ type:Object, required:true },
     seats: { type:Array },
+    /*
+    seats:[
+        {userId : Number,name : String, headImgUrl: String,sex: Number}
+    ],
+    */
     round: { type:Number, required:true ,default:0},   //现在第几局
     banker: { type:Number,required:true },   //下把庄的seatIndex，当为空时随机庄
     //creator:{ type:Schema.Types.ObjectId, required:true,ref:'User'},
     creator:{ type:Number, required:true },   //房主ID
     createdTime:{ type:Number,required:true}
-    /*
-    ownerId: {type:ObjectID},
-    blind:{type:Number,default:0},
-    entryFee:{type:Number,defalut:0},
-    openFee:{type:Number,defalut:0},
-    round:{type:Number,defalut:4},
-    minUsers:{type:Number,defalut:2},
-    maxUsers:{type:Number,defalut:4},
-    */
 },{
-    j: 1,
-    w: 1, 
-    wtimeout: 10000,
+    j: 1,w: 1, wtimeout: 10000,
     //timestamps: { createdAt: 'createdTime',updatedAt: 'updatedTime' } 
 });
 
@@ -58,12 +53,25 @@ RoomSchema.statics.findAndModify=function(query, sort, doc, options, callback){
     this.collection.findAndModify(query, sort, doc, options, callback);
 }
 
+//游戏记录
+var GameSchema=new Schema({
+    roomId: { type:Number, required:true },   //房间ID
+    round:{ type:Object, required:true },     //第几局
+    baseInfo:{ type:Object, required:true },  //每一局开始前的基本信息
+    results: { type:Array },    //输赢集合
+    actions: { type:Array },    //操作记录
+    createdTime:{ type:Number,required:true}
+},{
+    j: 1,w: 1, wtimeout: 10000,
+});
+
 
 var User=mongoose.model('User',UserSchema);
 var Room=mongoose.model('Room',RoomSchema);
-
+var Game=mongoose.model('Game',GameSchema);
 
 module.exports={
     User,
-    Room
+    Room,
+    Game
 }

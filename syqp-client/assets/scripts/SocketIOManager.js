@@ -3,6 +3,7 @@ cc.Class({
 
     properties: {
         dataEventHandler:null, //处理socket.io发过来的数据的节点
+        isRepeatLogin:false,
         roomId:null,
         config:null,
         seats:null,
@@ -17,7 +18,7 @@ cc.Class({
         needCheckIp:false,
         status:'idle',         //状态  idle,beging
         actions:null,          //玩家可以做操作
-
+        isOver:false,
     },
     onLoad () {
     },
@@ -26,16 +27,20 @@ cc.Class({
     update (dt) {
     },
     */
-    reset:function(){
-        th.userManager.roomId=null;
+    resetGame:function(){
+        this.resetRound();
+        this.isRepeatLogin=false;
         this.roomId=null;
         this.config=null;
         this.seats=null;
-        this.round=null;
         this.creator=null;
+        this.isOver=false,
+        this.seatIndex=-1;
+    },
+    resetRound:function(){
+        th.userManager.roomId=null;
         this.chupai=-1;
         this.caishen=null;
-        this.seatIndex=-1;
         this.bankerIndex=-1;
         this.turn=-1;
         this.mjsy=0;
@@ -51,6 +56,7 @@ cc.Class({
             this.seats[i].diangangs = [];
             this.seats[i].bugangs = [];
             this.seats[i].ready = false;
+            this.seats[i].isHu = false;
         }
     },
     dispatchEvent(event,data){
@@ -70,6 +76,11 @@ cc.Class({
             self.creator=data.creator;
             self.seatIndex=self.getSeatIndexById(th.userManager.userId);
             self.dispatchEvent("init_room",data);
+            console.log("INTI_ROOMAAAAAAAA:",data.seats);
+            console.log("INTI_ROOMBBBBBBBB:",self.seats);
+            console.log("INTI_ROOMCCCCCCCC:",th.socketIOManager);
+            console.log("INTI_ROOMDDDDDDD:",th.socketIOManager.seats);
+            console.log("INTI_ROOMEEEEEEEEE:",th.socketIOManager==self);
         });
         //其他玩家加入房间
         th.sio.addHandler("join_push",function(data){
@@ -92,18 +103,43 @@ cc.Class({
         });
         //自己离开房间
         th.sio.addHandler("leave_result",function(data){
-            self.reset();
+            self.resetGame();
+        });
+        //步整个信息给客户端
+        th.sio.addHandler("sync_push",function(data){
+            cc.log("==>SocketIOManager sync_push:",JSON.stringify(data));
+            self.mjsy=data.mjsy;
+            self.status=data.status;
+            self.turn=data.turn;
+            self.bankerIndex=data.bankerIndex;
+            self.chupai=data.chupai;
+            self.caishen=data.caishen;
+            for(var i=0;i<data.seats.length;i++){
+                var seat=self.seats[i];
+                var sd=data.seats[i];
+                seat.holds=sd.holds;
+                seat.folds=sd.folds;
+                seat.angangs=sd.angangs;
+                seat.diangangs=sd.diangangs;
+                seat.bugangs=sd.bugangs;
+                seat.pengs=sd.pengs;
+                seat.chis=sd.chis;
+                seat.ready=sd.ready;
+            }
+            self.dispatchEvent('sync_push');
+            self.dispatchEvent("mjsy_push");
+            self.dispatchEvent("caishen_push");
         });
         //其他玩家离开房间
         th.sio.addHandler("leave_push",function(data){
             cc.log("==>SocketIOManager leave_push:",JSON.stringify(data));
             var userId=data.userId;
             var seat=self.getSeatByUserId(userId);
+            console.log("leave:",seat);
             if(seat){
                 seat.userId=null;
                 seat.name=null;
                 seat.headImgUrl=null;
-                seat.sex=null;
                 seat.sex=null;
                 seat.score=0;
                 seat.ready=false;
@@ -113,7 +149,7 @@ cc.Class({
         });
         //解散房间，所有玩家退出房间，收到此消息返回大厅
         th.sio.addHandler("dissolve_push",function(data){
-            self.reset();
+            self.resetGame();
             cc.log("==>SocketIOManager dissolve_push:",JSON.stringify(data));
         });
         //其他玩家断线
@@ -258,9 +294,45 @@ cc.Class({
         th.sio.addHandler("hu_notify_push",function(data){
             self.doHu(data);
         });
+        th.sio.addHandler("game_over_push",function(data){
+            var results = data.results;
+            for(var i = 0; i <  self.seats.length; i++){
+                console.log("score:",results[i].score," totalScore:",results[i].totalScore);
+                self.seats[i].score = results.length == 0? 0:results[i].totalScore;
+            }
+            self.dispatchEvent("game_over",results);
+            if(data.endInfo){
+                self.isOver = true;
+                self.dispatchEvent('game_end',data.endInfo);    
+            }
+            self.resetGame();
+            for(var i = 0; i <  self.seats.length; ++i){
+                self.dispatchEvent('score_push',self.seats[i]);    
+            }
+            self.dispatchEvent('clean_push');    
+
+        });
+        th.sio.addHandler("repeat_login",function(data){
+            self.resetGame();
+            self.isRepeatLogin=true;
+            self.dispatchEvent('repeat_login'); 
+        });
+        
         //断线
         th.sio.addHandler("disconnect",function(data){
-            if(self.roomId == null){
+            /*
+               th.alert.show("提示","您的账号已在别处登录！",function(){
+                th.wc.show('正在返回登录场景');
+                cc.director.loadScene("login");
+            },false);
+            */
+            if(self.isRepeatLogin){
+                self.isRepeatLogin=true;
+                th.alert.show("提示","您的账号已在别处登录！",function(){
+                    th.wc.show('正在返回登录场景');
+                    cc.director.loadScene("login");
+                },false);
+            }else if(self.roomId == null){
                 th.wc.show('正在返回游戏大厅');
                 cc.director.loadScene("hall");
             }else{
@@ -426,13 +498,13 @@ cc.Class({
        var str=[];
        str.push("封顶");
        str.push(this.config.fengding)
-       str.push("/");
+       str.push("，");
        str.push(this.config.difen)
-       str.push("分/");
+       str.push("分，");
        str.push(this.config.zuozhuang=='QZ'?'抢庄':'轮庄')
-       str.push("/");
+       str.push("，");
        str.push(this.config.payment=='FZ'?'房主付':'AA付')
-       str.push(this.config.ctdsq?'/吃吐荡三圈':'');
+       str.push(this.config.ctdsq?'，吃吐荡三圈':'');
        return str.join("");
     },
     isFangzhu:function(){
