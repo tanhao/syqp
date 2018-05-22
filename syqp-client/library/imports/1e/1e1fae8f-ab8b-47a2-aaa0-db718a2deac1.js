@@ -110,16 +110,14 @@ var SIO = cc.Class({
                         self.ping();
                     }
                 }.bind(this), 5000);
-                /*
                 //每500毫秒检查一次最后收到消息时间，如果大于10秒就是断开
-                setInterval(function(){
-                    if(self.sio){
-                        if(Date.now() - self.lastRecieveTime > 10000){
+                setInterval(function () {
+                    if (self.sio) {
+                        if (Date.now() - self.lastRecieveTime > 10000) {
                             self.close();
-                        }         
+                        }
                     }
-                }.bind(this),500);
-                */
+                }.bind(this), 500);
             }
         },
         close: function close() {
