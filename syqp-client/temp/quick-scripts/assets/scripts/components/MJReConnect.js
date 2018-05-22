@@ -16,12 +16,13 @@ cc.Class({
 
     // use this for initialization
     onLoad: function onLoad() {
+        cc.log("MJReconnect onload");
         this._reconnect = cc.find("Canvas/ReConnect");
         this._loading_image = this._reconnect.getChildByName("loading_image");
         var self = this;
 
         var fnTestServerOn = function fnTestServerOn() {
-            cc.vv.net.test(function (ret) {
+            /* cc.vv.net.test(function (ret) {
                 if (ret) {
                     cc.vv.gameNetMgr.reset();
                     //cc.director.loadScene('hall');
@@ -35,10 +36,11 @@ cc.Class({
                             }
                         });
                     }
-                } else {
+                }
+                else {
                     setTimeout(fnTestServerOn, 3000);
                 }
-            });
+            }); */
         };
 
         var fn = function fn(data) {

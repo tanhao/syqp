@@ -6,9 +6,8 @@ module.exports.bind = function(userId,socket){
     if( module.exports.isExist(userId)){
         logger.info(userId+" repeat_login<<==================");
         module.exports.sendMsg(userId,'repeat_login',{});
-        let socket = users[userId];
-        if(socket) socket.disconnect();;
-       
+        let tmpSocket = users[userId];
+        if(tmpSocket) tmpSocket.disconnect();;
     }
     users[userId] = socket;
 }

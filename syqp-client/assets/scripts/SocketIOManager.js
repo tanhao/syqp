@@ -343,7 +343,6 @@ cc.Class({
                     th.userManager.roomId = self.roomId;
                     self.dispatchEvent("disconnect");                    
                 }else{
-                    cc.log("disconnect==>>self.isOver == false");
                     th.userManager.roomId=null;
                     self.roomId=null;
                     self.config=null;

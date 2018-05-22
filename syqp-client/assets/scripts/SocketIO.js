@@ -88,6 +88,7 @@ var SIO=cc.Class({
         heartbeat:function(){
             var self=this;
             this.sio.on('th-pong',function(){
+                console.log("th-pong");
                 self.lastRecieveTime = Date.now();
                 self.delay = self.lastRecieveTime - self.lastSendTime;
                 //console.log('th-pong:',self.delay,self==th.sio);
@@ -103,13 +104,14 @@ var SIO=cc.Class({
                     }
                 }.bind(this),5000);
                 //每500毫秒检查一次最后收到消息时间，如果大于10秒就是断开
-                setInterval(function(){
+                /* setInterval(function(){
                     if(self.sio){
                         if(Date.now() - self.lastRecieveTime > 10000){
+                            console.log("FFFFFFFFFFFFFFFFFF");
                             self.close();
                         }         
                     }
-                }.bind(this),500);
+                }.bind(this),500); */
             }   
         },
         close:function(){

@@ -22,6 +22,7 @@ cc.Class({
         this.addComponent("MJChiPengGangs");
         this.addComponent("MJGameOver");
         this.addComponent("MJGameResult");
+        this.addComponent("MJReConnect");
         this.initView();
         this.initEventHandlers();
 
@@ -462,7 +463,7 @@ cc.Class({
         this.showChupai();
         if(th.socketIOManager.actions != null){
             this.showAction(th.socketIOManager.actions);
-            this.socketIOManager.actions = null;
+            th.socketIOManager.actions = null;
         }
 
     },
