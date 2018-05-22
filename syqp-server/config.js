@@ -10,6 +10,7 @@
 
 module.exports.mongodb=function(){
 	return {
+		//HOST: '127.0.0.1',
 		HOST: '127.0.0.1',
 		USER: 'nodejs',
 		PASSWORD: 'nodejs000',

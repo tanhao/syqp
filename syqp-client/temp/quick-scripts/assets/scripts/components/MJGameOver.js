@@ -63,12 +63,12 @@ cc.Class({
         //初始化网络事件监听器
         var self = this;
         this.node.on('game_over', function (data) {
-            console.log("==>MJGameOver game_over", data.detail);
+            //console.log("==>MJGameOver game_over",data.detail);
             self.onGameOver(data.detail);
         });
 
         this.node.on('game_end', function (data) {
-            console.log("==>MJGameOver game_end", data.detail);
+            ///console.log("==>MJGameOver game_end",data.detail);
             self._isGameEnd = true;
             self._btnReady.active = false;
             self._btnConfirm.active = true;
@@ -197,8 +197,8 @@ cc.Class({
                 gold_icon.active = pai == th.socketIOManager.caishen;
             }
             //隐藏吃碰杠
-            for (var i = 0; i < seatView.chipenggang.childrenCount; i++) {
-                seatView.chipenggang.children[i].active = false;
+            for (var k = 0; k < seatView.chipenggang.childrenCount; k++) {
+                seatView.chipenggang.children[k].active = false;
             }
 
             //初始化杠牌

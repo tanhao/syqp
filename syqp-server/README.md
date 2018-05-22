@@ -1,4 +1,4 @@
-cnpm install -g mysql
+cnpm install -g mongoose
 cnpm install -g log4js
 
 

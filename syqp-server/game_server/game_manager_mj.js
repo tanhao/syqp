@@ -1641,6 +1641,7 @@ module.exports.hu=function(userId){
         logger.info("抢杠胡:",hupai);
     }else if(game.chupai==null){
         //自摸
+        logger.info("自摸:",hupai);
         hupai = seatData.holds.pop();
         seatData.mjmap[hupai] --;
         seatData.huInfo.action=HU_ZIMO;

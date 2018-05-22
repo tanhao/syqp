@@ -29,16 +29,16 @@ cc.Class({
     */
     resetGame:function(){
         this.resetRound();
+        th.userManager.roomId=null;
         this.isRepeatLogin=false;
-        this.roomId=null;
+        //this.roomId=null;
         this.config=null;
         this.seats=null;
         this.creator=null;
-        this.isOver=false,
+        this.isOver=true,
         this.seatIndex=-1;
     },
     resetRound:function(){
-        th.userManager.roomId=null;
         this.chupai=-1;
         this.caishen=null;
         this.bankerIndex=-1;
@@ -76,11 +76,6 @@ cc.Class({
             self.creator=data.creator;
             self.seatIndex=self.getSeatIndexById(th.userManager.userId);
             self.dispatchEvent("init_room",data);
-            console.log("INTI_ROOMAAAAAAAA:",data.seats);
-            console.log("INTI_ROOMBBBBBBBB:",self.seats);
-            console.log("INTI_ROOMCCCCCCCC:",th.socketIOManager);
-            console.log("INTI_ROOMDDDDDDD:",th.socketIOManager.seats);
-            console.log("INTI_ROOMEEEEEEEEE:",th.socketIOManager==self);
         });
         //其他玩家加入房间
         th.sio.addHandler("join_push",function(data){
@@ -103,6 +98,7 @@ cc.Class({
         });
         //自己离开房间
         th.sio.addHandler("leave_result",function(data){
+            self.roomId=null;
             self.resetGame();
         });
         //步整个信息给客户端
@@ -149,13 +145,14 @@ cc.Class({
         });
         //解散房间，所有玩家退出房间，收到此消息返回大厅
         th.sio.addHandler("dissolve_push",function(data){
+            self.roomId=null;
             self.resetGame();
             cc.log("==>SocketIOManager dissolve_push:",JSON.stringify(data));
         });
         //其他玩家断线
         th.sio.addHandler("offline_push",function(data){
             cc.log("==>SocketIOManager offline_push:",JSON.stringify(data));
-            if(self.roomId!=null){
+            if(self.roomId!=null&&!self.isOver){
                 self.dispatchEvent("offline_push",data);
             }
         });
@@ -297,20 +294,22 @@ cc.Class({
         th.sio.addHandler("game_over_push",function(data){
             var results = data.results;
             for(var i = 0; i <  self.seats.length; i++){
-                console.log("score:",results[i].score," totalScore:",results[i].totalScore);
                 self.seats[i].score = results.length == 0? 0:results[i].totalScore;
+            }
+            for(var i = 0; i <  self.seats.length; ++i){
+                self.dispatchEvent('score_push',self.seats[i]);    
             }
             self.dispatchEvent("game_over",results);
             if(data.endInfo){
                 self.isOver = true;
                 self.dispatchEvent('game_end',data.endInfo);    
+                self.resetGame();
+            }else{
+                self.resetRound();
+                self.dispatchEvent('clean_push');  
             }
-            self.resetGame();
-            for(var i = 0; i <  self.seats.length; ++i){
-                self.dispatchEvent('score_push',self.seats[i]);    
-            }
-            self.dispatchEvent('clean_push');    
-
+           
+            
         });
         th.sio.addHandler("repeat_login",function(data){
             self.resetGame();
@@ -327,19 +326,25 @@ cc.Class({
             },false);
             */
             if(self.isRepeatLogin){
+                cc.log("disconnect==>>self.isRepeatLogin");
                 self.isRepeatLogin=true;
                 th.alert.show("提示","您的账号已在别处登录！",function(){
                     th.wc.show('正在返回登录场景');
                     cc.director.loadScene("login");
                 },false);
             }else if(self.roomId == null){
+                cc.log("disconnect==>>self.roomId == null");
+                th.userManager.roomId = null;
                 th.wc.show('正在返回游戏大厅');
                 cc.director.loadScene("hall");
             }else{
                 if(self.isOver == false){
+                    cc.log("disconnect==>>self.isOver == false");
                     th.userManager.roomId = self.roomId;
                     self.dispatchEvent("disconnect");                    
                 }else{
+                    cc.log("disconnect==>>self.isOver == false");
+                    th.userManager.roomId=null;
                     self.roomId=null;
                     self.config=null;
                     self.seats=null;

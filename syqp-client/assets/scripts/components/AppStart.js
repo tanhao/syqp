@@ -1,5 +1,6 @@
 function initManager(I){
-    var defaultBaseUrl="http://127.0.0.1:9001";
+    //var defaultBaseUrl="http://127.0.0.1:9001";
+    var defaultBaseUrl="http://114.112.240.48:9001";
     window.th=window.th;
     if(window.th){ 
         th.http.baseURL=defaultBaseUrl;

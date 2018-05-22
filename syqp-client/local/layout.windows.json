@@ -5,8 +5,8 @@
       "main": true,
       "url": "app://editor/index.html",
       "windowType": "dockable",
-      "x": -261,
-      "y": 29,
+      "x": -8,
+      "y": -8,
       "width": 1936,
       "height": 1056,
       "layout": {
@@ -111,7 +111,7 @@
     "preferences": {
       "x": 682,
       "y": 210,
-      "width": 580,
+      "width": 829,
       "height": 564
     },
     "store": {
@@ -121,16 +121,22 @@
       "height": 638
     },
     "project-settings": {
-      "x": 558,
-      "y": 254,
+      "x": 671,
+      "y": 248,
       "width": 600,
       "height": 564
     },
     "builder": {
-      "x": 702,
-      "y": 141,
+      "x": 832,
+      "y": 129,
       "width": 516,
       "height": 738
+    },
+    "anysdk": {
+      "x": 451,
+      "y": 163,
+      "width": 1018,
+      "height": 694
     }
   }
 }
