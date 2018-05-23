@@ -36,6 +36,7 @@ cc.Class({
 
     onAuth: function onAuth(err, data) {
         if (err) {
+            cc.log("登录错误================》");
             cc.log(err);
             return;
         }
