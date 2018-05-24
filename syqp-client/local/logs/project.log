@@ -1,55 +1,56 @@
-2018-05-23T15:25:52.043Z - normal: Load ~/.CocosCreator/settings.json
-2018-05-23T15:25:52.048Z - normal: checking language setting...
-2018-05-23T15:25:52.048Z - normal: Language: zh
-2018-05-23T15:25:58.120Z - success: protocol editor-framework registered
-2018-05-23T15:25:58.120Z - success: protocol app registered
-2018-05-23T15:25:58.120Z - success: protocol theme registered
-2018-05-23T15:25:58.120Z - success: protocol packages registered
-2018-05-23T15:25:58.121Z - success: protocol unpack registerred
-2018-05-23T15:25:58.121Z - success: protocol disable-commonjs registerred
-2018-05-23T15:25:58.413Z - normal: connected!
-2018-05-23T15:25:58.415Z - normal: Check project D:\Workspace_Chess\syqp\syqp-client
-2018-05-23T15:25:58.417Z - normal: Initializing Cocos2d
-2018-05-23T15:25:59.297Z - normal: Initializing Asset Database
-2018-05-23T15:25:59.406Z - success: protocol uuid registerred
-2018-05-23T15:25:59.406Z - success: protocol db registerred
-2018-05-23T15:25:59.407Z - success: protocol thumbnail registerred
-2018-05-23T15:25:59.407Z - normal: Loading editor/builtin packages
-2018-05-23T15:26:01.262Z - success: anysdk loaded
-2018-05-23T15:26:01.710Z - success: assets loaded
-2018-05-23T15:26:01.712Z - success: builder loaded
-2018-05-23T15:26:01.715Z - success: cocos-analytics loaded
-2018-05-23T15:26:01.718Z - success: console loaded
-2018-05-23T15:26:01.757Z - success: fb-instant-games loaded
-2018-05-23T15:26:01.764Z - success: hierarchy loaded
-2018-05-23T15:26:01.767Z - success: inspector loaded
-2018-05-23T15:26:01.768Z - success: keystore loaded
-2018-05-23T15:26:01.771Z - success: node-library loaded
-2018-05-23T15:26:01.773Z - success: package-asset loaded
-2018-05-23T15:26:01.775Z - success: preferences loaded
-2018-05-23T15:26:01.777Z - success: project-exporter loaded
-2018-05-23T15:26:01.833Z - success: project-importer loaded
-2018-05-23T15:26:01.835Z - success: project-settings loaded
-2018-05-23T15:26:01.837Z - success: ui-kit loaded
-2018-05-23T15:26:01.882Z - success: ui-grid loaded
-2018-05-23T15:26:01.891Z - success: scene loaded
-2018-05-23T15:26:01.893Z - success: sprite-editor loaded
-2018-05-23T15:26:01.895Z - success: store loaded
-2018-05-23T15:26:01.901Z - success: timeline loaded
-2018-05-23T15:26:01.901Z - normal: Loading builtin packages
-2018-05-23T15:26:01.923Z - success: asset-db-debugger loaded
-2018-05-23T15:26:01.925Z - success: code-editor loaded
-2018-05-23T15:26:01.933Z - success: color-picker loaded
-2018-05-23T15:26:01.935Z - success: package-manager loaded
-2018-05-23T15:26:01.940Z - success: sdkbox loaded
-2018-05-23T15:26:01.942Z - success: tester loaded
-2018-05-23T15:26:01.943Z - success: ui-kit-preview-extra loaded
-2018-05-23T15:26:01.945Z - success: ui-kit-preview loaded
-2018-05-23T15:26:01.946Z - success: ui-tree loaded
-2018-05-23T15:26:07.447Z - normal: Initializing project D:\Workspace_Chess\syqp\syqp-client
-2018-05-23T15:26:07.488Z - normal: Loading packages
-2018-05-23T15:26:07.498Z - success: bitmap-font loaded
-2018-05-23T15:26:07.498Z - normal: Watching packages
-2018-05-23T15:26:07.550Z - normal: Run Application
-2018-05-23T15:26:15.516Z - success: preview server running at http://localhost:7456
-2018-05-23T15:26:25.835Z - normal: 1.9.0
+2018-05-24T17:24:35.424Z - normal: Load ~/.CocosCreator/settings.json
+2018-05-24T17:24:35.428Z - normal: checking language setting...
+2018-05-24T17:24:35.429Z - normal: Language: zh
+2018-05-24T17:24:37.218Z - success: protocol editor-framework registered
+2018-05-24T17:24:37.218Z - success: protocol app registered
+2018-05-24T17:24:37.218Z - success: protocol theme registered
+2018-05-24T17:24:37.218Z - success: protocol packages registered
+2018-05-24T17:24:37.219Z - success: protocol unpack registerred
+2018-05-24T17:24:37.219Z - success: protocol disable-commonjs registerred
+2018-05-24T17:24:37.550Z - normal: connected!
+2018-05-24T17:24:37.555Z - normal: Check project D:\Workspace_Chess\syqp\syqp-client
+2018-05-24T17:24:37.560Z - normal: Initializing Cocos2d
+2018-05-24T17:24:37.798Z - normal: Initializing Asset Database
+2018-05-24T17:24:37.835Z - success: protocol uuid registerred
+2018-05-24T17:24:37.835Z - success: protocol db registerred
+2018-05-24T17:24:37.835Z - success: protocol thumbnail registerred
+2018-05-24T17:24:37.835Z - normal: Loading editor/builtin packages
+2018-05-24T17:24:37.857Z - success: anysdk loaded
+2018-05-24T17:24:37.980Z - success: assets loaded
+2018-05-24T17:24:37.988Z - success: builder loaded
+2018-05-24T17:24:37.991Z - success: cocos-analytics loaded
+2018-05-24T17:24:37.994Z - success: console loaded
+2018-05-24T17:24:38.032Z - success: fb-instant-games loaded
+2018-05-24T17:24:38.035Z - success: hierarchy loaded
+2018-05-24T17:24:38.037Z - success: inspector loaded
+2018-05-24T17:24:38.039Z - success: keystore loaded
+2018-05-24T17:24:38.041Z - success: node-library loaded
+2018-05-24T17:24:38.042Z - success: package-asset loaded
+2018-05-24T17:24:38.044Z - success: preferences loaded
+2018-05-24T17:24:38.045Z - success: project-exporter loaded
+2018-05-24T17:24:38.059Z - success: project-importer loaded
+2018-05-24T17:24:38.062Z - success: project-settings loaded
+2018-05-24T17:24:38.063Z - success: ui-kit loaded
+2018-05-24T17:24:38.065Z - success: ui-grid loaded
+2018-05-24T17:24:38.068Z - success: scene loaded
+2018-05-24T17:24:38.069Z - success: sprite-editor loaded
+2018-05-24T17:24:38.071Z - success: store loaded
+2018-05-24T17:24:38.075Z - success: timeline loaded
+2018-05-24T17:24:38.075Z - normal: Loading builtin packages
+2018-05-24T17:24:38.077Z - success: asset-db-debugger loaded
+2018-05-24T17:24:38.079Z - success: code-editor loaded
+2018-05-24T17:24:38.079Z - success: color-picker loaded
+2018-05-24T17:24:38.081Z - success: package-manager loaded
+2018-05-24T17:24:38.085Z - success: sdkbox loaded
+2018-05-24T17:24:38.087Z - success: tester loaded
+2018-05-24T17:24:38.088Z - success: ui-kit-preview-extra loaded
+2018-05-24T17:24:38.089Z - success: ui-kit-preview loaded
+2018-05-24T17:24:38.090Z - success: ui-tree loaded
+2018-05-24T17:24:39.237Z - normal: Initializing project D:\Workspace_Chess\syqp\syqp-client
+2018-05-24T17:24:39.240Z - normal: Loading packages
+2018-05-24T17:24:39.248Z - success: bitmap-font loaded
+2018-05-24T17:24:39.248Z - normal: Watching packages
+2018-05-24T17:24:39.272Z - normal: Run Application
+2018-05-24T17:24:40.636Z - success: preview server running at http://localhost:7456
+2018-05-24T17:24:45.472Z - normal: 1.9.0
+2018-05-24T18:22:36.981Z - info: shutdown preview server

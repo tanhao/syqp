@@ -64,7 +64,7 @@ cc.Class({
         var now=Date.now();
         if(this._countdownEndTime > now){
             var miao=Math.ceil((this._countdownEndTime-now)/1000)-1;
-            this.lblTime.string=miao<10?("0"+miao):(miao+"");
+            this.lblTime.string=miao;
         }
         if(this._alertStartTime<now&&!this._isPlay){
             this._isPlay=true;

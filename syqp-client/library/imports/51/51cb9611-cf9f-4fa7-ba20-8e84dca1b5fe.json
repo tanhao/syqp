@@ -486,17 +486,17 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 32,
-      "height": 32
+      "width": 17,
+      "height": 15
     },
-    "_rotationX": 0,
-    "_rotationY": 0,
+    "_rotationX": 90,
+    "_rotationY": 90,
     "_scaleX": 0.5,
     "_scaleY": 0.5,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 32.3,
-      "y": 6.6
+      "x": 28.7,
+      "y": 6
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -514,7 +514,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "81f44667-756f-4363-ada0-eb759d0aed44"
+      "__uuid__": "fa4c74a2-6311-4c9c-864e-d169d34a9da8"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -577,17 +577,17 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 32,
-      "height": 32
+      "width": 17,
+      "height": 15
     },
-    "_rotationX": 0,
-    "_rotationY": 0,
+    "_rotationX": 180,
+    "_rotationY": 180,
     "_scaleX": 0.5,
     "_scaleY": 0.5,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 33,
-      "y": -47.5
+      "x": 28.7,
+      "y": 6
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -605,7 +605,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "67a52081-812f-448e-87f9-48213bbaa9f4"
+      "__uuid__": "fa4c74a2-6311-4c9c-864e-d169d34a9da8"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -630,7 +630,7 @@
     "asset": {
       "__uuid__": "51cb9611-cf9f-4fa7-ba20-8e84dca1b5fe"
     },
-    "fileId": "6eaTrSXIND9YKjsXZxjZZ8",
+    "fileId": "c0ACoR/mxMLqX+SciJ2lK5",
     "sync": false
   },
   {
@@ -668,17 +668,17 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 32,
-      "height": 32
+      "width": 17,
+      "height": 15
     },
-    "_rotationX": 0,
-    "_rotationY": 0,
+    "_rotationX": 270,
+    "_rotationY": 270,
     "_scaleX": 0.5,
     "_scaleY": 0.5,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 33,
-      "y": -18.7
+      "x": 28.7,
+      "y": 6
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -696,7 +696,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "45a58914-09a4-4529-8b24-9116dec227b4"
+      "__uuid__": "fa4c74a2-6311-4c9c-864e-d169d34a9da8"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -721,7 +721,7 @@
     "asset": {
       "__uuid__": "51cb9611-cf9f-4fa7-ba20-8e84dca1b5fe"
     },
-    "fileId": "c0ACoR/mxMLqX+SciJ2lK5",
+    "fileId": "6eaTrSXIND9YKjsXZxjZZ8",
     "sync": false
   },
   {

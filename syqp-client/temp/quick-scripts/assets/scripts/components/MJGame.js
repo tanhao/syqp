@@ -8,6 +8,7 @@ cc.Class({
     extends: cc.Component,
     properties: {
         lblMjCount: cc.Label,
+        lblFontMjCount: cc.Label,
         lblRoundCount: cc.Label,
         spriteCaishen: cc.Sprite,
         btnReady: cc.Button,
@@ -129,6 +130,7 @@ cc.Class({
         this.node.on("mjsy_push", function (target) {
             //console.log('==>Gmae mjsy_push:',JSON.stringify(target.detail));
             self.lblMjCount.string = "剩余 " + th.socketIOManager.mjsy + " 张";
+            self.lblFontMjCount.string = "x" + th.socketIOManager.mjsy;
         });
         //通知当前是第几局
         this.node.on("round_push", function (data) {

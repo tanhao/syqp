@@ -8,7 +8,7 @@
       "x": -8,
       "y": -8,
       "width": 1936,
-      "height": 1056,
+      "height": 1014,
       "layout": {
         "children": [
           {
@@ -18,7 +18,7 @@
                 "children": [
                   "hierarchy"
                 ],
-                "height": 379,
+                "height": 436,
                 "type": "panel",
                 "width": 204
               },
@@ -27,12 +27,12 @@
                 "children": [
                   "assets"
                 ],
-                "height": 546.984375,
+                "height": 448,
                 "type": "panel",
                 "width": 204
               }
             ],
-            "height": 929,
+            "height": 887,
             "type": "dock-v",
             "width": 204
           },
@@ -41,7 +41,7 @@
             "children": [
               "inspector"
             ],
-            "height": 929,
+            "height": 887,
             "type": "panel",
             "width": 304
           },
@@ -54,7 +54,7 @@
                     "children": [
                       "scene"
                     ],
-                    "height": 700,
+                    "height": 658,
                     "type": "panel",
                     "width": 1192.984375
                   },
@@ -63,12 +63,12 @@
                     "children": [
                       "node-library"
                     ],
-                    "height": 700,
+                    "height": 658,
                     "type": "panel",
                     "width": 204
                   }
                 ],
-                "height": 700,
+                "height": 658,
                 "type": "dock-h",
                 "width": 1399.984375
               },
@@ -83,7 +83,7 @@
                 "width": 1399.984375
               }
             ],
-            "height": 929,
+            "height": 887,
             "type": "dock-v",
             "width": 1399.984375
           }
@@ -99,8 +99,7 @@
         "scene",
         "timeline"
       ]
-    },
-    "window-1527089392321": {}
+    }
   },
   "panels": {
     "sprite-editor": {
