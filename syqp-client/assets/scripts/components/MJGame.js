@@ -132,7 +132,7 @@ cc.Class({
         //通知财神是那个
         this.node.on("caishen_push",function(data){
             console.log('==>Gmae caishen_push:',JSON.stringify(data.detail));
-            self.setSpriteFrameByMJID("M_", self.spriteCaishen,th.socketIOManager.caishen);
+            self.setSpriteFrameByMJID("B_", self.spriteCaishen,th.socketIOManager.caishen);
         })
         this.node.on('begin_push',function(data){
             console.log('==>Gmae begin_push:',JSON.stringify(data.detail));
@@ -427,7 +427,7 @@ cc.Class({
             return;
         }
 
-        this.setSpriteFrameByMJID("M_", this.spriteCaishen,th.socketIOManager.caishen);
+        this.setSpriteFrameByMJID("B_", this.spriteCaishen,th.socketIOManager.caishen);
         this.lblRoundCount.string="剩余 "+(th.socketIOManager.config.round-th.socketIOManager.round)+" 局";
         this.lblMjCount.string="剩余 "+th.socketIOManager.mjsy+" 张";
         //初始化其他玩家手上的牌
@@ -573,10 +573,9 @@ cc.Class({
     addOption:function(btnName,pai){
         var options=this.optionsWin.getChildByName('Options');
         for(var i = 0; i < options.childrenCount; i++){
-            var child = options.children[i];
-            if(child.name=='Option' && child.active==false){
-                child.active=true;
-                var option=child.getChildByName('Option');
+            var option = options.children[i];
+            if(option.name=='Option' && option.active==false){
+                option.active=true;
                 if(btnName!='btnChi'){
                     var sprite = option.getChildByName("opTarget1").getComponent(cc.Sprite);
                     sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID("M_",pai);
@@ -640,7 +639,7 @@ cc.Class({
             return;
         }
         //排序
-        holds=this.sortHolds(holds);
+        holds=th.mahjongManager.sortHolds(holds);
 
         var lackingNum = (seatData.pengs.length + seatData.angangs.length + seatData.diangangs.length + seatData.bugangs.length +seatData.chis.length)*3;
         //初始化手牌
@@ -683,7 +682,7 @@ cc.Class({
             sideHolds.children[idx].active = false;
         }
         var pre = th.mahjongManager.getFoldPre(localIndex);
-        var holds = this.sortHolds(seatData.holds);
+        var holds = th.mahjongManager.sortHolds(seatData.holds);
         if(holds != null && holds.length > 0){
             for(var i = 0; i < holds.length; i++){
                 var idx = this.getMJIndex(side,i + lackingNum);
@@ -703,23 +702,7 @@ cc.Class({
         }
 
     },
-    sortHolds:function(holds){
-        if(holds==null){
-            return holds;
-        }
-        holds.sort(function(a,b){
-            var aa=a;
-            var bb=b;
-            if(aa==th.socketIOManager.caishen){
-                aa=aa-100;
-            }
-            if(bb==th.socketIOManager.caishen){
-                bb=bb-100;
-            }
-            return aa-bb;
-        });
-        return holds;
-    },
+
     setSpriteFrameByMJID:function(pre,sprite,mjid){
         sprite.spriteFrame = th.mahjongManager.getSpriteFrameByMJID(pre,mjid);
         sprite.node.active = true;
@@ -728,10 +711,9 @@ cc.Class({
         this.optionsWin.active=false;
         var options=this.optionsWin.getChildByName('Options');
         for(var i = 0; i < options.childrenCount; i++){
-            var child = options.children[i];
-            if(child.name=='Option'){
-                child.active=false;
-                var option=child.getChildByName('Option');
+            var option = options.children[i];
+            if(option.name=='Option'){
+                option.active=false;
                 option.getChildByName('opTarget1').active=false;
                 option.getChildByName('opTarget2').active=false;
                 var btns=option.getChildByName('btns');

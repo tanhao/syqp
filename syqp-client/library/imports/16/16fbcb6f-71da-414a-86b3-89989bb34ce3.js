@@ -175,7 +175,7 @@ cc.Class({
                 seatView.losescore.node.active = true;
                 seatView.winscore.node.active = false;
             }
-            this.sortHolds(userData.holds);
+            th.mahjongManager.sortHolds(userData.holds);
             //隐藏所有牌
             for (var k = 0; k < seatView.mahjongs.childrenCount; k++) {
                 var mahjong = seatView.mahjongs.children[k];
@@ -319,23 +319,6 @@ cc.Class({
             th.sio.send("ready");
         }
         this._nodeGameOver.active = false;
-    },
-    sortHolds: function sortHolds(holds) {
-        if (holds == null) {
-            return holds;
-        }
-        holds.sort(function (a, b) {
-            var aa = a;
-            var bb = b;
-            if (aa == th.socketIOManager.caishen) {
-                aa = aa - 100;
-            }
-            if (bb == th.socketIOManager.caishen) {
-                bb = bb - 100;
-            }
-            return aa - bb;
-        });
-        return holds;
     },
     update: function update(dt) {}
 });

@@ -22,47 +22,45 @@ cc.Class({
         var self = this;
 
         var fnTestServerOn = function fnTestServerOn() {
-            /* cc.vv.net.test(function (ret) {
-                if (ret) {
-                    cc.vv.gameNetMgr.reset();
-                    //cc.director.loadScene('hall');
-                    var roomId = cc.vv.userMgr.oldRoomId;
+            th.sio.test(function (err, data) {
+                console.log("MJReConnect fnTestServerOn:", data);
+                if (err || data.errcode || data.isOnline == false) {
+                    setTimeout(fnTestServerOn, 3000);
+                } else {
+                    var roomId = th.userManager.roomId;
+                    th.socketIOManager.resetRound();
                     if (roomId != null) {
-                        cc.vv.userMgr.oldRoomId = null;
-                        cc.vv.userMgr.enterRoom(roomId, function (ret) {
-                            if (ret.errcode != 0) {
-                                cc.vv.gameNetMgr.roomId = null;
+                        th.userManager.roomId = null;
+                        th.userManager.joinRoom(roomId, function (data) {
+                            if (data.errcode != 0) {
+                                th.socketIOManager.roomId = null;
                                 cc.director.loadScene('hall');
                             }
                         });
                     }
                 }
-                else {
-                    setTimeout(fnTestServerOn, 3000);
-                }
-            }); */
+            });
         };
 
         var fn = function fn(data) {
             self.node.off('disconnect', fn);
             self._reconnect.active = true;
             console.log("MJREConnect disconnect");
-            ////fnTestServerOn();
+            fnTestServerOn();
         };
-
+        /*
         cc.game.on(cc.game.EVENT_HIDE, function () {
             console.log("MJREConnect EVENT_HIDE");
         });
         cc.game.on(cc.game.EVENT_SHOW, function () {
             console.log("MJREConnect EVENT_SHOW");
         });
+        */
 
-        /*
-        this.node.on('login_finished', function () {
+        this.node.on('connect_success', function () {
             self._reconnect.active = false;
             self.node.on('disconnect', fn);
         });
-        */
 
         this.node.on('disconnect', fn);
     },

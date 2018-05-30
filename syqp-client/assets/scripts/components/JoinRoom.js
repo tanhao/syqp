@@ -61,22 +61,14 @@ cc.Class({
     },
 
     onInputFinished:function(roomId){
-        /*
-        th.userManager.joinRoom(roomId,function(ret){
-            if(ret.errcode == 0){
+        th.userManager.joinRoom(roomId,function(data){
+            if(data.errcode==0){
                 this.node.active = false;
             }else{
-                var content = "房间["+ roomId +"]不存在，请重新输入!";
-                if(ret.errcode == 4){
-                    content = "房间["+ roomId + "]已满!";
-                }
-                th.alert.show("提示",content);
+                th.alert.show('提示',data.errmsg,null,false);
                 this.onResetClicked();
             }
-        }.bind(this)); 
-        */
-       this.node.active = false;
-       th.userManager.joinRoom(roomId);
+        }.bind(this));
     },
 
 });

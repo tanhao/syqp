@@ -179,6 +179,28 @@ cc.Class({
         }
     },
     
+    sortHolds:function(holds){
+        if(holds==null){
+            return holds;
+        }
+        holds.sort(function(a,b){
+            var aa=a;
+            var bb=b;
+            if(aa==th.socketIOManager.caishen){
+                aa=aa-100;
+            }else if(aa==33&&th.socketIOManager.caishen<27){
+                aa=th.socketIOManager.caishen;
+            }
+            if(bb==th.socketIOManager.caishen){
+                bb=bb-100;
+            }else if(bb==33&&th.socketIOManager.caishen<27){
+                bb=th.socketIOManager.caishen;
+            }
+            return aa-bb;
+        });
+        return holds;
+    },
+
     sortMJ:function(mahjongs,dingque){
         var self = this;
         mahjongs.sort(function(a,b){

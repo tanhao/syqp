@@ -19,7 +19,6 @@ module.exports.start = function(cfg){
     app.listen(config.HALL_NODE_PORT,config.HALL_IP);
     logger.info('Hall node service is listening on ' + config.HALL_IP + ':' + config.HALL_NODE_PORT);
 }
-
 //设置跨域访问
 app.all('*',function(req,res,next){
     res.header('Access-Control-Allow-Origin', '*');
@@ -29,7 +28,6 @@ app.all('*',function(req,res,next){
     res.header('Content-Type', "application/json;charset=utf-8");
     next();
 });
-
 //注册服务器节点
 app.get('/register_node',function(req,res){
     let ip=http.getClientIp(req);
@@ -61,7 +59,6 @@ app.get('/register_node',function(req,res){
     //logger.info('game server registered.\n\tid:' + id + '\n\tip:' + ip + '\n\tnode port:' + nodePort + '\n\tsocket clientPort:' + clientPort);
     logger.info(`==>>Game server registered.{ id: ${id}, ip: ${ip}, nodePort:${nodePort}, socketClientPort:${clientPort} }<<==`);
 });
-
 //创建房间时选负载最低的服务器
 function chooseServer(){
     let server=null;
@@ -109,7 +106,6 @@ module.exports.createRoom=function(userId,roomConfig,callback){
     });
 
 }
-
 module.exports.joinRoom=function(userId,name,headImgUrl,sex,roomId,callback){
     //let sign = crypto.md5(userId + name + headImgUrl +sex+ roomId + bal + config.HALL_PRIVATE_KEY);
     let joinData={
@@ -194,3 +190,17 @@ module.exports.joinRoom=function(userId,name,headImgUrl,sex,roomId,callback){
         callback(err,data);
     });
 }
+module.exports.isServerOnline = function(ip,port,callback){
+	let id = ip + ":" + port;
+	let server = serverMap[id];
+	if(!server){
+		callback(null,false);
+		return;
+	}
+    let sign = crypto.md5(config.HALL_PRIVATE_KEY);
+    let search=qs.stringify({sign:sign});
+    let url=`http://${server.ip}:${server.nodePort}/ping?${search}`;
+	http.get(url,function(err,data){
+        callback(err,data?true:false);
+    });
+};

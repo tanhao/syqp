@@ -141,3 +141,18 @@ app.get('/join_private_room',function(req,res){
         http.send(res,0,'ok',data);
     });
 });
+
+app.get('/is_server_online',function(req,res){
+	if(!checkAccount(req,res)){
+		return;
+	}
+	let ip = req.query.ip;
+	let port = req.query.port;
+	hallService.isServerOnline(ip,port,function(err,data){
+        if(err) return http.send(res,-1,err.message)
+		let ret = {
+			isOnline:data
+		};
+		http.send(res,0,"ok",ret);
+	}); 
+});

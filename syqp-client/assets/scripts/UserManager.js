@@ -65,6 +65,21 @@ cc.Class({
         th.http.get('/login',{account:self.account,sign:self.sign},callback)
     },
 
+    logout:function(){
+        th.wc.show("正在退出房间");
+        var self = this;
+        cc.director.loadScene("login",function(){
+            self.sex = null;
+            self.userId = null;
+            self.account = null;
+            self.balance = null;
+            self.userName = null;
+            self.headImgUrl = null;
+            self.roomId = null;
+            th.wc.hide();
+        });
+    },
+
     createRoom : function(config){
         var fnCreate = function(err,data) {
             if(err||data.errcode){
@@ -87,14 +102,19 @@ cc.Class({
         th.http.get('/create_private_room',params,fnCreate);
     },
 
-    joinRoom : function(roomId){
+    joinRoom : function(roomId,callback){
         var self = this;
         var fnJoin = function(err,data) {
             if(err||data.errcode){
                 th.wc.hide();
-                th.alert.show('提示',data.errmsg,null,false); //
+                if(callback != null){
+                    callback(data);
+                }
             }else{
                 cc.log("join room data:"+JSON.stringify(data));
+                if(callback != null){
+                    callback(data);
+                }
                 th.socketIOManager.connectServer(data);
             }
             

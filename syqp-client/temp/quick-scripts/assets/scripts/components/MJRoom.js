@@ -8,7 +8,6 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        menuWin: cc.Node,
         settingWin: cc.Node,
         lblRoomId: cc.Label,
         lblWangfa: cc.Label,
@@ -120,11 +119,7 @@ cc.Class({
             self.initSeats();
         });
     },
-    onMenuClicked: function onMenuClicked() {
-        this.menuWin.active = !this.menuWin.active;
-    },
     onBtnDissolveRequestClicked: function onBtnDissolveRequestClicked() {
-        this.menuWin.active = false;
         th.alert.show("申请解散房间", "申请解散房间不会退换钻石，是否确定申请解散？", function () {
             th.sio.send("dissolve_request");
         }, true);
@@ -135,7 +130,6 @@ cc.Class({
         }, true);
     },
     onBtnLeaveClicked: function onBtnLeaveClicked() {
-        this.menuWin.active = false;
         if (th.socketIOManager.isFangzhu()) {
             th.alert.show("离开房间", "您是房主，不能离开房间。", function () {
                 //th.sio.send("leave"); 
@@ -147,7 +141,6 @@ cc.Class({
         }, true);
     },
     onBtnSettingClicked: function onBtnSettingClicked() {
-        this.menuWin.active = false;
         this.settingWin.active = true;
     },
     onBtnChatClicked: function onBtnChatClicked() {

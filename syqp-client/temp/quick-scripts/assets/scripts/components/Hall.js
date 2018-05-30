@@ -82,7 +82,16 @@ cc.Class({
 
     onReturnRoomClicked: function onReturnRoomClicked() {
         th.wc.show('正在返回游戏房间');
-        th.userManager.joinRoom(th.userManager.roomId);
+        th.userManager.joinRoom(th.userManager.roomId, function (data) {
+            if (data.errcode != 0) {
+                th.alert.show('提示', data.errmsg, null, false);
+            }
+        }.bind(this));
+    },
+
+    onLogoutClicked: function onLogoutClicked() {
+        th.wc.show('正在退出游戏房间');
+        th.userManager.logout();
     },
 
     onSettingClicked: function onSettingClicked() {

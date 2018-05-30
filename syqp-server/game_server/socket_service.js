@@ -56,7 +56,6 @@ module.exports.start=function(config){
 
         for(let i=0;i<room.seats.length;i++){
             if(room.seats[i].userId!=null){
-                let online=userManager.isOnline(room.seats[i].userId);
                 room.seats[i].online=userManager.isOnline(room.seats[i].userId);
             }
         }
@@ -141,6 +140,7 @@ module.exports.start=function(config){
             let roomId=roomManager.getUserRoomId(userId);
             if(!roomId) return;
             userManager.broacastInRoom('offline_push',{userId:userId},userId,false);
+            userManager.deleteUser[userId];
             socket.userId = null;
         });
         //ping

@@ -28,7 +28,7 @@ module.exports.get=function(userId){
 }
 
 module.exports.isOnline = function(userId){
-   return users[userId]?true:false;
+   return users[userId]!=null?true:false;
 };
 
 module.exports.getOnlineCount = function(){

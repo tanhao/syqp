@@ -1,56 +1,133 @@
-2018-05-24T17:24:35.424Z - normal: Load ~/.CocosCreator/settings.json
-2018-05-24T17:24:35.428Z - normal: checking language setting...
-2018-05-24T17:24:35.429Z - normal: Language: zh
-2018-05-24T17:24:37.218Z - success: protocol editor-framework registered
-2018-05-24T17:24:37.218Z - success: protocol app registered
-2018-05-24T17:24:37.218Z - success: protocol theme registered
-2018-05-24T17:24:37.218Z - success: protocol packages registered
-2018-05-24T17:24:37.219Z - success: protocol unpack registerred
-2018-05-24T17:24:37.219Z - success: protocol disable-commonjs registerred
-2018-05-24T17:24:37.550Z - normal: connected!
-2018-05-24T17:24:37.555Z - normal: Check project D:\Workspace_Chess\syqp\syqp-client
-2018-05-24T17:24:37.560Z - normal: Initializing Cocos2d
-2018-05-24T17:24:37.798Z - normal: Initializing Asset Database
-2018-05-24T17:24:37.835Z - success: protocol uuid registerred
-2018-05-24T17:24:37.835Z - success: protocol db registerred
-2018-05-24T17:24:37.835Z - success: protocol thumbnail registerred
-2018-05-24T17:24:37.835Z - normal: Loading editor/builtin packages
-2018-05-24T17:24:37.857Z - success: anysdk loaded
-2018-05-24T17:24:37.980Z - success: assets loaded
-2018-05-24T17:24:37.988Z - success: builder loaded
-2018-05-24T17:24:37.991Z - success: cocos-analytics loaded
-2018-05-24T17:24:37.994Z - success: console loaded
-2018-05-24T17:24:38.032Z - success: fb-instant-games loaded
-2018-05-24T17:24:38.035Z - success: hierarchy loaded
-2018-05-24T17:24:38.037Z - success: inspector loaded
-2018-05-24T17:24:38.039Z - success: keystore loaded
-2018-05-24T17:24:38.041Z - success: node-library loaded
-2018-05-24T17:24:38.042Z - success: package-asset loaded
-2018-05-24T17:24:38.044Z - success: preferences loaded
-2018-05-24T17:24:38.045Z - success: project-exporter loaded
-2018-05-24T17:24:38.059Z - success: project-importer loaded
-2018-05-24T17:24:38.062Z - success: project-settings loaded
-2018-05-24T17:24:38.063Z - success: ui-kit loaded
-2018-05-24T17:24:38.065Z - success: ui-grid loaded
-2018-05-24T17:24:38.068Z - success: scene loaded
-2018-05-24T17:24:38.069Z - success: sprite-editor loaded
-2018-05-24T17:24:38.071Z - success: store loaded
-2018-05-24T17:24:38.075Z - success: timeline loaded
-2018-05-24T17:24:38.075Z - normal: Loading builtin packages
-2018-05-24T17:24:38.077Z - success: asset-db-debugger loaded
-2018-05-24T17:24:38.079Z - success: code-editor loaded
-2018-05-24T17:24:38.079Z - success: color-picker loaded
-2018-05-24T17:24:38.081Z - success: package-manager loaded
-2018-05-24T17:24:38.085Z - success: sdkbox loaded
-2018-05-24T17:24:38.087Z - success: tester loaded
-2018-05-24T17:24:38.088Z - success: ui-kit-preview-extra loaded
-2018-05-24T17:24:38.089Z - success: ui-kit-preview loaded
-2018-05-24T17:24:38.090Z - success: ui-tree loaded
-2018-05-24T17:24:39.237Z - normal: Initializing project D:\Workspace_Chess\syqp\syqp-client
-2018-05-24T17:24:39.240Z - normal: Loading packages
-2018-05-24T17:24:39.248Z - success: bitmap-font loaded
-2018-05-24T17:24:39.248Z - normal: Watching packages
-2018-05-24T17:24:39.272Z - normal: Run Application
-2018-05-24T17:24:40.636Z - success: preview server running at http://localhost:7456
-2018-05-24T17:24:45.472Z - normal: 1.9.0
-2018-05-24T18:22:36.981Z - info: shutdown preview server
+2018-05-29T12:37:53.941Z - normal: Load ~/.CocosCreator/settings.json
+2018-05-29T12:37:53.945Z - normal: checking language setting...
+2018-05-29T12:37:53.945Z - normal: Language: zh
+2018-05-29T12:37:55.876Z - success: protocol editor-framework registered
+2018-05-29T12:37:55.876Z - success: protocol app registered
+2018-05-29T12:37:55.876Z - success: protocol theme registered
+2018-05-29T12:37:55.876Z - success: protocol packages registered
+2018-05-29T12:37:55.876Z - success: protocol unpack registerred
+2018-05-29T12:37:55.876Z - success: protocol disable-commonjs registerred
+2018-05-29T12:37:56.286Z - normal: connected!
+2018-05-29T12:37:56.296Z - normal: Check project D:\Workspace_Chess\syqp\syqp-client
+2018-05-29T12:37:56.303Z - normal: Initializing Cocos2d
+2018-05-29T12:37:56.552Z - normal: Initializing Asset Database
+2018-05-29T12:37:56.595Z - success: protocol uuid registerred
+2018-05-29T12:37:56.595Z - success: protocol db registerred
+2018-05-29T12:37:56.596Z - success: protocol thumbnail registerred
+2018-05-29T12:37:56.596Z - normal: Loading editor/builtin packages
+2018-05-29T12:37:56.616Z - success: anysdk loaded
+2018-05-29T12:37:56.734Z - success: assets loaded
+2018-05-29T12:37:56.737Z - success: builder loaded
+2018-05-29T12:37:56.740Z - success: cocos-analytics loaded
+2018-05-29T12:37:56.743Z - success: console loaded
+2018-05-29T12:37:56.784Z - success: fb-instant-games loaded
+2018-05-29T12:37:56.788Z - success: hierarchy loaded
+2018-05-29T12:37:56.790Z - success: inspector loaded
+2018-05-29T12:37:56.791Z - success: keystore loaded
+2018-05-29T12:37:56.793Z - success: node-library loaded
+2018-05-29T12:37:56.794Z - success: package-asset loaded
+2018-05-29T12:37:56.796Z - success: preferences loaded
+2018-05-29T12:37:56.797Z - success: project-exporter loaded
+2018-05-29T12:37:56.813Z - success: project-importer loaded
+2018-05-29T12:37:56.815Z - success: project-settings loaded
+2018-05-29T12:37:56.817Z - success: ui-kit loaded
+2018-05-29T12:37:56.818Z - success: ui-grid loaded
+2018-05-29T12:37:56.821Z - success: scene loaded
+2018-05-29T12:37:56.822Z - success: sprite-editor loaded
+2018-05-29T12:37:56.825Z - success: store loaded
+2018-05-29T12:37:56.828Z - success: timeline loaded
+2018-05-29T12:37:56.829Z - normal: Loading builtin packages
+2018-05-29T12:37:56.831Z - success: asset-db-debugger loaded
+2018-05-29T12:37:56.832Z - success: code-editor loaded
+2018-05-29T12:37:56.833Z - success: color-picker loaded
+2018-05-29T12:37:56.834Z - success: package-manager loaded
+2018-05-29T12:37:56.840Z - success: sdkbox loaded
+2018-05-29T12:37:56.842Z - success: tester loaded
+2018-05-29T12:37:56.843Z - success: ui-kit-preview-extra loaded
+2018-05-29T12:37:56.844Z - success: ui-kit-preview loaded
+2018-05-29T12:37:56.846Z - success: ui-tree loaded
+2018-05-29T12:37:58.076Z - normal: Initializing project D:\Workspace_Chess\syqp\syqp-client
+2018-05-29T12:37:58.078Z - normal: Loading packages
+2018-05-29T12:37:58.085Z - success: bitmap-font loaded
+2018-05-29T12:37:58.085Z - normal: Watching packages
+2018-05-29T12:37:58.121Z - normal: Run Application
+2018-05-29T12:37:59.483Z - success: preview server running at http://localhost:7456
+2018-05-29T12:38:04.482Z - normal: 1.9.0
+2018-05-29T13:30:42.847Z - warn: The Node referenced by component "MJRoom" is invalid. Detailed information:
+Node path: "Canvas"
+
+2018-05-29T13:49:14.551Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/images/game/btn_disband.png.meta
+2018-05-29T13:49:14.587Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/images/game/btn_leave.png.meta
+2018-05-29T13:49:14.604Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/images/game/downMenu.png.meta
+2018-05-29T13:49:14.621Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/images/game/imgset.png.meta
+2018-05-29T14:04:23.808Z - warn: The Asset used by component "cc.Sprite" is missing. Detailed information:
+Node path: "Menu/btn_leave"
+Missing uuid: "74577b06-084b-42bf-8c21-dc51cb15f514"
+
+2018-05-29T14:04:23.809Z - warn: The Asset used by component "cc.Sprite" is missing. Detailed information:
+Node path: "Menu/imgset"
+Missing uuid: "7e53f33b-01a7-4194-b794-412f00511b49"
+
+2018-05-29T14:04:23.810Z - warn: The Asset used by component "cc.Sprite" is missing. Detailed information:
+Node path: "Menu/btn_dissolve_request"
+Missing uuid: "7d22fa04-afae-4a3a-91f1-0feafbdd2a94"
+
+2018-05-29T14:04:23.810Z - warn: The Asset used by component "cc.Button" is missing. Detailed information:
+Node path: "Menu/btn_dissolve_request"
+Missing uuid: "7d22fa04-afae-4a3a-91f1-0feafbdd2a94"
+
+2018-05-29T16:01:35.558Z - failed: [db-task][sync-changes] Failed to import asset D:\Workspace_Chess\syqp\syqp-client\assets\scripts\Http.js, message: Compile error: SyntaxError: D:/Workspace_Chess/syqp/syqp-client/assets/scripts/Http.js: Unexpected token, expected ( (36:18)
+  34 |                 xhr.send();
+  35 |                 return xhr;
+> 36 |             }catch{err}{
+     |                   ^
+  37 |                 console.log("EEEEEEE:",err);
+  38 |                 callback(err,null)
+  39 |             }
+    at Parser.pp$5.raise (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:4454:13)
+    at Parser.pp.unexpected (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:1761:8)
+    at Parser.pp.expect (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:1749:33)
+    at Parser.pp$1.parseTryStatement (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:2148:10)
+    at Parser.pp$1.parseStatement (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:1854:19)
+    at Parser.pp$1.parseBlockBody (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:2268:21)
+    at Parser.pp$1.parseBlock (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:2247:8)
+    at Parser.pp$3.parseFunctionBody (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:4235:22)
+    at Parser.pp$1.parseFunction (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:2386:8)
+    at Parser.pp$3.parseFunctionExpression (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:3760:17)
+2018-05-29T16:02:01.385Z - failed: [db-task][sync-changes] Failed to import asset D:\Workspace_Chess\syqp\syqp-client\assets\scripts\Http.js, message: Compile error: SyntaxError: D:/Workspace_Chess/syqp/syqp-client/assets/scripts/Http.js: Unexpected token, expected ( (34:18)
+  32 |                 xhr.send();
+  33 |                 return xhr;
+> 34 |             }catch{err}{
+     |                   ^
+  35 |                 console.log("EEEEEEE:",err);
+  36 |                 callback(err,null)
+  37 |             }
+    at Parser.pp$5.raise (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:4454:13)
+    at Parser.pp.unexpected (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:1761:8)
+    at Parser.pp.expect (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:1749:33)
+    at Parser.pp$1.parseTryStatement (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:2148:10)
+    at Parser.pp$1.parseStatement (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:1854:19)
+    at Parser.pp$1.parseBlockBody (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:2268:21)
+    at Parser.pp$1.parseBlock (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:2247:8)
+    at Parser.pp$3.parseFunctionBody (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:4235:22)
+    at Parser.pp$1.parseFunction (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:2386:8)
+    at Parser.pp$3.parseFunctionExpression (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:3760:17)
+2018-05-29T16:02:53.085Z - failed: [db-task][sync-changes] Failed to import asset D:\Workspace_Chess\syqp\syqp-client\assets\scripts\Http.js, message: Compile error: SyntaxError: D:/Workspace_Chess/syqp/syqp-client/assets/scripts/Http.js: Unexpected token, expected ( (34:18)
+  32 |                 };
+  33 |                 xhr.send();
+> 34 |             }catch{err}{
+     |                   ^
+  35 |                 console.log("EEEEEEE:",err);
+  36 |                 callback(err,null);
+  37 |             }
+    at Parser.pp$5.raise (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:4454:13)
+    at Parser.pp.unexpected (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:1761:8)
+    at Parser.pp.expect (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:1749:33)
+    at Parser.pp$1.parseTryStatement (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:2148:10)
+    at Parser.pp$1.parseStatement (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:1854:19)
+    at Parser.pp$1.parseBlockBody (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:2268:21)
+    at Parser.pp$1.parseBlock (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:2247:8)
+    at Parser.pp$3.parseFunctionBody (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:4235:22)
+    at Parser.pp$1.parseFunction (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:2386:8)
+    at Parser.pp$3.parseFunctionExpression (D:\CocosCreator1.9\resources\app.asar\node_modules\babylon\lib\index.js:3760:17)
+2018-05-29T16:40:09.612Z - info: shutdown preview server

@@ -117,3 +117,13 @@ app.get('/is_room_runing',function(req,res){
     let room=roomManager.getRoom(roomId);
 	http.send(res,0,"ok",{runing:room?true:false});
 });
+
+app.get('/ping',function(req,res){
+	var sign = req.query.sign;
+	var md5 = crypto.md5(config.HALL_PRIVATE_KEY);
+	if(md5 != sign){
+        http.send(res,-2,"sign failed");
+		return;
+	}
+	http.send(res,0,"pong");
+});

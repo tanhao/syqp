@@ -80,6 +80,7 @@ cc.Class({
             self.seats = data.seats;
             self.round = data.round;
             self.creator = data.creator;
+            self.isRepeatLogin = false;
             self.seatIndex = self.getSeatIndexById(th.userManager.userId);
             self.dispatchEvent("init_room", data);
         });
@@ -521,10 +522,12 @@ cc.Class({
         return seat.ready;
     },
     connectServer: function connectServer(data) {
+        var self = this;
         var onConnectSuccess = function onConnectSuccess() {
             cc.director.loadScene("mjgame", function () {
                 th.sio.ping();
                 th.wc.hide();
+                self.dispatchEvent("connect_success");
             });
         };
 
@@ -532,6 +535,8 @@ cc.Class({
             th.wc.hide();
             th.alert.show('提示', err, null, false); //
         };
+        th.sio.ip = data.ip;
+        th.sio.port = data.port;
         th.sio.addr = "ws://" + data.ip + ":" + data.port + "?roomId=" + data.roomId + "&token=" + data.token + "&sign=" + data.sign + "&time=" + data.time;
         th.sio.connect(onConnectSuccess, onConnectError);
     }

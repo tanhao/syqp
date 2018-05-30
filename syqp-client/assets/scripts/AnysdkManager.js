@@ -107,7 +107,7 @@ cc.Class({
             }
             th.userManager.onAuth(null,ret);
         }
-        th.http.sendRequest("/wechat_auth",{code:code,os:cc.sys.os},fn);
+        th.http.get("/wechat_auth",{code:code,os:cc.sys.os},fn);
     },
 
     

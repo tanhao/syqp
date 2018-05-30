@@ -1625,7 +1625,7 @@ module.exports.hu=function(userId){
     let isZimo = false;
     
     let turnSeat = game.seats[game.turn];
-    let isGangHu = turnSeat.lastFangGangSeatIndex >= 0;
+    let isGangHu = turnSeat.lastFangGangSeatIndex  != null;
     if(game.qiangGangContext != null){
         //抢杠胡
         let gangSeat = game.qiangGangContext.seatData;
