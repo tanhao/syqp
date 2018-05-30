@@ -59,12 +59,12 @@ cc.Class({
         //初始化网络事件监听器
         var self = this;
         this.node.on('game_over',function(data){
-            //console.log("==>MJGameOver game_over",data.detail);
+            //cc.log("==>MJGameOver game_over",data.detail);
             self.onGameOver(data.detail);
         });
 
         this.node.on('game_end',function(data){  
-            ///console.log("==>MJGameOver game_end",data.detail);
+            ///cc.log("==>MJGameOver game_end",data.detail);
             self._isGameEnd = true;
             self._btnReady.active=false;
             self._btnConfirm.active=true;
@@ -310,7 +310,7 @@ cc.Class({
         }
     },
     onBtnReadyClicked:function(){
-        console.log("onBtnReadyClicked");
+        cc.log("onBtnReadyClicked");
         if(this._isGameEnd){
             this._nodeGameResult.active=true;
         }else{

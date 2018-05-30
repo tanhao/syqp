@@ -18,7 +18,7 @@
                 "children": [
                   "hierarchy"
                 ],
-                "height": 508,
+                "height": 532.140625,
                 "type": "panel",
                 "width": 204
               },
@@ -27,12 +27,12 @@
                 "children": [
                   "assets"
                 ],
-                "height": 376,
+                "height": 393.859375,
                 "type": "panel",
                 "width": 204
               }
             ],
-            "height": 887,
+            "height": 929,
             "type": "dock-v",
             "width": 204
           },
@@ -41,7 +41,7 @@
             "children": [
               "inspector"
             ],
-            "height": 887,
+            "height": 929,
             "type": "panel",
             "width": 304
           },
@@ -54,7 +54,7 @@
                     "children": [
                       "scene"
                     ],
-                    "height": 658,
+                    "height": 689.265625,
                     "type": "panel",
                     "width": 1192.984375
                   },
@@ -63,12 +63,12 @@
                     "children": [
                       "node-library"
                     ],
-                    "height": 658,
+                    "height": 689.265625,
                     "type": "panel",
                     "width": 204
                   }
                 ],
-                "height": 658,
+                "height": 689.265625,
                 "type": "dock-h",
                 "width": 1399.984375
               },
@@ -78,12 +78,12 @@
                   "console",
                   "timeline"
                 ],
-                "height": 226,
+                "height": 236.734375,
                 "type": "panel",
                 "width": 1399.984375
               }
             ],
-            "height": 887,
+            "height": 929,
             "type": "dock-v",
             "width": 1399.984375
           }
@@ -127,8 +127,8 @@
       "height": 564
     },
     "builder": {
-      "x": 34,
-      "y": 115,
+      "x": 450,
+      "y": 105,
       "width": 516,
       "height": 738
     },

@@ -132,7 +132,7 @@ cc.Class({
             cc.log("==>SocketIOManager leave_push:",JSON.stringify(data));
             var userId=data.userId;
             var seat=self.getSeatByUserId(userId);
-            console.log("leave:",seat);
+            cc.log("leave:",seat);
             if(seat){
                 seat.userId=null;
                 seat.name=null;
@@ -248,7 +248,7 @@ cc.Class({
             self.dispatchEvent('guo_result');
         });
         th.sio.addHandler("guo_notify_push",function(data){
-            //console.log("socketIOManager guo_notify_push:",data);
+            //cc.log("socketIOManager guo_notify_push:",data);
             var userId = data.userId;
             var pai = data.pai;
             var seatIndex = self.getSeatIndexById(userId);
@@ -270,7 +270,7 @@ cc.Class({
             self.dispatchEvent("hangang_notify_push",data);
         });
         th.sio.addHandler("gang_notify_push",function(data){
-            console.log("socketIOManager gang_notify_push:",data);
+            cc.log("socketIOManager gang_notify_push:",data);
             var userId = data.userId;
             var pai = data.pai;
             var seatIndex = self.getSeatIndexById(userId);
@@ -286,7 +286,7 @@ cc.Class({
             self.doMopai(self.seatIndex,data);
         });
         th.sio.addHandler("hu_push",function(data){
-            console.log("socketIOManager hu_push:",data);
+            cc.log("socketIOManager hu_push:",data);
             self.doHu(data);
         });
         th.sio.addHandler("hu_notify_push",function(data){
@@ -417,7 +417,7 @@ cc.Class({
         this.dispatchEvent('peng_notify_push',seatData);
     },
     doGang:function(seatIndex,info,gangType){
-        console.log("gangType",gangType," info:",info);
+        cc.log("gangType",gangType," info:",info);
         var seatData = this.seats[seatIndex];
         var pai=info.mjid;
         if(!gangType){

@@ -62,7 +62,7 @@ cc.Class({
         th.mahjongManager = this;
 
         var seatSize = th.socketIOManager.seats.length;
-        console.log("==>MahjongManger seatSzie:", seatSize);
+        cc.log("==>MahjongManger seatSzie:", seatSize);
         if (seatSize == 4) {
             this._sides = ["myself", "right", "up", "left"];
             this._pres = ["M_", "R_", "B_", "L_"];

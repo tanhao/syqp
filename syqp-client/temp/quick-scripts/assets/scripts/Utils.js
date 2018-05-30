@@ -10,7 +10,7 @@ cc.Class({
     properties: {},
 
     addClickEvent: function addClickEvent(node, target, component, handler) {
-        console.log(component + ":" + handler);
+        cc.log(component + ":" + handler);
         var eventHandler = new cc.Component.EventHandler();
         eventHandler.target = target;
         eventHandler.component = component;

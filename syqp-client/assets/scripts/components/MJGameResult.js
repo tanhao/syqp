@@ -29,7 +29,7 @@ cc.Class({
 
         var self=this;
         this.node.on('game_end',function(data){
-            console.log("==>MJGameResult game_end",data.detail);
+            cc.log("==>MJGameResult game_end",data.detail);
             self.onGameEnd(data.detail);
         });
     },
@@ -90,12 +90,12 @@ cc.Class({
         }
     },
     onBtnBackHallClicked:function(){
-        console.log("onBtnBackHallClicked");
+        cc.log("onBtnBackHallClicked");
         th.wc.show('正在返回游戏大厅');
         cc.director.loadScene("hall");
     },
     onBtnShareClicked:function(){
-        console.log("onBtnShareClicked");
+        cc.log("onBtnShareClicked");
     },
     update (dt) {
     },

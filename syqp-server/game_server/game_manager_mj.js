@@ -238,62 +238,73 @@ function checkCanPeng(game,seatData,targetPai){
     }
 }
 //检查是否可以吃
-function checkCanChi(game,seatData,targetPai){
-    if(targetPai>=27){
+function checkCanChi(game,seatData,chiPai){
+    if(chiPai>=27&&chiPai!=33||(chiPai==33&&game.caishen>=27)){
         return;
     }
-    let count1=null;
-    let count2=null;
-    let count3=null;
-    let count4=null;
+    var targetPai=chiPai;
+    if(chiPai==33&&game.caishen<27){
+        targetPai=game.caishen;
+    }
+    //先把鬼拿出来 
+    let caishen=seatData.mjmap[game.caishen] || 0;
+    //拿出白板数
+    let baibang=seatData.mjmap[BAI_BANG_INDEX] || 0;
+    //白板代替鬼的位置
+    seatData.mjmap[game.caishen]=baibang;
+    seatData.mjmap[BAI_BANG_INDEX]=0;
+    
+    let count1=0;
+    let count2=0;
+    let count3=0;
+    let count4=0;
     let isBaibang1=false;
     let isBaibang2=false;
     let isBaibang3=false;
     let isBaibang4=false;
     if(targetPai==0||targetPai==9||targetPai==18){
-         count3=seatData.mjmap[targetPai+1];
-         count4=seatData.mjmap[targetPai+2];
+         count3=seatData.mjmap[targetPai+1]||0;
+         count4=seatData.mjmap[targetPai+2]||0;
     }else if(targetPai==8||targetPai==17||targetPai==26){
-         count1=seatData.mjmap[targetPai-2];
-         count2=seatData.mjmap[targetPai-1];
+         count1=seatData.mjmap[targetPai-2]||0;
+         count2=seatData.mjmap[targetPai-1]||0;
     }else if(targetPai==1||targetPai==10||targetPai==19){
-         count2=seatData.mjmap[targetPai-1];
-         count3=seatData.mjmap[targetPai+1];
-         count4=seatData.mjmap[targetPai+2];
+         count2=seatData.mjmap[targetPai-1]||0;
+         count3=seatData.mjmap[targetPai+1]||0;
+         count4=seatData.mjmap[targetPai+2]||0;
     }else if(targetPai==7||targetPai==16||targetPai==25){
-         count1=seatData.mjmap[targetPai-2];
-         count2=seatData.mjmap[targetPai-1];
-         count3=seatData.mjmap[targetPai+1];
+         count1=seatData.mjmap[targetPai-2]||0;
+         count2=seatData.mjmap[targetPai-1]||0;
+         count3=seatData.mjmap[targetPai+1]||0;
     }else if((2<=targetPai<=6)||(11<=targetPai<=15)||(20<=targetPai<=24)){
-         count1=seatData.mjmap[targetPai-2];
-         count2=seatData.mjmap[targetPai-1];
-         count3=seatData.mjmap[targetPai+1];
-         count4=seatData.mjmap[targetPai+2];
+         count1=seatData.mjmap[targetPai-2]||0;
+         count2=seatData.mjmap[targetPai-1]||0;
+         count3=seatData.mjmap[targetPai+1]||0;
+         count4=seatData.mjmap[targetPai+2]||0;
     }
-    //取白板。因为白扳可以代替财神那个字
-    let count =seatData.mjmap[33] || 0;
-    if(game.caishen==targetPai-2&&count1!=null){
-        count1=count;
+
+    //还原白板与鬼
+    seatData.mjmap[game.caishen]=caishen;
+    seatData.mjmap[BAI_BANG_INDEX]=baibang;
+
+    if(game.caishen==targetPai-2&&count1>0){
         isBaibang1=true;
-    }else if(game.caishen==targetPai-1&&count2!=null){
-        count2=count;
+    }else if(game.caishen==targetPai-1&&count2>0){
         isBaibang2=true;
-    }else if(game.caishen==targetPai+1&&count3!=null){
-        count3=count;
+    }else if(game.caishen==targetPai+1&&count3>0){
         isBaibang3=true;
-    }else if(game.caishen==targetPai+2&&count4!=null){
-        count4=count;
+    }else if(game.caishen==targetPai+2&&count4>0){
         isBaibang4=true;
     }
-    if(count1 != null && count1 >=1 && count2 != null && count2 >= 1){
+    if( count1 >0 &&  count2 >0){
         seatData.canChi=true;
         seatData.chiPai.push([isBaibang1?33:targetPai-2,isBaibang2?33:targetPai-1,-1]);
     }
-    if(count2 != null && count2 >= 1 && count3 != null && count3 >=1){
+    if( count2 >0 && count3 >0){
         seatData.canChi=true;
         seatData.chiPai.push([isBaibang2?33:targetPai-1,-1,isBaibang3?33:targetPai+1]);
     }
-    if(count3 != null && count3 >= 1 && count4 != null && count4 >=1){
+    if( count3 >0 && count4 >0){
         seatData.canChi=true;
         seatData.chiPai.push([-1,isBaibang3?33:targetPai+1,isBaibang4?33:targetPai+2]);
     }
@@ -457,7 +468,7 @@ function checkCanQiangGang(game,turnSeat,seatData,gangType,numOfCnt,pai){
         if(seatData.index == nextIndex){
             continue;
         }
-        let tmpSeatData = game.seats[i];
+        let tmpSeatData = game.seats[nextIndex];
         checkCanHu(game,tmpSeatData,pai);
         if(tmpSeatData.canHu){
             sendOperations(game,tmpSeatData,{mjid:pai,idx:turnSeat.index});
@@ -1577,11 +1588,14 @@ module.exports.gang=function(userId,pai){
     let gangType="";
     //弯杠 去掉碰牌
     if(numOfCnt == 1){
-        gangType = "bugang"
+        gangType = "bugang";
+        logger.info("补杠：",pai);
     }else if(numOfCnt == 3){
-        gangType = "diangang"
+        gangType = "diangang";
+        logger.info("点杠：",pai);
     }else if(numOfCnt == 4){
         gangType = "angang";
+        logger.info("暗杠：",pai);
     }else{
         logger.info("invalid pai count.");
         return;
@@ -1728,7 +1742,7 @@ module.exports.guo=function(userId){
         tmpSeatData.folds.push(game.chupai.mjid);
         game.chupai = null;
     }
-    //如果qiangGangContext，当有人开杆，且有人可以抢杠时qiangGangContext才分!=null
+    //如果qiangGangContext，当有人开杆，且有人可以抢杠时qiangGangContext才会!=null
     var qgc = game.qiangGangContext;
     //清除所有的操作
     clearAllOptions(game);

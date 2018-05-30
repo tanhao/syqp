@@ -1,7 +1,9 @@
 {
   "androidStudio": true,
   "apiLevel": "android-19",
-  "appABIs": [],
+  "appABIs": [
+    "armeabi-v7a"
+  ],
   "buildPath": "./build",
   "debug": false,
   "includeEruda": false,

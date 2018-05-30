@@ -10,7 +10,7 @@ var locations = {};
 
 function generateRoomId(){
 	let roomId = "";
-	for(let i = 0; i < 6; ++i){
+	for(let i = 0; i < 4; ++i){
         let tmp=Math.floor(Math.random()*10);
         if(i==0&&tmp==0){
             --i;

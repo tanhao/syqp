@@ -38,11 +38,11 @@ cc.Class({
         }
 
         cc.game.on(cc.game.EVENT_HIDE, function () {
-            //console.log("cc.audioEngine.pauseAll");
+            //cc.log("cc.audioEngine.pauseAll");
             cc.audioEngine.pauseAll();
         });
         cc.game.on(cc.game.EVENT_SHOW, function () {
-            //console.log("cc.audioEngine.resumeAll");
+            //cc.log("cc.audioEngine.resumeAll");
             cc.audioEngine.resumeAll();
         });
     },

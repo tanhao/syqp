@@ -32,12 +32,16 @@ cc.Class({
     },
 
     login: function login() {
+        cc.log("Login==>>");
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            jsb.reflection.callStaticMethod(this.ANDROID_API, "Login", "()V");
+            cc.log("Login ANDROID==>>" + this.ANDROID_API);
+            var result = jsb.reflection.callStaticMethod(this.ANDROID_API, "login", "()V");
+            cc.log("result", result);
         } else if (cc.sys.os == cc.sys.OS_IOS) {
-            jsb.reflection.callStaticMethod(this.IOS_API, "Login");
+            cc.log("Login IOS==>>" + this.IOS_API);
+            jsb.reflection.callStaticMethod(this.IOS_API, "login");
         } else {
-            console.log("platform:" + cc.sys.os + " dosn't implement share.");
+            cc.log("platform:" + cc.sys.os + " dosn't implement share.");
         }
     },
 
@@ -47,7 +51,7 @@ cc.Class({
         } else if (cc.sys.os == cc.sys.OS_IOS) {
             jsb.reflection.callStaticMethod(this.IOS_API, "shareWebpage:shareTitle:shareDesc:isTimelineCb:", url, title, desc, isTimelineCb);
         } else {
-            console.log("platform:" + cc.sys.os + " dosn't implement share.");
+            cc.log("platform:" + cc.sys.os + " dosn't implement share.");
         }
     },
 
@@ -83,13 +87,13 @@ cc.Class({
                 } else if (cc.sys.os == cc.sys.OS_IOS) {
                     jsb.reflection.callStaticMethod(self.IOS_API, "shareImage:isTimelineCb:", fullPath, isTimelineCb);
                 } else {
-                    console.log("platform:" + cc.sys.os + " dosn't implement share.");
+                    cc.log("platform:" + cc.sys.os + " dosn't implement share.");
                 }
                 self._isCapturing = false;
             } else {
                 tryTimes++;
                 if (tryTimes > 10) {
-                    console.log("time out...");
+                    cc.log("time out...");
                     return;
                 }
                 setTimeout(fn, 50);

@@ -49,17 +49,17 @@ cc.Class({
         });
         //过牌
         this.node.on('guo_notify_push', function (data) {
-            //console.log('==>MJFolds guo_notify_push:',JSON.stringify(data.detail));
+            //cc.log('==>MJFolds guo_notify_push:',JSON.stringify(data.detail));
             self.initFolds(data.detail);
         });
         //出牌
         this.node.on('chupai_notify_push', function (data) {
-            //console.log('==>MJFolds chupai_notify_push:',JSON.stringify(data.detail));
+            //cc.log('==>MJFolds chupai_notify_push:',JSON.stringify(data.detail));
             self.initFolds(data.detail.seatData);
         });
 
         this.node.on('sync_push', function (data) {
-            //console.log('==>MJFolds chupai_notify_push:',JSON.stringify(data.detail));
+            //cc.log('==>MJFolds chupai_notify_push:',JSON.stringify(data.detail));
             self.initAllFolds();
         });
 

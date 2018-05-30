@@ -18,19 +18,19 @@ cc.Class({
         nodeChiPengGang.scaleY *= scale;
 
         this.node.on('chi_notify_push',function(data){
-            console.log("==>ChiPengGang chi_notify_push",data.detail);
+            cc.log("==>ChiPengGang chi_notify_push",data.detail);
             var data = data.detail;
             self.onChiPengGangChanged(data);
         });
 
         this.node.on('peng_notify_push',function(data){
-            console.log("==>ChiPengGang peng_notify_push",data.detail);
+            cc.log("==>ChiPengGang peng_notify_push",data.detail);
             var data = data.detail;
             self.onChiPengGangChanged(data);
         });
         
         this.node.on('gang_notify_push',function(data){
-            console.log("==>ChiPengGang gang_notify_push",data.detail);
+            cc.log("==>ChiPengGang gang_notify_push",data.detail);
             self.onChiPengGangChanged(data.detail);
         });
 
@@ -114,7 +114,7 @@ cc.Class({
         }
     },
     initChiPengAndGangs:function(nodeChiPengGang,side,pre,index,info,flag,seatIndex){
-        console.log("initChiPengAndGangs",side,pre,index,info,flag);
+        cc.log("initChiPengAndGangs",side,pre,index,info,flag);
         var nodeCPG = null;
         if(nodeChiPengGang.childrenCount <= index){
             if(side == "left" || side == "right"){
@@ -133,9 +133,9 @@ cc.Class({
             nodeCPG.y = (index * 25 * 3);
             nodeCPG.setLocalZOrder(-index);
         }else if(side == "myself"){
-            nodeCPG.x = index * 55 * 3 + index * 10;                    
+            nodeCPG.x = index * 55 * 3 + index * 6;                    
         }else{
-            nodeCPG.x = -(index * 55*3) - index * 7;
+            nodeCPG.x = -(index * 55*3) - index * 4;
         }
 
         var sprites = nodeCPG.getComponentsInChildren(cc.Sprite);

@@ -14,7 +14,7 @@ cc.Class({
     },
 
     onLoad () {
-        console.log("TimePointer load ....");
+        cc.log("TimePointer load ....");
         if(th.socketIOManager.seats.length==4){
             this._pointers.push(this.bottomPointer);
             this._pointers.push(this.rightPointer);

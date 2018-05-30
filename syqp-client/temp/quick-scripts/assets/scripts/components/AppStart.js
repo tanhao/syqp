@@ -47,9 +47,9 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad: function onLoad() {
-        console.log("================>>initManager<<=====================");
+        cc.log("================>>initManager<<=====================");
         initManager();
-        //console.log('onLoad'); 
+        //cc.log('onLoad'); 
     },
     start: function start() {
         //cc.log("start");
@@ -59,8 +59,9 @@ cc.Class({
     onBtnWeichatClicked: function onBtnWeichatClicked(target, account) {
         if (this._isAgree) {
             cc.log("onBtnWeichatClicked");
-            th.wc.show("正在登录游戏");
-            th.userManager.lingshiAuth(account);
+            //th.wc.show("正在登录游戏");
+            //th.userManager.lingshiAuth(account);
+            th.anysdkManager.login();
         }
     },
 

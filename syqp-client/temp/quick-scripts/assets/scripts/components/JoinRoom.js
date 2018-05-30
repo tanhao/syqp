@@ -58,7 +58,7 @@ cc.Class({
 
         if (this._inputIndex == this.nums.length) {
             var roomId = this.parseRoomID();
-            console.log("ok:" + roomId);
+            cc.log("ok:" + roomId);
             this.onInputFinished(roomId);
         }
     },

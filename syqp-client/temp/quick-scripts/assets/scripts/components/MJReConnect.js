@@ -23,7 +23,7 @@ cc.Class({
 
         var fnTestServerOn = function fnTestServerOn() {
             th.sio.test(function (err, data) {
-                console.log("MJReConnect fnTestServerOn:", data);
+                cc.log("MJReConnect fnTestServerOn:", data);
                 if (err || data.errcode || data.isOnline == false) {
                     setTimeout(fnTestServerOn, 3000);
                 } else {
@@ -45,15 +45,15 @@ cc.Class({
         var fn = function fn(data) {
             self.node.off('disconnect', fn);
             self._reconnect.active = true;
-            console.log("MJREConnect disconnect");
+            cc.log("MJREConnect disconnect");
             fnTestServerOn();
         };
         /*
         cc.game.on(cc.game.EVENT_HIDE, function () {
-            console.log("MJREConnect EVENT_HIDE");
+            cc.log("MJREConnect EVENT_HIDE");
         });
         cc.game.on(cc.game.EVENT_SHOW, function () {
-            console.log("MJREConnect EVENT_SHOW");
+            cc.log("MJREConnect EVENT_SHOW");
         });
         */
 

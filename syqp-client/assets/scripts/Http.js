@@ -20,7 +20,7 @@ var Http=cc.Class({
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
                     try{
-                        console.log("try => http response:"+xhr.responseText);
+                        cc.log("try => http response:"+xhr.responseText);
                         var json = JSON.parse(xhr.responseText);
                         callback(null,json);
                     }catch(e){

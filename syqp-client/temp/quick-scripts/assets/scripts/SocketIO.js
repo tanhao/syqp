@@ -28,7 +28,7 @@ var SIO = cc.Class({
         //fnDisconnect:null,
         addHandler: function addHandler(event, fn) {
             if (this.handlers[event]) {
-                console.log("event:" + event + "' handler has been registered.");
+                cc.log("event:" + event + "' handler has been registered.");
                 return;
             }
             var handler = function handler(data) {
@@ -39,7 +39,7 @@ var SIO = cc.Class({
             };
             this.handlers[event] = handler;
             if (this.sio) {
-                console.log("register event: " + event);
+                cc.log("register event: " + event);
                 this.sio.on(event, handler);
             }
         },
@@ -57,27 +57,27 @@ var SIO = cc.Class({
                 fnConnect(data);
             });
             this.sio.on('disconnect', function (data) {
-                console.log("disconnect");
+                cc.log("disconnect");
                 self.sio.connected = false;
                 self.close();
             });
             this.sio.on('reconnect', function () {
-                console.log('reconnect');
+                cc.log('reconnect');
             });
             this.sio.on('connect_error', function () {
-                console.log('connect_error');
+                cc.log('connect_error');
             });
             this.sio.on('connect_timeout', function (timeout) {
-                console.log('connect_timeout');
+                cc.log('connect_timeout');
             });
             this.sio.on('reconnect_error', function (error) {
-                console.log('reconnect_error');
+                cc.log('reconnect_error');
             });
             this.sio.on('reconnect_failed', function (error) {
-                console.log('reconnect_failed');
+                cc.log('reconnect_failed');
             });
             this.sio.on('error', function (error) {
-                console.log('error');
+                cc.log('error');
                 fnError(error);
             });
 
@@ -87,7 +87,7 @@ var SIO = cc.Class({
                     if (key == 'disconnect') {
                         this.fnDisconnect = handler;
                     } else {
-                        console.log("register event: " + key);
+                        cc.log("register event: " + key);
                         this.sio.on(key, handler);
                     }
                 }
@@ -99,10 +99,10 @@ var SIO = cc.Class({
             var self = this;
             this.lastRecieveTime = Date.now();
             this.sio.on('th-pong', function () {
-                console.log("th-pong");
+                cc.log("th-pong");
                 self.lastRecieveTime = Date.now();
                 self.delay = self.lastRecieveTime - self.lastSendTime;
-                //console.log('th-pong:',self.delay,self==th.sio);
+                //cc.log('th-pong:',self.delay,self==th.sio);
             });
             if (!self.isPinging) {
                 self.isPinging = true;
@@ -157,9 +157,9 @@ var SIO = cc.Class({
                 ip: this.ip,
                 port: this.port
             };
-            console.log("test:", params, this.addr);
+            cc.log("test:", params, this.addr);
             th.http.get('/is_server_online', params, function (err, data) {
-                console.log(data);
+                cc.log(data);
                 fnResult(err, data);
             });
             /*
