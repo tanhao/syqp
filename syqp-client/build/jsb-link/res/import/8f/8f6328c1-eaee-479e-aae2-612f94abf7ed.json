@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "luck_btn",
+    "texture": "acZRmdZYBBM6C9wR/LsJhU",
+    "rect": [
+      104,
+      104,
+      76,
+      66
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      76,
+      66
+    ]
+  }
+}

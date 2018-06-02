@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "diamond_bg",
+    "texture": "29n/Jp4GhOx7QI68Y9Xtn1",
+    "rect": [
+      0,
+      2,
+      203,
+      52
+    ],
+    "offset": [
+      0,
+      1.5
+    ],
+    "originalSize": [
+      203,
+      59
+    ]
+  }
+}

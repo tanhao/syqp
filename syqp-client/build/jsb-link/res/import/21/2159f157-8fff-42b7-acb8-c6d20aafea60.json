@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mahjong_effect_gang_6",
+    "texture": "3c10eQLhtHDrj6HZqtP9IQ",
+    "rect": [
+      9,
+      27,
+      428,
+      248
+    ],
+    "offset": [
+      -2,
+      -6
+    ],
+    "originalSize": [
+      450,
+      290
+    ]
+  }
+}

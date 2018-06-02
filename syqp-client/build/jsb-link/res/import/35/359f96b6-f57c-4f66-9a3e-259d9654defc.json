@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mahjong_effect_hu_3",
+    "texture": "57RHhL3CJPbJ21OPg4hX/h",
+    "rect": [
+      42,
+      55,
+      208,
+      182
+    ],
+    "offset": [
+      1,
+      -1
+    ],
+    "originalSize": [
+      290,
+      290
+    ]
+  }
+}

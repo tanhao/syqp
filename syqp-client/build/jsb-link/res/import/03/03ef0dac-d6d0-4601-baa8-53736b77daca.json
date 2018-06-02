@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "end_big",
+    "texture": "dcHGaXxtVDBY06o4Ee9efe",
+    "rect": [
+      1,
+      0,
+      159,
+      40
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      161,
+      40
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "shop_mall",
+    "texture": "ee8GBtAD9DNbA+/M7OcjvE",
+    "rect": [
+      64,
+      144,
+      81,
+      37
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      81,
+      37
+    ]
+  }
+}

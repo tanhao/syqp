@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "L_wind_4",
+    "texture": "2eqBsuCDBJya8bSr4YDuP+",
+    "rect": [
+      0,
+      1480,
+      49,
+      40
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      49,
+      40
+    ]
+  }
+}

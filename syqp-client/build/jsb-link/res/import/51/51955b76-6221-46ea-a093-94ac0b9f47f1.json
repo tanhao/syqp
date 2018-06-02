@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "outline2",
+    "texture": "05R2LkPvlN7YI/Cx5Xk/Lx",
+    "rect": [
+      251,
+      146,
+      251,
+      96
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      251,
+      96
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "head_male",
+    "texture": "09yvqDE0NAA41Nbc9GZi7S",
+    "rect": [
+      4,
+      4,
+      107,
+      107
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      115,
+      115
+    ]
+  }
+}

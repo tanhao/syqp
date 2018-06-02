@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "playIcon2",
+    "texture": "814w+yuoVCtYUfSpg+yD0h",
+    "rect": [
+      0,
+      0,
+      100,
+      105
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      100,
+      105
+    ]
+  }
+}

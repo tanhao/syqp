@@ -1,0 +1,318 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "ChiPengGangLeftAndRight",
+    "data": {
+      "__id__": 1
+    },
+    "asyncLoadAssets": null
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "PengGangLeftAndRight",
+    "_children": [
+      {
+        "__id__": 2
+      },
+      {
+        "__id__": 3
+      },
+      {
+        "__id__": 4
+      },
+      {
+        "__id__": 5
+      },
+      {
+        "__id__": 6
+      },
+      {
+        "__id__": 7
+      },
+      {
+        "__id__": 8
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "51y5YRz59Pp7ogjoTcobX+"
+      },
+      "fileId": "7e56780qx5Hir9Oo9EerK7r"
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "mj1",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 2
+        },
+        "_spriteFrame": {
+          "__uuid__": "cbZhJCSDRLDZpqVCD5daPB"
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "51y5YRz59Pp7ogjoTcobX+"
+      },
+      "fileId": "c93f1ngGINAH4u4QHbLdKsw"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 49,
+      "height": 40
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "mj2",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 3
+        },
+        "_spriteFrame": {
+          "__uuid__": "cbZhJCSDRLDZpqVCD5daPB"
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "51y5YRz59Pp7ogjoTcobX+"
+      },
+      "fileId": "754f7F1OIpEnLRJ5IGpgEzn"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 49,
+      "height": 40
+    },
+    "_position": {
+      "__type__": "cc.Vec2",
+      "y": -25
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "mj3",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 4
+        },
+        "_spriteFrame": {
+          "__uuid__": "cbZhJCSDRLDZpqVCD5daPB"
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "51y5YRz59Pp7ogjoTcobX+"
+      },
+      "fileId": "f3807uY6eBCfarVYW+WufLQ"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 49,
+      "height": 40
+    },
+    "_position": {
+      "__type__": "cc.Vec2",
+      "y": -50
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "gang",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 5
+        },
+        "_spriteFrame": {
+          "__uuid__": "cbZhJCSDRLDZpqVCD5daPB"
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "51y5YRz59Pp7ogjoTcobX+"
+      },
+      "fileId": "76208GI8NRC5oePSXMhjQNg"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 49,
+      "height": 40
+    },
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": -0.4,
+      "y": -12.8
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "point_left",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 6
+        },
+        "_spriteFrame": {
+          "__uuid__": "faTHSiYxFMnIZO0WnTSp2o"
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "51y5YRz59Pp7ogjoTcobX+"
+      },
+      "fileId": "23h3tFw9NNIYH4dqNlTZPA"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 17,
+      "height": 15
+    },
+    "_rotationX": 90,
+    "_rotationY": 90,
+    "_scaleX": 0.5,
+    "_scaleY": 0.5,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 28.7,
+      "y": 6
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "point_dui",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 7
+        },
+        "_spriteFrame": {
+          "__uuid__": "faTHSiYxFMnIZO0WnTSp2o"
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "51y5YRz59Pp7ogjoTcobX+"
+      },
+      "fileId": "c0ACoR/mxMLqX+SciJ2lK5"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 17,
+      "height": 15
+    },
+    "_rotationX": 180,
+    "_rotationY": 180,
+    "_scaleX": 0.5,
+    "_scaleY": 0.5,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 28.7,
+      "y": 6
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "point_right",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 8
+        },
+        "_spriteFrame": {
+          "__uuid__": "faTHSiYxFMnIZO0WnTSp2o"
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "51y5YRz59Pp7ogjoTcobX+"
+      },
+      "fileId": "6eaTrSXIND9YKjsXZxjZZ8"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 17,
+      "height": 15
+    },
+    "_rotationX": 270,
+    "_rotationY": 270,
+    "_scaleX": 0.5,
+    "_scaleY": 0.5,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 28.7,
+      "y": 6
+    }
+  }
+]

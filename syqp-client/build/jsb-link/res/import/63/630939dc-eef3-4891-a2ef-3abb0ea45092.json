@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "e_mj_b_right",
+    "texture": "eaRmqSk2VA27G/M3UZ9nyc",
+    "rect": [
+      0,
+      124,
+      49,
+      40
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      49,
+      40
+    ]
+  }
+}

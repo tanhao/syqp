@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bbtz",
+    "texture": "64cbrbPTVAdYgUrzSxlWCz",
+    "rect": [
+      11,
+      0,
+      434,
+      171
+    ],
+    "offset": [
+      5.5,
+      1.5
+    ],
+    "originalSize": [
+      445,
+      174
+    ]
+  }
+}

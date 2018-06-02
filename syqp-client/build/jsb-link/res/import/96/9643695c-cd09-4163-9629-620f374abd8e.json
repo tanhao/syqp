@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "R_plum",
+    "texture": "82PaH9+PdJ24IddpxRVHrW",
+    "rect": [
+      0,
+      1240,
+      49,
+      40
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      49,
+      40
+    ]
+  }
+}

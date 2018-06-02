@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "cion_num",
+    "texture": "fd4YIT6KZFmblU09g8HVI8",
+    "rect": [
+      0,
+      0,
+      249,
+      65
+    ],
+    "offset": [
+      -0.5,
+      17.5
+    ],
+    "originalSize": [
+      250,
+      100
+    ]
+  }
+}

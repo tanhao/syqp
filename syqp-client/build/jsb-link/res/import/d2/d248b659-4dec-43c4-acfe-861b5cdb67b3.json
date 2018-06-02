@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "chat_right",
+    "texture": "594EFfIlJNXLgbszHnj0vy",
+    "rect": [
+      0,
+      0,
+      65,
+      55
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      65,
+      55
+    ],
+    "capInsets": [
+      14,
+      0,
+      23,
+      0
+    ]
+  }
+}

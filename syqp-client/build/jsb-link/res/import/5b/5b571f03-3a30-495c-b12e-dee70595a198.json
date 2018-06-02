@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "activity",
+    "texture": "5ahdVGlQJNK4UgxML6t6FG",
+    "rect": [
+      0,
+      0,
+      90,
+      54
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      90,
+      54
+    ]
+  }
+}

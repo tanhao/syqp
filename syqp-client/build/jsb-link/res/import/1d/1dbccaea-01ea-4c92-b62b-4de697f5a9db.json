@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mtp_num",
+    "texture": "12zd+GgL9KwYUa9rExdP3n",
+    "rect": [
+      0,
+      2,
+      246,
+      77
+    ],
+    "offset": [
+      -2,
+      9.5
+    ],
+    "originalSize": [
+      250,
+      100
+    ]
+  }
+}

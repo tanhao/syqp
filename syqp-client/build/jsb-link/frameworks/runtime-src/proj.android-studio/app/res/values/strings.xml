@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name" translatable="false">同城棋牌</string>
+    <string name="errcode_success">发送成功</string>
+    <string name="errcode_comm">发送ERROR COMM</string>
+    <string name="errcode_cancel">发送取消</string>
+    <string name="errcode_failed">发送失败</string>
+    <string name="errcode_deny">发送被拒绝</string>
+    <string name="errcode_unsupport">发送不支持</string>
+    <string name="errcode_unknown">发送返回</string>
+</resources>

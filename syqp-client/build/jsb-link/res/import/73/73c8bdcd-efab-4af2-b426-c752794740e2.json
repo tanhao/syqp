@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "act_leave",
+    "texture": "e4N0bhXE1FYp2WS/QO0jhg",
+    "rect": [
+      0,
+      0,
+      187,
+      52
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      187,
+      52
+    ]
+  }
+}

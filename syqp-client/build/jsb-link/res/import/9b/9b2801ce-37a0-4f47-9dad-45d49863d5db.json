@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mahjong_effect_peng_13",
+    "texture": "00HLdMPlpFTY/dOPv7/R11",
+    "rect": [
+      79,
+      95,
+      153,
+      137
+    ],
+    "offset": [
+      5.5,
+      -13.5
+    ],
+    "originalSize": [
+      300,
+      300
+    ]
+  }
+}

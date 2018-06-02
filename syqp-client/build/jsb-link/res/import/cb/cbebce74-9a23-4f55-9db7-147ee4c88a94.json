@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "power1",
+    "texture": "2f/N5tVrxFZq5kNLpDasCM",
+    "rect": [
+      0,
+      0,
+      4,
+      13
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      4,
+      13
+    ],
+    "capInsets": [
+      1,
+      0,
+      0,
+      0
+    ]
+  }
+}

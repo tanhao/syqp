@@ -1,0 +1,93 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "luck",
+  "_duration": 2.1666666666666665,
+  "sample": 6,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "197WakTBhIGqL9RgfNDK5M"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "73oBkhyk1FqramPhBGFQiU"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "c1qc1AX9lCRLks0KL/mBGY"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "42qIqiVNFGeYC5BF/Y4vVh"
+            }
+          },
+          {
+            "frame": 0.6666666666666666,
+            "value": {
+              "__uuid__": "c5prEgq4BNPpcCTC795aeB"
+            }
+          },
+          {
+            "frame": 0.8333333333333334,
+            "value": {
+              "__uuid__": "19/99jFbhNGLgEngfwrQOA"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "62/7X6Gh5KQriWuaOuMN9O"
+            }
+          },
+          {
+            "frame": 1.1666666666666667,
+            "value": {
+              "__uuid__": "9fuQe2B4VCoYdv9vKHZwY6"
+            }
+          },
+          {
+            "frame": 1.3333333333333333,
+            "value": {
+              "__uuid__": "4byLw4yWJAy7VSVOCwb0Fa"
+            }
+          },
+          {
+            "frame": 1.5,
+            "value": {
+              "__uuid__": "ddav3uWuBIF7A/x9TvUYWc"
+            }
+          },
+          {
+            "frame": 1.6666666666666667,
+            "value": {
+              "__uuid__": "16Kqr6M6tLfoH+3HsbMSJV"
+            }
+          },
+          {
+            "frame": 1.8333333333333333,
+            "value": {
+              "__uuid__": "62f0G0WDZPv5lQg06XeInl"
+            }
+          },
+          {
+            "frame": 2,
+            "value": {
+              "__uuid__": "95w1aYJI1DAbGC6uEgf7rv"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

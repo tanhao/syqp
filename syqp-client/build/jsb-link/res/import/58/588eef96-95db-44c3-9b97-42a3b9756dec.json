@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "fangfei",
+    "texture": "cd9O3cStpOVY+54I4+xjPA",
+    "rect": [
+      0,
+      0,
+      114,
+      31
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      114,
+      31
+    ]
+  }
+}

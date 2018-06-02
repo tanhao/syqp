@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "top_bar_bg",
+    "texture": "edLgL1sA1G9qADtsSsWojX",
+    "rect": [
+      0,
+      0,
+      800,
+      80
+    ],
+    "offset": [
+      -3.5,
+      2
+    ],
+    "originalSize": [
+      807,
+      84
+    ]
+  }
+}

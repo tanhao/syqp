@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_voice",
+    "texture": "d1YfOb6rFF3oN7+5H9iAeb",
+    "rect": [
+      0,
+      0,
+      69,
+      74
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      69,
+      74
+    ]
+  }
+}

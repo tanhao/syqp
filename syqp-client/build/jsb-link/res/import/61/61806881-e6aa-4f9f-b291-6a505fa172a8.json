@@ -1,0 +1,39 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "hall_fish",
+  "_duration": 0.1,
+  "sample": 40,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "8epsQEQf5LyKUYDfMexgX/"
+            }
+          },
+          {
+            "frame": 0.025,
+            "value": {
+              "__uuid__": "a1kvCYIcBHjaBdleVsg9oS"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "4ftduVd99Oirq8BVvItV6b"
+            }
+          },
+          {
+            "frame": 0.075,
+            "value": {
+              "__uuid__": "048WWxp8BCo4MbkDULVHEA"
+            }
+          }
+        ]
+      }
+    },
+    "props": {}
+  }
+}

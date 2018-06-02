@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "act_dissolve",
+    "texture": "a685Le3SVFC7H99ggFAL54",
+    "rect": [
+      0,
+      0,
+      188,
+      52
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      188,
+      52
+    ]
+  }
+}

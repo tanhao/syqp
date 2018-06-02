@@ -1,0 +1,81 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "hall_bg",
+  "_duration": 1.1,
+  "sample": 10,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "9dj5hh8+VF0ZmxB2iGo6sM"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "9dj5hh8+VF0ZmxB2iGo6sM"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "50waelghZCj7IcNRxDMGkM"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "20Z5uWKPdCHb+P8kltFPRb"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "4f1MIMwhdCpa7Iq7Q85Iiz"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "2aP9apajRLD5k5iAYCJucS"
+            }
+          },
+          {
+            "frame": 0.6,
+            "value": {
+              "__uuid__": "88lUPjTxhGDarWQQgKzA67"
+            }
+          },
+          {
+            "frame": 0.7,
+            "value": {
+              "__uuid__": "88lUPjTxhGDarWQQgKzA67"
+            }
+          },
+          {
+            "frame": 0.8,
+            "value": {
+              "__uuid__": "88lUPjTxhGDarWQQgKzA67"
+            }
+          },
+          {
+            "frame": 0.9,
+            "value": {
+              "__uuid__": "a7Oohpa7pDVrNi0nvZ4pPm"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "9dj5hh8+VF0ZmxB2iGo6sM"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

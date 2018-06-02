@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mahjong_effect_qg_5",
+    "texture": "79Ct63j1FLZrHr1lV8p0Tf",
+    "rect": [
+      1,
+      0,
+      358,
+      250
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      360,
+      250
+    ]
+  }
+}

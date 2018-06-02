@@ -1,0 +1,51 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "btn_shop.plist",
+  "_spriteFrames": {
+    "shop_icon": {
+      "__uuid__": "26WMKZ4CdGCoaCRMVYbP1E"
+    },
+    "shop_let1": {
+      "__uuid__": "4eydir1bJEypNZ8/y3Onkj"
+    },
+    "shop_let10": {
+      "__uuid__": "c6DAo7XwdCEINbrTxoMNuz"
+    },
+    "shop_let11": {
+      "__uuid__": "53TSrF3X5LOrJH5xX5LGQ1"
+    },
+    "shop_let12": {
+      "__uuid__": "8ef86QzfdOjZdvenM1zoBf"
+    },
+    "shop_let2": {
+      "__uuid__": "80LqcrQbBLvKSuoHg5Vn4R"
+    },
+    "shop_let3": {
+      "__uuid__": "18NHQEdZlOj43vrN9c7fLe"
+    },
+    "shop_let5": {
+      "__uuid__": "b3dzy4JwdAQpIDY67+etKa"
+    },
+    "shop_let4": {
+      "__uuid__": "78m/V79adDbZhvU6kjWsUQ"
+    },
+    "shop_let6": {
+      "__uuid__": "bcQfjXxkdCUqJceJmz9vyA"
+    },
+    "shop_let7": {
+      "__uuid__": "4eg14lNLRFsryeA/zmuGto"
+    },
+    "shop_let8": {
+      "__uuid__": "16tTG5csRIOapGXc1744Y1"
+    },
+    "shop_let9": {
+      "__uuid__": "2fgmRSO5xJOIWaO7ya3MZN"
+    },
+    "shop_mall": {
+      "__uuid__": "ffji4VDUlFsJjHYKv0Lgvq"
+    },
+    "shop_sale": {
+      "__uuid__": "99EHx3I4hGEqR9MgoG28la"
+    }
+  }
+}

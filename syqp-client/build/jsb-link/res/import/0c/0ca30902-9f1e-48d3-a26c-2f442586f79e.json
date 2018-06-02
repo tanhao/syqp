@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_del_s",
+    "texture": "95K28qUThOoK6V6YogKZbP",
+    "rect": [
+      0,
+      0,
+      259,
+      87
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      259,
+      87
+    ]
+  }
+}

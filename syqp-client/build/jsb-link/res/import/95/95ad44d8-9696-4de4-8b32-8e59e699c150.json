@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "num8_s",
+    "texture": "58Su3CI5FDX46M2H3+PaXj",
+    "rect": [
+      0,
+      0,
+      248,
+      85
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      248,
+      85
+    ]
+  }
+}

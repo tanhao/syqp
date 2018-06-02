@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "jzshaizi",
+    "texture": "5872HiHiBKD6jgEeLUkS1E",
+    "rect": [
+      2,
+      0,
+      36,
+      37
+    ],
+    "offset": [
+      0,
+      0.5
+    ],
+    "originalSize": [
+      40,
+      38
+    ]
+  }
+}

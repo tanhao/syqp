@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "hallAM7_3",
+    "texture": "feVi5qP7dELpn88YzgRmU5",
+    "rect": [
+      101,
+      75,
+      65,
+      23
+    ],
+    "offset": [
+      142,
+      -36
+    ],
+    "originalSize": [
+      349,
+      95
+    ]
+  }
+}

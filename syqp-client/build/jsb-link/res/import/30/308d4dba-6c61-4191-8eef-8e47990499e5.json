@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "feedback",
+    "texture": "05xYHFOhlPhJuN1o2NFMjI",
+    "rect": [
+      0,
+      0,
+      145,
+      133
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      145,
+      133
+    ]
+  }
+}

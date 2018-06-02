@@ -1,0 +1,48 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "btn_luck.plist",
+  "_spriteFrames": {
+    "luck_btn": {
+      "__uuid__": "8fYyjB6u5HnqriYS+Uq/ft"
+    },
+    "luck_btn1": {
+      "__uuid__": "197WakTBhIGqL9RgfNDK5M"
+    },
+    "luck_btn2": {
+      "__uuid__": "73oBkhyk1FqramPhBGFQiU"
+    },
+    "luck_btn3": {
+      "__uuid__": "c1qc1AX9lCRLks0KL/mBGY"
+    },
+    "luck_btn4": {
+      "__uuid__": "42qIqiVNFGeYC5BF/Y4vVh"
+    },
+    "luck_btn5": {
+      "__uuid__": "c5prEgq4BNPpcCTC795aeB"
+    },
+    "luck_btn6": {
+      "__uuid__": "19/99jFbhNGLgEngfwrQOA"
+    },
+    "luck_btn7": {
+      "__uuid__": "62/7X6Gh5KQriWuaOuMN9O"
+    },
+    "luck_btn8": {
+      "__uuid__": "9fuQe2B4VCoYdv9vKHZwY6"
+    },
+    "luck_btn9": {
+      "__uuid__": "4byLw4yWJAy7VSVOCwb0Fa"
+    },
+    "luck_btn10": {
+      "__uuid__": "ddav3uWuBIF7A/x9TvUYWc"
+    },
+    "luck_btn11": {
+      "__uuid__": "16Kqr6M6tLfoH+3HsbMSJV"
+    },
+    "luck_btn12": {
+      "__uuid__": "62f0G0WDZPv5lQg06XeInl"
+    },
+    "luck_btn13": {
+      "__uuid__": "95w1aYJI1DAbGC6uEgf7rv"
+    }
+  }
+}

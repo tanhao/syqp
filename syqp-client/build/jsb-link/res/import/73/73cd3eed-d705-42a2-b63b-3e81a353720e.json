@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "laba",
+    "texture": "761z8k7NRKfI5DsSScrilh",
+    "rect": [
+      0,
+      0,
+      40,
+      38
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      40,
+      38
+    ]
+  }
+}

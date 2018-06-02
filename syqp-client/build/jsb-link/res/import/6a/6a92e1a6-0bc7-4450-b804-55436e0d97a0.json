@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mj_game_time_down",
+    "texture": "d0Vt4Y5sNBULhza9qhTHBh",
+    "rect": [
+      0,
+      0,
+      129,
+      54
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      129,
+      54
+    ]
+  }
+}

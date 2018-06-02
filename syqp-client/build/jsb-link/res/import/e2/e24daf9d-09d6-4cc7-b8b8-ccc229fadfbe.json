@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mahjong_effect_zimo_12",
+    "texture": "d7pqbw1BhJdo4V7Os92kB0",
+    "rect": [
+      136,
+      53,
+      231,
+      135
+    ],
+    "offset": [
+      -18.5,
+      -10.5
+    ],
+    "originalSize": [
+      540,
+      220
+    ]
+  }
+}

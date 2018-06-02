@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "L_bamboo_5",
+    "texture": "2eqBsuCDBJya8bSr4YDuP+",
+    "rect": [
+      0,
+      240,
+      49,
+      40
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      49,
+      40
+    ]
+  }
+}

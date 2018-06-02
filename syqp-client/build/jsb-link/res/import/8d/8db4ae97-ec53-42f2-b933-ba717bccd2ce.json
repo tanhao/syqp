@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "act_yaoqing",
+    "texture": "f6ip5d2JRJJob/boZ4gVxN",
+    "rect": [
+      0,
+      0,
+      279,
+      48
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      279,
+      48
+    ]
+  }
+}

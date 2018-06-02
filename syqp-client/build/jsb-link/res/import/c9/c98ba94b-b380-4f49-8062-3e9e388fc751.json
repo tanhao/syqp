@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "mj_empty.plist",
+  "_spriteFrames": {
+    "e_mj_b_bottom": {
+      "__uuid__": "4efgoyfC9Ni4iCe5cBwqxm"
+    },
+    "e_mj_b_left": {
+      "__uuid__": "77QtWZKE9DXpVNUiTHCPE+"
+    },
+    "e_mj_b_right": {
+      "__uuid__": "63CTnc7vNIkaLvOrsOpFCS"
+    },
+    "e_mj_b_up": {
+      "__uuid__": "537RdMHMtJeKhzIFbWQNB4"
+    },
+    "e_mj_left": {
+      "__uuid__": "72XzFaDEpKLZwon+N50tin"
+    },
+    "e_mj_right": {
+      "__uuid__": "2d50blBNxFB7FOzZDJURKJ"
+    },
+    "e_mj_up": {
+      "__uuid__": "2foNtpYl5OQb0OcbvnChTP"
+    }
+  }
+}

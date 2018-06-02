@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "shop_let11",
+    "texture": "ee8GBtAD9DNbA+/M7OcjvE",
+    "rect": [
+      128,
+      96,
+      64,
+      48
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      64,
+      48
+    ]
+  }
+}

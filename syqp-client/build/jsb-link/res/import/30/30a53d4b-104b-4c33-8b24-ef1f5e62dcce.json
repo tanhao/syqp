@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "checkbox1",
+    "texture": "626nAqYBxNUKoYKrZ7CbGH",
+    "rect": [
+      0,
+      0,
+      51,
+      52
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      51,
+      52
+    ]
+  }
+}
