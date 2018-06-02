@@ -7,6 +7,8 @@ cc.Class({
        battery:cc.ProgressBar,
        _updateInterval:1000,
        _lastUpdateTime:0,
+       _updateBatteryInterval:1000*30,
+       _lastUpdateBatteryTime:0,
        _red: new cc.Color(205,0,0),
        _yellow: new cc.Color(255,200,0),
        _green: new cc.Color(0,205,0)
@@ -35,8 +37,14 @@ cc.Class({
             hour=hour<10?('0'+hour):hour;
             min=min<10?('0'+min):min;
             this.time.string=hour+":"+min;
+            
+            
+        }
+        if(Date.now()-this._lastUpdateBatteryTime>this._updateBatteryInterval){
+            this._lastUpdateBatteryTime=Date.now();
             this.battery.progress=th.anysdkManager.getBatteryPercent();
         }
+
     },
 
 

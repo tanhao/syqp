@@ -9,6 +9,7 @@ cc.Class({
         joinRoomWin:cc.Node,
         createRoomWin:cc.Node,
         settingWin:cc.Node,
+        shareWin:cc.Node,
         spriteHead:cc.Sprite,
         btnCreateRoom:cc.Button,
         btnReturnRoom:cc.Button,
@@ -92,6 +93,10 @@ cc.Class({
 
     onSettingClicked : function(){
         this.settingWin.active=true;
+    },
+    onShareClicked : function(){
+        if(cc.sys.os == cc.sys.OS_ANDROID ||cc.sys.os == cc.sys.OS_IOS){
+            this.shareWin.active=true;
+        }
     }
-
 });

@@ -65,13 +65,32 @@ var GameSchema=new Schema({
     j: 1,w: 1, wtimeout: 10000,
 });
 
+//计数器
+var CounterSchema=new Schema({
+    sequenceValue: { type:Number, min:100000, max:999999, required:true, unique:true },
+    sequenceName: {type:String,required:true,unique:true}
+},{
+    j: 1, w: 1, wtimeout: 10000
+});
+
+CounterSchema.statics.getNextSequenceValue=function(sequenceName,callback){
+    this.collection.findAndModify({sequenceName: sequenceName},[],{$inc:{sequenceValue:1}},{new:true,fields:{_id:0,__v:0}},callback);
+}
+
+CounterSchema.statics.isExist=function(sequenceName,callback){
+    this.collection.findOne({sequenceName:sequenceName},function(err,res){
+        callback(err,res?true:false);
+    });
+}
 
 var User=mongoose.model('User',UserSchema);
 var Room=mongoose.model('Room',RoomSchema);
 var Game=mongoose.model('Game',GameSchema);
+var Counter=mongoose.model('Counter',CounterSchema);
 
 module.exports={
     User,
     Room,
-    Game
+    Game,
+    Counter,
 }

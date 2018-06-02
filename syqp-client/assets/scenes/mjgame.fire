@@ -2920,7 +2920,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -131,
+      "x": -141,
       "y": 0
     },
     "_skewX": 0,
@@ -3324,6 +3324,8 @@
     },
     "_updateInterval": 1000,
     "_lastUpdateTime": 0,
+    "_updateBatteryInterval": 30000,
+    "_lastUpdateBatteryTime": 0,
     "_red": {
       "__type__": "cc.Color",
       "r": 205,

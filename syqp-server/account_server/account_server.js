@@ -63,6 +63,7 @@ app.get('/lingshi_auth',function(req,res){
 
 //微信
 app.get('/wechat_auth',function(req,res){
+    logger.info("=================>>>wechat_auth<<<=================:",req.query.code);
     function getAccessToken(callback){
         let code=req.query.code;
         let search = {
@@ -77,6 +78,7 @@ app.get('/wechat_auth',function(req,res){
             if(data.errcode) return callback(new Error(data.errmsg));
             callback(null,data.access_token,data.openid);
         })
+        
     }   
     function getUserInfo(access_token,openid,callback){
         let  search = {
@@ -90,10 +92,17 @@ app.get('/wechat_auth',function(req,res){
             callback(null,data);
         })
     }
+
+    function getUserId(obj,callback){
+        db.getUserNextId(function(err,userId){
+            callback(err,userId,obj);
+        });
+    }
     
-    function createOrUpdateUser(obj,callback){
+    function createOrUpdateUser(userId,obj,callback){
         var user={
-            account: obj.openid,
+            id:userId,
+            account: "wx_"+obj.openid,
             name: obj.nickname,
             sex: obj.sex,
             headImgUrl:obj.headimgurl,
@@ -116,10 +125,11 @@ app.get('/wechat_auth',function(req,res){
     waterfall([
         getAccessToken,
         getUserInfo,
+        getUserId,
         createOrUpdateUser,
     ], function (err, result) {
         if(err){
-            logger.error(err.message);
+            logger.error("wechat_auth error===>>"+err.message+"<<===");
             http.send(res,-1,err.message);
             return;
         }

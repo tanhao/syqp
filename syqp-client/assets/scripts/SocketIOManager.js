@@ -512,6 +512,16 @@ cc.Class({
        str.push(this.config.ctdsq?'，吃吐荡三圈':'');
        return str.join("");
     },
+    getRoomInfo:function(){
+        var str=[];
+        str.push("房间号：");
+        str.push(this.roomId);
+        str.push(" 局数：");
+        str.push(this.config.round);
+        str.push(" 房间规则：");
+        str.push(this.getWanfa());
+        return str.join("");
+     },
     isFangzhu:function(){
         return this.creator==th.userManager.userId;
     },

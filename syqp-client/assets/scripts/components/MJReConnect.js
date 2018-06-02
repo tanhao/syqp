@@ -61,7 +61,7 @@ cc.Class({
     },
     update: function (dt) {
         if (this._reconnect.active) {
-            this._loading_image.rotation = this._loading_image.rotation - dt * 45;
+            this._loading_image.rotation = this._loading_image.rotation - dt * 90;
         }
     },
 });

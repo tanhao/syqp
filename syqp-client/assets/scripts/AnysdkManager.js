@@ -13,11 +13,12 @@ cc.Class({
     // },
     
     init:function(){
-        this.ANDROID_API = "org/cocos2dx/javascript/AppActivity";
+        this.ANDROID_API = "com/th/tcqp/Wechat";
         this.IOS_API = "AppController";
     },
 
     getBatteryPercent:function(){
+        return 0.9;
         if(cc.sys.isNative){
             if(cc.sys.os == cc.sys.OS_ANDROID){
                 return jsb.reflection.callStaticMethod(this.ANDROID_API, "getBatteryPercent", "()F");
@@ -32,9 +33,9 @@ cc.Class({
     login:function(){
         cc.log("Login==>>");
         if(cc.sys.os == cc.sys.OS_ANDROID){ 
-            cc.log("Login ANDROID==>>"+this.ANDROID_API);
-            var result= jsb.reflection.callStaticMethod(this.ANDROID_API, "login", "()V");
-            cc.log("result",result);
+            cc.log("Login Start ANDROID==>>"+this.ANDROID_API);
+            jsb.reflection.callStaticMethod(this.ANDROID_API, "login", "()V");
+            cc.log("Login End ANDROID==>>"+this.ANDROID_API);
         }
         else if(cc.sys.os == cc.sys.OS_IOS){
             cc.log("Login IOS==>>"+this.IOS_API);
@@ -104,12 +105,14 @@ cc.Class({
     },
 
     onLoginResp:function(code){
-        var fn = function(ret){
+        cc.log("AnysdkManager onLoginResp code===>>:"+code);
+        var fn = function(err,ret){
+            th.wc.show("正在登录游戏");
             if(ret.errcode == 0){
                 cc.sys.localStorage.setItem("wx_account",ret.account);
                 cc.sys.localStorage.setItem("wx_sign",ret.sign);
             }
-            th.userManager.onAuth(null,ret);
+            th.userManager.onAuth(err,ret);
         }
         th.http.get("/wechat_auth",{code:code,os:cc.sys.os},fn);
     },

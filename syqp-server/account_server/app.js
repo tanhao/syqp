@@ -61,6 +61,22 @@ db.init(config.mongodb(),function(err,isConnected){
 			logger.info('isSucceed:'+isSucceed);
 		})
 		*/
+		/*
+		var user={ account: 'oy4oyv4wIYhUlF9LdkaV5aUCBDbo',  name: 'Coder',
+		sex: 0,  headImgUrl: '' };;
+		db.createUser(user,function(err,isSucceed){
+			if(err){
+				logger.info(err); 
+				return ;
+			}
+			logger.info('isSucceed:'+isSucceed);
+		})
+		db.getUserNextId(function(err,data){
+			logger.info(err,data);
+		})
+		*/
+	
+	
 		
 	}
 });

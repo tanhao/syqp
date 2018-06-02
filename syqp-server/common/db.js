@@ -1,6 +1,6 @@
 const logger=require('../common/log.js').getLogger('db.js');
 const mongoose=require('mongoose');
-var {User,Room,Game}=require('./db_model.js');
+var {User,Room,Game,Counter}=require('./db_model.js');
 
 
 module.exports.init=function(config,callback){
@@ -21,6 +21,23 @@ module.exports.init=function(config,callback){
         logger.error('Mongoose connection disconnected');
         callback(null,false)
     });
+
+    //初始化玩家自增ID
+    Counter.isExist("USER_ID",function(err,isExist){
+        if(!isExist){
+            let counter=new Counter({sequenceValue:100000,sequenceName:'USER_ID'});
+            counter.save(function(err,data){
+                if(err){
+                    logger.info("init user uato sequence fail :",err);
+                }else{
+                    logger.info("init user auto sequence success start:",data.sequenceValue);
+                }
+               
+            });
+        }
+    })
+   
+    
 };
 
 //判断用户是否存在
@@ -179,5 +196,12 @@ module.exports.updateRoomSeatInfo=function(roomId,idx,userId,name,headImgUrl,sex
     let update = {$set:data};
     Room.updateOne(where,update,function(err,res){
         callback(err,err?false:true)
+    });
+}
+
+//取会员Next Sequence
+module.exports.getUserNextId=function(callback){
+    Counter.getNextSequenceValue("USER_ID",function(err,res){
+        callback(err,err?null:res.value.sequenceValue);
     });
 }

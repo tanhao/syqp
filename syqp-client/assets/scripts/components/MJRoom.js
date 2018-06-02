@@ -149,6 +149,9 @@ cc.Class({
     },
     onBtnWechatInviteClicked:function(){
         cc.log('onBtnWechatInviteClicked==>');
+        if(cc.sys.os == cc.sys.OS_ANDROID ||cc.sys.os == cc.sys.OS_IOS){
+            th.anysdkManager.shareWebpage(th.appInfo.appWeb,th.appInfo.shareTitle,th.socketIOManager.getRoomInfo(),false);
+        }
     },
 
 

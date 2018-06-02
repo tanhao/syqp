@@ -26,29 +26,33 @@ cc.Class({
     // },
 
     lingshiAuth:function(account){
-        th.http.get('/lingshi_auth',{account:account},this.onAuth);
+        var self=this;
+        th.http.get('/lingshi_auth',{account:account},self.onAuth);
     },
 
     onAuth:function(err,data){
+        th.wc.hide();
         if(err){
-            cc.log("登录错误================》");
-            cc.log(err);
+            cc.err("onAuth",err);
+            th.alert.show('提示',"验证微信错误！",null,false);
             return ;
         }
         var self = th.userManager;
         self.account = data.account;
         self.sign = data.sign;
         th.http.baseURL = 'http://'+data.hallAddr;
-
         cc.log(th.http.baseURL);
+        th.wc.show("正在获取玩家数据...");
         self.login();
     },
 
     login:function(){
         var self = this;
         var callback = function(err,data) {
+             th.wc.hide();
              if(err||data.errcode){
                  cc.log(err,data.errmsg);
+                 th.alert.show('提示',"玩家数据出错！",null,false);
                  return;
              }
              self.sex = data.sex;
@@ -58,6 +62,7 @@ cc.Class({
              self.userName = data.name;
              self.headImgUrl = data.headImgUrl;
              self.roomId = data.roomId;
+             th.wc.show("正在进入大厅...");
              cc.director.loadScene("hall",function(){
                  th.wc.hide();
              });

@@ -24,7 +24,7 @@ cc.Class({
 
         var btnShareResult = cc.find("Canvas/game_result/btn_share_result");
         if(btnShareResult){
-            th.utils.addClickEvent(btnShareResult,this.node,"MJGameResult","onBtnShareClicked");
+            th.utils.addClickEvent(btnShareResult,this.node,"MJGameResult","onBtnShareResultClicked");
         }
 
         var self=this;
@@ -94,8 +94,11 @@ cc.Class({
         th.wc.show('正在返回游戏大厅');
         cc.director.loadScene("hall");
     },
-    onBtnShareClicked:function(){
+    onBtnShareResultClicked:function(){
         cc.log("onBtnShareClicked");
+        if(cc.sys.os == cc.sys.OS_ANDROID ||cc.sys.os == cc.sys.OS_IOS){
+            th.anysdkManager.shareCaptureScreen(false);
+        }
     },
     update (dt) {
     },
