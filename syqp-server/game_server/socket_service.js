@@ -56,6 +56,7 @@ module.exports.start=function(config){
 
         for(let i=0;i<room.seats.length;i++){
             if(room.seats[i].userId!=null){
+                logger.info(userManager.isOnline(room.seats[i].userId));
                 room.seats[i].online=userManager.isOnline(room.seats[i].userId);
             }
         }
@@ -122,15 +123,27 @@ module.exports.start=function(config){
             logger.info("ready:"+userId)
             if(!userId) return;
             socket.manager.setReady(userId);
-            logger.info("ready done.");
+            //logger.info("ready done.");
             userManager.broacastInRoom('ready_push',{userId:userId,ready:true},userId,false);
             socket.emit('ready_result');
         });
-        //聊天
-		socket.on('chat',function(data){
+        //快速聊天
+		socket.on('quick_chat',function(data){
+            var userId=socket.userId;
+            if(!userId) return;
+            userManager.broacastInRoom("quick_chat_push",{userId:userId,idx:data},userId,true)
         });
         //表情
 		socket.on('emoji',function(data){
+            var userId=socket.userId;
+            if(!userId) return;
+            userManager.broacastInRoom("emoji_push",{userId:userId,idx:data},userId,true)
+        });
+         //语音表情
+		socket.on('voice',function(data){
+            var userId=socket.userId;
+            if(!userId) return;
+            userManager.broacastInRoom("voice",{userId:userId,idx,data},userId,true)
         });
         //断开链接
 		socket.on('disconnect',function(data){
@@ -140,7 +153,7 @@ module.exports.start=function(config){
             let roomId=roomManager.getUserRoomId(userId);
             if(!roomId) return;
             userManager.broacastInRoom('offline_push',{userId:userId},userId,false);
-            userManager.deleteUser[userId];
+            userManager.deleteUser(userId);
             socket.userId = null;
         });
         //ping

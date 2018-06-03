@@ -317,6 +317,13 @@ cc.Class({
             self.isRepeatLogin=true;
             self.dispatchEvent('repeat_login'); 
         });
+        th.sio.addHandler("quick_chat_push",function(data){
+            self.dispatchEvent('quick_chat_push',data); 
+        });
+        th.sio.addHandler("emoji_push",function(data){
+            self.dispatchEvent('emoji_push',data); 
+        });
+        
         
         //断线
         th.sio.addHandler("disconnect",function(data){

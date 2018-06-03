@@ -3,6 +3,7 @@ cc.Class({
 
     properties: {
         settingWin:cc.Node,
+        chatWin:cc.Node,
         lblRoomId:cc.Label,
         lblWangfa:cc.Label,
         btnMenu:cc.Button,
@@ -49,7 +50,7 @@ cc.Class({
     },
     initSingleSeat:function(seat){
         var index = th.socketIOManager.getLocalIndex(seat.index);
-        this._seats[index].setInfo(seat.userId,seat.name,seat.score,seat.headImgUrl);
+        this._seats[index].setInfo(seat.userId,seat.name,seat.score,seat.headImgUrl,seat.sex);
         this._seats[index].setFangzhu(seat.userId==th.socketIOManager.creator);
         this._seats[index].setBanker(seat.index==th.socketIOManager.bankerIndex);
         this._seats[index].setReady(seat.ready);
@@ -107,22 +108,37 @@ cc.Class({
             self.initSingleSeat(target.detail);
         })
 
-        this.node.on('begin_push',function(data){
+        this.node.on('begin_push',function(target){
             self.refreshBtns();
             self.initSeats();
-        });
+        })
+        this.node.on('quick_chat_push',function(target){
+            var seatIndex=th.socketIOManager.getSeatIndexById(target.detail.userId)
+            var index = th.socketIOManager.getLocalIndex(seatIndex);
+            var info = th.chat.getQuickChatInfo(target.detail.idx);
+            self._seats[index].setChat(info.content);
+            self._seats[index].setQuickVoice(info.sound);
+        })
+        this.node.on('emoji_push',function(target){
+            var seatIndex=th.socketIOManager.getSeatIndexById(target.detail.userId)
+            var index = th.socketIOManager.getLocalIndex(seatIndex);
+            self._seats[index].setEmoji(target.detail.idx);
+        })
     },
     onBtnDissolveRequestClicked:function(){
+        th.audioManager.playSFX("click.mp3");
         th.alert.show("申请解散房间","申请解散房间不会退换钻石，是否确定申请解散？",function(){
             th.sio.send("dissolve_request"); 
         },true)
     },
     onBtnDissolveClicked:function(){
+        th.audioManager.playSFX("click.mp3");
         th.alert.show("解散房间","解散房间不扣钻石，是否确定解散？",function(){
             th.sio.send("dissolve"); 
         },true)
     },
     onBtnLeaveClicked:function(){
+        th.audioManager.playSFX("click.mp3");
         if(th.socketIOManager.isFangzhu()){
             th.alert.show("离开房间","您是房主，不能离开房间。",function(){
                 //th.sio.send("leave"); 
@@ -134,21 +150,25 @@ cc.Class({
         },true)
     },
     onBtnSettingClicked:function(){
+        th.audioManager.playSFX("click.mp3");
         this.settingWin.active=true;
     },
+    
     onBtnChatClicked:function(){
-        //this._seats[0].setCountdown(10);
-        cc.log('onChatClicked==>');
+        th.audioManager.playSFX("click.mp3");
+        this.chatWin.active=true;
     },
+   
     onBtnVoiceClicked:function(){
+        th.audioManager.playSFX("click.mp3");
         cc.log('onVoiceClicked==>');
     },
     onBtnReadyClicked:function(){
-        cc.log('onBtnReadyClicked==>');
+        th.audioManager.playSFX("click.mp3");
         th.sio.send("ready"); 
     },
     onBtnWechatInviteClicked:function(){
-        cc.log('onBtnWechatInviteClicked==>');
+        th.audioManager.playSFX("click.mp3");
         if(cc.sys.os == cc.sys.OS_ANDROID ||cc.sys.os == cc.sys.OS_IOS){
             th.anysdkManager.shareWebpage(th.appInfo.appWeb,th.appInfo.shareTitle,th.socketIOManager.getRoomInfo(),false);
         }

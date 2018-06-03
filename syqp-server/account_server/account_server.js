@@ -43,7 +43,9 @@ app.get('/register',function(req,res){
 app.get('/server_info',function(req,res){
 	var ret = {
 		version:config.VERSION,
-        appweb:config.APP_WEB
+        appWeb:config.APP_WEB,
+        shareTitle:config.SHARE_TITLE,
+        shareDesc:config.SHARE_DESC,
 	}
 	http.send(res,0,'ok',ret);
 });

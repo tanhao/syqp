@@ -49,10 +49,12 @@ cc.Class({
     },
 
     onCancelClicked:function(){
+        th.audioManager.playSFX("click.mp3");
         this.node.active = false;
     },
 
     onConfirmClicked:function(){
+        th.audioManager.playSFX("click.mp3");
         this.node.active = false;
         if(this._fnConfirm){
             this._fnConfirm();

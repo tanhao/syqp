@@ -83,8 +83,10 @@ cc.Class({
         var myScore=data[th.socketIOManager.seatIndex].score;
         if(myScore > 0){
             this._lblWin.active = true;
+            th.audioManager.playSFX("Win.mp3");
         }else if(myScore < 0){
             this._lblLose.active = true;
+            th.audioManager.playSFX("Lose.mp3");
         }else{
             this._lblLiuju.active = true;
         }
@@ -310,6 +312,7 @@ cc.Class({
         }
     },
     onBtnReadyClicked:function(){
+        th.audioManager.playSFX("click.mp3");
         cc.log("onBtnReadyClicked");
         if(this._isGameEnd){
             this._nodeGameResult.active=true;

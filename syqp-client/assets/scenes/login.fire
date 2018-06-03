@@ -163,7 +163,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1280,
+      "width": 1355,
       "height": 720
     },
     "_rotationX": 0,
@@ -191,7 +191,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "d1322211-d4cf-4192-8da2-2f9b3b7f6b35"
+      "__uuid__": "42408ed8-c7b5-4c22-bbc7-67ef4360a424"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -563,7 +563,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "AppStart",
+    "component": "Login",
     "handler": "onBtnWeichatClicked",
     "customEventData": "oy4oyvy09TL3NWxfjIZDfol2VyWo"
   },
@@ -709,7 +709,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "AppStart",
+    "component": "Login",
     "handler": "onBtnWeichatClicked",
     "customEventData": "oy4oyv4IBaxtkPjSq9ee4w42QazA"
   },
@@ -855,7 +855,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "AppStart",
+    "component": "Login",
     "handler": "onBtnWeichatClicked",
     "customEventData": "oy4oyv2OEKXgM-3y3fz7lBLzsxkU"
   },
@@ -1001,7 +1001,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "AppStart",
+    "component": "Login",
     "handler": "onBtnWeichatClicked",
     "customEventData": "oy4oyv9wH0GfiXaL52bogr3wFVJI"
   },
@@ -1147,7 +1147,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "AppStart",
+    "component": "Login",
     "handler": "onBtnWeichatClicked",
     "customEventData": ""
   },
@@ -1514,7 +1514,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "AppStart",
+    "component": "Login",
     "handler": "onBtnAgreeClicked",
     "customEventData": ""
   },
@@ -3344,7 +3344,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "AppStart",
+    "component": "Login",
     "handler": "onBtnShareFirendClicked",
     "customEventData": ""
   },
@@ -3490,7 +3490,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "AppStart",
+    "component": "Login",
     "handler": "onBtnShareWechatClicked",
     "customEventData": ""
   },
@@ -3636,7 +3636,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "AppStart",
+    "component": "Login",
     "handler": "onBtnShareImgFirendClicked",
     "customEventData": ""
   },
@@ -3782,7 +3782,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "AppStart",
+    "component": "Login",
     "handler": "onBtnShareImgWechatClicked",
     "customEventData": ""
   },
@@ -3803,7 +3803,7 @@
     "_fitHeight": true
   },
   {
-    "__type__": "5414cTJwbRHg5YZplKYF1DZ",
+    "__type__": "3f691RkHCFNPI5D+FT0oqxA",
     "_name": "",
     "_objFlags": 0,
     "node": {

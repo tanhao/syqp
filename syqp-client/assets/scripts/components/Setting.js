@@ -30,6 +30,7 @@ cc.Class({
     },
 
     onCloseClicked:function(){
+        th.audioManager.playSFX("click.mp3");
         this.node.active = false;
     },
 

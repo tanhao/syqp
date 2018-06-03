@@ -22,18 +22,21 @@ cc.Class({
     },
 
     onResetClicked:function(){
+        th.audioManager.playSFX("click.mp3");
         for(var i = 0; i < this.nums.length; ++i){
             this.nums[i].string = "";
         }
         this._inputIndex = 0;
     },
     onDelClicked:function(){
+        th.audioManager.playSFX("click.mp3");
         if(this._inputIndex > 0){
             this._inputIndex -= 1;
             this.nums[this._inputIndex].string = "";
         }
     },
     onCloseClicked:function(){
+        th.audioManager.playSFX("click.mp3");
         this.node.active = false;
     },
 
@@ -47,6 +50,7 @@ cc.Class({
     },
 
     onInput:function(target,num){
+        th.audioManager.playSFX("click.mp3");
         if(this._inputIndex >= this.nums.length){
             return;
         }

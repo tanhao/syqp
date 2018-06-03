@@ -90,12 +90,12 @@ cc.Class({
         }
     },
     onBtnBackHallClicked:function(){
-        cc.log("onBtnBackHallClicked");
+        th.audioManager.playSFX("click.mp3");
         th.wc.show('正在返回游戏大厅');
         cc.director.loadScene("hall");
     },
     onBtnShareResultClicked:function(){
-        cc.log("onBtnShareClicked");
+        th.audioManager.playSFX("click.mp3");
         if(cc.sys.os == cc.sys.OS_ANDROID ||cc.sys.os == cc.sys.OS_IOS){
             th.anysdkManager.shareCaptureScreen(false);
         }

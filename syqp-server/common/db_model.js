@@ -8,7 +8,8 @@ var UserSchema=new Schema({
     name: {type:String,required:true},
     sex: {type:Number},
     headImgUrl: {type:String},
-    balance: {type:Number,min:0,default:0},
+    gems: {type:Number,min:0,default:0},
+    coins: {type:Number,min:0,default:0},
     roomId: {type:Number},
     history: { type:Array }
 },{

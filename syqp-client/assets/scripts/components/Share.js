@@ -20,14 +20,17 @@ cc.Class({
     // },
 
     onShareFriendClicked : function(){
+        th.audioManager.playSFX("click.mp3");
         this.node.active = false;
         th.anysdkManager.shareWebpage(th.appInfo.appWeb,th.appInfo.shareTitle,th.appInfo.shareDesc,false);
     },
     onShareWechatClicked : function(){
+        th.audioManager.playSFX("click.mp3");
         this.node.active = false;
         th.anysdkManager.shareWebpage(th.appInfo.appWeb,th.appInfo.shareTitle,th.appInfo.shareDesc,true);
     },
     onShareCloseClicked : function(){
+        th.audioManager.playSFX("click.mp3");
         cc.log("onShareCloseClicked");
         this.node.active = false;
     },

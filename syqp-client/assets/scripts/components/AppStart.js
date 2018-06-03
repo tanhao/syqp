@@ -1,26 +1,15 @@
 function initManager(I){
-    var defaultBaseUrl="http://192.168.88.60:9001";
-    //var defaultBaseUrl="http://127.0.0.1:9001";
-    //var defaultBaseUrl="http://114.112.240.48:9001";
-    window.th=window.th;
-    if(window.th){ 
-        th.http.baseURL=defaultBaseUrl;
-        return;
-    }
+    
 
-  
+    window.th=window.th || {};
+    th.appInfo={}
 
-    window.th={};
-    th.appInfo={
-        appName:"同城棋牌",
-        appWeb:"http://fir.im/9r48",
-        shareTitle:"同城棋牌--掌上棋牌室",
-        shareDesc:"【同城棋牌】最地道的松阳麻将,爱麻将的人都在玩。"
-    }
-
+    //th.defaultBaseUrl="http://192.168.88.60:9001";
+    th.defaultBaseUrl="http://127.0.0.1:9001";
+    //th.defaultBaseUrl="http://114.112.240.48:9001";
 
     th.http=require("Http");
-    th.http.baseURL=defaultBaseUrl;
+    th.http.baseURL=th.defaultBaseUrl;
     th.sio=require("SocketIO");
     th.sio.h
 
@@ -48,7 +37,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-       _isAgree:false
+       lblLoadingMsg:cc.Label
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -56,55 +45,65 @@ cc.Class({
     onLoad () {
         cc.log("================>>initManager<<=====================");
         initManager();
-        //cc.log('onLoad'); 
-        if(cc.sys.os == cc.sys.OS_ANDROID ||cc.sys.os == cc.sys.OS_IOS){
-            console.log( this.node.getChildByName("web_btns"))
-            this.node.getChildByName("web_btns").active=false;
-            this.node.getChildByName("btn_weixin").getComponent(cc.Button).node.active=true;
-        }else{
-            console.log( this.node.getChildByName("web_btns"))
-            this.node.getChildByName("web_btns").active=true;
-            this.node.getChildByName("btn_weixin").getComponent(cc.Button).node.active=false;
-        }
-    },
-
-    start () {
-        //cc.log("start");
-    },
-
-    onBtnWeichatClicked:function(target,account){
-        if(this._isAgree){
-            cc.log("onBtnWeichatClicked");
-            //th.wc.show("正在登录游戏");
-            if(cc.sys.os == cc.sys.OS_ANDROID ||cc.sys.os == cc.sys.OS_IOS){
-                th.anysdkManager.login();
-            }else{
-                th.userManager.lingshiAuth(account);
-            }
-        }
-
         
+        var url = cc.url.raw('resources/ver/cv.txt');
+        cc.loader.load(url,function(err,data){
+            cc.VERSION = data;
+            cc.log('current core version:' + cc.VERSION);
+            this.getServerInfo();
+        }.bind(this));
     },
 
-    onBtnAgreeClicked:function(target){
-        this._isAgree=target.isChecked;
-    },
 
-    onBtnShareFirendClicked:function(target){
-        th.anysdkManager.shareWebpage("http://fir.im/9r48","同城棋牌--掌上棋牌室","【同城棋牌】最地道的松阳麻将,爱麻将的人都在玩。",false);
-    },
-    onBtnShareWechatClicked:function(target){
-        th.anysdkManager.shareWebpage("http://fir.im/9r48","同城棋牌--掌上棋牌室","【同城棋牌】最地道的松阳麻将,爱麻将的人都在玩。",true);
+
+    onBtnDownloadClicked:function(){
+        cc.sys.openURL(th.appInfo.appWeb);
     },
     
-    onBtnShareImgFirendClicked:function(target){
-        th.anysdkManager.shareCaptureScreen(false);
+    getServerInfo:function(){
+        var self = this;
+        var onGetVersion = function(data){
+            th.appInfo= data;
+            cc.log("AppInfo:",th.appInfo);
+            if(data.version != cc.VERSION){
+                cc.find("Canvas/alert").active = true;
+            } else{
+                cc.director.loadScene("login");
+            }
+        };
+        
+        var xhr = null;
+        var complete = false;
+        var fnRequest = function(){
+            self.lblLoadingMsg.string = "正在连接服务器...";
+            xhr = th.http.get("/server_info",null,function(err,data){
+                if(!err){
+                    self.lblLoadingMsg.string="";
+                    xhr = null;
+                    complete = true;
+                    onGetVersion(data);
+                }
+            });
+            setTimeout(fn,5000);            
+        }
+        
+        var fn = function(){
+            if(!complete){
+                if(xhr){
+                    xhr.abort();
+                    self.lblLoadingMsg.string = "连接失败，即将重试";
+                    setTimeout(function(){
+                        fnRequest();
+                    },5000);
+                }else{
+                    fnRequest();
+                }
+            }
+        };
+        fn();
     },
-    onBtnShareImgWechatClicked:function(target){
-        th.anysdkManager.shareCaptureScreen(true);
-    },
-
     
-
+    
+    //start () {},
     // update (dt) {},
 });

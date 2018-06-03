@@ -43,10 +43,12 @@ cc.Class({
     },
 
     onCloseClicked:function(){
+        th.audioManager.playSFX("click.mp3");
         this.node.active = false;
     },
 
     onPeopleClicked:function(target,people){
+        th.audioManager.playSFX("click.mp3");
         this.people = people;
         if(this.people==4){
             this.lbl8Round.string="x4";
@@ -61,30 +63,37 @@ cc.Class({
     },
 
     onRoundClicked:function(target,round){
+        th.audioManager.playSFX("click.mp3");
         this.round =parseInt(round);
     },
 
     onPaymentClicked:function(target,payment){
+        th.audioManager.playSFX("click.mp3");
         this.payment=payment;
     },
 
     onDifenClicked:function(target,difen){
+        th.audioManager.playSFX("click.mp3");
         this.difen=difen;
     },
 
     onZuozhuangClicked:function(target,zuozhuang){
+        th.audioManager.playSFX("click.mp3");
         this.zuozhuang=zuozhuang;
     },
 
     onFengdingClicked:function(target,fengding){
+        th.audioManager.playSFX("click.mp3");
         this.fengding=fengding;
     },
 
     onCtdsqClicked:function(target){
+        th.audioManager.playSFX("click.mp3");
         this.ctdsq=target.isChecked;
     },
 
     onCreateClicked:function(target){
+        th.audioManager.playSFX("click.mp3");
         this.node.active=false;
         var config={
             people:this.people,

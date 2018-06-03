@@ -64,6 +64,7 @@ cc.Class({
     // },
 
     onCreateRoomClicked : function(){
+        th.audioManager.playSFX("click.mp3");
         if(th.userManager.roomId){
             th.alert.show("提示","你已在房间中，是否返回游戏房间？",this.onReturnRoomClicked,true);
             return;
@@ -72,10 +73,12 @@ cc.Class({
     },
 
     onJoinRoomClicked : function(){
+        th.audioManager.playSFX("click.mp3");
         this.joinRoomWin.active=true;
     },
 
     onReturnRoomClicked : function(){
+        th.audioManager.playSFX("click.mp3");
         th.wc.show('正在返回游戏房间');
         th.userManager.joinRoom(th.userManager.roomId, function(data){
             if(data.errcode!=0){
@@ -87,14 +90,17 @@ cc.Class({
     },
 
     onLogoutClicked : function(){
+        th.audioManager.playSFX("click.mp3");
         th.wc.show('正在退出游戏房间');
-       th.userManager.logout();
+        th.userManager.logout();
     },
 
     onSettingClicked : function(){
+        th.audioManager.playSFX("click.mp3");
         this.settingWin.active=true;
     },
     onShareClicked : function(){
+        th.audioManager.playSFX("click.mp3");
         if(cc.sys.os == cc.sys.OS_ANDROID ||cc.sys.os == cc.sys.OS_IOS){
             this.shareWin.active=true;
         }

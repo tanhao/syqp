@@ -152,22 +152,41 @@ cc.Class({
             this.emoji.node.active=false;
             this.chat.node.active = true;
             this.chat.getComponent(cc.Label).string = content;
-            this.chat.getChildByName("chat_msg").getComponent(cc.Label).string = content;
-            this._lastChatTime = 3;
+            this.chat.node.getChildByName("chat_msg").getComponent(cc.Label).string = content;
+            this._lastChatTime = 2;
         }
     },
 
-    setEmoji:function(emoji){
+    setQuickVoice:function(fileName){
+        if(this._sex==1){
+            th.audioManager.playSFX("chat/man/Speak/M_"+fileName);
+        }else{
+            th.audioManager.playSFX("chat/women/Speak/W_"+fileName);
+        }
+    },
+
+    setEmoji:function(idx){
         if(this.emoji){
             this.chat.node.active = false;
             this.emoji.node.active=true;
+            var texture =cc.textureCache.addImage(cc.url.raw("resources/images/emoji/emoji"+idx+".png"));
+            //cc.log(texture);
+            //cc.log(this.emoji.node.getComponent(cc.Sprite));
+            //cc.log(this.emoji.spriteFrame);
+            this.emoji.node.getComponent(cc.Sprite).spriteFrame.setTexture(texture);
+            /*
+            cc.loader.loadRes("emoji"+idx,cc.SpriteFrame,function (err,spriteFrame) {
+                this.emoji.node.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+            }.bind(this));
+            */
             this._lastChatTime = 3;
         }
     },
 
 
-    setInfo:function(id,name,score,headImgUrl){
+    setInfo:function(id,name,score,headImgUrl,sex){
         this.setUserID(id);
+        this._sex=sex;
         if(id){
             this.setUserName(name);
             this.setScore(score);

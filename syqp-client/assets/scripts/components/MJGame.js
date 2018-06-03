@@ -371,7 +371,7 @@ cc.Class({
             //cc.log("cc.Node.EventType.TOUCH_END, Y:",event.getLocationY());
             this.chupaidian.node.active=false;
             node.opacity = 255;
-            if (event.getLocationY() >= 200) {
+            if (event.getLocationY() >= 100) {
                 cc.log("chupai :",node.mjid);
                 this.shoot(node.mjid);
             }
@@ -384,7 +384,7 @@ cc.Class({
                 return;
             }
             //cc.log("cc.Node.EventType.TOUCH_CANCEL, Y:",event.getLocationY());
-            if (event.getLocationY() >= 200) {
+            if (event.getLocationY() >= 100) {
                 this.chupaidian.node.active=false;
                 node.opacity = 255;
                 cc.log("chupai :",node.mjid);
@@ -470,6 +470,7 @@ cc.Class({
 
     },
     onMJClicked:function(event){
+        th.audioManager.playSFX("click.mp3");
         if(th.socketIOManager.turn != th.socketIOManager.seatIndex){
             return;
         }
@@ -493,6 +494,7 @@ cc.Class({
         }
     },
     onOptionClicked:function(event){
+        th.audioManager.playSFX("click.mp3");
         if(event.target.name == "btnPeng"){
             th.sio.send("peng");
         }else if(event.target.name == "btnGang"){

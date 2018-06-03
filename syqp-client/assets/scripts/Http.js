@@ -29,6 +29,7 @@ var Http=cc.Class({
                 }
             };
             xhr.send();
+            return xhr;
         },
         post:function(path,params,callback){
             var xhr = cc.loader.getXMLHttpRequest();
@@ -45,6 +46,7 @@ var Http=cc.Class({
                 }
             }
            xhr.send(params);
+           return xhr;
         }
 
     }
