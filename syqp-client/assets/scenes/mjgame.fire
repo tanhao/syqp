@@ -2848,8 +2848,8 @@
     },
     "_rotationX": 0,
     "_rotationY": 0,
-    "_scaleX": 0.6,
-    "_scaleY": 0.6,
+    "_scaleX": 0.7,
+    "_scaleY": 0.7,
     "_position": {
       "__type__": "cc.Vec2",
       "x": -199.2,
@@ -2921,8 +2921,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 46.75,
-      "height": 13.75
+      "width": 59.5,
+      "height": 17.5
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2930,7 +2930,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -143.9,
+      "x": -128,
       "y": 1
     },
     "_skewX": 0,
@@ -2949,8 +2949,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 22,
-    "_fontSize": 22,
+    "_actualFontSize": 28,
+    "_fontSize": 28,
     "_lineHeight": 20,
     "_enableWrapText": true,
     "_N$file": {
@@ -17111,7 +17111,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -401,
+      "x": 380,
       "y": -136
     },
     "_skewX": 0,
@@ -32383,8 +32383,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 566,
-      "y": -60
+      "x": 580,
+      "y": 98
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -75371,6 +75371,12 @@
     },
     "musicSlider": {
       "__id__": 2093
+    },
+    "effectProgressBar": {
+      "__id__": 2064
+    },
+    "musicProgressBar": {
+      "__id__": 2087
     }
   },
   {
@@ -77130,7 +77136,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 2157
@@ -77308,7 +77314,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": -17
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -77417,7 +77423,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": -17
     },
     "_skewX": 0,
     "_skewY": 0,

@@ -90,6 +90,8 @@ cc.Class({
     },
 
     onLogoutClicked : function(){
+        cc.sys.localStorage.removeItem("wx_account");
+        cc.sys.localStorage.removeItem("wx_sign");
         th.audioManager.playSFX("click.mp3");
         th.wc.show('正在退出游戏房间');
         th.userManager.logout();

@@ -3,7 +3,9 @@ cc.Class({
 
     properties: {
         effectSlider:cc.Slider,
-        musicSlider:cc.Slider 
+        musicSlider:cc.Slider,
+        effectProgressBar:cc.ProgressBar,
+        musicProgressBar:cc.ProgressBar,
     },
 
     onLoad: function () {
@@ -20,11 +22,13 @@ cc.Class({
         if(bgm){
             th.audioManager.setBGMVolume(parseFloat(bgm));    
             this.musicSlider.progress=parseFloat(bgm);
+            this.musicProgressBar.progress=parseFloat(bgm);
         }
         var sfx = cc.sys.localStorage.getItem("sfxVolume");
         if(sfx){
             th.audioManager.setSFXVolume(parseFloat(sfx));    
             this.effectSlider.progress=parseFloat(sfx);
+            this.effectProgressBar.progress=parseFloat(sfx);
         }
         cc.log("bgm:",bgm,"sfx:",sfx);
     },
@@ -36,10 +40,12 @@ cc.Class({
 
     onEffectSlide:function(target){
         th.audioManager.setSFXVolume(target.progress);
+        this.effectProgressBar.progress=target.progress;
     },
 
     onMusicSlide:function(target){
         th.audioManager.setBGMVolume(target.progress);
+        this.musicProgressBar.progress=target.progress;
     },
 
 });

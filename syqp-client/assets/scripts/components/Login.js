@@ -8,7 +8,6 @@ cc.Class({
     onLoad () {
       
         th.http.baseURL=th.defaultBaseUrl;
-
         if(cc.sys.os == cc.sys.OS_ANDROID ||cc.sys.os == cc.sys.OS_IOS){
             console.log( this.node.getChildByName("web_btns"))
             this.node.getChildByName("web_btns").active=false;
@@ -17,6 +16,20 @@ cc.Class({
             console.log( this.node.getChildByName("web_btns"))
             this.node.getChildByName("web_btns").active=true;
             this.node.getChildByName("btn_weixin").getComponent(cc.Button).node.active=false;
+        }
+    },
+
+    start(){
+        var account=cc.sys.localStorage.getItem("wx_account");
+        var sign=cc.sys.localStorage.getItem("wx_sign");
+        cc.log("login start  account:"+account+" sign:"+sign);
+        if(account!=null && sign!= null && account!="" && sign!=""){
+            th.wc.show("正在登录游戏");
+            var data={
+                account:account,
+                sign:sign
+            }
+            th.userManager.onAuth(null,data);
         }
     },
 

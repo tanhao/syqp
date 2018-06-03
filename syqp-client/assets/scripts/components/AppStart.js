@@ -1,4 +1,4 @@
-function initManager(I){
+function initManager(){
     
 
     window.th=window.th || {};
@@ -11,7 +11,6 @@ function initManager(I){
     th.http=require("Http");
     th.http.baseURL=th.defaultBaseUrl;
     th.sio=require("SocketIO");
-    th.sio.h
 
     var UserManager=require("UserManager");
     th.userManager=new UserManager();

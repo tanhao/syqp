@@ -20338,7 +20338,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "btn_share_friend",
+    "_name": "btn_share_timeline",
     "_objFlags": 0,
     "_parent": {
       "__id__": 497
@@ -20491,12 +20491,12 @@
       "__id__": 497
     },
     "component": "Share",
-    "handler": "onShareFriendClicked",
+    "handler": "onShareTimelineClicked",
     "customEventData": ""
   },
   {
     "__type__": "cc.Node",
-    "_name": "btn_share_wechat",
+    "_name": "btn_share_session",
     "_objFlags": 0,
     "_parent": {
       "__id__": 497
@@ -20649,7 +20649,7 @@
       "__id__": 497
     },
     "component": "Share",
-    "handler": "onShareWechatClicked",
+    "handler": "onShareSessionClicked",
     "customEventData": ""
   },
   {
@@ -23138,6 +23138,12 @@
     },
     "musicSlider": {
       "__id__": 578
+    },
+    "effectProgressBar": {
+      "__id__": 549
+    },
+    "musicProgressBar": {
+      "__id__": 572
     }
   },
   {

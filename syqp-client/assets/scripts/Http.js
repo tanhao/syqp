@@ -16,6 +16,7 @@ var Http=cc.Class({
             }
 
             var requestUrl=Http.baseURL+path+encodeURI(paramsStr);
+            cc.log("==>>"+requestUrl+"<<==");
             xhr.open("GET",requestUrl,true);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {

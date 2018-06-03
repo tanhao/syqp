@@ -40,7 +40,7 @@ cc.Class({
         var self = th.userManager;
         self.account = data.account;
         self.sign = data.sign;
-        th.http.baseURL = 'http://'+data.hallAddr;
+        th.http.baseURL = 'http://'+th.appInfo.hallAddr;
         cc.log(th.http.baseURL);
         th.wc.show("正在获取玩家数据...");
         self.login();

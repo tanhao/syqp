@@ -19,12 +19,12 @@ cc.Class({
 
     // },
 
-    onShareFriendClicked : function(){
+    onShareSessionClicked : function(){
         th.audioManager.playSFX("click.mp3");
         this.node.active = false;
         th.anysdkManager.shareWebpage(th.appInfo.appWeb,th.appInfo.shareTitle,th.appInfo.shareDesc,false);
     },
-    onShareWechatClicked : function(){
+    onShareTimelineClicked : function(){
         th.audioManager.playSFX("click.mp3");
         this.node.active = false;
         th.anysdkManager.shareWebpage(th.appInfo.appWeb,th.appInfo.shareTitle,th.appInfo.shareDesc,true);

@@ -46,6 +46,7 @@ app.get('/server_info',function(req,res){
         appWeb:config.APP_WEB,
         shareTitle:config.SHARE_TITLE,
         shareDesc:config.SHARE_DESC,
+        hallAddr:config.HALL_IP + ':' + config.HALL_CLIENT_PORT
 	}
 	http.send(res,0,'ok',ret);
 });
@@ -95,15 +96,9 @@ app.get('/wechat_auth',function(req,res){
         })
     }
 
-    function getUserId(obj,callback){
-        db.getUserNextId(function(err,userId){
-            callback(err,userId,obj);
-        });
-    }
     
-    function createOrUpdateUser(userId,obj,callback){
+    function createOrUpdateUser(obj,callback){
         var user={
-            id:userId,
             account: "wx_"+obj.openid,
             name: obj.nickname,
             sex: obj.sex,
@@ -116,9 +111,13 @@ app.get('/wechat_auth',function(req,res){
                     callback(err,user);
                });
              }else{
-                user.gems=config.REGISTER_BONUS;
-                db.createUser(user,function(err,user){
-                     callback(err,user);
+                db.getUserNextId(function(err,userId){
+                    if(err){return callback(err,null)};
+                    user.id=userId;
+                    user.gems=config.REGISTER_BONUS;
+                    db.createUser(user,function(err,user){
+                         callback(err,user);
+                    });
                 });
              }
         })
@@ -127,7 +126,6 @@ app.get('/wechat_auth',function(req,res){
     waterfall([
         getAccessToken,
         getUserInfo,
-        getUserId,
         createOrUpdateUser,
     ], function (err, result) {
         if(err){
