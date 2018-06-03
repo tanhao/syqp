@@ -13,9 +13,9 @@ cc.Class({
             return;
         }
         th.chat = this;
-        
-        this._quickChatInfo = {};
+        this.node.active=false;
 
+        this._quickChatInfo = {};
         this._quickChatInfo["item1"] = {index:1,content:"打块点",sound:"Speak1.mp3"};
         this._quickChatInfo["item2"] = {index:2,content:"真会碰",sound:"Speak2.mp3"};
         this._quickChatInfo["item3"] = {index:3,content:"不搭牌",sound:"Speak3.mp3"};

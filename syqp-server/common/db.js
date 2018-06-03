@@ -81,7 +81,7 @@ module.exports.getRoomIdOfUser=function(userId,callback){
         callback(err,user && user.roomId);
     });
 }
-//根据用户ID取账号余额
+//根据用户ID取账号宝石
 module.exports.getGemsOfUser=function(userId,callback){
     User.findOne({id:userId},{__v:0},function(err,user){
         callback(err,user && user.gems || 0);

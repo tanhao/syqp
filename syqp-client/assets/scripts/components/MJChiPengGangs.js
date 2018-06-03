@@ -17,24 +17,24 @@ cc.Class({
         nodeChiPengGang.scaleX *= scale;
         nodeChiPengGang.scaleY *= scale;
 
-        this.node.on('chi_notify_push',function(data){
-            cc.log("==>ChiPengGang chi_notify_push",data.detail);
-            var data = data.detail;
+        this.node.on('chi_notify_push',function(event){
+            cc.log("==>ChiPengGang chi_notify_push",event.detail);
+            var data = event.detail;
             self.onChiPengGangChanged(data);
         });
 
-        this.node.on('peng_notify_push',function(data){
-            cc.log("==>ChiPengGang peng_notify_push",data.detail);
-            var data = data.detail;
+        this.node.on('peng_notify_push',function(event){
+            cc.log("==>ChiPengGang peng_notify_push",event.detail);
+            var data = event.detail;
             self.onChiPengGangChanged(data);
         });
         
-        this.node.on('gang_notify_push',function(data){
-            cc.log("==>ChiPengGang gang_notify_push",data.detail);
-            self.onChiPengGangChanged(data.detail);
+        this.node.on('gang_notify_push',function(event){
+            cc.log("==>ChiPengGang gang_notify_push",event.detail);
+            self.onChiPengGangChanged(event.detail);
         });
 
-        this.node.on('begin_push',function(data){
+        this.node.on('begin_push',function(event){
             self.onGameBegin();
         });
 

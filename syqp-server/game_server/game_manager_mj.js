@@ -6,6 +6,7 @@ const db=require('../common/db.js');
 
 var games = {};
 var SEAT_DATE_MAP={};   //KEY=userId
+var dissolvingList = []; //正在解散中的房间ID集合
 
 var ACTION_CHUPAI   = 1;
 var ACTION_MOPAI    = 2;
@@ -31,6 +32,7 @@ var HU_GANG_HUA=2;
 var HU_ZIMO=3;
 
 const BAI_BANG_INDEX=33
+
 
 
 //开房间时验证配置
@@ -1856,3 +1858,65 @@ module.exports.chupai=function(userId,pai){
         },500);
     }
 } 
+
+//申请解散
+module.exports.dissolveRequest = function(roomId,userId){
+    let room=roomManager.getRoom(roomId);
+    if(room == null){return;}
+    //已经有人申请
+    if(room.dr!=null){return null;}
+    let seatIndex=roomManager.getUserSeatIndex(userId);
+    if(seatIndex == null){return null;}
+    room.dr = {
+        endTime:Date.now() + 30000,
+        states:new Array(room.seats.length).fill(false)
+    };
+    room.dr.states[seatIndex] = true;
+    dissolvingList.push(roomId);
+    return room;
+}
+//是否同意解散
+module.exports.dissolveAgree = function(roomId,userId,agree){
+    let room=roomManager.getRoom(roomId);
+    if(room == null){return;}
+    if(room.dr==null){return null;}
+    let seatIndex=roomManager.getUserSeatIndex(userId);
+    if(seatIndex == null){return null;}
+    if(agree){
+        room.dr.states[seatIndex] = true;
+    }else{
+        room.dr = null;
+        var idx = dissolvingList.indexOf(roomId);
+        if(idx != -1){
+            dissolvingList.splice(idx,1);           
+        }
+    }
+    return room;
+}
+//解散
+module.exports.doDissolve = function(roomId){
+    let room=roomManager.getRoom(roomId);
+    if(room == null){return;}
+    var game = games[roomId];
+    doGameOver(game,room.seats[0].userId,true);
+}
+
+
+function update() {
+    for(var i = dissolvingList.length - 1; i >= 0; --i){
+        var roomId = dissolvingList[i];
+        
+        var room = roomManager.getRoom(roomId);
+        if(room != null && room.dr != null){
+            if(Date.now() > room.dr.endTime){
+                console.log("delete room and games");
+                module.exports.doDissolve(roomId);
+                dissolvingList.splice(i,1); 
+            }
+        }else{
+            dissolvingList.splice(i,1);
+        }
+    }
+}
+
+setInterval(update,1000);

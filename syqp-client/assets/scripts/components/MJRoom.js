@@ -4,6 +4,7 @@ cc.Class({
     properties: {
         settingWin:cc.Node,
         chatWin:cc.Node,
+        dissolveWin:cc.Node,
         lblRoomId:cc.Label,
         lblWangfa:cc.Label,
         btnMenu:cc.Button,
@@ -126,9 +127,12 @@ cc.Class({
         })
     },
     onBtnDissolveRequestClicked:function(){
+        var self=this;
+        this.settingWin.active=false;
         th.audioManager.playSFX("click.mp3");
         th.alert.show("申请解散房间","申请解散房间不会退换钻石，是否确定申请解散？",function(){
             th.sio.send("dissolve_request"); 
+            self.dissolveWin.active=false;
         },true)
     },
     onBtnDissolveClicked:function(){

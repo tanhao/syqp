@@ -56,7 +56,6 @@ module.exports.start=function(config){
 
         for(let i=0;i<room.seats.length;i++){
             if(room.seats[i].userId!=null){
-                logger.info(userManager.isOnline(room.seats[i].userId));
                 room.seats[i].online=userManager.isOnline(room.seats[i].userId);
             }
         }
@@ -117,10 +116,67 @@ module.exports.start=function(config){
             roomManager.destroyRoom(roomId);
             socket.disconnect();
         });
+        //游戏已经开始申请解散房间
+		socket.on('dissolve_request',function(data){
+            var userId=socket.userId;
+            if(!userId) return;
+            var roomId=roomManager.getUserRoomId(userId);
+            if(!roomId) return;
+            //如果游戏未开始，则不可以
+            if(!socket.manager.isBegin(roomId)) return;
+            var ret = socket.manager.dissolveRequest(roomId,userId);
+            logger.info("dissolve_request:",ret.dr);
+			if(ret != null){
+				var dr = ret.dr;
+				var ramaingTime = (dr.endTime - Date.now()) / 1000;
+				var data = {
+					time:ramaingTime,
+					states:dr.states
+				}
+				userManager.broacastInRoom('dissolve_notice_push',data,userId,true);
+			}
+        });
+        socket.on('dissolve_agree',function(data){
+            var userId=socket.userId;
+            if(!userId) return;
+            var roomId=roomManager.getUserRoomId(userId);
+            if(!roomId) return;
+            var ret = socket.manager.dissolveAgree(roomId,userId,true);
+            logger.info("dissolve_agree:",ret.dr);
+			if(ret != null){
+                var dr = ret.dr;
+				var ramaingTime = (dr.endTime - Date.now()) / 1000;
+				var data = {
+					time:ramaingTime,
+					states:dr.states
+				}
+				userManager.broacastInRoom('dissolve_notice_push',data,userId,true);
+                var doAllAgree = true;
+                for(var i = 0; i < dr.states.length; ++i){
+					if(dr.states[i] == false){
+						doAllAgree = false;
+						break;
+					}
+                }
+                if(doAllAgree){
+					socket.manager.doDissolve(roomId);					
+				}
+            }
+        });
+        socket.on('dissolve_reject',function(data){
+            var userId=socket.userId;
+            if(!userId) return;
+            var roomId=roomManager.getUserRoomId(userId);
+            if(!roomId) return;
+            var ret = socket.manager.dissolveAgree(roomId,userId,false);
+			if(ret != null){
+				userManager.broacastInRoom('dissolve_cancel_push',{},userId,true);
+			}
+        });
         //准备
         socket.on('ready',function(data){
             var userId=socket.userId;
-            logger.info("ready:"+userId)
+            logger.info(userId+" ready:"+userId)
             if(!userId) return;
             socket.manager.setReady(userId);
             //logger.info("ready done.");

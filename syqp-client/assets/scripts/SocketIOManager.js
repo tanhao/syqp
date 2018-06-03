@@ -19,6 +19,7 @@ cc.Class({
         status:'idle',         //状态  idle,beging
         actions:null,          //玩家可以做操作
         isOver:false,
+        dissolveData:null,      //解散房间信息
     },
     onLoad () {
     },
@@ -150,6 +151,17 @@ cc.Class({
             self.resetGame();
             cc.log("==>SocketIOManager dissolve_push:",JSON.stringify(data));
         });
+
+        th.sio.addHandler("dissolve_notice_push",function(data){
+            self.dissolveData = data;
+            self.dispatchEvent("dissolve_notice_push",data);
+        });
+        th.sio.addHandler("dissolve_cancel_push",function(data){
+            self.dissolveData = null;
+            self.dispatchEvent("dissolve_cancel_push",data);
+        });
+
+
         //其他玩家断线
         th.sio.addHandler("offline_push",function(data){
             cc.log("==>SocketIOManager offline_push:",JSON.stringify(data));
@@ -537,6 +549,7 @@ cc.Class({
         return seat.ready;
     },
     connectServer:function(data){
+        this.dissolveData = null;
         var self=this;
         var onConnectSuccess=function(){
             cc.director.loadScene("mjgame",function(){

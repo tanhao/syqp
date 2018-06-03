@@ -24,6 +24,7 @@ cc.Class({
         this.addComponent("MJGameOver");
         this.addComponent("MJGameResult");
         this.addComponent("MJReConnect");
+        this.addComponent("Dissolve");
         this.initView();
         this.initEventHandlers();
 
