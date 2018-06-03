@@ -7,7 +7,7 @@ cc.Class({
         account:null,
         sex:null,
         headImgUrl:null,
-        balance:0,
+        gems:0,
         ip:null,
         sign:null,
 
@@ -58,7 +58,7 @@ cc.Class({
              self.sex = data.sex;
              self.userId = data.id;
              self.account = data.account;
-             self.balance = data.balance;
+             self.gems = data.gems;
              self.userName = data.name;
              self.headImgUrl = data.headImgUrl;
              self.roomId = data.roomId;
@@ -77,7 +77,7 @@ cc.Class({
             self.sex = null;
             self.userId = null;
             self.account = null;
-            self.balance = null;
+            self.gems = null;
             self.userName = null;
             self.headImgUrl = null;
             self.roomId = null;

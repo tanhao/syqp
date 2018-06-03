@@ -2061,7 +2061,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "lblBalance",
+    "_name": "lblGems",
     "_objFlags": 0,
     "_parent": {
       "__id__": 28
@@ -24856,7 +24856,7 @@
     "lblName": {
       "__id__": 40
     },
-    "lblBalance": {
+    "lblGems": {
       "__id__": 51
     },
     "lblMarquee": {

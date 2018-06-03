@@ -116,7 +116,7 @@ app.get('/wechat_auth',function(req,res){
                     callback(err,user);
                });
              }else{
-                user.balance=config.REGISTER_BONUS;
+                user.gems=config.REGISTER_BONUS;
                 db.createUser(user,function(err,user){
                      callback(err,user);
                 });

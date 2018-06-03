@@ -40,7 +40,7 @@ db.init(config.mongodb(),function(err,isConnected){
 			account:'oy4oyv4IBaxtkPjSq9ee4w42QazA',
 			name:'zhiyuan',
 			sex:1,
-			balance:800,
+			gems:800,
 			headImgUrl:'http://thirdwx.qlogo.cn/mmopen/vi_32/yRMlybhILtPMrSOz5Bo7zkF94HEaJqYE6hZvaPpGAqlJnJO0sjSJ2lJqhZiaFcSrLNaicfYzDbbtPySaQCxJxCUg/132'
 		};
 
@@ -49,7 +49,7 @@ db.init(config.mongodb(),function(err,isConnected){
 			account:'oy4oyvy09TL3NWxfjIZDfol2VyWo',
 			name:'tanhao',
 			sex:1,
-			balance:700,
+			gems:700,
 			headImgUrl:'http://thirdwx.qlogo.cn/mmopen/vi_32/TUMtkaIMdbGOh6x0YiaeD7V7p1FV2RIh488cgQM4mkDXUTp7fEXAvbiaLnOZPq02D1bcmcmdreJSBRPu9Ouc87Uw/132',
 		};
 

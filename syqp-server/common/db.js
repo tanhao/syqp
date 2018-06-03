@@ -82,9 +82,9 @@ module.exports.getRoomIdOfUser=function(userId,callback){
     });
 }
 //根据用户ID取账号余额
-module.exports.getBalanceOfUser=function(userId,callback){
+module.exports.getGemsOfUser=function(userId,callback){
     User.findOne({id:userId},{__v:0},function(err,user){
-        callback(err,user && user.balance || 0);
+        callback(err,user && user.gems || 0);
     });
 }
 //判断房间是否存在
@@ -153,13 +153,13 @@ module.exports.updateRoomRound=function(roomId,round,callback){
 }
 
 //添加或扣除玩家费用
-module.exports.incUserBalance=function(userIds,amount,callback){
+module.exports.incUserGems=function(userIds,amount,callback){
     let logic=[];
     userIds.forEach((val,i) => {
         logic[i]={id:val};
     });
     let where = {$or: logic};
-    let update={$inc:{balance:amount}};
+    let update={$inc:{gems:amount}};
     User.updateMany(where,update,function(err,res){
         callback(err,err?false:true);
     });

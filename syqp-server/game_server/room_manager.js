@@ -46,12 +46,12 @@ function constructRoomFromDb(room){
     return room;
 }
 
-module.exports.createRoom=function(creator,config,balance,ip,port,callback){
+module.exports.createRoom=function(creator,config,gems,ip,port,callback){
     let success=manager.checkConfig(config);
     if(!success){
         return callback(new Error('config invalid parameters'),null);
     }
-    if(!manager.checkCreateBalance(config,balance)){
+    if(!manager.checkCreateGems(config,gems)){
        return callback(new Error("钻石不足，创建房间失败!"),null);
     }
     //验证房间配置
@@ -97,7 +97,7 @@ module.exports.createRoom=function(creator,config,balance,ip,port,callback){
     fnCreate();
 }
 
-module.exports.joinRoom = function(userId,name,headImgUrl,sex,roomId,ip,port,balance,callback){
+module.exports.joinRoom = function(userId,name,headImgUrl,sex,roomId,ip,port,gems,callback){
     let fnTakeSeat=function(room){    
         if(module.exports.getUserRoomId(userId) == roomId){
 			return true;
@@ -136,7 +136,7 @@ module.exports.joinRoom = function(userId,name,headImgUrl,sex,roomId,ip,port,bal
     if(room){
         //如果房间存在，选一个座位
         if(module.exports.getUserRoomId(userId) != roomId){
-            if(!room.manager.checkJoinBalance(room.config,balance)){
+            if(!room.manager.checkJoinGems(room.config,gems)){
                 return callback(new Error("钻石不足，加入房间失败!"),null);
             }
         }
@@ -152,7 +152,7 @@ module.exports.joinRoom = function(userId,name,headImgUrl,sex,roomId,ip,port,bal
             constructRoomFromDb(room);
 
             if(module.exports.getUserRoomId(userId) != roomId){
-                if(!room.manager.checkJoinBalance(room.config,balance)){
+                if(!room.manager.checkJoinGems(room.config,gems)){
                     return callback(new Error("钻石不足，加入房间失败!"),null);
                  }
             }

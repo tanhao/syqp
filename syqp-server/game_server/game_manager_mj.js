@@ -69,18 +69,18 @@ module.exports.checkConfig=function(config){
     }
     return true;
 }
-//开房间时验证balance
-module.exports.checkCreateBalance=function(config,balance){
+//开房间时验证gems
+module.exports.checkCreateGems=function(config,gems){
     var fee=getFee(config);
-    return balance>=fee;
+    return gems>=fee;
 }
-//加入房间时验证balance
-module.exports.checkJoinBalance=function(config,balance){
+//加入房间时验证gems
+module.exports.checkJoinGems=function(config,gems){
     if(config.payment == 'FZ'){
         return true;
     }else{
         let fee= config.round==8 ? 1 : 2;
-        return balance>=fee;
+        return gems>=fee;
     }
 }
 //获取要扣的房费
@@ -1036,7 +1036,7 @@ function doGameOver(game,userId,forceEnd){
             //如果是第一次，则扣除房卡
             if(room.round==1){
                 let fee=getFee(room.config)*-1;
-                db.incUserBalance(getNeedFeeUserIds(room),fee,function(err,success){
+                db.incUserGems(getNeedFeeUserIds(room),fee,function(err,success){
                     logger.info("房间："+roomId+" 扣除 ["+getNeedFeeUserIds(room).join(",")+"] : 费用："+fee+" 是否成功:"+success);
                 });
             }

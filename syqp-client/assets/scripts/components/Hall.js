@@ -4,7 +4,7 @@ cc.Class({
     properties: {
         lblId:cc.Label,
         lblName:cc.Label,
-        lblBalance:cc.Label,
+        lblGems:cc.Label,
         lblMarquee:cc.Label,
         joinRoomWin:cc.Node,
         createRoomWin:cc.Node,
@@ -31,7 +31,7 @@ cc.Class({
         var self=this;
         this.lblId.string = "ID:"+th.userManager.userId;
         this.lblName.string = th.userManager.userName;
-        this.lblBalance.string = th.userManager.balance;
+        this.lblGems.string = th.userManager.gems;
         cc.log("Hall th.userManager.roomId:",th.userManager.roomId)
         if(th.userManager.roomId){
             this.btnJoinRoom.node.active=false;

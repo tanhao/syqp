@@ -84,13 +84,13 @@ module.exports.createRoom=function(userId,roomConfig,callback){
     waterfall([
         (callback)=>{
             //取用户余额
-            db.getBalanceOfUser(userId,function(err,balance){
+            db.getGemsOfUser(userId,function(err,gems){
                 if(err) return callback(err,null);
                 let data={
                     userId:userId,
-                    balance:balance,
+                    gems:gems,
                     config:roomConfig,
-                    sign:crypto.md5(userId + roomConfig + balance  + config.HALL_PRIVATE_KEY)
+                    sign:crypto.md5(userId + roomConfig + gems  + config.HALL_PRIVATE_KEY)
                 }
                 callback(null,data);
             });
@@ -114,21 +114,21 @@ module.exports.joinRoom=function(userId,name,headImgUrl,sex,roomId,callback){
         headImgUrl:headImgUrl,
         sex:sex,
         roomId:roomId,
-        balance:0,
+        gems:0,
         sign:""
     };
     waterfall([
         (callback)=>{
             //取房间地址
-            db.getBalanceOfUser(userId,function(err,balance){
+            db.getGemsOfUser(userId,function(err,gems){
                 if(err) return callback(err,null);
-                joinData.balance=balance;
-                joinData.sign = crypto.md5(userId + name + headImgUrl +sex+ roomId + balance + config.HALL_PRIVATE_KEY);
-                callback(null,balance);
+                joinData.gems=gems;
+                joinData.sign = crypto.md5(userId + name + headImgUrl +sex+ roomId + gems + config.HALL_PRIVATE_KEY);
+                callback(null,gems);
             });
             
         },
-        (balance,callback)=>{
+        (gems,callback)=>{
             //取房间地址
             db.getRoomAddress(roomId,function(err,room){
                 if(err) return callback(err,null);
