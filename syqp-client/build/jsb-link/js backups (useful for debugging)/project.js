@@ -55,9 +55,11 @@ this.btnConfirm.node.x = 0;
 }
 },
 onCancelClicked: function() {
+th.audioManager.playSFX("click.mp3");
 this.node.active = !1;
 },
 onConfirmClicked: function() {
+th.audioManager.playSFX("click.mp3");
 this.node.active = !1;
 this._fnConfirm && this._fnConfirm();
 },
@@ -78,22 +80,18 @@ extends: cc.Component,
 properties: {},
 onLoad: function() {},
 init: function() {
-this.ANDROID_API = "org/cocos2dx/javascript/AppActivity";
+this.ANDROID_API = "com/th/tcqp/Wechat";
 this.IOS_API = "AppController";
 },
 getBatteryPercent: function() {
-if (cc.sys.isNative) {
-if (cc.sys.os == cc.sys.OS_ANDROID) return jsb.reflection.callStaticMethod(this.ANDROID_API, "getBatteryPercent", "()F");
-if (cc.sys.os == cc.sys.OS_IOS) return jsb.reflection.callStaticMethod(this.IOS_API, "getBatteryPercent");
-}
 return .9;
 },
 login: function() {
 cc.log("Login==>>");
 if (cc.sys.os == cc.sys.OS_ANDROID) {
-cc.log("Login ANDROID==>>" + this.ANDROID_API);
-var e = jsb.reflection.callStaticMethod(this.ANDROID_API, "login", "()V");
-cc.log("result", e);
+cc.log("Login Start ANDROID==>>" + this.ANDROID_API);
+jsb.reflection.callStaticMethod(this.ANDROID_API, "login", "()V");
+cc.log("Login End ANDROID==>>" + this.ANDROID_API);
 } else if (cc.sys.os == cc.sys.OS_IOS) {
 cc.log("Login IOS==>>" + this.IOS_API);
 jsb.reflection.callStaticMethod(this.IOS_API, "login");
@@ -131,63 +129,89 @@ setTimeout(e, 50);
 }
 },
 onLoginResp: function(e) {
+cc.log("AnysdkManager onLoginResp code===>>:" + e);
 th.http.get("/wechat_auth", {
 code: e,
 os: cc.sys.os
-}, function(e) {
-if (0 == e.errcode) {
-cc.sys.localStorage.setItem("wx_account", e.account);
-cc.sys.localStorage.setItem("wx_sign", e.sign);
+}, function(e, t) {
+th.wc.show("正在登录游戏");
+if (0 == t.errcode) {
+cc.sys.localStorage.setItem("wx_account", t.account);
+cc.sys.localStorage.setItem("wx_sign", t.sign);
 }
-th.userManager.onAuth(null, e);
+th.userManager.onAuth(e, t);
 });
 }
 });
 cc._RF.pop();
 }, {} ],
-AppStart: [ function(c, e, t) {
+AppStart: [ function(o, e, t) {
 "use strict";
 cc._RF.push(e, "5414cTJwbRHg5YZplKYF1DZ", "AppStart");
 cc.Class({
 extends: cc.Component,
 properties: {
-_isAgree: !1
+lblLoadingMsg: cc.Label
 },
 onLoad: function() {
 cc.log("================>>initManager<<=====================");
-(function(e) {
-var t = "http://127.0.0.1:9001";
-window.th = window.th;
-if (window.th) th.http.baseURL = t; else {
-window.th = {};
-th.http = c("Http");
-th.http.baseURL = t;
-th.sio = c("SocketIO");
-th.sio.h;
-var n = c("UserManager");
-th.userManager = new n();
-var i = c("AnysdkManager");
-th.anysdkManager = new i();
-var a = c("AudioManager");
-th.audioManager = new a();
+(function() {
+window.th = window.th || {};
+th.appInfo = {};
+th.defaultBaseUrl = "http://114.112.240.48:9001";
+th.http = o("Http");
+th.http.baseURL = th.defaultBaseUrl;
+th.sio = o("SocketIO");
+var e = o("UserManager");
+th.userManager = new e();
+var t = o("AnysdkManager");
+th.anysdkManager = new t();
+th.anysdkManager.init();
+var n = o("AudioManager");
+th.audioManager = new n();
 th.audioManager.init();
-var o = c("SocketIOManager");
-th.socketIOManager = new o();
+var i = o("SocketIOManager");
+th.socketIOManager = new i();
 th.socketIOManager.initHandlers();
-var s = c("Utils");
-th.utils = new s();
-}
+var a = o("Utils");
+th.utils = new a();
 })();
+var e = cc.url.raw("resources/ver/cv.txt");
+cc.loader.load(e, function(e, t) {
+cc.VERSION = t;
+cc.log("current core version:" + cc.VERSION);
+this.getServerInfo();
+}.bind(this));
 },
-start: function() {},
-onBtnWeichatClicked: function(e, t) {
-if (this._isAgree) {
-cc.log("onBtnWeichatClicked");
-th.anysdkManager.login();
+onBtnDownloadClicked: function() {
+cc.sys.openURL(th.appInfo.appWeb);
+},
+getServerInfo: function() {
+var n = this, i = null, a = !1, e = function() {
+n.lblLoadingMsg.string = "正在连接服务器...";
+i = th.http.get("/server_info", null, function(e, t) {
+if (!e) {
+n.lblLoadingMsg.string = "";
+i = null;
+a = !0;
+(function(e) {
+th.appInfo = e;
+cc.log("AppInfo:", th.appInfo);
+e.version != cc.VERSION ? cc.find("Canvas/alert").active = !0 : cc.director.loadScene("login");
+})(t);
 }
-},
-onBtnAgreeClicked: function(e) {
-this._isAgree = e.isChecked;
+});
+setTimeout(t, 5e3);
+}, t = function() {
+if (!a) if (i) {
+i.abort();
+n.lblLoadingMsg.string = "连接失败，即将重试";
+setTimeout(function() {
+e();
+}, 5e3);
+} else e();
+};
+t();
 }
 });
 cc._RF.pop();
@@ -267,6 +291,190 @@ cc.audioEngine.resumeAll();
 });
 cc._RF.pop();
 }, {} ],
+Chat: [ function(e, t, n) {
+"use strict";
+cc._RF.push(t, "4db35aEQ71DpJsxg3irP6Po", "Chat");
+cc.Class({
+extends: cc.Component,
+properties: {
+quickChatWin: cc.Node,
+emojiWin: cc.Node,
+_quickChatInfo: null
+},
+onLoad: function() {
+if (null != th) {
+(th.chat = this).node.active = !1;
+this._quickChatInfo = {};
+this._quickChatInfo.item1 = {
+index: 1,
+content: "打块点",
+sound: "Speak1.mp3"
+};
+this._quickChatInfo.item2 = {
+index: 2,
+content: "真会碰",
+sound: "Speak2.mp3"
+};
+this._quickChatInfo.item3 = {
+index: 3,
+content: "不搭牌",
+sound: "Speak3.mp3"
+};
+this._quickChatInfo.item4 = {
+index: 4,
+content: "暗杠碰没了",
+sound: "Speak4.mp3"
+};
+this._quickChatInfo.item5 = {
+index: 5,
+content: "牌太烂",
+sound: "Speak5.mp3"
+};
+this._quickChatInfo.item6 = {
+index: 6,
+content: "大对了哇",
+sound: "Speak6.mp3"
+};
+this._quickChatInfo.item7 = {
+index: 7,
+content: "抓张杠杠",
+sound: "Speak7.mp3"
+};
+this._quickChatInfo.item8 = {
+index: 8,
+content: "跟住",
+sound: "Speak8.mp3"
+};
+this._quickChatInfo.item9 = {
+index: 9,
+content: "流局",
+sound: "Speak9.mp3"
+};
+this._quickChatInfo.item10 = {
+index: 10,
+content: "要全包了",
+sound: "Speak10.mp3"
+};
+this._quickChatInfo.item11 = {
+index: 11,
+content: "要胡了",
+sound: "Speak11.mp3"
+};
+}
+},
+getQuickChatInfo: function(e) {
+var t = "item" + e;
+return this._quickChatInfo[t];
+},
+onBtnCloseChatWinClicked: function() {
+th.audioManager.playSFX("click.mp3");
+this.node.active = !1;
+},
+onBtnToggleEmojiFastVoiceClicked: function(e, t) {
+th.audioManager.playSFX("click.mp3");
+if (1 == parseInt(t)) {
+this.quickChatWin.active = !0;
+this.emojiWin.active = !1;
+} else {
+this.quickChatWin.active = !1;
+this.emojiWin.active = !0;
+}
+},
+onEmojiItemClicked: function(e, t) {
+th.audioManager.playSFX("click.mp3");
+this.node.active = !1;
+th.sio.send("emoji", t);
+cc.log("onBtnEmojiClicked==>", t);
+},
+onQuickChatItemClicked: function(e, t) {
+th.audioManager.playSFX("click.mp3");
+this.node.active = !1;
+th.sio.send("quick_chat", t);
+cc.log("onBtnVoiceClicked==>", t);
+}
+});
+cc._RF.pop();
+}, {} ],
+Dissolve: [ function(e, t, n) {
+"use strict";
+cc._RF.push(t, "ab3adC/NWpLKrjcxsnqVKZ2", "Dissolve");
+cc.Class({
+extends: cc.Component,
+properties: {
+_nodeDissolve: cc.Node,
+_lblInfo: cc.Label,
+_btnAgree: cc.Button,
+_btnReject: cc.Button,
+_btnClose: cc.Button,
+_endTime: -1,
+_extraInfo: null
+},
+onLoad: function() {
+if (null != th) {
+this._nodeDissolve = cc.find("Canvas/dissolve");
+this._btnAgree = cc.find("Canvas/dissolve/btn_agree");
+this._btnReject = cc.find("Canvas/dissolve/btn_reject");
+this._btnClose = cc.find("Canvas/dissolve/btn_close");
+this._lblInfo = cc.find("Canvas/dissolve/lbl_info").getComponent(cc.Label);
+this._btnAgree && th.utils.addClickEvent(this._btnAgree, this.node, "Dissolve", "onBtnAgreeClicked");
+this._btnReject && th.utils.addClickEvent(this._btnReject, this.node, "Dissolve", "onBtnRejectClicked");
+this._btnClose && th.utils.addClickEvent(this._btnClose, this.node, "Dissolve", "onBtnCloseClicked");
+var n = this;
+this.node.on("dissolve_notice_push", function(e) {
+var t = e.detail;
+cc.log("Dissolve dissolve_notice_push", t);
+n.showDissolveNotice(t);
+});
+this.node.on("dissolve_cancel_push", function(e) {
+n._nodeDissolve.active = !1;
+});
+}
+},
+onBtnCloseClicked: function() {
+th.audioManager.playSFX("click.mp3");
+this._nodeDissolve.active = !1;
+},
+onBtnAgreeClicked: function(e, t) {
+th.audioManager.playSFX("click.mp3");
+th.sio.send("dissolve_agree");
+},
+onBtnRejectClicked: function(e, t) {
+th.audioManager.playSFX("click.mp3");
+th.sio.send("dissolve_reject");
+},
+showDissolveNotice: function(e) {
+this._endTime = Date.now() / 1e3 + e.time;
+this._extraInfo = "";
+for (var t = !1, n = 0, i = 0; i < e.states.length; ++i) {
+var a = e.states[i], o = th.socketIOManager.seats[i].name;
+if (a) {
+n += 1;
+this._extraInfo += "\n[已同意] " + o;
+} else this._extraInfo += "\n[待确认] " + o;
+i == th.socketIOManager.seatIndex && a && (t = !0);
+}
+if (t) {
+this._btnAgree.active = !1;
+this._btnReject.active = !1;
+} else {
+this._btnAgree.active = !0;
+this._btnReject.active = !0;
+}
+n == e.states.length ? this._nodeDissolve.active = !1 : this._nodeDissolve.active = !0;
+},
+update: function(e) {
+if (0 < this._endTime) {
+var t = this._endTime - Date.now() / 1e3;
+t < 0 && (this._endTime = -1);
+var n = Math.floor(t / 60), i = "";
+0 < n && (i += n + "分");
+var a = i + Math.ceil(t - 60 * n) + "秒后房间将自动解散" + this._extraInfo;
+this._lblInfo.string = a;
+}
+}
+});
+cc._RF.pop();
+}, {} ],
 GameScrollBar: [ function(e, t, n) {
 "use strict";
 cc._RF.push(t, "a2747akXS9P6L0ATNR/aQ3U", "GameScrollBar");
@@ -318,11 +526,12 @@ extends: cc.Component,
 properties: {
 lblId: cc.Label,
 lblName: cc.Label,
-lblBalance: cc.Label,
+lblGems: cc.Label,
 lblMarquee: cc.Label,
 joinRoomWin: cc.Node,
 createRoomWin: cc.Node,
 settingWin: cc.Node,
+shareWin: cc.Node,
 spriteHead: cc.Sprite,
 btnCreateRoom: cc.Button,
 btnReturnRoom: cc.Button,
@@ -339,7 +548,7 @@ initUserInfo: function() {
 var i = this;
 this.lblId.string = "ID:" + th.userManager.userId;
 this.lblName.string = th.userManager.userName;
-this.lblBalance.string = th.userManager.balance;
+this.lblGems.string = th.userManager.gems;
 cc.log("Hall th.userManager.roomId:", th.userManager.roomId);
 if (th.userManager.roomId) {
 this.btnJoinRoom.node.active = !1;
@@ -366,23 +575,34 @@ var t = this.lblMarquee.node.x;
 this.lblMarquee.node.x = t;
 },
 onCreateRoomClicked: function() {
+th.audioManager.playSFX("click.mp3");
 th.userManager.roomId ? th.alert.show("提示", "你已在房间中，是否返回游戏房间？", this.onReturnRoomClicked, !0) : this.createRoomWin.active = !0;
 },
 onJoinRoomClicked: function() {
+th.audioManager.playSFX("click.mp3");
 this.joinRoomWin.active = !0;
 },
 onReturnRoomClicked: function() {
+th.audioManager.playSFX("click.mp3");
 th.wc.show("正在返回游戏房间");
 th.userManager.joinRoom(th.userManager.roomId, function(e) {
 0 != e.errcode && th.alert.show("提示", e.errmsg, null, !1);
 }.bind(this));
 },
 onLogoutClicked: function() {
+cc.sys.localStorage.removeItem("wx_account");
+cc.sys.localStorage.removeItem("wx_sign");
+th.audioManager.playSFX("click.mp3");
 th.wc.show("正在退出游戏房间");
 th.userManager.logout();
 },
 onSettingClicked: function() {
+th.audioManager.playSFX("click.mp3");
 this.settingWin.active = !0;
+},
+onShareClicked: function() {
+th.audioManager.playSFX("click.mp3");
+cc.sys.os != cc.sys.OS_ANDROID && cc.sys.os != cc.sys.OS_IOS || (this.shareWin.active = !0);
 }
 });
 cc._RF.pop();
@@ -401,6 +621,7 @@ for (var o in t) {
 a += o + "=" + t[o];
 }
 var s = c.baseURL + e + encodeURI(a);
+cc.log("==>>" + s + "<<==");
 i.open("GET", s, !0);
 i.onreadystatechange = function() {
 if (4 == i.readyState && 200 <= i.status && i.status < 400) try {
@@ -412,6 +633,7 @@ n(e, null);
 }
 };
 i.send();
+return i;
 },
 post: function(e, t, n) {
 var i = cc.loader.getXMLHttpRequest();
@@ -426,6 +648,7 @@ n(e, null);
 }
 };
 i.send(t);
+return i;
 }
 }
 });
@@ -448,16 +671,19 @@ onEnable: function() {
 this.onResetClicked();
 },
 onResetClicked: function() {
+th.audioManager.playSFX("click.mp3");
 for (var e = 0; e < this.nums.length; ++e) this.nums[e].string = "";
 this._inputIndex = 0;
 },
 onDelClicked: function() {
+th.audioManager.playSFX("click.mp3");
 if (0 < this._inputIndex) {
 this._inputIndex -= 1;
 this.nums[this._inputIndex].string = "";
 }
 },
 onCloseClicked: function() {
+th.audioManager.playSFX("click.mp3");
 this.node.active = !1;
 },
 parseRoomID: function() {
@@ -465,6 +691,7 @@ for (var e = "", t = 0; t < this.nums.length; ++t) e += this.nums[t].string;
 return parseInt(e);
 },
 onInput: function(e, t) {
+th.audioManager.playSFX("click.mp3");
 if (!(this._inputIndex >= this.nums.length)) {
 this.nums[this._inputIndex].string = t;
 this._inputIndex += 1;
@@ -486,6 +713,68 @@ this.onResetClicked();
 });
 cc._RF.pop();
 }, {} ],
+Login: [ function(e, t, n) {
+"use strict";
+cc._RF.push(t, "3f691RkHCFNPI5D+FT0oqxA", "Login");
+cc.Class({
+extends: cc.Component,
+properties: {
+_isAgree: !1
+},
+onLoad: function() {
+th.http.baseURL = th.defaultBaseUrl;
+if (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.os == cc.sys.OS_IOS) {
+console.log(this.node.getChildByName("web_btns"));
+this.node.getChildByName("web_btns").active = !1;
+this.node.getChildByName("btn_weixin").getComponent(cc.Button).node.active = !0;
+} else {
+console.log(this.node.getChildByName("web_btns"));
+this.node.getChildByName("web_btns").active = !0;
+this.node.getChildByName("btn_weixin").getComponent(cc.Button).node.active = !1;
+}
+},
+start: function() {
+var e = cc.sys.localStorage.getItem("wx_account"), t = cc.sys.localStorage.getItem("wx_sign");
+cc.log("login start  account:" + e + " sign:" + t);
+if (null != e && null != t && "" != e && "" != t) {
+th.wc.show("正在登录游戏");
+var n = {
+account: e,
+sign: t
+};
+th.userManager.onAuth(null, n);
+}
+},
+onBtnWeichatClicked: function(e, t) {
+th.audioManager.playSFX("click.mp3");
+if (this._isAgree) {
+cc.log("onBtnWeichatClicked");
+cc.sys.os == cc.sys.OS_ANDROID || cc.sys.os == cc.sys.OS_IOS ? th.anysdkManager.login() : th.userManager.lingshiAuth(t);
+}
+},
+onBtnAgreeClicked: function(e) {
+th.audioManager.playSFX("click.mp3");
+this._isAgree = e.isChecked;
+},
+onBtnShareFirendClicked: function(e) {
+th.audioManager.playSFX("click.mp3");
+th.anysdkManager.shareWebpage("http://fir.im/9r48", "同城棋牌--掌上棋牌室", "【同城棋牌】最地道的松阳麻将,爱麻将的人都在玩。", !1);
+},
+onBtnShareWechatClicked: function(e) {
+th.audioManager.playSFX("click.mp3");
+th.anysdkManager.shareWebpage("http://fir.im/9r48", "同城棋牌--掌上棋牌室", "【同城棋牌】最地道的松阳麻将,爱麻将的人都在玩。", !0);
+},
+onBtnShareImgFirendClicked: function(e) {
+th.audioManager.playSFX("click.mp3");
+th.anysdkManager.shareCaptureScreen(!1);
+},
+onBtnShareImgWechatClicked: function(e) {
+th.audioManager.playSFX("click.mp3");
+th.anysdkManager.shareCaptureScreen(!0);
+}
+});
+cc._RF.pop();
+}, {} ],
 MJChiPengGangs: [ function(e, t, n) {
 "use strict";
 cc._RF.push(t, "0b065EljOlPxbmdDzwTjWvK", "MJChiPengGangs");
@@ -494,28 +783,28 @@ extends: cc.Component,
 properties: {},
 onLoad: function() {
 if (null != th) {
-var t = this, e = this.node.getChildByName("myself").getChildByName("ChiPengGang"), n = cc.director.getVisibleSize().width / 1280;
-e.scaleX *= n;
-e.scaleY *= n;
+var n = this, e = this.node.getChildByName("myself").getChildByName("ChiPengGang"), t = cc.director.getVisibleSize().width / 1280;
+e.scaleX *= t;
+e.scaleY *= t;
 this.node.on("chi_notify_push", function(e) {
 cc.log("==>ChiPengGang chi_notify_push", e.detail);
-e = e.detail;
-t.onChiPengGangChanged(e);
+var t = e.detail;
+n.onChiPengGangChanged(t);
 });
 this.node.on("peng_notify_push", function(e) {
 cc.log("==>ChiPengGang peng_notify_push", e.detail);
-e = e.detail;
-t.onChiPengGangChanged(e);
+var t = e.detail;
+n.onChiPengGangChanged(t);
 });
 this.node.on("gang_notify_push", function(e) {
 cc.log("==>ChiPengGang gang_notify_push", e.detail);
-t.onChiPengGangChanged(e.detail);
+n.onChiPengGangChanged(e.detail);
 });
 this.node.on("begin_push", function(e) {
-t.onGameBegin();
+n.onGameBegin();
 });
 this.node.on("clean_push", function() {
-t.onGameBegin();
+n.onGameBegin();
 });
 var i = th.socketIOManager.seats;
 for (var a in i) this.onChiPengGangChanged(i[a]);
@@ -704,9 +993,11 @@ cc.find("Canvas/create_room_mj/setting_list/fengding/toggleContainer/toggle1").g
 cc.find("Canvas/create_room_mj/setting_list/options/toggle1").getComponent(cc.Toggle).uncheck();
 },
 onCloseClicked: function() {
+th.audioManager.playSFX("click.mp3");
 this.node.active = !1;
 },
 onPeopleClicked: function(e, t) {
+th.audioManager.playSFX("click.mp3");
 this.people = t;
 if (4 == this.people) {
 this.lbl8Round.string = "x4";
@@ -720,24 +1011,31 @@ this.lbl16Round.string = "x4";
 }
 },
 onRoundClicked: function(e, t) {
+th.audioManager.playSFX("click.mp3");
 this.round = parseInt(t);
 },
 onPaymentClicked: function(e, t) {
+th.audioManager.playSFX("click.mp3");
 this.payment = t;
 },
 onDifenClicked: function(e, t) {
+th.audioManager.playSFX("click.mp3");
 this.difen = t;
 },
 onZuozhuangClicked: function(e, t) {
+th.audioManager.playSFX("click.mp3");
 this.zuozhuang = t;
 },
 onFengdingClicked: function(e, t) {
+th.audioManager.playSFX("click.mp3");
 this.fengding = t;
 },
 onCtdsqClicked: function(e) {
+th.audioManager.playSFX("click.mp3");
 this.ctdsq = e.isChecked;
 },
 onCreateClicked: function(e) {
+th.audioManager.playSFX("click.mp3");
 this.node.active = !1;
 var t = {
 people: this.people,
@@ -894,7 +1192,13 @@ this._lblWin.active = !1;
 this._lblLose.active = !1;
 this._lblLiuju.active = !1;
 var t = e[th.socketIOManager.seatIndex].score;
-0 < t ? this._lblWin.active = !0 : t < 0 ? this._lblLose.active = !0 : this._lblLiuju.active = !0;
+if (0 < t) {
+this._lblWin.active = !0;
+th.audioManager.playSFX("Win.mp3");
+} else if (t < 0) {
+this._lblLose.active = !0;
+th.audioManager.playSFX("Lose.mp3");
+} else this._lblLiuju.active = !0;
 for (var n = 0; n < 4; n++) if (n > e.length - 1) this._nodeSeats[n].active = !1; else {
 this._nodeSeats[n].active = !0;
 var i = this._seats[n], a = e[n], o = [];
@@ -1017,6 +1321,7 @@ c += 1;
 }
 },
 onBtnReadyClicked: function() {
+th.audioManager.playSFX("click.mp3");
 cc.log("onBtnReadyClicked");
 this._isGameEnd ? this._nodeGameResult.active = !0 : th.sio.send("ready");
 this._nodeGameOver.active = !1;
@@ -1045,7 +1350,7 @@ this._seats.push(e.getChildByName("seat4"));
 var t = cc.find("Canvas/game_result/btn_back_hall");
 t && th.utils.addClickEvent(t, this.node, "MJGameResult", "onBtnBackHallClicked");
 var n = cc.find("Canvas/game_result/btn_share_result");
-n && th.utils.addClickEvent(n, this.node, "MJGameResult", "onBtnShareClicked");
+n && th.utils.addClickEvent(n, this.node, "MJGameResult", "onBtnShareResultClicked");
 var i = this;
 this.node.on("game_end", function(e) {
 cc.log("==>MJGameResult game_end", e.detail);
@@ -1097,12 +1402,13 @@ this.showResult(this._seats[i], a.userId, a.name, a.headImgUrl, s, o, e[i], a.sc
 }
 },
 onBtnBackHallClicked: function() {
-cc.log("onBtnBackHallClicked");
+th.audioManager.playSFX("click.mp3");
 th.wc.show("正在返回游戏大厅");
 cc.director.loadScene("hall");
 },
-onBtnShareClicked: function() {
-cc.log("onBtnShareClicked");
+onBtnShareResultClicked: function() {
+th.audioManager.playSFX("click.mp3");
+cc.sys.os != cc.sys.OS_ANDROID && cc.sys.os != cc.sys.OS_IOS || th.anysdkManager.shareCaptureScreen(!1);
 },
 update: function(e) {}
 });
@@ -1136,6 +1442,7 @@ this.addComponent("MJChiPengGangs");
 this.addComponent("MJGameOver");
 this.addComponent("MJGameResult");
 this.addComponent("MJReConnect");
+this.addComponent("Dissolve");
 this.initView();
 this.initEventHandlers();
 this.nodePrepare.active = !0;
@@ -1362,14 +1669,14 @@ t.on(cc.Node.EventType.TOUCH_END, function(e) {
 if (th.socketIOManager.turn == th.socketIOManager.seatIndex && t.interactable) {
 this.chupaidian.node.active = !1;
 t.opacity = 255;
-if (200 <= e.getLocationY()) {
+if (100 <= e.getLocationY()) {
 cc.log("chupai :", t.mjid);
 this.shoot(t.mjid);
 }
 }
 }.bind(this));
 t.on(cc.Node.EventType.TOUCH_CANCEL, function(e) {
-if (th.socketIOManager.turn == th.socketIOManager.seatIndex && t.interactable) if (200 <= e.getLocationY()) {
+if (th.socketIOManager.turn == th.socketIOManager.seatIndex && t.interactable) if (100 <= e.getLocationY()) {
 this.chupaidian.node.active = !1;
 t.opacity = 255;
 cc.log("chupai :", t.mjid);
@@ -1423,6 +1730,7 @@ th.socketIOManager.actions = null;
 }
 },
 onMJClicked: function(e) {
+th.audioManager.playSFX("click.mp3");
 if (th.socketIOManager.turn == th.socketIOManager.seatIndex) for (var t = 0; t < this._mymjs.length; ++t) if (e.target == this._mymjs[t].node) {
 if (e.target == this._selectedMJ) {
 cc.log("chupai :", this._selectedMJ.mjid);
@@ -1438,6 +1746,7 @@ return;
 }
 },
 onOptionClicked: function(e) {
+th.audioManager.playSFX("click.mp3");
 if ("btnPeng" == e.target.name) th.sio.send("peng"); else if ("btnGang" == e.target.name) th.sio.send("gang", e.target.pai); else if ("btnHu" == e.target.name) th.sio.send("hu"); else if ("btnChi" == e.target.name) th.sio.send("chi", e.target.pais); else if ("btnGuo" == e.target.name) {
 th.socketIOManager.turn == th.socketIOManager.seatIndex && (this.optionsWin.active = !1);
 th.sio.send("guo");
@@ -1646,7 +1955,7 @@ n.node.on("disconnect", e);
 this.node.on("disconnect", e);
 },
 update: function(e) {
-this._reconnect.active && (this._loading_image.rotation = this._loading_image.rotation - 45 * e);
+this._reconnect.active && (this._loading_image.rotation = this._loading_image.rotation - 90 * e);
 }
 });
 cc._RF.pop();
@@ -1658,6 +1967,8 @@ cc.Class({
 extends: cc.Component,
 properties: {
 settingWin: cc.Node,
+chatWin: cc.Node,
+dissolveWin: cc.Node,
 lblRoomId: cc.Label,
 lblWangfa: cc.Label,
 btnMenu: cc.Button,
@@ -1692,7 +2003,7 @@ for (var e = th.socketIOManager.seats, t = 0; t < e.length; ++t) this.initSingle
 },
 initSingleSeat: function(e) {
 var t = th.socketIOManager.getLocalIndex(e.index);
-this._seats[t].setInfo(e.userId, e.name, e.score, e.headImgUrl);
+this._seats[t].setInfo(e.userId, e.name, e.score, e.headImgUrl, e.sex);
 this._seats[t].setFangzhu(e.userId == th.socketIOManager.creator);
 this._seats[t].setBanker(e.index == th.socketIOManager.bankerIndex);
 this._seats[t].setReady(e.ready);
@@ -1706,70 +2017,89 @@ this.btnWechatInvite.node.active = e;
 this.btnMenu.node.active = !e;
 },
 initEventHandlers: function() {
-var i = this;
+var a = this;
 this.node.on("join_push", function(e) {
 cc.log("==>MJRoom join_push:", JSON.stringify(e.detail));
-i.initSingleSeat(e.detail);
+a.initSingleSeat(e.detail);
 });
 this.node.on("leave_push", function(e) {
 cc.log("==>MJRoom leave_push:", JSON.stringify(e.detail));
-i.initSingleSeat(e.detail);
+a.initSingleSeat(e.detail);
 });
 this.node.on("offline_push", function(e) {
 cc.log("==>MJRoom offline_push:", JSON.stringify(e.detail));
 var t = th.socketIOManager.getSeatIndexById(e.detail.userId), n = th.socketIOManager.getLocalIndex(t);
-i._seats[n].setOffline(!0);
+a._seats[n].setOffline(!0);
 });
 this.node.on("online_push", function(e) {
 cc.log("==>MJRoom online_push:", JSON.stringify(e.detail));
 var t = th.socketIOManager.getSeatIndexById(e.detail.userId), n = th.socketIOManager.getLocalIndex(t);
-i._seats[n].setOffline(!1);
+a._seats[n].setOffline(!1);
 });
 this.node.on("ready_result", function(e) {
 var t = e.detail;
-i.initSingleSeat(t);
+a.initSingleSeat(t);
 });
 this.node.on("ready_push", function(e) {
-i.initSingleSeat(e.detail);
+a.initSingleSeat(e.detail);
 });
 this.node.on("score_push", function(e) {
-i.initSingleSeat(e.detail);
+a.initSingleSeat(e.detail);
 });
 this.node.on("begin_push", function(e) {
-i.refreshBtns();
-i.initSeats();
+a.refreshBtns();
+a.initSeats();
+});
+this.node.on("quick_chat_push", function(e) {
+var t = th.socketIOManager.getSeatIndexById(e.detail.userId), n = th.socketIOManager.getLocalIndex(t), i = th.chat.getQuickChatInfo(e.detail.idx);
+a._seats[n].setChat(i.content);
+a._seats[n].setQuickVoice(i.sound);
+});
+this.node.on("emoji_push", function(e) {
+var t = th.socketIOManager.getSeatIndexById(e.detail.userId), n = th.socketIOManager.getLocalIndex(t);
+a._seats[n].setEmoji(e.detail.idx);
 });
 },
 onBtnDissolveRequestClicked: function() {
+var e = this;
+this.settingWin.active = !1;
+th.audioManager.playSFX("click.mp3");
 th.alert.show("申请解散房间", "申请解散房间不会退换钻石，是否确定申请解散？", function() {
 th.sio.send("dissolve_request");
+e.dissolveWin.active = !1;
 }, !0);
 },
 onBtnDissolveClicked: function() {
+th.audioManager.playSFX("click.mp3");
 th.alert.show("解散房间", "解散房间不扣钻石，是否确定解散？", function() {
 th.sio.send("dissolve");
 }, !0);
 },
 onBtnLeaveClicked: function() {
+th.audioManager.playSFX("click.mp3");
 th.socketIOManager.isFangzhu() ? th.alert.show("离开房间", "您是房主，不能离开房间。", function() {}) : th.alert.show("离开房间", "您确定要离开房间?", function() {
 th.sio.send("leave");
 }, !0);
 },
 onBtnSettingClicked: function() {
+th.audioManager.playSFX("click.mp3");
 this.settingWin.active = !0;
 },
 onBtnChatClicked: function() {
-cc.log("onChatClicked==>");
+th.audioManager.playSFX("click.mp3");
+this.chatWin.active = !0;
 },
 onBtnVoiceClicked: function() {
+th.audioManager.playSFX("click.mp3");
 cc.log("onVoiceClicked==>");
 },
 onBtnReadyClicked: function() {
-cc.log("onBtnReadyClicked==>");
+th.audioManager.playSFX("click.mp3");
 th.sio.send("ready");
 },
 onBtnWechatInviteClicked: function() {
-cc.log("onBtnWechatInviteClicked==>");
+th.audioManager.playSFX("click.mp3");
+cc.sys.os != cc.sys.OS_ANDROID && cc.sys.os != cc.sys.OS_IOS || th.anysdkManager.shareWebpage(th.appInfo.appWeb, th.appInfo.shareTitle, th.socketIOManager.getRoomInfo(), !1);
 }
 });
 cc._RF.pop();
@@ -1887,19 +2217,25 @@ if (this.chat) {
 this.emoji.node.active = !1;
 this.chat.node.active = !0;
 this.chat.getComponent(cc.Label).string = e;
-this.chat.getChildByName("chat_msg").getComponent(cc.Label).string = e;
-this._lastChatTime = 3;
+this.chat.node.getChildByName("chat_msg").getComponent(cc.Label).string = e;
+this._lastChatTime = 2;
 }
+},
+setQuickVoice: function(e) {
+1 == this._sex ? th.audioManager.playSFX("chat/man/Speak/M_" + e) : th.audioManager.playSFX("chat/women/Speak/W_" + e);
 },
 setEmoji: function(e) {
 if (this.emoji) {
 this.chat.node.active = !1;
 this.emoji.node.active = !0;
+var t = cc.textureCache.addImage(cc.url.raw("resources/images/emoji/emoji" + e + ".png"));
+this.emoji.node.getComponent(cc.Sprite).spriteFrame.setTexture(t);
 this._lastChatTime = 3;
 }
 },
-setInfo: function(e, t, n, i) {
+setInfo: function(e, t, n, i, a) {
 this.setUserID(e);
+this._sex = a;
 if (e) {
 this.setUserName(t);
 this.setScore(n);
@@ -1933,6 +2269,8 @@ delay: cc.Label,
 battery: cc.ProgressBar,
 _updateInterval: 1e3,
 _lastUpdateTime: 0,
+_updateBatteryInterval: 3e4,
+_lastUpdateBatteryTime: 0,
 _red: new cc.Color(205, 0, 0),
 _yellow: new cc.Color(255, 200, 0),
 _green: new cc.Color(0, 205, 0)
@@ -1947,6 +2285,9 @@ var t = new Date(), n = t.getHours(), i = t.getMinutes();
 n = n < 10 ? "0" + n : n;
 i = i < 10 ? "0" + i : i;
 this.time.string = n + ":" + i;
+}
+if (Date.now() - this._lastUpdateBatteryTime > this._updateBatteryInterval) {
+this._lastUpdateBatteryTime = Date.now();
 this.battery.progress = th.anysdkManager.getBatteryPercent();
 }
 }
@@ -2173,6 +2514,7 @@ this.effectSlider.progress = parseFloat(t);
 cc.log("bgm:", e, "sfx:", t);
 },
 onCloseClicked: function() {
+th.audioManager.playSFX("click.mp3");
 this.node.active = !1;
 },
 onEffectSlide: function(e) {
@@ -2180,6 +2522,36 @@ th.audioManager.setSFXVolume(e.progress);
 },
 onMusicSlide: function(e) {
 th.audioManager.setBGMVolume(e.progress);
+}
+});
+cc._RF.pop();
+}, {} ],
+Share: [ function(e, t, n) {
+"use strict";
+cc._RF.push(t, "efe8dBa3UxKZYMdnH1aK9lw", "Share");
+cc.Class({
+extends: cc.Component,
+properties: {
+btnShareFriend: cc.Button,
+btnShareWechat: cc.Button,
+btnShareClose: cc.Button
+},
+onLoad: function() {},
+update: function(e) {},
+onShareSessionClicked: function() {
+th.audioManager.playSFX("click.mp3");
+this.node.active = !1;
+th.anysdkManager.shareWebpage(th.appInfo.appWeb, th.appInfo.shareTitle, th.appInfo.shareDesc, !1);
+},
+onShareTimelineClicked: function() {
+th.audioManager.playSFX("click.mp3");
+this.node.active = !1;
+th.anysdkManager.shareWebpage(th.appInfo.appWeb, th.appInfo.shareTitle, th.appInfo.shareDesc, !0);
+},
+onShareCloseClicked: function() {
+th.audioManager.playSFX("click.mp3");
+cc.log("onShareCloseClicked");
+this.node.active = !1;
 }
 });
 cc._RF.pop();
@@ -2206,7 +2578,8 @@ mjsy: 0,
 needCheckIp: !1,
 status: "idle",
 actions: null,
-isOver: !1
+isOver: !1,
+dissolveData: null
 },
 onLoad: function() {},
 resetGame: function() {
@@ -2317,6 +2690,14 @@ th.sio.addHandler("dissolve_push", function(e) {
 a.roomId = null;
 a.resetGame();
 cc.log("==>SocketIOManager dissolve_push:", JSON.stringify(e));
+});
+th.sio.addHandler("dissolve_notice_push", function(e) {
+a.dissolveData = e;
+a.dispatchEvent("dissolve_notice_push", e);
+});
+th.sio.addHandler("dissolve_cancel_push", function(e) {
+a.dissolveData = null;
+a.dispatchEvent("dissolve_cancel_push", e);
 });
 th.sio.addHandler("offline_push", function(e) {
 cc.log("==>SocketIOManager offline_push:", JSON.stringify(e));
@@ -2439,6 +2820,12 @@ th.sio.addHandler("repeat_login", function(e) {
 a.resetGame();
 a.isRepeatLogin = !0;
 a.dispatchEvent("repeat_login");
+});
+th.sio.addHandler("quick_chat_push", function(e) {
+a.dispatchEvent("quick_chat_push", e);
+});
+th.sio.addHandler("emoji_push", function(e) {
+a.dispatchEvent("emoji_push", e);
 });
 th.sio.addHandler("disconnect", function(e) {
 if (a.isRepeatLogin) {
@@ -2577,6 +2964,16 @@ e.push("FZ" == this.config.payment ? "房主付" : "AA付");
 e.push(this.config.ctdsq ? "，吃吐荡三圈" : "");
 return e.join("");
 },
+getRoomInfo: function() {
+var e = [];
+e.push("房间号：");
+e.push(this.roomId);
+e.push(" 局数：");
+e.push(this.config.round);
+e.push(" 房间规则：");
+e.push(this.getWanfa());
+return e.join("");
+},
 isFangzhu: function() {
 return this.creator == th.userManager.userId;
 },
@@ -2584,6 +2981,7 @@ isReady: function(e) {
 return this.getSeatByUserId(e).ready;
 },
 connectServer: function(e) {
+this.dissolveData = null;
 var t = this;
 th.sio.ip = e.ip;
 th.sio.port = e.port;
@@ -2753,7 +3151,7 @@ userName: null,
 account: null,
 sex: null,
 headImgUrl: null,
-balance: 0,
+gems: 0,
 ip: null,
 sign: null,
 roomId: null
@@ -2765,15 +3163,17 @@ account: e
 }, this.onAuth);
 },
 onAuth: function(e, t) {
+th.wc.hide();
 if (e) {
-cc.log("登录错误================》");
-cc.log(e);
+cc.err("onAuth", e);
+th.alert.show("提示", "验证微信错误！", null, !1);
 } else {
 var n = th.userManager;
 n.account = t.account;
 n.sign = t.sign;
-th.http.baseURL = "http://" + t.hallAddr;
+th.http.baseURL = "http://" + th.appInfo.hallAddr;
 cc.log(th.http.baseURL);
+th.wc.show("正在获取玩家数据...");
 n.login();
 }
 },
@@ -2783,14 +3183,19 @@ th.http.get("/login", {
 account: n.account,
 sign: n.sign
 }, function(e, t) {
-if (e || t.errcode) cc.log(e, t.errmsg); else {
+th.wc.hide();
+if (e || t.errcode) {
+cc.log(e, t.errmsg);
+th.alert.show("提示", "玩家数据出错！", null, !1);
+} else {
 n.sex = t.sex;
 n.userId = t.id;
 n.account = t.account;
-n.balance = t.balance;
+n.gems = t.gems;
 n.userName = t.name;
 n.headImgUrl = t.headImgUrl;
 n.roomId = t.roomId;
+th.wc.show("正在进入大厅...");
 cc.director.loadScene("hall", function() {
 th.wc.hide();
 });
@@ -2804,7 +3209,7 @@ cc.director.loadScene("login", function() {
 e.sex = null;
 e.userId = null;
 e.account = null;
-e.balance = null;
+e.gems = null;
 e.userName = null;
 e.headImgUrl = null;
 e.roomId = null;
@@ -2915,4 +3320,4 @@ th && (th.wc = null);
 });
 cc._RF.pop();
 }, {} ]
-}, {}, [ "AnysdkManager", "AudioManager", "Http", "SocketIO", "SocketIOManager", "UserManager", "Utils", "Alert", "AppStart", "GameScrollBar", "Hall", "JoinRoom", "MJChiPengGangs", "MJCreateRoom", "MJFolds", "MJGame", "MJGameOver", "MJGameResult", "MJReConnect", "MJRoom", "MJSeat", "MJStatus", "MJTimePointer", "MahjongManger", "Setting", "WaitingConnection" ]);
+}, {}, [ "AnysdkManager", "AudioManager", "Http", "SocketIO", "SocketIOManager", "UserManager", "Utils", "Alert", "AppStart", "Chat", "Dissolve", "GameScrollBar", "Hall", "JoinRoom", "Login", "MJChiPengGangs", "MJCreateRoom", "MJFolds", "MJGame", "MJGameOver", "MJGameResult", "MJReConnect", "MJRoom", "MJSeat", "MJStatus", "MJTimePointer", "MahjongManger", "Setting", "Share", "WaitingConnection" ]);
