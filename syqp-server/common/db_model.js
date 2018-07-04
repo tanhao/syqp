@@ -10,6 +10,7 @@ var UserSchema=new Schema({
     headImgUrl: {type:String},
     gems: {type:Number,min:0,default:0},
     coins: {type:Number,min:0,default:0},
+    isVip: {type:Boolean,default:false},
     roomId: {type:Number},
     history: { type:Array }
 },{

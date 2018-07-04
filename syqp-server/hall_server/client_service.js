@@ -83,7 +83,7 @@ app.get('/login',function(req,res){
         http.send(res,0,'ok',user);
     });
 });
-
+//创建房间
 app.get('/create_private_room',function(req,res){
     if(!checkAccount(req,res)){
 		return;
@@ -117,7 +117,7 @@ app.get('/create_private_room',function(req,res){
         http.send(res,0,'ok',data);
     });
 });
-
+//加入房间
 app.get('/join_private_room',function(req,res){
     if(!checkAccount(req,res)){
 		return;
@@ -155,4 +155,11 @@ app.get('/is_server_online',function(req,res){
 		};
 		http.send(res,0,"ok",ret);
 	}); 
+});
+
+app.get('/lottery',function(req,res){
+    if(!checkAccount(req,res)){
+		return;
+    }
+    
 });

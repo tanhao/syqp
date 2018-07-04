@@ -10,7 +10,7 @@ cc.Class({
         gems:0,
         ip:null,
         sign:null,
-
+        isVip:false,
         roomId:null,  //登陆时如果不为null,代表用户在房间里，直接加入房间
     },
 
@@ -62,6 +62,7 @@ cc.Class({
              self.userName = data.name;
              self.headImgUrl = data.headImgUrl;
              self.roomId = data.roomId;
+             self.isVip=data.isVip;
              th.wc.show("正在进入大厅...");
              cc.director.loadScene("hall",function(){
                  th.wc.hide();

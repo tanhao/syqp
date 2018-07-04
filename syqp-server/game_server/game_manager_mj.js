@@ -162,6 +162,23 @@ function mopai(game,seatIndex){
         return -1;
     }
     let data = game.seats[seatIndex];
+    if(data.vipPai!=null&&data.vipPai!=game.mjs[game.mjci]){
+        let mjs=game.mjs.slice(game.mjci,game.mjs.length-1);
+       // let paiIndex=mjs.findIndex((val,idx)=>val==data.vipPai)+game.mjci;
+        let  paiIndex=-1;
+        for(let j=game.mjci+1;j<game.mjs.length-1;j++){
+            if(data.vipPai==game.mjs[j]){
+                paiIndex=j;
+                break;
+            }
+        }
+        if(paiIndex>=0){
+            let logic=game.mjs[paiIndex];
+            game.mjs[paiIndex]=game.mjs[game.mjci];
+            game.mjs[game.mjci]=logic;
+        }
+        data.vipPai=null;
+    }
     let holds = data.holds;
     let pai =game.mjs[game.mjci];
     holds.push(pai);
@@ -1305,6 +1322,8 @@ module.exports.begin=function(roomId){
         data.numAnGang = 0;    //暗杠
         data.numMingGang = 0;  //明杠
 
+        data.vipPai=null; //vip麻将
+
         SEAT_DATE_MAP[data.userId]=data;
 
     }
@@ -1858,7 +1877,30 @@ module.exports.chupai=function(userId,pai){
         },500);
     }
 } 
-
+module.exports.vipRequest=function(userId){
+    let seatData = SEAT_DATE_MAP[userId];
+    if(seatData == null){
+        logger.info("can't find user game data.");
+        return;
+    }
+    let seatIndex = seatData.index;
+    let game = seatData.game;
+    let mjs=game.mjs.slice(game.mjci,game.mjs.length-1);
+    //let mjs=[];
+    //最后一个财神不能选 
+    //for(let i=game.mjci;i<game.mjs.length-1;i++){
+        //mjs.push(game.mjs[i]);
+    //}
+    userManager.sendMsg(seatData.userId,'vip_mj_push',{mjs:mjs});
+}
+module.exports.vip=function(userId,pai){
+    let seatData = SEAT_DATE_MAP[userId];
+    if(seatData == null){
+        logger.info("can't find user game data.");
+        return;
+    }
+    seatData.vipPai=pai;
+}
 //申请解散
 module.exports.dissolveRequest = function(roomId,userId){
     let room=roomManager.getRoom(roomId);
@@ -1900,8 +1942,6 @@ module.exports.doDissolve = function(roomId){
     var game = games[roomId];
     doGameOver(game,room.seats[0].userId,true);
 }
-
-
 function update() {
     for(var i = dissolvingList.length - 1; i >= 0; --i){
         var roomId = dissolvingList[i];

@@ -177,7 +177,12 @@ cc.Class({
             th.anysdkManager.shareWebpage(th.appInfo.appWeb,th.appInfo.shareTitle,th.socketIOManager.getRoomInfo(),false);
         }
     },
-
+    onBtnVipClicked:function(){
+        if(th.userManager.isVip){
+            th.audioManager.playSFX("click.mp3");
+            th.sio.send("vip_request"); 
+        }
+    },
 
     // update: function (dt) {
 

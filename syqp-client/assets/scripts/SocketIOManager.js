@@ -12,7 +12,7 @@ cc.Class({
         chupai:null,           //出的牌
         caishen:null,          //财神 
         seatIndex:-1,          //座位Index
-        bankerIndex:-1,          //庄Index
+        bankerIndex:-1,        //庄Index
         turn:-1,               //轮到谁出牌了
         mjsy:0,                //剩余麻将
         needCheckIp:false,
@@ -151,7 +151,6 @@ cc.Class({
             self.resetGame();
             cc.log("==>SocketIOManager dissolve_push:",JSON.stringify(data));
         });
-
         th.sio.addHandler("dissolve_notice_push",function(data){
             self.dissolveData = data;
             self.dispatchEvent("dissolve_notice_push",data);
@@ -160,8 +159,6 @@ cc.Class({
             self.dissolveData = null;
             self.dispatchEvent("dissolve_cancel_push",data);
         });
-
-
         //其他玩家断线
         th.sio.addHandler("offline_push",function(data){
             cc.log("==>SocketIOManager offline_push:",JSON.stringify(data));
@@ -334,6 +331,10 @@ cc.Class({
         });
         th.sio.addHandler("emoji_push",function(data){
             self.dispatchEvent('emoji_push',data); 
+        });
+        //VIP
+        th.sio.addHandler("vip_mj_push",function(data){
+            self.dispatchEvent('vip_mj_push',data); 
         });
         
         

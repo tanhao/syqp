@@ -282,6 +282,19 @@ module.exports.start=function(config){
             if(!userId) return;
             socket.manager.guo(socket.userId);
         });
+        //vip-mj
+        socket.on('vip_request',function(data){
+            let userId=socket.userId;
+            if(!userId) return;
+            socket.manager.vipRequest(socket.userId);
+        });
+        //vip
+        socket.on('vip',function(data){
+            let userId=socket.userId;
+            if(!userId) return;
+            socket.manager.vip(socket.userId,data);
+            
+        });
         
         
      });

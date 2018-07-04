@@ -10,6 +10,9 @@ cc.Class({
         createRoomWin:cc.Node,
         settingWin:cc.Node,
         shareWin:cc.Node,
+        ruleWin:cc.Node,
+        luckGameWin:cc.Node,
+        activityWin:cc.Node,
         spriteHead:cc.Sprite,
         btnCreateRoom:cc.Button,
         btnReturnRoom:cc.Button,
@@ -106,5 +109,27 @@ cc.Class({
         if(cc.sys.os == cc.sys.OS_ANDROID ||cc.sys.os == cc.sys.OS_IOS){
             this.shareWin.active=true;
         }
-    }
+    },
+    onRuleClicked : function(){
+        th.audioManager.playSFX("click.mp3");
+        this.ruleWin.active=true;
+    },
+    onRuleCloseClicked : function(){
+        th.audioManager.playSFX("click.mp3");
+        this.ruleWin.active=false;
+    },
+    onLuckGameClicked : function(){
+        th.audioManager.playSFX("click.mp3");
+        this.luckGameWin.active=true;
+    },
+    
+    onActivityClicked : function(){
+        th.audioManager.playSFX("click.mp3");
+        this.activityWin.active=true;
+    },
+    onActivityCloseClicked : function(){
+        th.audioManager.playSFX("click.mp3");
+        this.activityWin.active=false;
+    },
+   
 });

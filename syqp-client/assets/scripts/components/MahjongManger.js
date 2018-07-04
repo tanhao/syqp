@@ -44,6 +44,11 @@ cc.Class({
             type:[cc.SpriteFrame]
         },
         
+        myHoldMahjong:{
+            default:null,
+            type:cc.Prefab
+        },
+
         _sides:null,
         _pres:null,
         _foldPres:null,

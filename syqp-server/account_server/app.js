@@ -74,10 +74,10 @@ db.init(config.mongodb(),function(err,isConnected){
 		db.getUserNextId(function(err,data){
 			logger.info(err,data);
 		})
+		db.findUserByAccount('oy4oyvy09TL3NWxfjIZDfol2VyWo',function(err,data){
+			console.log(data);
+		});
 		*/
-	
-	
-		
 	}
 });
 
