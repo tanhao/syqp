@@ -125,6 +125,11 @@ cc.Class({
             var index = th.socketIOManager.getLocalIndex(seatIndex);
             self._seats[index].setEmoji(target.detail.idx);
         })
+
+        this.node.on('vip_result',function(target){
+            var index = th.socketIOManager.getLocalIndex(th.socketIOManager.seatIndex);
+            self._seats[index].setChat("OK");
+        })
     },
     onBtnDissolveRequestClicked:function(){
         var self=this;

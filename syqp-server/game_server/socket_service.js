@@ -293,7 +293,7 @@ module.exports.start=function(config){
             let userId=socket.userId;
             if(!userId) return;
             socket.manager.vip(socket.userId,data);
-            
+            socket.emit('vip_result');
         });
         
         

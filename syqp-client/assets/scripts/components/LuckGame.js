@@ -26,9 +26,9 @@ cc.Class({
         this._isRunning=false;
     },
     onGoLotteryClicked : function(){
-        th.audioManager.playSFX("click.mp3");
-        var idx=Math.floor(Math.random()*10);
-        this.trun(idx)
+        //th.audioManager.playSFX("click.mp3");
+        //var idx=Math.floor(Math.random()*10);
+        //this.trun(idx)
     },
     trun:function(reward){
         if(this._isRunning){

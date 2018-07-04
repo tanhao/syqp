@@ -21,6 +21,35 @@ return c[n].exports;
 for (var l = "function" == typeof require && require, e = 0; e < h.length; e++) r(h[e]);
 return r;
 }({
+Activity: [ function(e, t, n) {
+"use strict";
+cc._RF.push(t, "2695eoupehD3YpGt7jtH2dv", "Activity");
+cc.Class({
+extends: cc.Component,
+properties: {
+activityWin: cc.Node,
+noticeWin: cc.Node
+},
+onLoad: function() {
+if (null != th) {
+this.activityWin.active = !0;
+this.noticeWin.active = !1;
+}
+},
+onToggleClicked: function(e, t) {
+th.audioManager.playSFX("click.mp3");
+if (1 == parseInt(t)) {
+this.activityWin.active = !0;
+this.noticeWin.active = !1;
+} else if (2 == parseInt(t)) {
+this.activityWin.active = !1;
+this.noticeWin.active = !0;
+}
+},
+update: function(e) {}
+});
+cc._RF.pop();
+}, {} ],
 Alert: [ function(e, t, n) {
 "use strict";
 cc._RF.push(t, "01a0eYD3wVLrLra9sMACvXk", "Alert");
@@ -532,6 +561,9 @@ joinRoomWin: cc.Node,
 createRoomWin: cc.Node,
 settingWin: cc.Node,
 shareWin: cc.Node,
+ruleWin: cc.Node,
+luckGameWin: cc.Node,
+activityWin: cc.Node,
 spriteHead: cc.Sprite,
 btnCreateRoom: cc.Button,
 btnReturnRoom: cc.Button,
@@ -603,6 +635,26 @@ this.settingWin.active = !0;
 onShareClicked: function() {
 th.audioManager.playSFX("click.mp3");
 cc.sys.os != cc.sys.OS_ANDROID && cc.sys.os != cc.sys.OS_IOS || (this.shareWin.active = !0);
+},
+onRuleClicked: function() {
+th.audioManager.playSFX("click.mp3");
+this.ruleWin.active = !0;
+},
+onRuleCloseClicked: function() {
+th.audioManager.playSFX("click.mp3");
+this.ruleWin.active = !1;
+},
+onLuckGameClicked: function() {
+th.audioManager.playSFX("click.mp3");
+this.luckGameWin.active = !0;
+},
+onActivityClicked: function() {
+th.audioManager.playSFX("click.mp3");
+this.activityWin.active = !0;
+},
+onActivityCloseClicked: function() {
+th.audioManager.playSFX("click.mp3");
+this.activityWin.active = !1;
 }
 });
 cc._RF.pop();
@@ -772,6 +824,67 @@ onBtnShareImgWechatClicked: function(e) {
 th.audioManager.playSFX("click.mp3");
 th.anysdkManager.shareCaptureScreen(!0);
 }
+});
+cc._RF.pop();
+}, {} ],
+LuckGame: [ function(e, t, n) {
+"use strict";
+cc._RF.push(t, "1f6deRkNfxHbpNEg8d2PTQB", "LuckGame");
+cc.Class({
+extends: cc.Component,
+properties: {
+pointerSprite: cc.Sprite,
+rewardSprite: cc.Sprite,
+turnSprite: cc.Sprite,
+nodeResult: cc.Node,
+_isRunning: !1
+},
+onLoad: function() {
+if (null != th) {
+this.nodeResult.active = !1;
+this.rewardSprite.node.active = !1;
+this.turnSprite.node.active = !1;
+}
+},
+onLuckGameCloseClicked: function() {
+th.audioManager.playSFX("click.mp3");
+this.pointerSprite.node.stopAllActions();
+this.pointerSprite.node.rotation = 0;
+this.rewardSprite.node.active = !1;
+this.nodeResult.active = !1;
+this.node.active = !1;
+this.turnSprite.node.active = !1;
+this._isRunning = !1;
+},
+onGoLotteryClicked: function() {},
+trun: function(e) {
+if (!this._isRunning) {
+var t = this, n = this.getRandomAngle(e), i = cc.rotateTo(3, 2880 + n);
+th.audioManager.playSFX("lottery/lottery_begin.mp3");
+this._isRunning = !0;
+this.rewardSprite.node.active = !1;
+this.turnSprite.node.active = !0;
+this.nodeResult.active = !1;
+this.pointerSprite.node.runAction(cc.sequence(i.easing(cc.easeSineOut()), cc.callFunc(function() {
+th.audioManager.playSFX("lottery/lottery_ten.mp3");
+th.audioManager.playSFX("lottery/lottery_reward.mp3");
+t._isRunning = !1;
+t.turnSprite.node.active = !1;
+t.rewardSprite.node.rotation = 36 * e;
+t.rewardSprite.node.active = !0;
+t.nodeResult.active = !0;
+}, this)));
+}
+},
+getRandomAngle: function(e) {
+if (0 == e) {
+var t = Math.floor(18 * Math.random()) - 3;
+return .5 < Math.random() ? t : -1 * t;
+}
+var n = 36 * (e - 1) + 18 + 3, i = 36 * e + 18 - 3;
+return t = Math.floor(n + Math.random() * (i - n));
+},
+update: function(e) {}
 });
 cc._RF.pop();
 }, {} ],
@@ -1442,6 +1555,7 @@ this.addComponent("MJChiPengGangs");
 this.addComponent("MJGameOver");
 this.addComponent("MJGameResult");
 this.addComponent("MJReConnect");
+this.addComponent("MJVip");
 this.addComponent("Dissolve");
 this.initView();
 this.initEventHandlers();
@@ -2059,6 +2173,10 @@ this.node.on("emoji_push", function(e) {
 var t = th.socketIOManager.getSeatIndexById(e.detail.userId), n = th.socketIOManager.getLocalIndex(t);
 a._seats[n].setEmoji(e.detail.idx);
 });
+this.node.on("vip_result", function(e) {
+var t = th.socketIOManager.getLocalIndex(th.socketIOManager.seatIndex);
+a._seats[t].setChat("OK");
+});
 },
 onBtnDissolveRequestClicked: function() {
 var e = this;
@@ -2100,6 +2218,12 @@ th.sio.send("ready");
 onBtnWechatInviteClicked: function() {
 th.audioManager.playSFX("click.mp3");
 cc.sys.os != cc.sys.OS_ANDROID && cc.sys.os != cc.sys.OS_IOS || th.anysdkManager.shareWebpage(th.appInfo.appWeb, th.appInfo.shareTitle, th.socketIOManager.getRoomInfo(), !1);
+},
+onBtnVipClicked: function() {
+if (th.userManager.isVip) {
+th.audioManager.playSFX("click.mp3");
+th.sio.send("vip_request");
+}
 }
 });
 cc._RF.pop();
@@ -2366,6 +2490,58 @@ th.audioManager.playSFX("timeup_alarm.mp3");
 });
 cc._RF.pop();
 }, {} ],
+MJVip: [ function(e, t, n) {
+"use strict";
+cc._RF.push(t, "861fc8ihitPNoGw8I+NQnwV", "MJVip");
+cc.Class({
+extends: cc.Component,
+properties: {
+_nodeRoot: null,
+_nodeVip: null
+},
+onLoad: function() {
+if (null != th) {
+cc.log("MJVIP onload");
+this._nodeRoot = cc.find("Canvas/Vip");
+this._nodeVip = cc.find("Canvas/Vip/mjs");
+this._nodeRoot.active = !1;
+var n = this;
+this.node.on("vip_mj_push", function(e) {
+var t = e.detail;
+n.initVipMj(t.mjs.reverse());
+n._nodeRoot.active = !0;
+});
+}
+},
+initVipMj: function(e) {
+for (var t = 0; t < this._nodeVip.childrenCount; t++) this._nodeVip.children[t].active = !1;
+for (t = 0; t < e.length; t++) {
+var n = null;
+if (this._nodeVip.childrenCount <= t) {
+n = cc.instantiate(th.mahjongManager.myHoldMahjong);
+this._nodeVip.addChild(n, e.length - 1);
+th.utils.addClickEvent(n, this.node, "MJVip", "onBtnMjClicked");
+} else (n = this._nodeVip.children[t]).active = !0;
+n.mjid = e[t];
+var i = n.getComponent(cc.Sprite);
+i.spriteFrame = th.mahjongManager.getSpriteFrameByMJID("B_", e[t]);
+i.node.getChildByName("gold_icon").active = e[t] == th.socketIOManager.caishen;
+n.active = !0;
+}
+this._nodeRoot && th.utils.addClickEvent(this._nodeRoot, this.node, "MJVip", "onBtnCloseClicked");
+},
+onBtnCloseClicked: function() {
+this._nodeRoot.active = !1;
+},
+onBtnMjClicked: function(e) {
+var t = parseInt(e.target.mjid);
+th.sio.send("vip", t);
+this._nodeRoot.active = !1;
+},
+update: function(e) {}
+});
+cc._RF.pop();
+}, {} ],
 MahjongManger: [ function(e, t, n) {
 "use strict";
 cc._RF.push(t, "baa6diT1/ZD/rHD/igYzXco", "MahjongManger");
@@ -2404,6 +2580,10 @@ type: cc.SpriteAtlas
 holdsEmpty: {
 default: [],
 type: [ cc.SpriteFrame ]
+},
+myHoldMahjong: {
+default: null,
+type: cc.Prefab
 },
 _sides: null,
 _pres: null,
@@ -2497,7 +2677,9 @@ cc.Class({
 extends: cc.Component,
 properties: {
 effectSlider: cc.Slider,
-musicSlider: cc.Slider
+musicSlider: cc.Slider,
+effectProgressBar: cc.ProgressBar,
+musicProgressBar: cc.ProgressBar
 },
 onLoad: function() {},
 onEnable: function() {
@@ -2505,11 +2687,13 @@ var e = cc.sys.localStorage.getItem("bgmVolume");
 if (e) {
 th.audioManager.setBGMVolume(parseFloat(e));
 this.musicSlider.progress = parseFloat(e);
+this.musicProgressBar.progress = parseFloat(e);
 }
 var t = cc.sys.localStorage.getItem("sfxVolume");
 if (t) {
 th.audioManager.setSFXVolume(parseFloat(t));
 this.effectSlider.progress = parseFloat(t);
+this.effectProgressBar.progress = parseFloat(t);
 }
 cc.log("bgm:", e, "sfx:", t);
 },
@@ -2519,9 +2703,11 @@ this.node.active = !1;
 },
 onEffectSlide: function(e) {
 th.audioManager.setSFXVolume(e.progress);
+this.effectProgressBar.progress = e.progress;
 },
 onMusicSlide: function(e) {
 th.audioManager.setBGMVolume(e.progress);
+this.musicProgressBar.progress = e.progress;
 }
 });
 cc._RF.pop();
@@ -2826,6 +3012,12 @@ a.dispatchEvent("quick_chat_push", e);
 });
 th.sio.addHandler("emoji_push", function(e) {
 a.dispatchEvent("emoji_push", e);
+});
+th.sio.addHandler("vip_mj_push", function(e) {
+a.dispatchEvent("vip_mj_push", e);
+});
+th.sio.addHandler("vip_result", function(e) {
+a.dispatchEvent("vip_result", e);
 });
 th.sio.addHandler("disconnect", function(e) {
 if (a.isRepeatLogin) {
@@ -3154,6 +3346,7 @@ headImgUrl: null,
 gems: 0,
 ip: null,
 sign: null,
+isVip: !1,
 roomId: null
 },
 onLoad: function() {},
@@ -3195,6 +3388,7 @@ n.gems = t.gems;
 n.userName = t.name;
 n.headImgUrl = t.headImgUrl;
 n.roomId = t.roomId;
+n.isVip = t.isVip;
 th.wc.show("正在进入大厅...");
 cc.director.loadScene("hall", function() {
 th.wc.hide();
@@ -3320,4 +3514,4 @@ th && (th.wc = null);
 });
 cc._RF.pop();
 }, {} ]
-}, {}, [ "AnysdkManager", "AudioManager", "Http", "SocketIO", "SocketIOManager", "UserManager", "Utils", "Alert", "AppStart", "Chat", "Dissolve", "GameScrollBar", "Hall", "JoinRoom", "Login", "MJChiPengGangs", "MJCreateRoom", "MJFolds", "MJGame", "MJGameOver", "MJGameResult", "MJReConnect", "MJRoom", "MJSeat", "MJStatus", "MJTimePointer", "MahjongManger", "Setting", "Share", "WaitingConnection" ]);
+}, {}, [ "AnysdkManager", "AudioManager", "Http", "SocketIO", "SocketIOManager", "UserManager", "Utils", "Activity", "Alert", "AppStart", "Chat", "Dissolve", "GameScrollBar", "Hall", "JoinRoom", "Login", "LuckGame", "MJChiPengGangs", "MJCreateRoom", "MJFolds", "MJGame", "MJGameOver", "MJGameResult", "MJReConnect", "MJRoom", "MJSeat", "MJStatus", "MJTimePointer", "MJVip", "MahjongManger", "Setting", "Share", "WaitingConnection" ]);

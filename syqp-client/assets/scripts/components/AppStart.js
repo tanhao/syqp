@@ -1,12 +1,11 @@
 function initManager(){
     
-
     window.th=window.th || {};
     th.appInfo={}
 
     //th.defaultBaseUrl="http://192.168.88.60:9001";
-    th.defaultBaseUrl="http://127.0.0.1:9001";
-    //th.defaultBaseUrl="http://114.112.240.48:9001";
+    //th.defaultBaseUrl="http://127.0.0.1:9001";
+    th.defaultBaseUrl="http://114.112.240.48:9001";
 
     th.http=require("Http");
     th.http.baseURL=th.defaultBaseUrl;

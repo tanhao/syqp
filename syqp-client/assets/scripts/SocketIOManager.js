@@ -336,7 +336,9 @@ cc.Class({
         th.sio.addHandler("vip_mj_push",function(data){
             self.dispatchEvent('vip_mj_push',data); 
         });
-        
+        th.sio.addHandler("vip_result",function(data){
+            self.dispatchEvent('vip_result',data); 
+        });
         
         //断线
         th.sio.addHandler("disconnect",function(data){
